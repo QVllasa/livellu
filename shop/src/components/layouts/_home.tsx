@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
 import Header from './header';
-// import HeaderMinimal from './header-minimal';
+import HeaderMinimal from './header-minimal';
 import Footer from './footer';
 import { SearchIcon } from '@/components/icons/search-icon';
 import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
@@ -23,11 +23,11 @@ export default function HomeLayout({
   );
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
-      {/*{['minimal', 'compact'].includes(layout) ? (*/}
-      {/*  <HeaderMinimal layout={layout} />*/}
-      {/*) : (*/}
+      {['minimal', 'compact'].includes(layout) ? (
+        <HeaderMinimal layout={layout} />
+      ) : (
         <Header layout={layout} />
-      {/*)}*/}
+      )}
       <div className="min-h-screen">{children}</div>
       {['compact'].includes(layout) && <Footer />}
       <MobileNavigation>

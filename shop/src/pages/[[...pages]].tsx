@@ -35,7 +35,9 @@ const Home: NextPageWithLayout<
 > = ({ variables, layout }) => {
   const { query } = useRouter();
   const { width } = useWindowSize();
-  const { type } = useType(variables.types.type);
+  const { type } = useType();
+
+  console.log("variables: ", variables)
 
   useEffect(() => {
     if (query.text || query.category) {
@@ -51,9 +53,9 @@ const Home: NextPageWithLayout<
     <>
       <Seo title={type?.name} url={type?.slug} images={type?.banners} />
       <Component variables={variables} />
-      {!['compact', 'minimal'].includes(layout) && width > 1023 && (
-        <CartCounterButton />
-      )}
+      {/*{!['compact', 'minimal'].includes(layout) && width > 1023 && (*/}
+      {/*  <CartCounterButton />*/}
+      {/*)}*/}
     </>
   );
 };
