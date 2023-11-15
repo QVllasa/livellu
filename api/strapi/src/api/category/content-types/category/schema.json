@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Category",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "merchant_category": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "category_id": {
+      "type": "string"
+    },
+    "merchant_product_category_path": {
+      "type": "string"
+    },
+    "merchant_product_second_category": {
+      "type": "string"
+    },
+    "category_name": {
+      "type": "string"
+    }
+  }
+}

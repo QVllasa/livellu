@@ -49,13 +49,13 @@ function CustomApp({
                 <CartProvider>
                   <>
                     <DefaultSeo />
-                    {authenticationRequired ? (
-                      <PrivateRoute>
-                        {getLayout(<Component {...pageProps} />)}
-                      </PrivateRoute>
-                    ) : (
-                      getLayout(<Component {...pageProps} />)
-                    )}
+                    {/*{authenticationRequired ? (*/}
+                    {/*  <PrivateRoute>*/}
+                    {/*    {getLayout(<Component {...pageProps} />)}*/}
+                    {/*  </PrivateRoute>*/}
+                    {/*) : (*/}
+                    {getLayout(<Component {...pageProps} />)}
+                    {/*)}*/}
                     <ManagedModal />
                     <ManagedDrawer />
                     <ToastContainer autoClose={2000} theme="colored" />

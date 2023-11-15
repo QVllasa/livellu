@@ -19,14 +19,14 @@ const CartCounterButton = dynamic(
 const Classic = dynamic(() => import('@/components/layouts/classic'));
 const Standard = dynamic(() => import('@/components/layouts/standard'));
 const Modern = dynamic(() => import('@/components/layouts/modern'));
-const Minimal = dynamic(() => import('@/components/layouts/minimal'));
+// const Minimal = dynamic(() => import('@/components/layouts/minimal'));
 const Compact = dynamic(() => import('@/components/layouts/compact'));
 
 const MAP_LAYOUT_TO_GROUP: Record<string, any> = {
   classic: Classic,
   modern: Modern,
   standard: Standard,
-  minimal: Minimal,
+  // minimal: Minimal,
   compact: Compact,
   default: Classic,
 };

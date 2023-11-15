@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "products",
+  "info": {
+    "singularName": "product",
+    "pluralName": "products",
+    "displayName": "Product",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "productId": {
+      "type": "text",
+      "unique": true
+    },
+    "pId": {
+      "type": "text"
+    },
+    "ean": {
+      "type": "text",
+      "required": true,
+      "unique": true
+    },
+    "delTime": {
+      "type": "text"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "merchants": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::merchant.merchant",
+      "mappedBy": "products"
+    },
+    "brandName": {
+      "type": "text"
+    },
+    "curr": {
+      "type": "text"
+    },
+    "buynow": {
+      "type": "text"
+    },
+    "delivery": {
+      "type": "text"
+    },
+    "awTrack": {
+      "type": "text"
+    },
+    "awThumb": {
+      "type": "text"
+    },
+    "awImage": {
+      "type": "text"
+    },
+    "mLink": {
+      "type": "text"
+    },
+    "mImage": {
+      "type": "text"
+    },
+    "name": {
+      "type": "text"
+    },
+    "desc": {
+      "type": "text"
+    },
+    "promo": {
+      "type": "text"
+    },
+    "dimension": {
+      "type": "text"
+    },
+    "colour": {
+      "type": "text"
+    },
+    "material": {
+      "type": "text"
+    },
+    "alternate_image": {
+      "type": "text"
+    },
+    "alternate_image_two": {
+      "type": "text"
+    },
+    "merchant_product_category_path": {
+      "type": "text"
+    }
+  }
+}

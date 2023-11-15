@@ -1,0 +1,55 @@
+{
+  "kind": "collectionType",
+  "collectionName": "feeds",
+  "info": {
+    "singularName": "feed",
+    "pluralName": "feeds",
+    "displayName": "Feed",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "advertiser_id": {
+      "type": "string",
+      "unique": false
+    },
+    "advertiser_name": {
+      "type": "string"
+    },
+    "primary_region": {
+      "type": "string"
+    },
+    "membership_status": {
+      "type": "string"
+    },
+    "feed_id": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "feed_name": {
+      "type": "string"
+    },
+    "language": {
+      "type": "string"
+    },
+    "vertical": {
+      "type": "string"
+    },
+    "last_imported": {
+      "type": "string"
+    },
+    "last_checked": {
+      "type": "string"
+    },
+    "no_of_products": {
+      "type": "string"
+    },
+    "url": {
+      "type": "text"
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "merchants",
+  "info": {
+    "singularName": "merchant",
+    "pluralName": "merchants",
+    "displayName": "Merchant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "merchantId": {
+      "type": "string",
+      "unique": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "feeds": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feed.feed"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::product.product",
+      "inversedBy": "merchants"
+    }
+  }
+}
