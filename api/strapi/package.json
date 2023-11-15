@@ -1,0 +1,43 @@
+{
+  "name": "furni-backend",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A Strapi application",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@notum-cz/strapi-plugin-content-versioning": "^1.0.1",
+    "@strapi/plugin-documentation": "^4.11.7",
+    "@strapi/plugin-graphql": "4.11.7",
+    "@strapi/plugin-i18n": "4.11.7",
+    "@strapi/plugin-users-permissions": "4.11.7",
+    "@strapi/strapi": "4.11.7",
+    "@types/fs-extra": "^11.0.1",
+    "@types/multer": "^1.4.7",
+    "@types/xml2js": "^0.4.11",
+    "@types/xml2json": "^0.11.4",
+    "fs-extra": "^11.1.1",
+    "koa-multer": "^1.0.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "8.8.0",
+    "sax": "^1.2.4",
+    "strapi-plugin-entity-relationship-chart": "^4.1.0",
+    "xml2js": "^0.6.0",
+    "xml2json": "^0.12.0"
+  },
+  "author": {
+    "name": "A Strapi developer"
+  },
+  "strapi": {
+    "uuid": "1e1e1bc3-83b2-4cae-9868-e32f8feb25b4"
+  },
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "license": "MIT"
+}

@@ -11,11 +11,9 @@ type EnvVariables = {
   readonly NEXT_PUBLIC_SITE_URL: string;
   readonly NEXT_PUBLIC_ADMIN_URL: string;
   readonly NEXTAUTH_URL: string;
-  readonly SECRET: string;
-  readonly GOOGLE_CLIENT_ID: string;
-  readonly GOOGLE_CLIENT_SECRET: string;
-  readonly FACEBOOK_CLIENT_ID: string;
-  readonly FACEBOOK_CLIENT_SECRET: string;
+  // readonly SECRET: string;
+  // readonly FACEBOOK_CLIENT_ID: string;
+  // readonly FACEBOOK_CLIENT_SECRET: string;
 };
 export function getEnv(
   name: keyof EnvVariables
