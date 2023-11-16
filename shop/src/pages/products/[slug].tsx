@@ -6,7 +6,6 @@ import Seo from '@/components/seo/seo';
 import {useWindowSize} from '@/lib/use-window-size';
 import isEmpty from 'lodash/isEmpty';
 import dynamic from 'next/dynamic';
-
 import {getStaticPaths, getStaticProps} from '@/framework/product.ssr';
 
 export {getStaticPaths, getStaticProps};

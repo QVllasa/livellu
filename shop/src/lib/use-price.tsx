@@ -56,20 +56,18 @@ export default function usePrice(
     currencyCode?: string;
   } | null
 ) {
-  const {
-    settings: { currency, currencyOptions },
-  } = useSettings();
-  const { amount, baseAmount, currencyCode } = {
+  const { settings: { currency, currencyOptions },} = useSettings();
+  const {amount, baseAmount, currencyCode} = {
     ...data,
     currencyCode: currency ?? 'USD',
   };
-  const { formation, fractions } = currencyOptions!;
+
 
   const { locale } = useRouter();
   const value = useMemo(() => {
     if (typeof amount !== 'number' || !currencyCode) return '';
-    const fractionalDigit = fractions ? fractions : 2;
-    let currentLocale = formation ? formation : 'en';
+    const fractionalDigit =  2;
+    let currentLocale =  'en';
     // if (process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG) {
     //   currentLocale = locale ? locale : 'en';
     // }

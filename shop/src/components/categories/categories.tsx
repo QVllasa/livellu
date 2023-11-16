@@ -1,6 +1,7 @@
 import ErrorMessage from '@/components/ui/error-message';
 import dynamic from 'next/dynamic';
 import { useCategories } from '@/framework/category';
+import {CTEGORIES} from "@/components/categories/cats";
 
 const StickySidebarListCategories = dynamic(
   () => import('@/components/categories/sticky-sidebar-list-categories')
@@ -35,15 +36,17 @@ export default function Categories({
   className,
   variables,
 }: CategoriesProps) {
-  const { categories, isLoading, error } = useCategories(variables);
+  // const { isLoading, error } = useCategories(variables);
 
-  if (error) return <ErrorMessage message={error.message} />;
+  const categories = JSON.parse(CTEGORIES)
+
+  // if (error) return <ErrorMessage message={error.message} />;
   const Component = MAP_CATEGORY_TO_GROUP[layout];
   return (
     <Component
-      notFound={!Boolean(categories.length)}
+      // notFound={!Boolean(categories.length)}
       categories={categories}
-      loading={isLoading}
+      // loading={isLoading}
       className={className}
       variables={variables}
     />
