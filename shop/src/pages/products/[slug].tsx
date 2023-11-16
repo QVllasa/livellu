@@ -10,21 +10,17 @@ import dynamic from 'next/dynamic';
 import {getStaticPaths, getStaticProps} from '@/framework/product.ssr';
 
 export {getStaticPaths, getStaticProps};
-//FIXME: typescript and layout
+
 const Details = dynamic(() => import('@/components/products/details/details'));
 
 const RelatedProducts = dynamic(
     () => import('@/components/products/details/related-products')
 );
-const CartCounterButton = dynamic(
-    () => import('@/components/cart/cart-counter-button'),
-    {ssr: false}
-);
 
 const ProductPage: NextPageWithLayout<
     InferGetStaticPropsType<typeof getStaticProps>
 > = ({product}: any) => {
-    const {width} = useWindowSize();
+
     return (
         <>
             <Seo
@@ -47,7 +43,6 @@ const ProductPage: NextPageWithLayout<
                             </div>
                         )}
                 </div>
-                {width > 1023 && <CartCounterButton/>}
             </AttributesProvider>
         </>
     );

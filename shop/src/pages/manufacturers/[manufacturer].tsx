@@ -15,11 +15,6 @@ import { useTranslation } from 'next-i18next';
 import StickyBox from 'react-sticky-box';
 export { getStaticPaths, getStaticProps } from '@/framework/manufacturer.ssr';
 
-const CartCounterButton = dynamic(
-  () => import('@/components/cart/cart-counter-button'),
-  { ssr: false }
-);
-
 const MobileNavigation = dynamic(
   () => import('@/components/layouts/mobile-navigation'),
   {
@@ -53,8 +48,6 @@ export default function Manufacturer({ manufacturer, variables }: any) {
           column="five"
         />
       </div>
-
-      {width > 1023 && <CartCounterButton />}
     </>
   );
 }

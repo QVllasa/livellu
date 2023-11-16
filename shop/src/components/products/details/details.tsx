@@ -22,19 +22,9 @@ import { stickyShortDetailsAtom } from '@/store/sticky-short-details-atom';
 import { useAttributes } from './attributes.context';
 import classNames from 'classnames';
 import { displayImage } from '@/lib/display-product-preview-images';
-import { HeartOutlineIcon } from '@/components/icons/heart-outline';
-import { HeartFillIcon } from '@/components/icons/heart-fill';
-import Spinner from '@/components/ui/loaders/spinner/spinner';
 
-import { useInWishlist, useToggleWishlist } from '@/framework/wishlist';
 import { useIntersection } from 'react-use';
 import { StarIcon } from '@/components/icons/star-icon';
-import dynamic from 'next/dynamic';
-
-const FavoriteButton = dynamic(
-  () => import('@/components/products/details/favorite-button'),
-  { ssr: false }
-);
 
 type Props = {
   product: Product;
@@ -165,10 +155,7 @@ const Details: React.FC<Props> = ({
               </h1>
 
               <div>
-                <FavoriteButton
-                  productId={id}
-                  className={classNames({ 'mr-1': isModal })}
-                />
+
               </div>
             </div>
             <div className="mt-2 flex items-center justify-between">

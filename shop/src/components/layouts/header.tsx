@@ -12,11 +12,7 @@ import GroupsDropdownMenu from '@/components/layouts/menu/groups-menu';
 import { useHeaderSearch } from '@/layouts/headers/header-search-atom';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 import { locationAtom } from '@/lib/use-location';
-import { MapPin } from '@/components/icons/map-pin';
-import Button from '@/components/ui/button';
-import LocationBasedShopForm from '@/components/form/location-based-shop-form';
 import { useSettings } from '@/framework/settings';
-import { ArrowDownIcon } from '@/components/icons/arrow-down';
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 

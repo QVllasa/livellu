@@ -3,9 +3,7 @@ import { drawerAtom } from '@/store/drawer-atom';
 import { useAtom } from 'jotai';
 import dynamic from 'next/dynamic';
 import Drawer from './drawer';
-const CartSidebarView = dynamic(
-  () => import('@/components/cart/cart-sidebar-view')
-);
+
 
 const MobileMainMenu = dynamic(
   () => import('@/components/layouts/mobile-menu/mobile-main-menu')
@@ -31,7 +29,6 @@ export default function ManagedDrawer() {
           : 'right'
       }
     >
-      {view === 'cart' && <CartSidebarView />}
       {view === 'FILTER_VIEW' && <MobileCategoryMenu variables={data} />}
       {view === 'MAIN_MENU_VIEW' && <MobileMainMenu />}
       {view === 'SEARCH_FILTER' && (

@@ -17,10 +17,7 @@ import GroupsDropdownMenu from './menu/groups-menu';
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
-const CartCounterIconButton = dynamic(
-  () => import('@/components/cart/cart-counter-icon-button'),
-  { ssr: false }
-);
+
 
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 

@@ -13,10 +13,7 @@ import { InferGetStaticPropsType } from 'next';
 import { getStaticPaths, getStaticProps } from '@/framework/shop.ssr';
 export { getStaticPaths, getStaticProps };
 
-const CartCounterButton = dynamic(
-  () => import('@/components/cart/cart-counter-button'),
-  { ssr: false }
-);
+
 
 const ShopPage: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
@@ -57,7 +54,6 @@ const ShopPage: NextPageWithLayout<
           variables={variables}
         />
       </div>
-      {width > 1023 && <CartCounterButton />}
     </div>
   );
 };

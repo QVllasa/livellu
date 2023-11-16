@@ -9,12 +9,8 @@ import CouponLoader from '@/components/ui/loaders/coupon-loader';
 import { useCoupons } from '@/framework/coupon';
 import ErrorMessage from '@/components/ui/error-message';
 import CouponCard from '@/components/ui/cards/coupon';
-import dynamic from 'next/dynamic';
 export { getStaticProps } from '@/framework/coupon.ssr';
-const CartCounterButton = dynamic(
-  () => import('@/components/cart/cart-counter-button'),
-  { ssr: false }
-);
+
 
 const OffersPage: NextPageWithLayout = () => {
   const limit = 20;
@@ -49,7 +45,6 @@ const OffersPage: NextPageWithLayout = () => {
           </div>
         )}
       </div>
-      <CartCounterButton />
     </>
   );
 };

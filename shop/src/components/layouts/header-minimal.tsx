@@ -12,10 +12,6 @@ import Link from '@/components/ui/link';
 import GroupsDropdownMenu from './menu/groups-menu';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 
-const CartCounterIconButton = dynamic(
-  () => import('@/components/cart/cart-counter-icon-button'),
-  { ssr: false }
-);
 
 
 const HeaderMinimal = ({ layout }: { layout: string }) => {

@@ -1,7 +1,6 @@
 import Card from '@/components/ui/cards/card';
 import Seo from '@/components/seo/seo';
 import DashboardLayout from '@/layouts/_dashboard';
-import MyReports from '@/components/reports/report-view';
 export { getStaticProps } from '@/framework/general.ssr';
 
 const MyReportsPage = () => {
@@ -9,7 +8,6 @@ const MyReportsPage = () => {
     <>
       <Seo noindex={true} nofollow={true} />
       <Card className="w-full self-stretch shadow-none sm:shadow">
-        <MyReports />
       </Card>
     </>
   );
