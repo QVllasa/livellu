@@ -240,8 +240,6 @@ const Details: React.FC<Props> = ({
                   )
                 ) : ''
               }
-
-
               {!isEmpty(selectedVariation) && (
                 <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
                   {selectedVariation?.is_disable ||
@@ -254,7 +252,6 @@ const Details: React.FC<Props> = ({
               )}
             </div>
           </div>
-
           {!!categories?.length && (
             <CategoryBadges
               categories={categories}
@@ -262,7 +259,6 @@ const Details: React.FC<Props> = ({
               onClose={closeModal}
             />
           )}
-
           {shop?.name && (
             <div className="mt-2 flex items-center">
               <span className="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">
@@ -279,7 +275,6 @@ const Details: React.FC<Props> = ({
           )}
         </div>
       </div>
-
       <Element
         name="details"
         className="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14"
