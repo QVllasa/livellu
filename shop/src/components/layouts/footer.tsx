@@ -2,7 +2,6 @@ import { useTranslation } from 'next-i18next';
 import { siteSettings } from '@/config/site';
 import Link from '@/components/ui/link';
 import Logo from '@/components/ui/logo';
-import SubscriptionWidget from '@/components/settings/subscribe-to-newsletter';
 
 const Footer = () => {
   const { t } = useTranslation('common');
@@ -48,10 +47,7 @@ const Footer = () => {
         ))}
 
         <div className="col-span-full md:col-span-2 lg:col-auto">
-          <SubscriptionWidget
-            title="text-subscribe-now"
-            description="text-subscribe-details"
-          />
+
         </div>
       </div>
 

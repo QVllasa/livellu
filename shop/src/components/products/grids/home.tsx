@@ -14,12 +14,14 @@ export default function ProductGridHome({
   column,
   gridClassName,
 }: Props) {
+
+
   const { query } = useRouter();
   const { products, loadMore, isLoadingMore, isLoading, hasMore, error } =
     useProducts({
       ...variables,
-      ...(query.category && { categories: query.category }),
-      ...(query.text && { name: query.text }),
+      // ...(query.category && { categories: query.category }),
+      // ...(query.text && { name: query.text }),
     });
   const productsItem:any = products;
   return (

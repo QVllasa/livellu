@@ -6,6 +6,7 @@ import FilterBar from './filter-bar';
 import type { HomePageProps } from '@/types';
 
 export default function Modern({ variables }: HomePageProps) {
+
   return (
     <div className="flex flex-1 bg-gray-100">
       <div className="sticky top-22 hidden h-full bg-gray-100 lg:w-[380px] xl:block">

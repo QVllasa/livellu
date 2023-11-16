@@ -5,16 +5,16 @@ import client from '@/framework/client';
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'next-i18next';
-import { useUser } from '@/framework/user';
+
 
 export function useCards(params?: any, options?: any) {
-  const { isAuthorized } = useUser();
+
 
   const { data, isLoading, error } = useQuery<Card[], Error>(
     [API_ENDPOINTS.CARDS, params],
     () => client.cards.all(params),
     {
-      enabled: isAuthorized,
+      // enabled: isAuthorized,
       ...options,
     }
   );

@@ -21,9 +21,7 @@ const CartCounterIconButton = dynamic(
   () => import('@/components/cart/cart-counter-icon-button'),
   { ssr: false }
 );
-const AuthorizedMenu = dynamic(() => import('./menu/authorized-menu'), {
-  ssr: false,
-});
+
 const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
 
 interface MenuProps {
@@ -83,8 +81,6 @@ const HeaderWithMegaMenu: React.FC<MenuProps> = ({ data, className }) => {
 
           <div className="ltr:ml-10 rtl:mr-10 hidden lg:flex items-center shrink-0 space-x-9 rtl:space-x-reverse">
             <GroupsDropdownMenu variant="minimal" />
-            <CartCounterIconButton />
-            {isAuthorize ? <AuthorizedMenu minimal={true} /> : <JoinButton />}
           </div>
         </div>
 

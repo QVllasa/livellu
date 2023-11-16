@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   );
   return {
     paths,
-    fallback: 'blocking',
+    fallback: true,
   };
 };
 type PageProps = {

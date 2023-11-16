@@ -16,19 +16,19 @@ const CartCounterButton = dynamic(
   () => import('@/components/cart/cart-counter-button'),
   { ssr: false }
 );
-const Classic = dynamic(() => import('@/components/layouts/classic'));
-const Standard = dynamic(() => import('@/components/layouts/standard'));
+// const Classic = dynamic(() => import('@/components/layouts/classic'));
+// const Standard = dynamic(() => import('@/components/layouts/standard'));
 const Modern = dynamic(() => import('@/components/layouts/modern'));
 // const Minimal = dynamic(() => import('@/components/layouts/minimal'));
-const Compact = dynamic(() => import('@/components/layouts/compact'));
+// const Compact = dynamic(() => import('@/components/layouts/compact'));
 
 const MAP_LAYOUT_TO_GROUP: Record<string, any> = {
-  classic: Classic,
+  // classic: Classic,
   modern: Modern,
-  standard: Standard,
+  // standard: Standard,
   // minimal: Minimal,
-  compact: Compact,
-  default: Classic,
+  // compact: Compact,
+  // default: Classic,
 };
 const Home: NextPageWithLayout<
   InferGetStaticPropsType<typeof getStaticProps>
@@ -48,7 +48,7 @@ const Home: NextPageWithLayout<
     }
   }, [query.text, query.category]);
 
-  const Component = MAP_LAYOUT_TO_GROUP[layout];
+  const Component = MAP_LAYOUT_TO_GROUP['modern'];
   return (
     <>
       <Seo title={type?.name} url={type?.slug} images={type?.banners} />

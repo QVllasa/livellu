@@ -1,5 +1,5 @@
 import { useTranslation } from 'next-i18next';
-import ContactForm from '@/components/settings/contact-form';
+
 import { Image } from '@/components/ui/image';
 import contactIllustration from '@/assets/contact-illustration.svg';
 import { getLayout } from '@/components/layouts/layout';
@@ -102,7 +102,7 @@ export const ContactPage = () => {
             <h1 className="mb-7 font-body text-xl font-bold text-heading md:text-2xl">
               {t('text-questions-comments')}
             </h1>
-            <ContactForm />
+            {/*<ContactForm />*/}
           </div>
         </div>
       </div>

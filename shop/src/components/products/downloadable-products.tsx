@@ -15,7 +15,7 @@ import NotFound from '@/components/ui/not-found';
 import WishlistLoader from '@/components/ui/loaders/wishlist-loader';
 import rangeMap from '@/lib/range-map';
 import { isPaymentPending } from '@/lib/is-payment-pending';
-import PayNowButton from '@/components/payment/pay-now-button';
+
 import { SpinnerLoader } from '@/components/ui/loaders/spinner/spinner';
 import { useRouter } from 'next/router';
 

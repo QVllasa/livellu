@@ -25,7 +25,7 @@ import { displayImage } from '@/lib/display-product-preview-images';
 import { HeartOutlineIcon } from '@/components/icons/heart-outline';
 import { HeartFillIcon } from '@/components/icons/heart-fill';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
-import { useUser } from '@/framework/user';
+
 import { useInWishlist, useToggleWishlist } from '@/framework/wishlist';
 import { useIntersection } from 'react-use';
 import { StarIcon } from '@/components/icons/star-icon';

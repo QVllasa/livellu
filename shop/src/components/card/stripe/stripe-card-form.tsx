@@ -7,7 +7,6 @@ import {
 } from '@stripe/react-stripe-js';
 import { useState, useEffect } from 'react';
 import isEmpty from 'lodash/isEmpty';
-import StripeBaseForm from '@/components/payment/stripe/stripe-base-form';
 import getStripe from '@/lib/get-stripejs';
 
 const CardForm = () => {

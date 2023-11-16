@@ -28,8 +28,8 @@ export const Routes = {
   cards: '/cards',
   shop: (slug: string) => `/shops/${encodeURIComponent(slug)}`,
   downloads: '/downloads',
-  authors: '/authors',
-  author: (slug: string) => `/authors/${encodeURIComponent(slug)}`,
+  // authors: '/authors',
+  // author: (slug: string) => `/authors/${encodeURIComponent(slug)}`,
   manufacturers: '/manufacturers',
   manufacturer: (slug: string) => `/manufacturers/${encodeURIComponent(slug)}`,
   nearByShop: ({ lat, lng }: { lat: string; lng: string }) =>

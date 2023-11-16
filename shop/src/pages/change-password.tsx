@@ -1,7 +1,6 @@
 import Card from '@/components/ui/cards/card';
 import { useTranslation } from 'next-i18next';
 import Seo from '@/components/seo/seo';
-import ChangePasswordForm from '@/components/auth/change-password-form';
 import DashboardLayout from '@/layouts/_dashboard';
 export { getStaticProps } from '@/framework/general.ssr';
 

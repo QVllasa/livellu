@@ -1,4 +1,4 @@
-import DashboardSidebar from '@/components/dashboard/sidebar';
+
 import GeneralLayout from '@/components/layouts/_general';
 import classNames from 'classnames';
 
@@ -20,7 +20,6 @@ export default function DashboardLayout({
           className
         )}
       >
-        <DashboardSidebar className="hidden shrink-0 ltr:mr-8 rtl:ml-8 lg:block lg:w-80" />
         {children}
       </div>
     </GeneralLayout>

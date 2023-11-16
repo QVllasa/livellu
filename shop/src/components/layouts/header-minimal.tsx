@@ -16,10 +16,7 @@ const CartCounterIconButton = dynamic(
   () => import('@/components/cart/cart-counter-icon-button'),
   { ssr: false }
 );
-const AuthorizedMenu = dynamic(() => import('./menu/authorized-menu'), {
-  ssr: false,
-});
-const JoinButton = dynamic(() => import('./menu/join-button'), { ssr: false });
+
 
 const HeaderMinimal = ({ layout }: { layout: string }) => {
   const router = useRouter();
