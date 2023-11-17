@@ -47,7 +47,7 @@ export function useProducts(options?: Partial<ProductQueryOptions>) {
     const isFetchingNextPage = false;
 
     function handleLoadMore() {
-        fetchNextPage();
+        // fetchNextPage();
     }
 
     return {
