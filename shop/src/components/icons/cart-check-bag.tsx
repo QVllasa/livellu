@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 
 type CartCheckBagProps = {
 	width?: number;
@@ -6,7 +5,7 @@ type CartCheckBagProps = {
 	className?: string;
 };
 
-const CartCheckBag: FC<CartCheckBagProps> = ({ width, height, className }) => {
+const CartCheckBag: React.FC<CartCheckBagProps> = ({ width, height, className }) => {
 	return (
 		<svg
 			width={width}

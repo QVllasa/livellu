@@ -1,17 +1,11 @@
-import type {
-    BestSellingProductQueryOptions,
-    PopularProductQueryOptions,
-    Product,
-    ProductPaginator,
-    ProductQueryOptions,
-} from '@/types';
-import {useInfiniteQuery, useQuery,} from 'react-query';
+import type {BestSellingProductQueryOptions, PopularProductQueryOptions, Product, ProductQueryOptions,} from '@/types';
+import {useQuery,} from 'react-query';
 import client from './client';
 import {API_ENDPOINTS} from './client/api-endpoints';
 import {mapPaginatorData} from '@/framework/utils/data-mappers';
 import {formatProductsArgs} from '@/framework/utils/format-products-args';
 import {useRouter} from 'next/router';
-import {PRODUCTS} from "@/components/products/grids/products";
+import {PRODUCTS} from "@/db/products";
 
 export function useProducts(options?: Partial<ProductQueryOptions>) {
     const {locale} = useRouter();
@@ -51,7 +45,7 @@ export function useProducts(options?: Partial<ProductQueryOptions>) {
     }
 
     return {
-        products: data?.pages?.flatMap((page) => page.data) ?? [],
+        products: data?.pages?.flatMap((page: any) => page.data) ?? [],
         paginatorInfo: Array.isArray(data?.pages)
             ? mapPaginatorData(data?.pages[data.pages.length - 1])
             : null,
@@ -118,7 +112,7 @@ export function useProduct({slug}: { slug: string }) {
     //   () => client.products.get({ slug, language })
     // );
 
-    const data = JSON.parse(PRODUCTS).find(p => p.slug === slug)
+    const data = JSON.parse(PRODUCTS).find((p: any) => p.slug === slug)
     const isLoading = false;
     const error = null;
 

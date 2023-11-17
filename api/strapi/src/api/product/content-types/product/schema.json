@@ -91,6 +91,9 @@
     },
     "merchant_product_category_path": {
       "type": "text"
+    },
+    "slug": {
+      "type": "text"
     }
   }
 }

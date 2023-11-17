@@ -8,6 +8,7 @@ import client from './client';
 import { API_ENDPOINTS } from './client/api-endpoints';
 import { PRODUCTS_PER_PAGE } from './client/variables';
 import { SettingsQueryOptions } from '@/types';
+import {SHOPS} from "@/db/shops";
 
 // This function gets called at build time
 type ParsedQueryParams = {
@@ -17,8 +18,11 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   locales,
 }) => {
   invariant(locales, 'locales is not defined');
-  const { data } = await client.shops.all({ limit: 100, is_active: 1 });
-  const paths = data?.flatMap((shop) =>
+  // const { data } = await client.shops.all({ limit: 100, is_active: 1 });
+
+  const data = JSON.parse(SHOPS)
+
+  const paths = data?.flatMap((shop: { slug: any; }) =>
     locales?.map((locale) => ({ params: { slug: shop.slug }, locale }))
   );
   return {
@@ -38,14 +42,15 @@ export const getStaticProps: GetStaticProps<
   ParsedQueryParams
 > = async ({ params, locale }) => {
   const { slug } = params!; //* we know it's required because of getStaticPaths
-  const queryClient = new QueryClient();
+  // const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
   try {
-    const shop = await client.shops.get(slug);
+    const shop = JSON.parse(SHOPS).find((shop: { slug: string; }) => shop.slug === slug)
+    // const shop = await client.shops.get(slug);
     // await queryClient.prefetchInfiniteQuery(
     //   [API_ENDPOINTS.PRODUCTS, { limit: PRODUCTS_PER_PAGE, shop_id: shop.id, language: locale }],
     //   ({ queryKey }) => client.products.all(queryKey[1] as ProductQueryOptions)
@@ -58,7 +63,7 @@ export const getStaticProps: GetStaticProps<
           limit: PRODUCTS_PER_PAGE,
         },
         ...(await serverSideTranslations(locale!, ['common'])),
-        dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+        // dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
       },
       revalidate: 60,
     };

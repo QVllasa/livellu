@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Countdown, { zeroPad } from 'react-countdown';
 
 type NoticeCountdownProps = {

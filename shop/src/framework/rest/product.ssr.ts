@@ -7,7 +7,7 @@ import client from './client';
 import {dehydrate} from 'react-query/hydration';
 import {API_ENDPOINTS} from '@/framework/client/api-endpoints';
 import {QueryClient} from 'react-query';
-import {PRODUCTS} from "@/components/products/grids/products";
+import {PRODUCTS} from "@/db/products";
 
 // This function gets called at build time
 type ParsedQueryParams = {
@@ -19,7 +19,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({locales
     //
     const data = JSON.parse(PRODUCTS)
 
-    const paths = data?.flatMap((product) =>
+    const paths = data?.flatMap((product: { slug: any; }) =>
         locales?.map((locale) => ({params: {slug: product.slug}, locale}))
     );
     return {
@@ -46,7 +46,7 @@ export const getStaticProps: GetStaticProps<
     try {
         // const product = await client.products.get({ slug, language: locale });
 
-        const product = JSON.parse(PRODUCTS).find((p) => p.slug === slug)
+        const product = JSON.parse(PRODUCTS).find((p: { slug: string; }) => p.slug === slug)
 
         return {
             props: {

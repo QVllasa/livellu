@@ -1,4 +1,4 @@
-import React from 'react';
+
 export const HelpIcon = ({
   color = 'currentColor',
   width = '14px',

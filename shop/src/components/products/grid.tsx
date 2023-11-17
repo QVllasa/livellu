@@ -40,7 +40,7 @@ export function Grid({
 }: Props) {
   const { t } = useTranslation('common');
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
 
   if (!isLoading && !products?.length) {
     return (

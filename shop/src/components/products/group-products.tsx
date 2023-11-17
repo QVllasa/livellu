@@ -6,18 +6,19 @@ import { productPlaceholder } from '@/lib/placeholders';
 import ErrorMessage from '@/components/ui/error-message';
 import SectionBlock from '@/components/ui/section-block';
 import { Routes } from '@/config/routes';
+import { Key } from 'react';
 
 export default function GroupProducts() {
-  const { products, error } = useProducts({
-    tags: 'combo',
-    limit: 3,
-  });
-  if (error) return <ErrorMessage message={error.message} />;
+    const {products, error} = useProducts({
+        tags: 'combo',
+        limit: 3,
+    });
+    // if (error) return <ErrorMessage message={error?.message} />;
 
-  return (
-    <SectionBlock>
-      <div className="grid w-full gap-5 sm:grid-cols-3 lg:grid-cols-4">
-        {products.slice(0, 3).map((product, idx) => {
+    return (
+        <SectionBlock>
+            <div className="grid w-full gap-5 sm:grid-cols-3 lg:grid-cols-4">
+                {products.slice(0, 3).map((product: { slug: string; id: Key | null | undefined; image: { original: any; }; }, idx: number) => {
           return (
             <Link
               href={Routes.product(product.slug)}

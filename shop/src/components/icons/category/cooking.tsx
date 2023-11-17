@@ -1,4 +1,4 @@
-import React from 'react';
+
 export const Cooking: React.FC<React.SVGAttributes<{}>> = (props) => {
   return (
     <svg

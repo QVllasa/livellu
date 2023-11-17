@@ -25,7 +25,7 @@ const AutoSuggestionBox: React.FC<AutoSuggestionProps> = ({
     searchQuery
   });
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
 
   return (
     <AutoSuggestion

@@ -54,10 +54,9 @@ const ShopsPage: NextPageWithLayout = () => {
               {t('text-all-shops')}
             </h3>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
-              {shops.map((shop) => (
+              {shops.map((shop: Shop) => (
                 <NearShopCard
                   key={shop.id}
-                  //@ts-ignore
                   shop={shop}
                 />
               ))}
@@ -76,7 +75,7 @@ const ShopsPage: NextPageWithLayout = () => {
     );
   }
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
 
   return (
     <div className="min-h-screen bg-light">

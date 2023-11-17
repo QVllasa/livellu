@@ -15,7 +15,7 @@ export default function GeneralLayout({
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
       <Header layout={layout} />
       {children}
-      <MobileNavigation />
+      {/*<MobileNavigation />*/}
     </div>
   );
 }
@@ -23,6 +23,6 @@ export default function GeneralLayout({
 export const getGeneralLayout = (page: React.ReactElement) => (
   <GeneralLayout layout={page.props.layout}>
     {page}
-    <MobileNavigation />
+    {/*<MobileNavigation />*/}
   </GeneralLayout>
 );

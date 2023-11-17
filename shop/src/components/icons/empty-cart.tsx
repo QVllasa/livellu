@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+
 
 type EmptyCartProps = {
 	width?: number;
@@ -6,7 +6,7 @@ type EmptyCartProps = {
 	className?: string;
 };
 
-const EmptyCart: FC<EmptyCartProps> = ({
+const EmptyCart: React.FC<EmptyCartProps> = ({
 	width = 231.91,
 	height = 292,
 	className,

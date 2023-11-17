@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-11-17T13:02:05.288Z"
+    "x-generation-date": "2023-11-17T13:39:58.833Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1694,6 +1694,9 @@
                         "merchant_product_category_path": {
                           "type": "string"
                         },
+                        "slug": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -1918,6 +1921,9 @@
                 "type": "string"
               },
               "merchant_product_category_path": {
+                "type": "string"
+              },
+              "slug": {
                 "type": "string"
               }
             }
@@ -2558,6 +2564,9 @@
                                       "merchant_product_category_path": {
                                         "type": "string"
                                       },
+                                      "slug": {
+                                        "type": "string"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -2716,6 +2725,9 @@
             "type": "string"
           },
           "merchant_product_category_path": {
+            "type": "string"
+          },
+          "slug": {
             "type": "string"
           },
           "createdAt": {

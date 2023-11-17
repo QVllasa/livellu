@@ -38,7 +38,7 @@ const TopManufacturersGrid: React.FC = () => {
     limit: 10,
   });
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
 
   if (isLoading && manufacturers.length) {
     return (

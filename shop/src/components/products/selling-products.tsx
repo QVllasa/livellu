@@ -24,7 +24,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
   const { products, isLoading, error } = usePopularProducts({ range: 30 });
   const router = useRouter();
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
 
   if (!isLoading && !products.length) {
     return (

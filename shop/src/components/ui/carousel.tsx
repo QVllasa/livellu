@@ -9,7 +9,7 @@ import {
   Navigation,
   SwiperOptions,
 } from '@/components/ui/slider';
-import AuthorCard from '@/components/ui/author-card';
+
 import classNames from 'classnames';
 
 interface CarouselProps extends SwiperOptions {

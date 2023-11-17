@@ -1,4 +1,4 @@
-import React from "react";
+
 export const LangSwitcherIcon: React.FC<React.SVGAttributes<{}>> = ({
   color = 'currentColor',
   width = '14px',

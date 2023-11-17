@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+
 
 type PencilProps = {
 	width?: number;
@@ -6,7 +6,7 @@ type PencilProps = {
 	className?: string;
 };
 
-const Pencil: FC<PencilProps> = ({ width, height, className }) => {
+const Pencil: React.FC<PencilProps> = ({ width, height, className }) => {
 	return (
 		<svg
 			width={width}

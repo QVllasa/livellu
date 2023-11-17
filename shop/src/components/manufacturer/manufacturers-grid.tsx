@@ -8,38 +8,40 @@ import ErrorMessage from '@/components/ui/error-message';
 import ManufacturerCard from './card';
 import { MANUFACTURERS_PER_PAGE } from '@/framework/client/variables';
 import { useRouter } from 'next/router';
+import { Key } from 'react';
 
 interface ManufacturersGridProps {
-  limit?: number;
+    limit?: number;
 }
+
 const ManufacturersGrid: React.FC<ManufacturersGridProps> = ({
-  limit = MANUFACTURERS_PER_PAGE,
-}) => {
-  const { t } = useTranslation('common');
-  const { locale } = useRouter();
-  const { manufacturers, loadMore, isLoadingMore, isLoading, hasMore, error } =
-    useManufacturers({
-      language: locale,
-      limit,
-    });
-  if (error) return <ErrorMessage message={error.message} />;
+                                                                 limit = MANUFACTURERS_PER_PAGE,
+                                                             }) => {
+    const {t} = useTranslation('common');
+    const {locale} = useRouter();
+    const {manufacturers, loadMore, isLoadingMore, isLoading, hasMore, error} =
+        useManufacturers({
+            language: locale,
+            limit,
+        });
+    // if (error) return <ErrorMessage message={error.message} />;
 
-  if (!isLoading && !manufacturers.length) {
+    if (!isLoading && !manufacturers.length) {
+        return (
+            <div className="min-h-full px-4 pt-6 pb-8 bg-white lg:p-8">
+                <NotFound text="text-no-manufacturers"/>
+            </div>
+        );
+    }
+
     return (
-      <div className="min-h-full px-4 pt-6 pb-8 bg-white lg:p-8">
-        <NotFound text="text-no-manufacturers" />
-      </div>
-    );
-  }
-
-  return (
-    <div className="w-full py-8 mx-auto lg:py-14 xl:py-20">
-      <div className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-5 lg:gap-7">
-        {isLoading && !manufacturers.length
-          ? rangeMap(limit, (i) => (
-              <ManufacturerLoader key={i} uniqueKey={`manufacturer-${i}`} />
-            ))
-          : manufacturers.map((item) => (
+        <div className="w-full py-8 mx-auto lg:py-14 xl:py-20">
+            <div className="grid grid-cols-[repeat(auto-fill,minmax(270px,1fr))] gap-5 lg:gap-7">
+                {isLoading && !manufacturers.length
+                    ? rangeMap(limit, (i) => (
+                        <ManufacturerLoader key={i} uniqueKey={`manufacturer-${i}`}/>
+                    ))
+                    : manufacturers.map((item: { id: Key | null | undefined; }) => (
               <ManufacturerCard key={item.id} item={item} />
             ))}
       </div>

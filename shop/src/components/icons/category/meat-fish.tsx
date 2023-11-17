@@ -1,4 +1,4 @@
-import React from 'react';
+
 export const MeatFish: React.FC<React.SVGAttributes<{}>> = (props) => {
   return (
     <svg

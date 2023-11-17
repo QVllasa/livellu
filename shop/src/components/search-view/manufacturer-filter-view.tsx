@@ -66,7 +66,7 @@ const ManufacturerFilter = () => {
     language: locale,
     limit: 100,
   });
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
   if (isLoading)
     return (
       <div className="flex w-full items-center justify-center py-5">

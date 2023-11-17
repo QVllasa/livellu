@@ -2,7 +2,7 @@ import {useProducts} from '@/framework/product';
 import {PRODUCTS_PER_PAGE} from '@/framework/client/variables';
 import {Grid} from '@/components/products/grid';
 import {useRouter} from 'next/router';
-import {PRODUCTS} from "@/components/products/grids/products";
+import {PRODUCTS} from "@/db/products";
 
 interface Props {
     className?: string;

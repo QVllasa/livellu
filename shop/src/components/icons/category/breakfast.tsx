@@ -1,4 +1,3 @@
-import React from 'react';
 export const Breakfast: React.FC<React.SVGAttributes<{}>> = (props) => {
   return (
     <svg

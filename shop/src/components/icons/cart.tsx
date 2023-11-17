@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+
 
 type CartProps = {
 	width?: number;
@@ -6,7 +6,8 @@ type CartProps = {
 	className?: string;
 };
 
-const Cart: FC<CartProps> = ({ width, height, className }) => {
+
+const Cart: React.FC<CartProps> = ({ width, height, className }) => {
 	return (
 		<svg
 			width={width}

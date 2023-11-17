@@ -46,7 +46,7 @@ export default function SearchPage() {
     ...restQuery,
   });
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
   return (
     <div className="w-full">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">

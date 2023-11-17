@@ -15,8 +15,8 @@ export { getStaticPaths, getStaticProps };
 
 
 
-const ShopPage: NextPageWithLayout<
-  InferGetStaticPropsType<typeof getStaticProps>
+const ShopPage: NextPageWithLayout<any
+  // InferGetStaticPropsType<typeof getStaticProps>
 > = ({ shop, variables }) => {
   const router = useRouter();
   const { width } = useWindowSize();

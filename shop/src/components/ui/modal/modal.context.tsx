@@ -1,4 +1,5 @@
-import React from 'react';
+import {createContext, useContext, useReducer} from "react";
+
 
 type MODAL_VIEWS =
   | 'REGISTER'
@@ -64,9 +65,9 @@ function modalReducer(state: State, action: Action): State {
   }
 }
 
-const ModalStateContext = React.createContext<State>(initialState);
+const ModalStateContext = createContext<State>(initialState);
 ModalStateContext.displayName = 'ModalStateContext';
-const ModalActionContext = React.createContext<
+const ModalActionContext = createContext<
   React.Dispatch<Action> | undefined
 >(undefined);
 ModalActionContext.displayName = 'ModalActionContext';
@@ -74,7 +75,7 @@ ModalActionContext.displayName = 'ModalActionContext';
 export const ModalProvider: React.FC<{ children?: React.ReactNode }> = ({
   children,
 }) => {
-  const [state, dispatch] = React.useReducer(modalReducer, initialState);
+  const [state, dispatch] = useReducer(modalReducer, initialState);
   return (
     <ModalStateContext.Provider value={state}>
       <ModalActionContext.Provider value={dispatch}>
@@ -85,7 +86,7 @@ export const ModalProvider: React.FC<{ children?: React.ReactNode }> = ({
 };
 
 export function useModalState() {
-  const context = React.useContext(ModalStateContext);
+  const context = useContext(ModalStateContext);
   if (context === undefined) {
     throw new Error(`useModalState must be used within a ModalProvider`);
   }
@@ -93,7 +94,7 @@ export function useModalState() {
 }
 
 export function useModalAction() {
-  const dispatch = React.useContext(ModalActionContext);
+  const dispatch = useContext(ModalActionContext);
   if (dispatch === undefined) {
     throw new Error(`useModalAction must be used within a ModalProvider`);
   }

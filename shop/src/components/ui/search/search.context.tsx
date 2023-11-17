@@ -13,7 +13,7 @@ export const SearchContext = React.createContext<State | any>(initialState);
 
 SearchContext.displayName = 'SearchContext';
 
-export const SearchProvider: FC<{ children?: React.ReactNode }> = (props) => {
+export const SearchProvider: React.FC<{ children?: React.ReactNode }> = (props) => {
   const { query } = useRouter();
   const [searchTerm, updateSearchTerm] = useState('');
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+
 
 type TrashProps = {
   width?: number;
@@ -6,7 +6,7 @@ type TrashProps = {
   className?: string;
 };
 
-const Trash: FC<TrashProps> = ({ width, height, className }) => {
+const Trash: React.FC<TrashProps> = ({ width, height, className }) => {
   return (
     <svg
       width={width}
@@ -22,7 +22,7 @@ const Trash: FC<TrashProps> = ({ width, height, className }) => {
 
 export default Trash;
 
-export const TrashTwo: FC<TrashProps> = ({ width, height, className }) => {
+export const TrashTwo: React.FC<TrashProps> = ({ width, height, className }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

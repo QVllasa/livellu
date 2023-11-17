@@ -1,15 +1,16 @@
-import React from 'react';
+import {createContext, useContext, useMemo, useState} from "react";
+
 type State = typeof initialState;
 const initialState = {};
-export const AttributesContext = React.createContext<State | any>(initialState);
+export const AttributesContext = createContext<State | any>(initialState);
 
 AttributesContext.displayName = 'AttributesContext';
 
 export const AttributesProvider: React.FC<{
   children?: React.ReactNode;
 }> = (props) => {
-  const [state, dispatch] = React.useState(initialState);
-  const value = React.useMemo(
+  const [state, dispatch] = useState(initialState);
+  const value = useMemo(
     () => ({ attributes: state, setAttributes: dispatch }),
     [state]
   );
@@ -17,7 +18,7 @@ export const AttributesProvider: React.FC<{
 };
 
 export const useAttributes = () => {
-  const context = React.useContext(AttributesContext);
+  const context = useContext(AttributesContext);
   if (context === undefined) {
     throw new Error(`useAttributes must be used within a SettingsProvider`);
   }

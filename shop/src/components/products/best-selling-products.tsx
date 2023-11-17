@@ -22,7 +22,7 @@ export default function BestSellingProductsGrid({
   const { t } = useTranslation('common');
   const { products, isLoading, error } = useBestSellingProducts(variables);
 
-  if (error) return <ErrorMessage message={error.message} />;
+  // if (error) return <ErrorMessage message={error.message} />;
   if (!isLoading && !products.length) {
     return (
       <SectionBlock title={t('text-best-selling')}>

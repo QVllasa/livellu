@@ -1,4 +1,4 @@
-import React from 'react';
+
 export const Restaurant: React.FC<React.SVGAttributes<{}>> = (props) => {
   return (
     <svg

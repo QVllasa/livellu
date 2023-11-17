@@ -1,4 +1,4 @@
-import React from 'react';
+
 export const CaretDown = ({ ...props }) => {
 	return (
 		<svg width="10" height="6" viewBox="0 0 10 6" {...props}>

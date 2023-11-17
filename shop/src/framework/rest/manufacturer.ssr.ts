@@ -7,6 +7,7 @@ import { PRODUCTS_PER_PAGE, TYPES_PER_PAGE } from './client/variables';
 import { QueryClient } from 'react-query';
 import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
 import { dehydrate } from 'react-query/hydration';
+import {MANUFACTURERS} from "@/db/manufacturers";
 
 // This function gets called at build time
 type ParsedQueryParams = {
@@ -16,8 +17,11 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   locales,
 }) => {
   invariant(locales, 'locales is not defined');
-  const { data } = await client.manufacturers.all({ limit: 100 });
-  const paths = data?.flatMap((manufacturer) =>
+  // const { data } = await client.manufacturers.all({ limit: 100 });
+
+  const data = JSON.parse(MANUFACTURERS)
+
+  const paths = data?.flatMap((manufacturer: { slug: any; }) =>
     locales?.map((locale) => ({
       params: { manufacturer: manufacturer.slug },
       locale,

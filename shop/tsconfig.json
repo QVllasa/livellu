@@ -17,6 +17,7 @@
     "jsx": "preserve",
     "paths": {
       "@/*": ["src/*"],
+      "react": [ "./node_modules/@types/react" ],
       "@/framework/*": ["src/framework/rest/*"],
       "@/framework/static/*": ["src/framework/static/*"]
     },
