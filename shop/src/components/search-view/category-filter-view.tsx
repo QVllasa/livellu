@@ -7,6 +7,7 @@ import { useTranslation } from 'next-i18next';
 import { useCategories } from '@/framework/category';
 import ErrorMessage from '@/components/ui/error-message';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
+import {CTEGORIES} from "@/components/categories/cats";
 
 interface Props {
   categories: any[];
@@ -62,18 +63,20 @@ const CategoryFilter: React.FC<{ type?: any }> = ({ type }) => {
   const { query, locale } = useRouter();
 
   // @ts-ignore
-  const { categories, isLoading, error } = useCategories({
-    ...(type ? { type } : { type: query.searchType }),
-    limit: 1000,
-  });
+  // const { categories, isLoading, error } = useCategories({
+  //   ...(type ? { type } : { type: query.searchType }),
+  //   limit: 1000,
+  // });
 
-  if (error) return <ErrorMessage message={error.message} />;
-  if (isLoading)
-    return (
-      <div className="flex w-full items-center justify-center py-5">
-        <Spinner className="h-6 w-6" simple={true} />
-      </div>
-    );
+  const categories = JSON.parse(CTEGORIES)
+
+  // if (error) return <ErrorMessage message={error.message} />;
+  // if (isLoading)
+  //   return (
+  //     <div className="flex w-full items-center justify-center py-5">
+  //       <Spinner className="h-6 w-6" simple={true} />
+  //     </div>
+  //   );
   return <CategoryFilterView categories={categories} />;
 };
 

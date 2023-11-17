@@ -25,7 +25,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
   );
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 type PageProps = {
@@ -44,6 +44,7 @@ export const getStaticProps: GetStaticProps<
 
   try {
     const manufacturer = await client.manufacturers.get({slug: params!.manufacturer, language: locale});
+
     return {
       props: {
         manufacturer,

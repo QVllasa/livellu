@@ -99,7 +99,7 @@ export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
         paths: paths.concat(
             locales?.map((locale) => ({params: {pages: []}, locale}))
         ),
-        fallback: true,
+        fallback: false,
     };
 };
 
