@@ -6,7 +6,7 @@
     "clean": "rimraf \"{.next,node_modules,__generated__,.cache,src/framework/graphql/**/*.d.ts}\"",
     "dev": "next dev -p 3003",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start -p 3000",
     "lint": "next lint",
     "postbuild:rest": "next-sitemap",
     "prepare": "husky install"
@@ -107,5 +107,9 @@
   },
   "resolutions": {
     "@types/react": "18.0.27"
-  }
+  },
+  "engines": {
+  "node": "20.x",
+  "npm": "10.x"
+}
 }
