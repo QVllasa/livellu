@@ -12,22 +12,29 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "merchant_category": {
+    "name": {
       "type": "string",
       "unique": true,
       "required": true
     },
-    "category_id": {
-      "type": "string"
+    "parent_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "child_categories"
     },
-    "merchant_product_category_path": {
-      "type": "string"
+    "child_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "parent_category"
     },
-    "merchant_product_second_category": {
-      "type": "string"
+    "path": {
+      "type": "text"
     },
-    "category_name": {
-      "type": "string"
+    "identifier": {
+      "type": "text",
+      "required": true
     }
   }
 }

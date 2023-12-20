@@ -94,6 +94,9 @@
     },
     "slug": {
       "type": "text"
+    },
+    "merchantId": {
+      "type": "string"
     }
   }
 }
