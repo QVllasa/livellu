@@ -226,7 +226,7 @@ dist
 
 # Docusaurus cache and generated files
 .docusaurus
-
+*.env
 # Serverless directories
 .serverless/
 
