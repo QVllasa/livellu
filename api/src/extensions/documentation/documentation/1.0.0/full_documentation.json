@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-12-20T12:30:25.679Z"
+    "x-generation-date": "2023-12-20T20:03:27.846Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -127,10 +127,16 @@
                   "example": "string or id"
                 }
               },
-              "path": {
+              "cat1": {
                 "type": "string"
               },
               "identifier": {
+                "type": "string"
+              },
+              "cat2": {
+                "type": "string"
+              },
+              "cat3": {
                 "type": "string"
               }
             }
@@ -245,10 +251,16 @@
                           }
                         }
                       },
-                      "path": {
+                      "cat1": {
                         "type": "string"
                       },
                       "identifier": {
+                        "type": "string"
+                      },
+                      "cat2": {
+                        "type": "string"
+                      },
+                      "cat3": {
                         "type": "string"
                       },
                       "createdAt": {
@@ -574,10 +586,16 @@
               }
             }
           },
-          "path": {
+          "cat1": {
             "type": "string"
           },
           "identifier": {
+            "type": "string"
+          },
+          "cat2": {
+            "type": "string"
+          },
+          "cat3": {
             "type": "string"
           },
           "createdAt": {
@@ -1645,10 +1663,16 @@
                                         }
                                       }
                                     },
-                                    "path": {
+                                    "cat1": {
                                       "type": "string"
                                     },
                                     "identifier": {
+                                      "type": "string"
+                                    },
+                                    "cat2": {
+                                      "type": "string"
+                                    },
+                                    "cat3": {
                                       "type": "string"
                                     },
                                     "createdAt": {
@@ -2617,10 +2641,16 @@
                           }
                         }
                       },
-                      "path": {
+                      "cat1": {
                         "type": "string"
                       },
                       "identifier": {
+                        "type": "string"
+                      },
+                      "cat2": {
+                        "type": "string"
+                      },
+                      "cat3": {
                         "type": "string"
                       },
                       "createdAt": {

@@ -29,12 +29,19 @@
       "target": "api::category.category",
       "mappedBy": "parent_category"
     },
-    "path": {
+    "cat1": {
       "type": "text"
     },
     "identifier": {
       "type": "text",
-      "required": true
+      "required": true,
+      "unique": true
+    },
+    "cat2": {
+      "type": "string"
+    },
+    "cat3": {
+      "type": "string"
     }
   }
 }

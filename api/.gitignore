@@ -249,5 +249,7 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+.env.development
+
 package-lock.json
 yarn.lock
