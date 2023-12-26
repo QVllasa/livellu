@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2023-12-20T20:03:27.846Z"
+    "x-generation-date": "2023-12-25T20:16:53.534Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -102,16 +102,19 @@
               "name": {
                 "type": "string"
               },
-              "parent_category": {
-                "oneOf": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ],
-                "example": "string or id"
+              "parent_categories": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "integer"
+                    },
+                    {
+                      "type": "string"
+                    }
+                  ],
+                  "example": "string or id"
+                }
               },
               "child_categories": {
                 "type": "array",
@@ -138,6 +141,9 @@
               },
               "cat3": {
                 "type": "string"
+              },
+              "isCategory": {
+                "type": "boolean"
               }
             }
           }
@@ -199,44 +205,94 @@
           "name": {
             "type": "string"
           },
-          "parent_category": {
+          "parent_categories": {
             "type": "object",
             "properties": {
               "data": {
-                "type": "object",
-                "properties": {
-                  "id": {
-                    "type": "number"
-                  },
-                  "attributes": {
-                    "type": "object",
-                    "properties": {
-                      "name": {
-                        "type": "string"
-                      },
-                      "parent_category": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "number"
+                    },
+                    "attributes": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "parent_categories": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
                                 "type": "object",
-                                "properties": {}
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "attributes": {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                }
                               }
                             }
                           }
-                        }
-                      },
-                      "child_categories": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "array",
-                            "items": {
+                        },
+                        "child_categories": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "array",
+                              "items": {
+                                "type": "object",
+                                "properties": {
+                                  "id": {
+                                    "type": "number"
+                                  },
+                                  "attributes": {
+                                    "type": "object",
+                                    "properties": {}
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "cat1": {
+                          "type": "string"
+                        },
+                        "identifier": {
+                          "type": "string"
+                        },
+                        "cat2": {
+                          "type": "string"
+                        },
+                        "cat3": {
+                          "type": "string"
+                        },
+                        "isCategory": {
+                          "type": "boolean"
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "publishedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "createdBy": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
                               "type": "object",
                               "properties": {
                                 "id": {
@@ -244,100 +300,189 @@
                                 },
                                 "attributes": {
                                   "type": "object",
-                                  "properties": {}
-                                }
-                              }
-                            }
-                          }
-                        }
-                      },
-                      "cat1": {
-                        "type": "string"
-                      },
-                      "identifier": {
-                        "type": "string"
-                      },
-                      "cat2": {
-                        "type": "string"
-                      },
-                      "cat3": {
-                        "type": "string"
-                      },
-                      "createdAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "updatedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "publishedAt": {
-                        "type": "string",
-                        "format": "date-time"
-                      },
-                      "createdBy": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
-                                "type": "object",
-                                "properties": {
-                                  "firstname": {
-                                    "type": "string"
-                                  },
-                                  "lastname": {
-                                    "type": "string"
-                                  },
-                                  "username": {
-                                    "type": "string"
-                                  },
-                                  "email": {
-                                    "type": "string",
-                                    "format": "email"
-                                  },
-                                  "resetPasswordToken": {
-                                    "type": "string"
-                                  },
-                                  "registrationToken": {
-                                    "type": "string"
-                                  },
-                                  "isActive": {
-                                    "type": "boolean"
-                                  },
-                                  "roles": {
-                                    "type": "object",
-                                    "properties": {
-                                      "data": {
-                                        "type": "array",
-                                        "items": {
-                                          "type": "object",
-                                          "properties": {
-                                            "id": {
-                                              "type": "number"
-                                            },
-                                            "attributes": {
-                                              "type": "object",
-                                              "properties": {
-                                                "name": {
-                                                  "type": "string"
-                                                },
-                                                "code": {
-                                                  "type": "string"
-                                                },
-                                                "description": {
-                                                  "type": "string"
-                                                },
-                                                "users": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "data": {
-                                                      "type": "array",
-                                                      "items": {
+                                  "properties": {
+                                    "firstname": {
+                                      "type": "string"
+                                    },
+                                    "lastname": {
+                                      "type": "string"
+                                    },
+                                    "username": {
+                                      "type": "string"
+                                    },
+                                    "email": {
+                                      "type": "string",
+                                      "format": "email"
+                                    },
+                                    "resetPasswordToken": {
+                                      "type": "string"
+                                    },
+                                    "registrationToken": {
+                                      "type": "string"
+                                    },
+                                    "isActive": {
+                                      "type": "boolean"
+                                    },
+                                    "roles": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {
+                                                  "name": {
+                                                    "type": "string"
+                                                  },
+                                                  "code": {
+                                                    "type": "string"
+                                                  },
+                                                  "description": {
+                                                    "type": "string"
+                                                  },
+                                                  "users": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "id": {
+                                                              "type": "number"
+                                                            },
+                                                            "attributes": {
+                                                              "type": "object",
+                                                              "properties": {}
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "permissions": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "array",
+                                                        "items": {
+                                                          "type": "object",
+                                                          "properties": {
+                                                            "id": {
+                                                              "type": "number"
+                                                            },
+                                                            "attributes": {
+                                                              "type": "object",
+                                                              "properties": {
+                                                                "action": {
+                                                                  "type": "string"
+                                                                },
+                                                                "subject": {
+                                                                  "type": "string"
+                                                                },
+                                                                "properties": {},
+                                                                "conditions": {},
+                                                                "role": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "createdAt": {
+                                                                  "type": "string",
+                                                                  "format": "date-time"
+                                                                },
+                                                                "updatedAt": {
+                                                                  "type": "string",
+                                                                  "format": "date-time"
+                                                                },
+                                                                "createdBy": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                },
+                                                                "updatedBy": {
+                                                                  "type": "object",
+                                                                  "properties": {
+                                                                    "data": {
+                                                                      "type": "object",
+                                                                      "properties": {
+                                                                        "id": {
+                                                                          "type": "number"
+                                                                        },
+                                                                        "attributes": {
+                                                                          "type": "object",
+                                                                          "properties": {}
+                                                                        }
+                                                                      }
+                                                                    }
+                                                                  }
+                                                                }
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "createdAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "updatedAt": {
+                                                    "type": "string",
+                                                    "format": "date-time"
+                                                  },
+                                                  "createdBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                          "id": {
+                                                            "type": "number"
+                                                          },
+                                                          "attributes": {
+                                                            "type": "object",
+                                                            "properties": {}
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  },
+                                                  "updatedBy": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                      "data": {
                                                         "type": "object",
                                                         "properties": {
                                                           "id": {
@@ -351,187 +496,57 @@
                                                       }
                                                     }
                                                   }
-                                                },
-                                                "permissions": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "data": {
-                                                      "type": "array",
-                                                      "items": {
-                                                        "type": "object",
-                                                        "properties": {
-                                                          "id": {
-                                                            "type": "number"
-                                                          },
-                                                          "attributes": {
-                                                            "type": "object",
-                                                            "properties": {
-                                                              "action": {
-                                                                "type": "string"
-                                                              },
-                                                              "subject": {
-                                                                "type": "string"
-                                                              },
-                                                              "properties": {},
-                                                              "conditions": {},
-                                                              "role": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                  "data": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                      "id": {
-                                                                        "type": "number"
-                                                                      },
-                                                                      "attributes": {
-                                                                        "type": "object",
-                                                                        "properties": {}
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              },
-                                                              "createdAt": {
-                                                                "type": "string",
-                                                                "format": "date-time"
-                                                              },
-                                                              "updatedAt": {
-                                                                "type": "string",
-                                                                "format": "date-time"
-                                                              },
-                                                              "createdBy": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                  "data": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                      "id": {
-                                                                        "type": "number"
-                                                                      },
-                                                                      "attributes": {
-                                                                        "type": "object",
-                                                                        "properties": {}
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              },
-                                                              "updatedBy": {
-                                                                "type": "object",
-                                                                "properties": {
-                                                                  "data": {
-                                                                    "type": "object",
-                                                                    "properties": {
-                                                                      "id": {
-                                                                        "type": "number"
-                                                                      },
-                                                                      "attributes": {
-                                                                        "type": "object",
-                                                                        "properties": {}
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                },
-                                                "createdAt": {
-                                                  "type": "string",
-                                                  "format": "date-time"
-                                                },
-                                                "updatedAt": {
-                                                  "type": "string",
-                                                  "format": "date-time"
-                                                },
-                                                "createdBy": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "data": {
-                                                      "type": "object",
-                                                      "properties": {
-                                                        "id": {
-                                                          "type": "number"
-                                                        },
-                                                        "attributes": {
-                                                          "type": "object",
-                                                          "properties": {}
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                },
-                                                "updatedBy": {
-                                                  "type": "object",
-                                                  "properties": {
-                                                    "data": {
-                                                      "type": "object",
-                                                      "properties": {
-                                                        "id": {
-                                                          "type": "number"
-                                                        },
-                                                        "attributes": {
-                                                          "type": "object",
-                                                          "properties": {}
-                                                        }
-                                                      }
-                                                    }
-                                                  }
                                                 }
                                               }
                                             }
                                           }
                                         }
                                       }
-                                    }
-                                  },
-                                  "blocked": {
-                                    "type": "boolean"
-                                  },
-                                  "preferedLanguage": {
-                                    "type": "string"
-                                  },
-                                  "createdAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                  },
-                                  "updatedAt": {
-                                    "type": "string",
-                                    "format": "date-time"
-                                  },
-                                  "createdBy": {
-                                    "type": "object",
-                                    "properties": {
-                                      "data": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "attributes": {
-                                            "type": "object",
-                                            "properties": {}
+                                    },
+                                    "blocked": {
+                                      "type": "boolean"
+                                    },
+                                    "preferedLanguage": {
+                                      "type": "string"
+                                    },
+                                    "createdAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "updatedAt": {
+                                      "type": "string",
+                                      "format": "date-time"
+                                    },
+                                    "createdBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
                                           }
                                         }
                                       }
-                                    }
-                                  },
-                                  "updatedBy": {
-                                    "type": "object",
-                                    "properties": {
-                                      "data": {
-                                        "type": "object",
-                                        "properties": {
-                                          "id": {
-                                            "type": "number"
-                                          },
-                                          "attributes": {
-                                            "type": "object",
-                                            "properties": {}
+                                    },
+                                    "updatedBy": {
+                                      "type": "object",
+                                      "properties": {
+                                        "data": {
+                                          "type": "object",
+                                          "properties": {
+                                            "id": {
+                                              "type": "number"
+                                            },
+                                            "attributes": {
+                                              "type": "object",
+                                              "properties": {}
+                                            }
                                           }
                                         }
                                       }
@@ -541,20 +556,20 @@
                               }
                             }
                           }
-                        }
-                      },
-                      "updatedBy": {
-                        "type": "object",
-                        "properties": {
-                          "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
-                                "type": "object",
-                                "properties": {}
+                        },
+                        "updatedBy": {
+                          "type": "object",
+                          "properties": {
+                            "data": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {}
+                                }
                               }
                             }
                           }
@@ -597,6 +612,9 @@
           },
           "cat3": {
             "type": "string"
+          },
+          "isCategory": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -1602,13 +1620,13 @@
                         "productId": {
                           "type": "string"
                         },
-                        "pId": {
+                        "merchantProductId": {
                           "type": "string"
                         },
                         "ean": {
                           "type": "string"
                         },
-                        "delTime": {
+                        "deliveryTime": {
                           "type": "string"
                         },
                         "category": {
@@ -1626,18 +1644,21 @@
                                     "name": {
                                       "type": "string"
                                     },
-                                    "parent_category": {
+                                    "parent_categories": {
                                       "type": "object",
                                       "properties": {
                                         "data": {
-                                          "type": "object",
-                                          "properties": {
-                                            "id": {
-                                              "type": "number"
-                                            },
-                                            "attributes": {
-                                              "type": "object",
-                                              "properties": {}
+                                          "type": "array",
+                                          "items": {
+                                            "type": "object",
+                                            "properties": {
+                                              "id": {
+                                                "type": "number"
+                                              },
+                                              "attributes": {
+                                                "type": "object",
+                                                "properties": {}
+                                              }
                                             }
                                           }
                                         }
@@ -1674,6 +1695,9 @@
                                     },
                                     "cat3": {
                                       "type": "string"
+                                    },
+                                    "isCategory": {
+                                      "type": "boolean"
                                     },
                                     "createdAt": {
                                       "type": "string",
@@ -1843,40 +1867,37 @@
                         "brandName": {
                           "type": "string"
                         },
-                        "curr": {
+                        "currency": {
                           "type": "string"
                         },
-                        "buynow": {
+                        "price": {
                           "type": "string"
                         },
-                        "delivery": {
+                        "tracking": {
                           "type": "string"
                         },
-                        "awTrack": {
+                        "thumbnail": {
                           "type": "string"
                         },
-                        "awThumb": {
+                        "image_url": {
                           "type": "string"
                         },
-                        "awImage": {
+                        "merchantLink": {
                           "type": "string"
                         },
-                        "mLink": {
+                        "merchantImage": {
                           "type": "string"
                         },
-                        "mImage": {
+                        "productName": {
                           "type": "string"
                         },
-                        "name": {
+                        "description": {
                           "type": "string"
                         },
-                        "desc": {
+                        "promotion": {
                           "type": "string"
                         },
-                        "promo": {
-                          "type": "string"
-                        },
-                        "dimension": {
+                        "dimensions": {
                           "type": "string"
                         },
                         "colour": {
@@ -1885,19 +1906,52 @@
                         "material": {
                           "type": "string"
                         },
-                        "alternate_image": {
-                          "type": "string"
-                        },
-                        "alternate_image_two": {
-                          "type": "string"
-                        },
-                        "merchant_product_category_path": {
+                        "categoryIdentifier": {
                           "type": "string"
                         },
                         "slug": {
                           "type": "string"
                         },
                         "merchantId": {
+                          "type": "string"
+                        },
+                        "shortDescription": {
+                          "type": "string"
+                        },
+                        "priceOld": {
+                          "type": "string"
+                        },
+                        "deliveryCost": {
+                          "type": "string"
+                        },
+                        "averageRating": {
+                          "type": "string"
+                        },
+                        "brandId": {
+                          "type": "string"
+                        },
+                        "dataFeedId": {
+                          "type": "string"
+                        },
+                        "isForSale": {
+                          "type": "boolean"
+                        },
+                        "keywords": {
+                          "type": "string"
+                        },
+                        "language": {
+                          "type": "string"
+                        },
+                        "large_image": {
+                          "type": "string"
+                        },
+                        "reviews": {
+                          "type": "string"
+                        },
+                        "rating": {
+                          "type": "string"
+                        },
+                        "altImageUrl": {
                           "type": "string"
                         },
                         "createdAt": {
@@ -2427,13 +2481,13 @@
               "productId": {
                 "type": "string"
               },
-              "pId": {
+              "merchantProductId": {
                 "type": "string"
               },
               "ean": {
                 "type": "string"
               },
-              "delTime": {
+              "deliveryTime": {
                 "type": "string"
               },
               "category": {
@@ -2464,40 +2518,37 @@
               "brandName": {
                 "type": "string"
               },
-              "curr": {
+              "currency": {
                 "type": "string"
               },
-              "buynow": {
+              "price": {
                 "type": "string"
               },
-              "delivery": {
+              "tracking": {
                 "type": "string"
               },
-              "awTrack": {
+              "thumbnail": {
                 "type": "string"
               },
-              "awThumb": {
+              "image_url": {
                 "type": "string"
               },
-              "awImage": {
+              "merchantLink": {
                 "type": "string"
               },
-              "mLink": {
+              "merchantImage": {
                 "type": "string"
               },
-              "mImage": {
+              "productName": {
                 "type": "string"
               },
-              "name": {
+              "description": {
                 "type": "string"
               },
-              "desc": {
+              "promotion": {
                 "type": "string"
               },
-              "promo": {
-                "type": "string"
-              },
-              "dimension": {
+              "dimensions": {
                 "type": "string"
               },
               "colour": {
@@ -2506,19 +2557,52 @@
               "material": {
                 "type": "string"
               },
-              "alternate_image": {
-                "type": "string"
-              },
-              "alternate_image_two": {
-                "type": "string"
-              },
-              "merchant_product_category_path": {
+              "categoryIdentifier": {
                 "type": "string"
               },
               "slug": {
                 "type": "string"
               },
               "merchantId": {
+                "type": "string"
+              },
+              "shortDescription": {
+                "type": "string"
+              },
+              "priceOld": {
+                "type": "string"
+              },
+              "deliveryCost": {
+                "type": "string"
+              },
+              "averageRating": {
+                "type": "string"
+              },
+              "brandId": {
+                "type": "string"
+              },
+              "dataFeedId": {
+                "type": "string"
+              },
+              "isForSale": {
+                "type": "boolean"
+              },
+              "keywords": {
+                "type": "string"
+              },
+              "language": {
+                "type": "string"
+              },
+              "large_image": {
+                "type": "string"
+              },
+              "reviews": {
+                "type": "string"
+              },
+              "rating": {
+                "type": "string"
+              },
+              "altImageUrl": {
                 "type": "string"
               }
             }
@@ -2580,13 +2664,13 @@
           "productId": {
             "type": "string"
           },
-          "pId": {
+          "merchantProductId": {
             "type": "string"
           },
           "ean": {
             "type": "string"
           },
-          "delTime": {
+          "deliveryTime": {
             "type": "string"
           },
           "category": {
@@ -2604,18 +2688,21 @@
                       "name": {
                         "type": "string"
                       },
-                      "parent_category": {
+                      "parent_categories": {
                         "type": "object",
                         "properties": {
                           "data": {
-                            "type": "object",
-                            "properties": {
-                              "id": {
-                                "type": "number"
-                              },
-                              "attributes": {
-                                "type": "object",
-                                "properties": {}
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "number"
+                                },
+                                "attributes": {
+                                  "type": "object",
+                                  "properties": {}
+                                }
                               }
                             }
                           }
@@ -2652,6 +2739,9 @@
                       },
                       "cat3": {
                         "type": "string"
+                      },
+                      "isCategory": {
+                        "type": "boolean"
                       },
                       "createdAt": {
                         "type": "string",
@@ -3096,13 +3186,13 @@
                                       "productId": {
                                         "type": "string"
                                       },
-                                      "pId": {
+                                      "merchantProductId": {
                                         "type": "string"
                                       },
                                       "ean": {
                                         "type": "string"
                                       },
-                                      "delTime": {
+                                      "deliveryTime": {
                                         "type": "string"
                                       },
                                       "category": {
@@ -3145,40 +3235,37 @@
                                       "brandName": {
                                         "type": "string"
                                       },
-                                      "curr": {
+                                      "currency": {
                                         "type": "string"
                                       },
-                                      "buynow": {
+                                      "price": {
                                         "type": "string"
                                       },
-                                      "delivery": {
+                                      "tracking": {
                                         "type": "string"
                                       },
-                                      "awTrack": {
+                                      "thumbnail": {
                                         "type": "string"
                                       },
-                                      "awThumb": {
+                                      "image_url": {
                                         "type": "string"
                                       },
-                                      "awImage": {
+                                      "merchantLink": {
                                         "type": "string"
                                       },
-                                      "mLink": {
+                                      "merchantImage": {
                                         "type": "string"
                                       },
-                                      "mImage": {
+                                      "productName": {
                                         "type": "string"
                                       },
-                                      "name": {
+                                      "description": {
                                         "type": "string"
                                       },
-                                      "desc": {
+                                      "promotion": {
                                         "type": "string"
                                       },
-                                      "promo": {
-                                        "type": "string"
-                                      },
-                                      "dimension": {
+                                      "dimensions": {
                                         "type": "string"
                                       },
                                       "colour": {
@@ -3187,19 +3274,52 @@
                                       "material": {
                                         "type": "string"
                                       },
-                                      "alternate_image": {
-                                        "type": "string"
-                                      },
-                                      "alternate_image_two": {
-                                        "type": "string"
-                                      },
-                                      "merchant_product_category_path": {
+                                      "categoryIdentifier": {
                                         "type": "string"
                                       },
                                       "slug": {
                                         "type": "string"
                                       },
                                       "merchantId": {
+                                        "type": "string"
+                                      },
+                                      "shortDescription": {
+                                        "type": "string"
+                                      },
+                                      "priceOld": {
+                                        "type": "string"
+                                      },
+                                      "deliveryCost": {
+                                        "type": "string"
+                                      },
+                                      "averageRating": {
+                                        "type": "string"
+                                      },
+                                      "brandId": {
+                                        "type": "string"
+                                      },
+                                      "dataFeedId": {
+                                        "type": "string"
+                                      },
+                                      "isForSale": {
+                                        "type": "boolean"
+                                      },
+                                      "keywords": {
+                                        "type": "string"
+                                      },
+                                      "language": {
+                                        "type": "string"
+                                      },
+                                      "large_image": {
+                                        "type": "string"
+                                      },
+                                      "reviews": {
+                                        "type": "string"
+                                      },
+                                      "rating": {
+                                        "type": "string"
+                                      },
+                                      "altImageUrl": {
                                         "type": "string"
                                       },
                                       "createdAt": {
@@ -3311,40 +3431,37 @@
           "brandName": {
             "type": "string"
           },
-          "curr": {
+          "currency": {
             "type": "string"
           },
-          "buynow": {
+          "price": {
             "type": "string"
           },
-          "delivery": {
+          "tracking": {
             "type": "string"
           },
-          "awTrack": {
+          "thumbnail": {
             "type": "string"
           },
-          "awThumb": {
+          "image_url": {
             "type": "string"
           },
-          "awImage": {
+          "merchantLink": {
             "type": "string"
           },
-          "mLink": {
+          "merchantImage": {
             "type": "string"
           },
-          "mImage": {
+          "productName": {
             "type": "string"
           },
-          "name": {
+          "description": {
             "type": "string"
           },
-          "desc": {
+          "promotion": {
             "type": "string"
           },
-          "promo": {
-            "type": "string"
-          },
-          "dimension": {
+          "dimensions": {
             "type": "string"
           },
           "colour": {
@@ -3353,19 +3470,52 @@
           "material": {
             "type": "string"
           },
-          "alternate_image": {
-            "type": "string"
-          },
-          "alternate_image_two": {
-            "type": "string"
-          },
-          "merchant_product_category_path": {
+          "categoryIdentifier": {
             "type": "string"
           },
           "slug": {
             "type": "string"
           },
           "merchantId": {
+            "type": "string"
+          },
+          "shortDescription": {
+            "type": "string"
+          },
+          "priceOld": {
+            "type": "string"
+          },
+          "deliveryCost": {
+            "type": "string"
+          },
+          "averageRating": {
+            "type": "string"
+          },
+          "brandId": {
+            "type": "string"
+          },
+          "dataFeedId": {
+            "type": "string"
+          },
+          "isForSale": {
+            "type": "boolean"
+          },
+          "keywords": {
+            "type": "string"
+          },
+          "language": {
+            "type": "string"
+          },
+          "large_image": {
+            "type": "string"
+          },
+          "reviews": {
+            "type": "string"
+          },
+          "rating": {
+            "type": "string"
+          },
+          "altImageUrl": {
             "type": "string"
           },
           "createdAt": {

@@ -16,7 +16,7 @@
       "type": "text",
       "unique": true
     },
-    "pId": {
+    "merchantProductId": {
       "type": "text"
     },
     "ean": {
@@ -24,7 +24,7 @@
       "required": true,
       "unique": true
     },
-    "delTime": {
+    "deliveryTime": {
       "type": "text"
     },
     "category": {
@@ -41,40 +41,37 @@
     "brandName": {
       "type": "text"
     },
-    "curr": {
+    "currency": {
       "type": "text"
     },
-    "buynow": {
+    "price": {
       "type": "text"
     },
-    "delivery": {
+    "tracking": {
       "type": "text"
     },
-    "awTrack": {
+    "thumbnail": {
       "type": "text"
     },
-    "awThumb": {
+    "image_url": {
       "type": "text"
     },
-    "awImage": {
+    "merchantLink": {
       "type": "text"
     },
-    "mLink": {
+    "merchantImage": {
       "type": "text"
     },
-    "mImage": {
+    "productName": {
       "type": "text"
     },
-    "name": {
+    "description": {
       "type": "text"
     },
-    "desc": {
+    "promotion": {
       "type": "text"
     },
-    "promo": {
-      "type": "text"
-    },
-    "dimension": {
+    "dimensions": {
       "type": "text"
     },
     "colour": {
@@ -83,13 +80,7 @@
     "material": {
       "type": "text"
     },
-    "alternate_image": {
-      "type": "text"
-    },
-    "alternate_image_two": {
-      "type": "text"
-    },
-    "merchant_product_category_path": {
+    "categoryIdentifier": {
       "type": "text"
     },
     "slug": {
@@ -97,6 +88,45 @@
     },
     "merchantId": {
       "type": "string"
+    },
+    "shortDescription": {
+      "type": "text"
+    },
+    "priceOld": {
+      "type": "string"
+    },
+    "deliveryCost": {
+      "type": "string"
+    },
+    "averageRating": {
+      "type": "text"
+    },
+    "brandId": {
+      "type": "text"
+    },
+    "dataFeedId": {
+      "type": "string"
+    },
+    "isForSale": {
+      "type": "boolean"
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "language": {
+      "type": "text"
+    },
+    "large_image": {
+      "type": "text"
+    },
+    "reviews": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "text"
+    },
+    "altImageUrl": {
+      "type": "text"
     }
   }
 }

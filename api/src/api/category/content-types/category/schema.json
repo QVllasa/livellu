@@ -17,17 +17,17 @@
       "unique": true,
       "required": true
     },
-    "parent_category": {
+    "parent_categories": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "child_categories"
     },
     "child_categories": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::category.category",
-      "mappedBy": "parent_category"
+      "mappedBy": "parent_categories"
     },
     "cat1": {
       "type": "text"
@@ -42,6 +42,9 @@
     },
     "cat3": {
       "type": "string"
+    },
+    "isCategory": {
+      "type": "boolean"
     }
   }
 }

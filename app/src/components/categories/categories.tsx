@@ -2,19 +2,9 @@ import ErrorMessage from '@/components/ui/error-message';
 import dynamic from 'next/dynamic';
 import { useCategories } from '@/framework/category';
 import {CTEGORIES} from "@/components/categories/cats";
+import StickySidebarBoxedCategories from "@/components/categories/sticky-sidebar-boxed-categories";
 
-const StickySidebarBoxedCategories = dynamic(
-  () => import('@/components/categories/sticky-sidebar-boxed-categories')
-);
 
-const MAP_CATEGORY_TO_GROUP: Record<string, any> = {
-
-  modern: StickySidebarBoxedCategories,
-  // standard: StaticSidebarVerticalRectangleCategories,
-  // minimal: FilterCategoryGrid,
-  // compact: SlidingCardCategories,
-  // default: StickySidebarListCategories,
-};
 interface CategoriesProps {
   layout: string;
   variables: any;
@@ -25,19 +15,17 @@ export default function Categories({
   className,
   variables,
 }: CategoriesProps) {
-  // const { isLoading, error } = useCategories(variables);
 
   const categories = JSON.parse(CTEGORIES)
 
   // if (error) return <ErrorMessage message={error.message} />;
-  const Component = MAP_CATEGORY_TO_GROUP['modern'];
+
   return (
-    <Component
-      // notFound={!Boolean(categories.length)}
+    <StickySidebarBoxedCategories
+      notFound={false}
       categories={categories}
-      // loading={isLoading}
+      loading={false}
       className={className}
-      variables={variables}
     />
   );
 }

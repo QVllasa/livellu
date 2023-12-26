@@ -18,6 +18,7 @@ module.exports = withPWA({
       'localhost',
       '127.0.0.1',
       'i.pravatar.cc',
+      'cdn.pixabay.com'
     ],
   },
   // ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
