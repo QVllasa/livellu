@@ -33,7 +33,7 @@ const Home: NextPageWithLayout<
   const { width } = useWindowSize();
   const { type } = useType();
 
-  console.log("variables: ", variables)
+
 
   useEffect(() => {
     if (query.text || query.category) {

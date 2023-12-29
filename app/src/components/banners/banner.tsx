@@ -10,7 +10,7 @@ const Banner: React.FC<{ layout: string; variables: any }> = ({
 }) => {
   const { type } = useType();
   return (
-    <BannerShort banners={type?.banners} layout={layout}  />
+    <BannerShort />
   );
 };
 

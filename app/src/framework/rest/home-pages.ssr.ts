@@ -51,7 +51,6 @@ export const getStaticProps: GetStaticProps<
 
 
     if (!types?.some((t: { slug: string | undefined; }) => t.slug === pageType)) {
-        console.log("not found: ", pageType)
         return {
             notFound: true,
             // This is require to regenerate the page

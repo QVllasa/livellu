@@ -2,7 +2,7 @@ import Banner from '@/components/banners/banner';
 import {Element} from 'react-scroll';
 import type {HomePageProps} from '@/types';
 import Categories from "@/components/categories/categories";
-
+import Image from "next/image";
 
 interface BlogPost {
     id: string;
@@ -157,9 +157,13 @@ export default function Modern({variables}: HomePageProps) {
 function Article(blogPost: BlogPost) {
     return (
         <article className="group isolate grid grid-rows-2 gap-4 relative overflow-hidden rounded bg-dark px-8 pb-8 pt-24 sm:pt-24 lg:pt-24 hover:cursor-pointer">
-            <img src={blogPost.imageURL}
-                 alt=""
-                 className="absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"/>
+            <Image
+                src={blogPost.imageURL ?? ''} //src attribute
+                alt="description" //alt attribute
+                layout='fill' //'fill' layout
+                objectFit='cover' //maintain aspect ratio while filling element's entire content box
+                className={'absolute inset-0 -z-10 h-full w-full object-cover transition-transform duration-300 group-hover:scale-110'}
+            />
             <div className="absolute inset-0 -z-10 bg-gradient-to-t from-dark via-dark-200"></div>
             <div className="absolute inset-0 -z-10 rounded ring-1 ring-inset ring-dark-200"></div>
             <h3 className="row-start-2 mt-3 text-xl font-semibold leading-6 text-white">
@@ -171,7 +175,6 @@ function Article(blogPost: BlogPost) {
         </article>
     )
 }
-
 
 
 function BlogTitle({title, subtitle}: BlogTitleProps) {

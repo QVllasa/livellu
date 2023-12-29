@@ -7,7 +7,6 @@ import type {Banner} from '@/types';
 import Image from 'next/image';
 
 
-
 const BannerShort = () => {
     const {t} = useTranslation('common');
     const {isRTL} = useIsRTL();
@@ -33,7 +32,6 @@ const BannerShort = () => {
             imageUrl: '/slider/slider3.png',
         }
     ]
-
 
 
     return (
@@ -93,16 +91,12 @@ const BannerShort = () => {
 export default BannerShort;
 
 
-
-
-
-
 function Slide({banner}: { banner: Banner }) {
     return (
         <>
             <div className="relative">
                 <Image
-                    src={banner.imageUrl}
+                    src={banner.imageUrl ?? ''}
                     alt={banner.title}
                     layout="fill"
                     objectFit="cover"

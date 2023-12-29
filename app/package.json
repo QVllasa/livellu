@@ -1,5 +1,5 @@
 {
-  "name": "@pick-bazar/shop",
+  "name": "livellu-app",
   "version": "10.2.0",
   "private": true,
   "scripts": {
@@ -16,7 +16,7 @@
     "@floating-ui/react-dom-interactions": "0.13.3",
     "@headlessui/react": "1.7.13",
     "@hookform/resolvers": "2.9.11",
-    "@reach/portal": "0.16.2",
+    "@reach/portal": "^0.18.0",
     "@react-google-maps/api": "2.18.1",
     "@stripe/react-stripe-js": "1.16.5",
     "@stripe/stripe-js": "1.48.0",

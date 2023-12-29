@@ -13,7 +13,8 @@ import { fadeInOut } from '@/lib/motion/fade-in-out';
 import { useRouter } from 'next/router';
 import { getDirection } from '@/lib/constants';
 import dynamic from 'next/dynamic';
-const Portal = dynamic(() => import('@reach/portal'), { ssr: false });
+const Portal = dynamic(() => import('@reach/portal').then((mod) => mod.Portal), { ssr: false });
+
 
 interface DrawerProps {
   children: any;
