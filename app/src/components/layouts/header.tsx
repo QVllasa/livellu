@@ -1,6 +1,5 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
-import StaticMenu from '@/components/layouts/menu/static-menu';
 import { useAtom } from 'jotai';
 import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
 import { useTranslation } from 'next-i18next';
@@ -13,6 +12,7 @@ import { useHeaderSearch } from '@/layouts/headers/header-search-atom';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 import { locationAtom } from '@/lib/use-location';
 import { useSettings } from '@/framework/settings';
+import Navigation from "@/components/layouts/menu/navigation";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
@@ -25,6 +25,9 @@ const Header = ({ layout }: { layout?: string }) => {
   const [isAuthorize] = useAtom(authorizationAtom);
   const [openDropdown, setOpenDropdown] = useState(false);
   const isHomePage = useIsHomePage();
+
+
+
   const isMultilangEnable =
     process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG === 'true' &&
     !!process.env.NEXT_PUBLIC_AVAILABLE_LANGUAGES;
@@ -105,21 +108,9 @@ const Header = ({ layout }: { layout?: string }) => {
               )}
             </>
           ) : null}
-          {/* <button
-          className="px-10 ltr:ml-auto rtl:mr-auto"
-          onClick={() => openModal('LOCATION_BASED_SHOP')}
-        >
-          Map
-        </button> */}
+
           <ul className="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse lg:flex 2xl:space-x-10">
-            <StaticMenu />
-            {isMultilangEnable ? (
-              <div className="ms-auto lg:me-5 xl:me-8 2xl:me-10 hidden flex-shrink-0 lg:block">
-                <LanguageSwitcher />
-              </div>
-            ) : (
-              ''
-            )}
+            <Navigation />
           </ul>
         </div>
         <div

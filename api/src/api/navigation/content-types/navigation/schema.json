@@ -66,6 +66,14 @@
       },
       "type": "customField",
       "customField": "plugin::heroicons-field.icon-picker"
+    },
+    "order": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "integer"
     }
   }
 }

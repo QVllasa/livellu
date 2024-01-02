@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import Router from 'next/router';
 
 const Axios = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
+  baseURL: process.env.NEXT_PUBLIC_STRAPI_REST_API_URL,
   timeout: 5000000,
   headers: {
     'Content-Type': 'application/json',
@@ -14,7 +14,7 @@ const Axios = axios.create({
 });
 // Change request data/error here
 Axios.interceptors.request.use((config) => {
-  const token = process.env.STRAPI_API_TOKEN;
+  const token = process.env.NEXT_PUBLIC_STRAPI_API_TOKEN;
   //@ts-ignore
   config.headers = {
     ...config.headers,

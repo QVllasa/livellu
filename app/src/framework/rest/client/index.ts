@@ -434,11 +434,7 @@ class Client {
 
 
     navigation = {
-        all: (params?: any) =>
-            HttpClient.get<ApiResponse<NavigationItem>>(API_ENDPOINTS.NAVIGATIONS, {...params})
-                .then((res: any) => {
-
-                })
+        all: (params?: any) => HttpClient.get<ApiResponse<NavigationItem>>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
 
 }
