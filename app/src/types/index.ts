@@ -1,6 +1,67 @@
 import type { NextPage } from 'next';
 import type { ReactElement, ReactNode } from 'react';
 
+
+export interface ApiResponse<T> {
+  data: Entity<T>[];
+  meta: MetaData;
+}
+
+export interface Entity<T> {
+  id: number;
+  attributes: T;
+}
+
+export interface MetaData {
+  pagination: PaginationData;
+}
+
+export interface PaginationData {
+  page: number;
+  pageSize: number;
+  pageCount: number;
+  total: number;
+}
+
+export interface NavigationItem {
+  title: string;
+  slug: string | null;
+  url: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  locale: string;
+  icon: string; //
+  children: RelationData<NavigationItem>;
+  parent: RelationData<NavigationItem>;
+  articles: RelationData<ArticleAttributes>;
+  localizations: RelationData<LocalizationAttributes>;
+}
+
+interface RelationData<T> {
+  data: Entity<T>[] | null;
+}
+
+// Beispiel für Artikel- und Lokalisierungsattribute (als Platzhalter)
+interface ArticleAttributes {
+  // Spezifizieren Sie die Struktur Ihrer Artikel
+}
+
+interface LocalizationAttributes {
+  // Spezifizieren Sie die Struktur Ihrer Lokalisierungen
+}
+
+
+
+
+
+
+////////////////////////
+//old stuff begins here
+
+
+
+
 export type NextPageWithLayout<P = {}> = NextPage<P> & {
   authenticationRequired?: boolean;
   getLayout?: (page: ReactElement) => ReactNode;
@@ -348,6 +409,9 @@ export interface PaymentIntentInfo {
   currency: string;
   amount: string;
 }
+
+
+
 
 export interface Card {
   expires: string;

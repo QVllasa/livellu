@@ -13,6 +13,12 @@
   "attributes": {
     "title": {
       "type": "string"
+    },
+    "navigation_item": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::navigation.navigation",
+      "inversedBy": "articles"
     }
   }
 }

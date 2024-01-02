@@ -14,7 +14,7 @@ const Axios = axios.create({
 });
 // Change request data/error here
 Axios.interceptors.request.use((config) => {
-  const token = Cookies.get(AUTH_TOKEN_KEY);
+  const token = process.env.STRAPI_API_TOKEN;
   //@ts-ignore
   config.headers = {
     ...config.headers,
@@ -24,21 +24,21 @@ Axios.interceptors.request.use((config) => {
 });
 
 // Change response data/error here
-Axios.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (
-      (error.response && error.response.status === 401) ||
-      (error.response && error.response.status === 403) ||
-      (error.response &&
-        error.response.data.message === 'PICKBAZAR_ERROR.NOT_AUTHORIZED')
-    ) {
-      Cookies.remove(AUTH_TOKEN_KEY);
-      Router.replace(Routes.home);
-    }
-    return Promise.reject(error);
-  }
-);
+// Axios.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     if (
+//       (error.response && error.response.status === 401) ||
+//       (error.response && error.response.status === 403) ||
+//       (error.response &&
+//         error.response.data.message === 'PICKBAZAR_ERROR.NOT_AUTHORIZED')
+//     ) {
+//       Cookies.remove(AUTH_TOKEN_KEY);
+//       Router.replace(Routes.home);
+//     }
+//     return Promise.reject(error);
+//   }
+// );
 
 export class HttpClient {
   static async get<T>(url: string, params?: unknown) {
