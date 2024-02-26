@@ -1,0 +1,424 @@
+{
+  "data": [
+    {
+      "id": 16,
+      "attributes": {
+        "title": "Einrichtungsideen",
+        "slug": "einrichtungsideen",
+        "url": "/einrichtungsideen",
+        "createdAt": "2024-02-26T20:58:19.292Z",
+        "updatedAt": "2024-02-26T21:08:57.546Z",
+        "publishedAt": "2024-02-26T20:58:34.505Z",
+        "locale": "de",
+        "icon": "{\"name\":\"HomeModernIcon\",\"component\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" aria-hidden=\\\"true\\\" data-slot=\\\"icon\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205 3 1m1.5.5-1.5-.5M6.75 7.364V3h-3v18m3-13.636 10.5-3.819\\\"></path></svg>\"}",
+        "order": 2,
+        "children": {
+          "data": [
+            {
+              "id": 22,
+              "attributes": {
+                "title": "Kleine Räume effektiv nutzen",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:01:17.131Z",
+                "updatedAt": "2024-02-26T21:01:17.131Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 28,
+              "attributes": {
+                "title": "Retro- und Vintage-Stil",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:02:10.945Z",
+                "updatedAt": "2024-02-26T21:02:10.945Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 24,
+              "attributes": {
+                "title": "Moderne und zeitgenössische Einrichtungen",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:01:35.857Z",
+                "updatedAt": "2024-02-26T21:01:35.857Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 31,
+              "attributes": {
+                "title": "Minimalistische Einrichtungen",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:09:19.277Z",
+                "updatedAt": "2024-02-26T21:09:20.076Z",
+                "publishedAt": "2024-02-26T21:09:20.067Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 17,
+      "attributes": {
+        "title": "Ergonomie und gesundes Wohnen",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T20:58:58.591Z",
+        "updatedAt": "2024-02-26T20:58:58.591Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 21,
+      "attributes": {
+        "title": "Innovative Möbeldesigns",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:01:09.056Z",
+        "updatedAt": "2024-02-26T21:01:09.056Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 18,
+      "attributes": {
+        "title": "Farbtrends",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T20:59:17.446Z",
+        "updatedAt": "2024-02-26T20:59:30.121Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 22,
+      "attributes": {
+        "title": "Kleine Räume effektiv nutzen",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:01:17.131Z",
+        "updatedAt": "2024-02-26T21:01:17.131Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 28,
+      "attributes": {
+        "title": "Retro- und Vintage-Stil",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:02:10.945Z",
+        "updatedAt": "2024-02-26T21:02:10.945Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 29,
+      "attributes": {
+        "title": "Smart Home und Techniktrends im Wohnbereich",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:02:29.536Z",
+        "updatedAt": "2024-02-26T21:02:29.536Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 19,
+      "attributes": {
+        "title": "Home",
+        "slug": null,
+        "url": "/",
+        "createdAt": "2024-02-26T20:59:40.852Z",
+        "updatedAt": "2024-02-26T20:59:40.852Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": "{\"name\":\"HomeIcon\",\"component\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" aria-hidden=\\\"true\\\" data-slot=\\\"icon\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25\\\"></path></svg>\"}",
+        "order": 0,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 24,
+      "attributes": {
+        "title": "Moderne und zeitgenössische Einrichtungen",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:01:35.857Z",
+        "updatedAt": "2024-02-26T21:01:35.857Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 25,
+      "attributes": {
+        "title": "Möbelpflege und -wartung",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:01:43.584Z",
+        "updatedAt": "2024-02-26T21:01:43.584Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 26,
+      "attributes": {
+        "title": "Nachhaltige Möbeltrends",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:01:52.500Z",
+        "updatedAt": "2024-02-26T21:01:52.500Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 27,
+      "attributes": {
+        "title": "Raumoptimierung und Organisation",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:02:01.407Z",
+        "updatedAt": "2024-02-26T21:02:01.407Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 31,
+      "attributes": {
+        "title": "Minimalistische Einrichtungen",
+        "slug": null,
+        "url": null,
+        "createdAt": "2024-02-26T21:09:19.277Z",
+        "updatedAt": "2024-02-26T21:09:20.076Z",
+        "publishedAt": "2024-02-26T21:09:20.067Z",
+        "locale": "de",
+        "icon": null,
+        "order": null,
+        "children": {
+          "data": []
+        }
+      }
+    },
+    {
+      "id": 20,
+      "attributes": {
+        "title": "Ratgeber",
+        "slug": "ratgeber",
+        "url": "/ratgeber",
+        "createdAt": "2024-02-26T21:00:58.250Z",
+        "updatedAt": "2024-02-26T21:09:52.648Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": "{\"name\":\"BookOpenIcon\",\"component\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" aria-hidden=\\\"true\\\" data-slot=\\\"icon\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25\\\"></path></svg>\"}",
+        "order": 1,
+        "children": {
+          "data": [
+            {
+              "id": 25,
+              "attributes": {
+                "title": "Möbelpflege und -wartung",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:01:43.584Z",
+                "updatedAt": "2024-02-26T21:01:43.584Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 27,
+              "attributes": {
+                "title": "Raumoptimierung und Organisation",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:02:01.407Z",
+                "updatedAt": "2024-02-26T21:02:01.407Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 17,
+              "attributes": {
+                "title": "Ergonomie und gesundes Wohnen",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T20:58:58.591Z",
+                "updatedAt": "2024-02-26T20:58:58.591Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": 30,
+      "attributes": {
+        "title": "Trends",
+        "slug": "trends",
+        "url": "/trends",
+        "createdAt": "2024-02-26T21:02:36.616Z",
+        "updatedAt": "2024-02-26T21:10:36.214Z",
+        "publishedAt": "2024-02-26T21:03:34.704Z",
+        "locale": "de",
+        "icon": "{\"name\":\"RocketLaunchIcon\",\"component\":\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" fill=\\\"none\\\" viewBox=\\\"0 0 24 24\\\" stroke-width=\\\"1.5\\\" stroke=\\\"currentColor\\\" aria-hidden=\\\"true\\\" data-slot=\\\"icon\\\"><path stroke-linecap=\\\"round\\\" stroke-linejoin=\\\"round\\\" d=\\\"M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z\\\"></path></svg>\"}",
+        "order": 3,
+        "children": {
+          "data": [
+            {
+              "id": 18,
+              "attributes": {
+                "title": "Farbtrends",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T20:59:17.446Z",
+                "updatedAt": "2024-02-26T20:59:30.121Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 26,
+              "attributes": {
+                "title": "Nachhaltige Möbeltrends",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:01:52.500Z",
+                "updatedAt": "2024-02-26T21:01:52.500Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 21,
+              "attributes": {
+                "title": "Innovative Möbeldesigns",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:01:09.056Z",
+                "updatedAt": "2024-02-26T21:01:09.056Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            },
+            {
+              "id": 29,
+              "attributes": {
+                "title": "Smart Home und Techniktrends im Wohnbereich",
+                "slug": null,
+                "url": null,
+                "createdAt": "2024-02-26T21:02:29.536Z",
+                "updatedAt": "2024-02-26T21:02:29.536Z",
+                "publishedAt": "2024-02-26T21:03:34.704Z",
+                "locale": "de",
+                "icon": null,
+                "order": null
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "meta": {
+    "pagination": {
+      "page": 1,
+      "pageSize": 100,
+      "pageCount": 1,
+      "total": 15
+    }
+  }
+}

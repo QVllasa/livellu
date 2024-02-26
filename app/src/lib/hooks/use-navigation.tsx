@@ -2,14 +2,14 @@ import {useEffect, useState} from 'react';
 import Client from "@/framework/client";
 import {Entity, NavigationItem} from "@/types";
 
-const useNavigation = () => {
-    const [navigationData, setNavigationData] = useState<NavigationItem[]> ([]);
+const useNavigation = (params: any) => {
+    const [navigationData, setNavigationData] = useState<NavigationItem[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
     useEffect(() => {
         setLoading(true);
-        Client.navigation.all()
+        Client.navigation.all(params)
             .then(response => {
                 const data: NavigationItem[] = response.data.map((entity: Entity<NavigationItem>) => {
                     const id = entity.id;
