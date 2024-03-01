@@ -3,7 +3,7 @@ import HomeLayout from "@/components/layouts/_home";
 
 export const ArticlePage = () => {
     const router = useRouter();
-    const {id} = router.query;
+    const {id, articleCategory} = router.query;
     return (
         <div className=" px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">

@@ -16,9 +16,9 @@
     },
     "navigation_item": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "oneToOne",
       "target": "api::navigation.navigation",
-      "inversedBy": "articles"
+      "mappedBy": "page"
     }
   }
 }

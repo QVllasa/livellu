@@ -52,12 +52,6 @@
       "target": "api::navigation.navigation",
       "inversedBy": "children"
     },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::page.page",
-      "mappedBy": "navigation_item"
-    },
     "icon": {
       "pluginOptions": {
         "i18n": {
@@ -74,6 +68,26 @@
         }
       },
       "type": "integer"
+    },
+    "subtitle": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "string"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "navigation_item"
+    },
+    "page": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page.page",
+      "inversedBy": "navigation_item"
     }
   }
 }

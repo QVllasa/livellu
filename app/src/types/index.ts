@@ -26,6 +26,7 @@ export interface PaginationData {
 export interface NavigationItem {
     id?: number;
     title: string;
+    subtitle: string;
     slug: string | null;
     order: number,
     url: string;
