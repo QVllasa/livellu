@@ -82,10 +82,6 @@ export const siteSettings = {
       cardsPayment: [PaymentGateway.STRIPE],
     },
     {
-      href: Routes.help,
-      label: 'profile-sidebar-help',
-    },
-    {
       href: Routes.logout,
       label: 'profile-sidebar-logout',
     },
@@ -134,10 +130,7 @@ export const siteSettings = {
       {
         title: 'text-customer-service',
         links: [
-          {
-            name: 'text-faq-help',
-            href: Routes.help,
-          },
+
           {
             name: 'text-returns',
             href: '/',

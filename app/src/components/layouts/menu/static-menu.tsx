@@ -9,7 +9,6 @@ const StaticMenu = () => {
   const headerLinks = [
     {href: Routes.shops, icon: null, label: 'nav-menu-shops'},
     {href: Routes.coupons, icon: null, label: 'nav-menu-offer'},
-    {href: Routes.help, label: 'nav-menu-faq'},
     {href: Routes.contactUs, label: 'nav-menu-contact'},
   ];
   return (
