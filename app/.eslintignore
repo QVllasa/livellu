@@ -8,3 +8,5 @@ yarn.lock
 __generated__
 *.graphql.d.ts
 *.graphqls.d.ts
+
+/src/shadcn/components/ui/

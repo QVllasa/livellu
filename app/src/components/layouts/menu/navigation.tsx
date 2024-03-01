@@ -1,6 +1,5 @@
 import Link from '@/components/ui/link';
 import {Routes} from '@/config/routes';
-import {useTranslation} from 'next-i18next';
 import useNavigation from "@/lib/hooks/use-navigation";
 import React from "react";
 
@@ -55,7 +54,6 @@ const headerLinks = [
 ];
 
 const Navigation = () => {
-    const {t} = useTranslation('common');
 
     const {navigationData, loading, error} = useNavigation({populate: 'children'});
 
@@ -79,12 +77,12 @@ const Navigation = () => {
                 <NavigationMenuItem>
                     <Link href={home?.url ?? '/'} passHref>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                            {t(home?.title)}
+                            {home?.title}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 {navigationItems.map(({url, title, icon, children}, index) =>
-                    <NavigationMenuItem>
+                    <NavigationMenuItem key={index+title}>
                         <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
@@ -136,5 +134,6 @@ const ListItem = React.forwardRef<
     )
 })
 
+ListItem.displayName = 'ListItem';
 
 
