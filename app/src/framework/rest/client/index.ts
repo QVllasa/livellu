@@ -1,5 +1,5 @@
 import type {
-    ApiResponse,
+    ApiResponse, ArticleAttributes,
     Attachment,
     Author,
     AuthorPaginator,
@@ -433,6 +433,11 @@ class Client {
     };
 
 
+    articles = {
+        all: (params?: any) => HttpClient.get<ApiResponse<ArticleAttributes>>(API_ENDPOINTS.ARTICLES, {...params}),
+        get: (params: any) =>
+            HttpClient.get<ApiResponse<ArticleAttributes>>(`${API_ENDPOINTS.ARTICLES}`, {...params}),
+    };
     navigation = {
         all: (params?: any) => HttpClient.get<ApiResponse<NavigationItem>>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }

@@ -59,4 +59,5 @@ export const API_ENDPOINTS = {
 
 
   NAVIGATIONS: '/navigations',
+  ARTICLES: '/articles',
 };

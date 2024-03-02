@@ -45,9 +45,21 @@ interface RelationData<T> {
     data: Entity<T>[] | null;
 }
 
-// Beispiel für Artikel- und Lokalisierungsattribute (als Platzhalter)
-interface ArticleAttributes {
-    // Spezifizieren Sie die Struktur Ihrer Artikel
+
+export interface ArticleAttributes {
+    id?: number;
+    title: string;
+    slug: string;
+    content: string;
+    summary: string;
+    createdAt: string; // ISO 8601 date string format
+    updatedAt: string; // ISO 8601 date string format
+    publishedAt: string; // ISO 8601 date string format
+    vuid: string; // UUID format
+    versionNumber: number;
+    versionComment: string | null;
+    isVisibleInListView: boolean;
+    locale: string;
 }
 
 interface LocalizationAttributes {
