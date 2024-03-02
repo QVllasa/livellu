@@ -27,24 +27,22 @@ export const ArticlePage = () => {
             }
         }
     };
-
-
-    console.log("slug: ", slug, filter)
     const {article, loading, error} = useArticle(filter);
-
-    console.log("article: ", article)
 
     return (
         <div className=" px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
                 <p className="text-base font-semibold leading-7 text-indigo-600">{article?.title}</p>
-                <ReactMarkdown
-                    children={article?.content}
-                    components={{
-                        p: ({node, ...props}) => <p className={''} {...props} />,
-                        h1: ({node, ...props}) => <h1 className={'mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'} {...props} />,
-                    }}
-                />
+                {article?.sections?.map((section, index) => {
+                    return <ReactMarkdown
+                        key={index}
+                        children={section?.content}
+                        components={{
+                            p: ({node, ...props}) => <p className={''} {...props} />,
+                            h1: ({node, ...props}) => <h1 className={'mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'} {...props} />,
+                        }}
+                    />
+                })}
                 <div className="mt-10 max-w-2xl">
                     <p>
                         Faucibus commodo massa rhoncus, volutpat. Dignissim sed eget risus enim. Mattis mauris semper sed amet vitae
@@ -134,9 +132,9 @@ export const ArticlePage = () => {
                 </div>
             </div>
         </div>
-
     );
 }
+
 
 ArticlePage.getLayout = function getLayout(page: any) {
     return <HomeLayout>{page}</HomeLayout>;

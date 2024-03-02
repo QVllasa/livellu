@@ -105,6 +105,7 @@ export interface ArticleTag {
 }
 
 export interface Article {
+    id?: number;
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
