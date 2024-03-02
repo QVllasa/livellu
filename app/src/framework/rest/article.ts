@@ -1,10 +1,10 @@
-import {ArticleAttributes, Entity,} from '@/types';
+import {Article, Entity,} from '@/types';
 import {useEffect, useState} from "react";
 import Client from "@/framework/client";
 
 
 export function useArticle(params?: any) {
-    const [article, setArticle] = useState<ArticleAttributes | null>(null);
+    const [article, setArticle] = useState<Article | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -13,9 +13,9 @@ export function useArticle(params?: any) {
             setLoading(true);
             Client.articles.get(params)
                 .then(response => {
-                    const data: ArticleAttributes[] = response.data.map((entity: Entity<ArticleAttributes>) => {
+                    const data: Article[] = response.data.map((entity: Entity<Article>) => {
                         const id = entity.id;
-                        const modifiedItem: ArticleAttributes = {
+                        const modifiedItem: Article = {
                             ...entity.attributes,
                             id: id
                         };
@@ -36,7 +36,7 @@ export function useArticle(params?: any) {
 
 
 export function useArticles(params?: any) {
-    const [articles, setArticles] = useState<ArticleAttributes[]>([]);
+    const [articles, setArticles] = useState<Article[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
 
@@ -44,9 +44,9 @@ export function useArticles(params?: any) {
         setLoading(true);
         Client.articles.all(params)
             .then(response => {
-                const data: ArticleAttributes[] = response.data.map((entity: Entity<ArticleAttributes>) => {
+                const data: Article[] = response.data.map((entity: Entity<Article>) => {
                     const id = entity.id;
-                    const modifiedItem: ArticleAttributes = {
+                    const modifiedItem: Article = {
                         ...entity.attributes,
                         id: id
                     };

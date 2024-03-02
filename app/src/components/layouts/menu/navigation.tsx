@@ -5,7 +5,7 @@ import React from "react";
 import {cn} from "@/shadcn/lib/utils"
 
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu"
-import {NavigationItem} from "@/types";
+import {Navigation} from "@/types";
 
 
 const Navigation = () => {
@@ -20,7 +20,7 @@ const Navigation = () => {
         return <div>Error: {error.message}</div>;
     }
 
-    let home = navigationData.find((item: NavigationItem) => item?.url === '/');
+    let home = navigationData.find((item: Navigation) => item?.url === '/');
     let navigationItems = navigationData.filter((item) => (item?.articles?.data?.length ?? 0) > 0);
 
     console.log("navigationItems", navigationItems)

@@ -1,6 +1,6 @@
 import type {
     ApiResponse,
-    ArticleAttributes,
+    Article,
     Attachment,
     Author,
     AuthorPaginator,
@@ -33,7 +33,7 @@ import type {
     ManufacturerQueryOptions,
     MyQuestionQueryOptions,
     MyReportsQueryOptions,
-    NavigationItem,
+    Navigation,
     Order,
     OrderPaginator,
     OrderQueryOptions,
@@ -437,13 +437,13 @@ class Client {
 
 
     articles = {
-        all: (params?: any) => HttpClient.get<ArticleAttributes>(API_ENDPOINTS.ARTICLES, {...params}),
+        all: (params?: any) => HttpClient.get<Article>(API_ENDPOINTS.ARTICLES, {...params}),
         get: (params: any) => {
-            return HttpClient.get<ArticleAttributes>(`${API_ENDPOINTS.ARTICLES}`, params)
+            return HttpClient.get<Article>(`${API_ENDPOINTS.ARTICLES}`, params)
         }
     }
     navigation = {
-        all: (params?: any) => HttpClient.get<NavigationItem>(API_ENDPOINTS.NAVIGATIONS, {...params})
+        all: (params?: any) => HttpClient.get<Navigation>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
 
 }

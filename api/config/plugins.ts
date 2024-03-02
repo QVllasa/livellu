@@ -13,4 +13,7 @@ export default ({ env }) => ({
   "content-versioning": {
     enabled:  true,
   },
+  'schemas-to-ts': {
+    enabled: true,
+  },
 });
