@@ -3,43 +3,46 @@ import HomeLayout from "@/components/layouts/_home";
 import {useArticle} from "@/framework/article";
 import ReactMarkdown from 'react-markdown';
 
+
 export const ArticlePage = () => {
     const router = useRouter();
-    const {slug, articleCategory} = router.query;
-    const {article, loading, error} = useArticle({slug: slug});
+    const {slug} = router.query;
 
+    if (!slug) {
+        return <div>Loading...</div>
+    }
+
+    const filter = {
+        filters: {
+            slug: {
+                $eq: slug
+            }
+        },
+        populate: {
+            sections: {
+                populate: {
+                    featured_image: "*",
+                    images: "*"
+                }
+            }
+        }
+    };
+
+
+    console.log("slug: ", slug, filter)
+    const {article, loading, error} = useArticle(filter);
 
     console.log("article: ", article)
 
     return (
         <div className=" px-6 lg:px-8">
             <div className="mx-auto max-w-3xl text-base leading-7 text-gray-700">
-                <p className="text-base font-semibold leading-7 text-indigo-600">{article?.slug}</p>
-                <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                    {article?.title}
-                </h1>
+                <p className="text-base font-semibold leading-7 text-indigo-600">{article?.title}</p>
                 <ReactMarkdown
                     children={article?.content}
                     components={{
-                        // Styling a paragraph
-                        p: ({node, ...props}) => <p style={{ fontSize: '16px', color: 'darkslategray' }} {...props} />,
-                        // Styling headings
-                        h1: ({node, ...props}) => <h1 className={'text-blue-800 font-black'} {...props} />,
-                        // Customizing code blocks
-                        code: ({node, inline, className, children, ...props}) => {
-                            const match = /language-(\w+)/.exec(className || '');
-                            return !inline && match ? (
-                                <pre style={{ backgroundColor: '#f5f5f5', padding: '10px', borderRadius: '5px' }} {...props}>
-              <code className={className} {...props}>
-                {children}
-              </code>
-            </pre>
-                            ) : (
-                                <code style={{ backgroundColor: '#e1e1e1', padding: '2px 4px', borderRadius: '3px' }} {...props}>
-                                    {children}
-                                </code>
-                            );
-                        },
+                        p: ({node, ...props}) => <p className={''} {...props} />,
+                        h1: ({node, ...props}) => <h1 className={'mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'} {...props} />,
                     }}
                 />
                 <div className="mt-10 max-w-2xl">

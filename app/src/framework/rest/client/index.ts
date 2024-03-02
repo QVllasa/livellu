@@ -1,5 +1,6 @@
 import type {
-    ApiResponse, ArticleAttributes,
+    ApiResponse,
+    ArticleAttributes,
     Attachment,
     Author,
     AuthorPaginator,
@@ -87,6 +88,8 @@ import type {
 import {OTPVerifyResponse} from '@/types';
 import {API_ENDPOINTS} from './api-endpoints';
 import {HttpClient} from './http-client';
+// @ts-ignore
+import * as qs from 'qs';
 
 class Client {
     products = {
@@ -434,14 +437,18 @@ class Client {
 
 
     articles = {
-        all: (params?: any) => HttpClient.get<ApiResponse<ArticleAttributes>>(API_ENDPOINTS.ARTICLES, {...params}),
-        get: (params: any) =>
-            HttpClient.get<ApiResponse<ArticleAttributes>>(`${API_ENDPOINTS.ARTICLES}`, {...params}),
-    };
+        all: (params?: any) => HttpClient.get<ArticleAttributes>(API_ENDPOINTS.ARTICLES, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<ArticleAttributes>(`${API_ENDPOINTS.ARTICLES}`, params)
+        }
+    }
     navigation = {
-        all: (params?: any) => HttpClient.get<ApiResponse<NavigationItem>>(API_ENDPOINTS.NAVIGATIONS, {...params})
+        all: (params?: any) => HttpClient.get<NavigationItem>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
 
 }
 
 export default new Client();
+
+
+

@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_article_article_sections",
+  "info": {
+    "displayName": "ArticleSection"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "default": "# H1"
+    },
+    "featured_image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}
