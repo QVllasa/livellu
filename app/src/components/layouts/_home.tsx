@@ -36,7 +36,7 @@ export default function HomeLayout({
                         <div className="sticky top-22 hidden h-full bg-gray-100 lg:w-auto xl:block">
                             {/*<Categories layout="modern" variables={[]}/>*/}
                         </div>
-                        <main className="block w-full pt-14 lg:mt-6 lg:pt-20 xl:overflow-hidden xl:px-5">
+                        <main className="block w-full pt-14 lg:pt-12 xl:px-5 relative bg-white">
                             {children}
                         </main>
                     </div>

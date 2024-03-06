@@ -6,6 +6,7 @@ import { ArticleTag } from '../../../article-tag/content-types/article-tag/artic
 import { Seo } from '../../../../components/seo/interfaces/Seo';
 import { Navigation } from '../../../navigation/content-types/navigation/navigation';
 import { ArticleSection } from '../../../../components/article/interfaces/ArticleSection';
+import { Media } from '../../../../common/schemas-to-ts/Media';
 import { User_Plain } from '../../../../common/schemas-to-ts/User';
 import { ArticleCategory_Plain } from '../../../article-category/content-types/article-category/article-category';
 import { ArticleTag_Plain } from '../../../article-tag/content-types/article-tag/article-tag';
@@ -29,6 +30,7 @@ export interface Article {
     related_articles: { data: Article[] };
     navigation_item?: { data: Navigation };
     sections: ArticleSection[];
+    featured_image?: { data: Media };
     locale: string;
     localizations?: { data: Article[] };
   };
@@ -45,6 +47,7 @@ export interface Article_Plain {
   related_articles: Article_Plain[];
   navigation_item?: Navigation_Plain;
   sections: ArticleSection_Plain[];
+  featured_image?: Media;
   locale: string;
   localizations?: Article[];
 }
@@ -61,6 +64,7 @@ export interface Article_NoRelations {
   related_articles: number[];
   navigation_item?: number;
   sections: ArticleSection_NoRelations[];
+  featured_image?: number;
   locale: string;
   localizations?: Article[];
 }
@@ -77,6 +81,7 @@ export interface Article_AdminPanelLifeCycle {
   related_articles: AdminPanelRelationPropertyModification<Article_Plain>;
   navigation_item?: AdminPanelRelationPropertyModification<Navigation_Plain>;
   sections: ArticleSection_Plain[];
+  featured_image?: AdminPanelRelationPropertyModification<Media>;
   locale: string;
   localizations?: Article[];
 }

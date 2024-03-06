@@ -116,11 +116,12 @@ export interface Article {
     article_category?: { data: Entity<ArticleCategory> };
     article_tags: { data: Entity<ArticleTag>[] };
     seo?: Seo;
-    related_articles: { data: Article[] };
-    navigation_item?: { data: Navigation };
+    related_articles: { data: Entity<Article>[] };
+    navigation_item?: { data: Entity<Navigation> };
     sections: ArticleSection[];
     locale: string;
-    localizations?: { data: Article[] };
+    featured_image?: { data: Entity<Media> };
+    localizations?: { data: Entity<Article>[] };
 }
 
 export interface Seo {
