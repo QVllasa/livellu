@@ -42,30 +42,30 @@ const ShopsPage: NextPageWithLayout = () => {
     );
   }
 
-  if (!data?.length) {
-    return (
-      <>
-        <div className="min-h-full bg-gray-100 px-4 pt-6 pb-8 lg:p-8">
-          <NotFound className="mx-auto max-w-lg" text="No Shops Nearby Found" />
-        </div>
-        <div className="bg-light">
-          <div className="mx-auto flex w-full max-w-[1492px] flex-col p-8 pt-14">
-            <h3 className="mb-8 text-2xl font-bold text-heading">
-              {t('text-all-shops')}
-            </h3>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
-              {shops.map((shop: Shop) => (
-                <NearShopCard
-                  key={shop.id}
-                  shop={shop}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
-      </>
-    );
-  }
+  // if (!data?.length) {
+  //   return (
+  //     <>
+  //       <div className="min-h-full bg-gray-100 px-4 pt-6 pb-8 lg:p-8">
+  //         <NotFound className="mx-auto max-w-lg" text="No Shops Nearby Found" />
+  //       </div>
+  //       <div className="bg-light">
+  //         <div className="mx-auto flex w-full max-w-[1492px] flex-col p-8 pt-14">
+  //           <h3 className="mb-8 text-2xl font-bold text-heading">
+  //             {t('text-all-shops')}
+  //           </h3>
+  //           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
+  //             {shops.map((shop: Shop) => (
+  //               <NearShopCard
+  //                 key={shop.id}
+  //                 shop={shop}
+  //               />
+  //             ))}
+  //           </div>
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   if (!isLoading && !shops?.length) {
     return (
@@ -84,13 +84,13 @@ const ShopsPage: NextPageWithLayout = () => {
           {t('text-near-shops')}
         </h3>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">
-          {data?.map(
-            (shop) =>
-              // @ts-ignore
-              shop?.distance && <NearShopCard key={shop.id} shop={shop!} />
-          )}
-        </div>
+        {/*<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3">*/}
+        {/*  {data?.map(*/}
+        {/*    (shop) =>*/}
+        {/*      // @ts-ignore*/}
+        {/*      shop?.distance && <NearShopCard key={shop.id} shop={shop!} />*/}
+        {/*  )}*/}
+        {/*</div>*/}
         {hasMore && (
           <div className="mt-8 flex items-center justify-center lg:mt-12">
             <Button onClick={loadMore} loading={isLoadingMore}>

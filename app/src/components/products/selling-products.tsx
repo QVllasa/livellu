@@ -1,7 +1,7 @@
 import ProductLoader from '@/components/ui/loaders/product-loader';
 import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
-import ProductCard from '@/components/products/cards/card';
+import ProductCard from '@/components/products/cards/product-card';
 import ErrorMessage from '@/components/ui/error-message';
 import { usePopularProducts } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
@@ -26,7 +26,7 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
   // if (error) return <ErrorMessage message={error.message} />;
 
-  if (!isLoading && !products.length) {
+  if (!isLoading ) {
     return (
       <SectionBlock title={t('text-selling-books')}>
         <NotFound text="text-not-found" className="mx-auto w-7/12" />
@@ -60,13 +60,13 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
         </Link>
 
         <div className="col-span-3 grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 xl:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] xl:gap-8 2xl:grid-cols-3 3xl:grid-cols-[repeat(auto-fill,minmax(360px,1fr))]">
-          {isLoading && !products.length
-            ? rangeMap(limit, (i) => (
-                <ProductLoader key={i} uniqueKey={`product-${i}`} />
-              ))
-            : products.map((product: any) => (
-                <ProductCard product={product} key={product.id} />
-              ))}
+          {/*{isLoading && !products.length*/}
+          {/*  ? rangeMap(limit, (i) => (*/}
+          {/*      <ProductLoader key={i} uniqueKey={`product-${i}`} />*/}
+          {/*    ))*/}
+          {/*  : products.map((product: any) => (*/}
+          {/*      <ProductCard product={product} key={product.id} />*/}
+          {/*    ))}*/}
         </div>
       </div>
     </SectionBlock>

@@ -3,7 +3,6 @@ import { appWithTranslation } from 'next-i18next';
 import '@/assets/css/main.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { ModalProvider } from '@/components/ui/modal/modal.context';
-import ManagedModal from '@/components/ui/modal/managed-modal';
 import ManagedDrawer from '@/components/ui/drawer/managed-drawer';
 import DefaultSeo from '@/components/seo/default-seo';
 import { SearchProvider } from '@/components/ui/search/search.context';
@@ -45,7 +44,7 @@ function CustomApp({
                 <CartProvider>
                     <DefaultSeo />
                     {getLayout(<Component {...pageProps} />)}
-                    <ManagedModal />
+
                     <ManagedDrawer />
                     <ToastContainer autoClose={2000} theme="colored" />
                 </CartProvider>
