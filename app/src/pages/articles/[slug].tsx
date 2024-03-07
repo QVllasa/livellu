@@ -3,12 +3,9 @@ import HomeLayout from "@/components/layouts/_home";
 import {useArticle} from "@/framework/article";
 import ReactMarkdown from 'react-markdown';
 import Image from "next/image";
-import {CarouselContent, CarouselItem, Carousel, CarouselPrevious, CarouselNext} from "@/shadcn/components/ui/carousel";
+import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/shadcn/components/ui/carousel";
 import {Card, CardContent} from "@/shadcn/components/ui/card";
 import {Button} from "@/shadcn/components/ui/button";
-
-
-
 
 
 export const ArticlePage = () => {
@@ -37,6 +34,7 @@ export const ArticlePage = () => {
         }
     };
     const {article, loading, error} = useArticle(filter);
+    const host = (process?.env?.NEXT_PUBLIC_STRAPI_HOST ?? 'host_missing');
 
     console.log('article: ', article)
 
@@ -54,7 +52,7 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <Image
-                    src={'http://localhost:1337' + article?.featured_image?.data?.attributes?.url}
+                    src={host + article?.featured_image?.data?.attributes?.url}
                     width={article?.featured_image?.data?.attributes?.width}
                     height={article?.featured_image?.data?.attributes?.height}
                     alt=""
@@ -66,9 +64,11 @@ export const ArticlePage = () => {
             <div className="mx-auto text-base leading-7 text-gray-700">
                 {article?.sections?.map((section, index) => {
                     const isEven = index % 2 === 0;
+                    console.log("isEven: ", isEven)
                     return <>
+
                         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10 ">
-                            <div className={`lg:col-span-2 lg:col-start-${isEven ? '1' : '2'} lg:row-start-${isEven ? '1' : '2'} lg:mx-auto lg:grid lg:w-full lg:max-w-7xl  ${isEven ? 'lg:grid-cols-2' : ''} lg:gap-x-8 lg:px-8`}>
+                            <div className={`${isEven ? 'lg:col-start-1' : 'lg:col-start-2'}  lg:mx-auto lg:grid lg:w-full lg:max-w-7xl  lg:gap-x-8 lg:px-8`}>
                                 <div className="lg:pr-4">
                                     <div className="lg:max-w-lg">
                                         <ReactMarkdown
@@ -89,13 +89,13 @@ export const ArticlePage = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div className={` -ml-12 p-12 lg:sticky lg:top-20 lg:col-start-${isEven ? '2' : '1'} lg:row-span-${isEven ? '2' : '1'} lg:row-start-${isEven ? '1' : '2'} ${isEven ? '' : 'lg:grid-cols-2'} lg:overflow-hidden`}>
+                            <div className={` -ml-12 p-12 lg:sticky lg:top-20  ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'} lg:row-span-2 lg:row-start-1 lg:overflow-hidden`}>
                                 {section?.featured_image?.data && <Image
-                                    src={'http://localhost:1337' + section?.featured_image?.data?.attributes?.url}
+                                    src={host + section?.featured_image?.data?.attributes?.url}
                                     width={section?.featured_image?.data?.attributes?.width}
                                     height={section?.featured_image?.data?.attributes?.height}
                                     alt=""
-                                    className={`${isEven ? 'scale-x-[-100%]' : 'scale-x-[100%]'}  w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]`}
+                                    className={`scale-x-[-100%]  w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]`}
                                 />}
                             </div>
                         </div>
