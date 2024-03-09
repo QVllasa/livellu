@@ -10,7 +10,7 @@ import {Navigation} from "@/types";
 
 const Navigation = () => {
 
-    const {navigationData, loading, error} = useNavigation({populate: 'articles'});
+    const {navigationData, loading, error} = useNavigation({populate: 'article_categories'});
 
     if (loading) {
         return <div>Loading...</div>;
@@ -21,7 +21,7 @@ const Navigation = () => {
     }
 
     let home = navigationData.find((item: Navigation) => item?.url === '/');
-    let navigationItems = navigationData.filter((item) => (item?.articles?.data?.length ?? 0) > 0);
+    let navigationItems = navigationData.filter((item) => (item?.article_categories?.data?.length ?? 0) > 0);
 
     console.log("navigationItems", navigationItems)
 
@@ -36,18 +36,18 @@ const Navigation = () => {
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                {navigationItems.map(({url, title, icon, articles}, index) =>
-                    <NavigationMenuItem key={index + title}>
+                {navigationItems.map(({url, title, icon, article_categories}, index) =>
+                    <NavigationMenuItem key={index + (title ?? '')}>
                         <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
-                                {articles?.data?.map(({attributes}) => (
+                                {article_categories?.data?.map(({attributes}) => (
                                     <ListItem
                                         key={attributes.title}
                                         title={attributes.title}
-                                        href={'/articles/' + (attributes.slug ?? '/')}
+                                        href={'/article-category/' + (attributes.slug ?? '/')}
                                     >
-                                        <span>{attributes.summary}</span>
+                                        <span>{attributes.description}</span>
                                     </ListItem>
                                 ))}
                             </ul>

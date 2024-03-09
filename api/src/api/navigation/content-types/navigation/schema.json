@@ -88,6 +88,11 @@
       "relation": "oneToOne",
       "target": "api::page.page",
       "inversedBy": "navigation_item"
+    },
+    "article_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article-category.article-category"
     }
   }
 }

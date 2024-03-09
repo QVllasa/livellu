@@ -1,5 +1,4 @@
 export const API_ENDPOINTS = {
-  PRODUCTS: '/products',
   PRODUCTS_POPULAR: '/popular-products',
   PRODUCTS_REVIEWS: '/reviews',
   PRODUCTS_REVIEWS_ABUSE_REPORT: '/abusive_reports',
@@ -60,4 +59,6 @@ export const API_ENDPOINTS = {
 
   NAVIGATIONS: '/navigations',
   ARTICLES: '/articles',
+  PRODUCTS: '/products',
+  ARTICLE_CATEGORIES: '/article-categories',
 };

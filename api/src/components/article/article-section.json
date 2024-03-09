@@ -1,7 +1,8 @@
 {
   "collectionName": "components_article_article_sections",
   "info": {
-    "displayName": "ArticleSection"
+    "displayName": "ArticleSection",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,18 +11,25 @@
       "default": "# H1"
     },
     "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "product_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

@@ -31,8 +31,6 @@ export interface Article {
     navigation_item?: { data: Navigation };
     sections: ArticleSection[];
     featured_image?: { data: Media };
-    locale: string;
-    localizations?: { data: Article[] };
   };
 }
 export interface Article_Plain {
@@ -48,8 +46,6 @@ export interface Article_Plain {
   navigation_item?: Navigation_Plain;
   sections: ArticleSection_Plain[];
   featured_image?: Media;
-  locale: string;
-  localizations?: Article[];
 }
 
 export interface Article_NoRelations {
@@ -65,8 +61,6 @@ export interface Article_NoRelations {
   navigation_item?: number;
   sections: ArticleSection_NoRelations[];
   featured_image?: number;
-  locale: string;
-  localizations?: Article[];
 }
 
 export interface Article_AdminPanelLifeCycle {
@@ -82,6 +76,4 @@ export interface Article_AdminPanelLifeCycle {
   navigation_item?: AdminPanelRelationPropertyModification<Navigation_Plain>;
   sections: ArticleSection_Plain[];
   featured_image?: AdminPanelRelationPropertyModification<Media>;
-  locale: string;
-  localizations?: Article[];
 }

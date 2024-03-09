@@ -2,8 +2,10 @@
 
 import { Article } from '../../../article/content-types/article/article';
 import { Page } from '../../../page/content-types/page/page';
+import { ArticleCategory } from '../../../article-category/content-types/article-category/article-category';
 import { Article_Plain } from '../../../article/content-types/article/article';
 import { Page_Plain } from '../../../page/content-types/page/page';
+import { ArticleCategory_Plain } from '../../../article-category/content-types/article-category/article-category';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
 
 export interface Navigation {
@@ -19,6 +21,7 @@ export interface Navigation {
     subtitle?: string;
     articles: { data: Article[] };
     page?: { data: Page };
+    article_categories: { data: ArticleCategory[] };
     locale: string;
     localizations?: { data: Navigation[] };
   };
@@ -35,6 +38,7 @@ export interface Navigation_Plain {
   subtitle?: string;
   articles: Article_Plain[];
   page?: Page_Plain;
+  article_categories: ArticleCategory_Plain[];
   locale: string;
   localizations?: Navigation[];
 }
@@ -51,6 +55,7 @@ export interface Navigation_NoRelations {
   subtitle?: string;
   articles: number[];
   page?: number;
+  article_categories: number[];
   locale: string;
   localizations?: Navigation[];
 }
@@ -67,6 +72,7 @@ export interface Navigation_AdminPanelLifeCycle {
   subtitle?: string;
   articles: AdminPanelRelationPropertyModification<Article_Plain>;
   page?: AdminPanelRelationPropertyModification<Page_Plain>;
+  article_categories: AdminPanelRelationPropertyModification<ArticleCategory_Plain>;
   locale: string;
   localizations?: Navigation[];
 }

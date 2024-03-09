@@ -1,4 +1,4 @@
-import {Article, Entity,} from '@/types';
+import {Article, ArticleCategory, Entity,} from '@/types';
 import {useEffect, useState} from "react";
 import Client from "@/framework/client";
 
@@ -63,3 +63,63 @@ export function useArticles(params?: any) {
 
     return {articles, loading, error};
 }
+
+export function useArticleCategories(params?: any) {
+    const [articleCategories, setArticleCategories] = useState<ArticleCategory[]>([]);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    useEffect(() => {
+        setLoading(true);
+        Client.articlesCategories.all(params)
+            .then(response => {
+                const data: ArticleCategory[] = response.data.map((entity: Entity<ArticleCategory>) => {
+                    const id = entity.id;
+                    const modifiedItem: ArticleCategory = {
+                        ...entity.attributes,
+                        id: id
+                    };
+                    return modifiedItem;
+                });
+                setArticleCategories(data);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
+    }, []);
+
+    return {articleCategories, loading, error};
+}
+
+
+export function useArticleCategory(params?: any) {
+    const [articleCategory, setArticleCategory] = useState<ArticleCategory>();
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
+
+    useEffect(() => {
+        setLoading(true);
+        Client.articlesCategories.get(params)
+            .then(response => {
+                const data: ArticleCategory[] = response.data.map((entity: Entity<ArticleCategory>) => {
+                    const id = entity.id;
+                    const modifiedItem: ArticleCategory = {
+                        ...entity.attributes,
+                        id: id
+                    };
+                    return modifiedItem;
+                });
+                setArticleCategory(data[0]);
+                setLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+                setLoading(false);
+            });
+    }, []);
+
+    return {articleCategory, loading, error};
+}
+

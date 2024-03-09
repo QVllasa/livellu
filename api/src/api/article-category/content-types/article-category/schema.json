@@ -4,16 +4,34 @@
   "info": {
     "singularName": "article-category",
     "pluralName": "article-categories",
-    "displayName": "ArticleCategory"
+    "displayName": "ArticleCategory",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "label": {
+    "title": {
       "type": "string",
       "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "navigation_item": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::navigation.navigation"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "article_category"
     }
   }
 }

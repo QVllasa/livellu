@@ -3,11 +3,11 @@ import HomeLayout from "@/components/layouts/_home";
 import {useArticle} from "@/framework/article";
 import ReactMarkdown from 'react-markdown';
 import Image from "next/image";
-import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious} from "@/shadcn/components/ui/carousel";
-import {Card, CardContent} from "@/shadcn/components/ui/card";
-import {Button} from "@/shadcn/components/ui/button";
+
 import {ArticleSection} from "@/types";
 import ProductCard from "@/components/products/cards/product-card";
+import {ProductsSlider} from "@/components/products/products-slider";
+import {BackgroundSquares} from "@/components/backgrounds/background-squares";
 
 const host = (process?.env?.NEXT_PUBLIC_STRAPI_HOST ?? 'host_missing');
 
@@ -48,8 +48,8 @@ export const ArticlePage = () => {
     return (
         <div className=" px-6 lg:px-8 ">
             <div className='relative'>
-                <div className="sticky top-20 z-20 overflow-hidden w-full backdrop-blur-2xl bg-white bg-opacity-80 py-8">
-                    <div className='mx-auto max-w-7xl text-base leading-7 text-gray-700 lg:px-8'>
+                <div className="sticky top-20 z-20 overflow-hidden w-full backdrop-blur-2xl bg-white bg-opacity-80 py-8 rounded-b-3xl">
+                    <div className='relative mx-auto max-w-7xl text-base leading-7 text-gray-700 lg:px-8 z-10'>
                         <p className="text-base font-semibold leading-7 text-indigo-600">{article?.navigation_item?.data?.attributes?.title}</p>
                         <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl">{article?.title}</h1>
                     </div>
@@ -74,6 +74,15 @@ export const ArticlePage = () => {
 
 const ArticleSection = ({section, index}: { section: ArticleSection, index: number }) => {
     const isEven = index % 2 === 0;
+
+    const filter = {
+        pagination: {
+            page: 1,
+            pageSize: 10 // This sets the limit to 10 objects
+        }
+    };
+
+
     return <>
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10 ">
             <div className={`${isEven ? 'lg:col-start-1' : 'lg:col-start-2'}  lg:mx-auto lg:grid lg:w-full lg:max-w-7xl  lg:gap-x-8 lg:px-8`}>
@@ -107,33 +116,7 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
                 />}
             </div>
         </div>
-        <div className={'flex justify-center mt-24'}>
-            <Carousel
-                opts={{
-                    align: "center",
-                }}
-                className="w-full max-w-4xl">
-                <CarouselContent>
-                    {Array.from({length: 5}).map((_, index) => (
-                        <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                            <div className="p-1">
-                                <ProductCard/>
-                            </div>
-                        </CarouselItem>
-                    ))}
-                </CarouselContent>
-                <CarouselPrevious/>
-                <CarouselNext/>
-            </Carousel>
-        </div>
-        <div className={'flex justify-center mt-12 mb-16'}>
-            <Button>Mehr Produkte</Button>
-        </div>
-
-        <div className="max-w-2xl mx-auto">
-
-        </div>
-
+        <ProductsSlider filter={filter} />
     </>
 
 };

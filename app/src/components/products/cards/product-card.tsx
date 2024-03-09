@@ -1,19 +1,22 @@
 import {Button} from "@/shadcn/components/ui/button";
 import {StarIcon} from '@heroicons/react/24/solid'
 import {Card, CardContent} from "@/shadcn/components/ui/card";
+import {Product} from "@/types";
+import Link from "next/link";
 
 
-const ProductCard = () => {
+const ProductCard = (props: { product: Product }) => {
+    const {product} = props;
     return (
         <Card className="aspect-w-3 aspect-h-4">
             <CardContent className="flex items-center justify-center p-0">
                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden  duration-300">
                     {/* Product Image */}
-                    <img className="w-full h-48 object-cover object-center" src="https://picsum.photos/300/300" alt="Placeholder"/>
+                    <img className="w-full h-48 object-cover object-center" src={product.image_url} alt="Placeholder"/>
 
                     {/* Product Details */}
                     <div className="p-4">
-                        <h4 className="scroll-m-20 text-base font-semibold tracking-tight">Organize Basic Set (Walnut)</h4>
+                        <h4 className="scroll-m-20 text-base font-semibold tracking-tight truncate" >{product.productName}</h4>
 
                         {/* Ratings and Reviews */}
                         <div className="flex items-center mt-2">
@@ -28,8 +31,8 @@ const ProductCard = () => {
 
                         {/* Pricing */}
                         <div className="flex justify-between items-center mt-6">
-                            <span className="text-gray-900 font-bold text-xl">$149</span>
-                            <Button>Zum Shop</Button>
+                            <span className="text-gray-900 font-bold text-xl">{product.price+''+product.currency}</span>
+                            <Button> <Link href={product.merchantLink??''}>Zum Shop</Link></Button>
                         </div>
                     </div>
                 </div>

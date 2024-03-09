@@ -1,6 +1,6 @@
 import type {
     ApiResponse,
-    Article,
+    Article, ArticleCategory,
     Attachment,
     Author,
     AuthorPaginator,
@@ -92,68 +92,6 @@ import {HttpClient} from './http-client';
 import * as qs from 'qs';
 
 class Client {
-    products = {
-        all: ({
-                  type,
-                  categories,
-                  name,
-                  shop_id,
-                  author,
-                  manufacturer,
-                  min_price,
-                  max_price,
-                  tags,
-                  ...params
-              }: Partial<ProductQueryOptions>) =>
-            HttpClient.get<ProductPaginator>(API_ENDPOINTS.PRODUCTS, {
-                searchJoin: 'and',
-                with: 'type;author',
-                ...params,
-                search: HttpClient.formatSearchParams({
-                    type,
-                    categories,
-                    name,
-                    shop_id,
-                    author,
-                    manufacturer,
-                    min_price,
-                    max_price,
-                    tags,
-                    status: 'publish',
-                }),
-            }),
-        popular: (params: Partial<PopularProductQueryOptions>) =>
-            HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_POPULAR, params),
-
-        bestSelling: (params: Partial<BestSellingProductQueryOptions>) =>
-            HttpClient.get<Product[]>(API_ENDPOINTS.BEST_SELLING_PRODUCTS, params),
-
-        questions: ({question, ...params}: QuestionQueryOptions) =>
-            HttpClient.get<QuestionPaginator>(API_ENDPOINTS.PRODUCTS_QUESTIONS, {
-                searchJoin: 'and',
-                ...params,
-                search: HttpClient.formatSearchParams({
-                    question,
-                }),
-            }),
-
-        get: ({slug, language}: GetParams) =>
-            HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}/${slug}`, {
-                language,
-                searchJoin: 'and',
-                with: 'categories;shop;type;variations;variations.attribute.values;variation_options;tags',
-            }),
-
-        createFeedback: (input: CreateFeedbackInput) =>
-            HttpClient.post<Feedback>(API_ENDPOINTS.FEEDBACK, input),
-        createAbuseReport: (input: CreateAbuseReportInput) =>
-            HttpClient.post<Review>(
-                API_ENDPOINTS.PRODUCTS_REVIEWS_ABUSE_REPORT,
-                input
-            ),
-        createQuestion: (input: CreateQuestionInput) =>
-            HttpClient.post<Review>(API_ENDPOINTS.PRODUCTS_QUESTIONS, input),
-    };
     myQuestions = {
         all: (params: MyQuestionQueryOptions) =>
             HttpClient.get<QuestionPaginator>(API_ENDPOINTS.MY_QUESTIONS, {
@@ -445,6 +383,18 @@ class Client {
     navigation = {
         all: (params?: any) => HttpClient.get<Navigation>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
+    products = {
+        all: (params?: any) => HttpClient.get<Product>(API_ENDPOINTS.PRODUCTS, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}`, params)
+        }
+    };
+    articlesCategories = {
+        all: (params?: any) => HttpClient.get<ArticleCategory>(API_ENDPOINTS.ARTICLE_CATEGORIES, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<ArticleCategory>(`${API_ENDPOINTS.ARTICLE_CATEGORIES}`, params)
+        }
+    };
 
 }
 
