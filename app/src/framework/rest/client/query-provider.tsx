@@ -24,7 +24,7 @@ export default function QueryProvider({
       >
         {children}
       </Hydrate>
-      <ReactQueryDevtools />
+      {/*<ReactQueryDevtools />*/}
     </QueryClientProvider>
   );
 }

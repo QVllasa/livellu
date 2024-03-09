@@ -30,7 +30,7 @@ import type {
     LoginUserInput,
     Manufacturer,
     ManufacturerPaginator,
-    ManufacturerQueryOptions,
+    ManufacturerQueryOptions, Merchant,
     MyQuestionQueryOptions,
     MyReportsQueryOptions,
     Navigation,
@@ -393,6 +393,13 @@ class Client {
         all: (params?: any) => HttpClient.get<ArticleCategory>(API_ENDPOINTS.ARTICLE_CATEGORIES, {...params}),
         get: (params: any) => {
             return HttpClient.get<ArticleCategory>(`${API_ENDPOINTS.ARTICLE_CATEGORIES}`, params)
+        }
+    };
+
+    merchants = {
+        all: (params?: any) => HttpClient.get<Merchant>(API_ENDPOINTS.MERCHANTS, params),
+        get: (params: any) => {
+            return HttpClient.get<Merchant>(`${API_ENDPOINTS.MERCHANTS}`, params)
         }
     };
 

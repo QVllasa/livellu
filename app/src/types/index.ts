@@ -139,6 +139,7 @@ export interface Feed {
 }
 
 export interface Merchant {
+    id?: number;
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
@@ -146,6 +147,7 @@ export interface Merchant {
     name?: string;
     feeds: { data: Entity<Feed>[] };
     products?: { data: Entity<Product>[] };
+    logo_image?: { data: Entity<Media> };
 }
 
 export interface Product {
@@ -227,6 +229,9 @@ export interface ArticleCategory {
     slug?: string;
     navigation_item?: { data: Entity<Navigation> };
     articles: { data: Entity<Article>[] };
+    featured_image?: { data: Entity<Media> };
+    content?: string;
+    is_featured?: boolean;
 }
 
 

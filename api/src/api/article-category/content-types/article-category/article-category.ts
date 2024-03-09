@@ -2,6 +2,7 @@
 
 import { Navigation } from '../../../navigation/content-types/navigation/navigation';
 import { Article } from '../../../article/content-types/article/article';
+import { Media } from '../../../../common/schemas-to-ts/Media';
 import { Navigation_Plain } from '../../../navigation/content-types/navigation/navigation';
 import { Article_Plain } from '../../../article/content-types/article/article';
 import { AdminPanelRelationPropertyModification } from '../../../../common/schemas-to-ts/AdminPanelRelationPropertyModification';
@@ -14,6 +15,9 @@ export interface ArticleCategory {
     slug?: string;
     navigation_item?: { data: Navigation };
     articles: { data: Article[] };
+    featured_image?: { data: Media };
+    content?: string;
+    is_featured?: boolean;
   };
 }
 export interface ArticleCategory_Plain {
@@ -23,6 +27,9 @@ export interface ArticleCategory_Plain {
   slug?: string;
   navigation_item?: Navigation_Plain;
   articles: Article_Plain[];
+  featured_image?: Media;
+  content?: string;
+  is_featured?: boolean;
 }
 
 export interface ArticleCategory_NoRelations {
@@ -32,6 +39,9 @@ export interface ArticleCategory_NoRelations {
   slug?: string;
   navigation_item?: number;
   articles: number[];
+  featured_image?: number;
+  content?: string;
+  is_featured?: boolean;
 }
 
 export interface ArticleCategory_AdminPanelLifeCycle {
@@ -41,4 +51,7 @@ export interface ArticleCategory_AdminPanelLifeCycle {
   slug?: string;
   navigation_item?: AdminPanelRelationPropertyModification<Navigation_Plain>;
   articles: AdminPanelRelationPropertyModification<Article_Plain>;
+  featured_image?: AdminPanelRelationPropertyModification<Media>;
+  content?: string;
+  is_featured?: boolean;
 }

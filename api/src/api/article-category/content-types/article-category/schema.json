@@ -32,6 +32,22 @@
       "relation": "oneToMany",
       "target": "api::article.article",
       "mappedBy": "article_category"
+    },
+    "featured_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "content": {
+      "type": "richtext",
+      "default": "no content"
+    },
+    "is_featured": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

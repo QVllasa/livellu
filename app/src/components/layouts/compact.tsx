@@ -3,7 +3,6 @@ import FilterBar from './filter-bar';
 import Categories from '@/components/categories/categories';
 import GroupProducts from '@/components/products/group-products';
 import PopularProductsGrid from '@/components/products/popular-products';
-import Banner from '@/components/banners/banner';
 import TopManufacturersGrid from '@/components/manufacturer/top-manufacturers-grid';
 import { useTranslation } from 'next-i18next';
 import type { HomePageProps } from '@/types';
@@ -17,7 +16,6 @@ export default function CompactLayout({ variables }: HomePageProps) {
       <FilterBar className="lg:hidden" variables={variables.categories} />
       <main className="mt-6 block w-full xl:overflow-hidden">
         <SectionBlock>
-          <Banner layout="compact" variables={variables.types} />
         </SectionBlock>
         <BestSellingProductsGrid variables={variables?.bestSellingProducts} />
         <PopularProductsGrid variables={variables.popularProducts} />

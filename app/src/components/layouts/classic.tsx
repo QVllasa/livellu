@@ -1,4 +1,4 @@
-import Banner from '@/components/banners/banner';
+
 import PromotionSliders from '@/components/promotions/promotions';
 import Categories from '@/components/categories/categories';
 import { Element } from 'react-scroll';
@@ -9,7 +9,6 @@ import type { HomePageProps } from '@/types';
 export default function ClassicLayout({ variables }: HomePageProps) {
   return (
     <>
-      <Banner layout="classic" variables={variables.types} />
       <PromotionSliders variables={variables.types} />
       <FilterBar variables={variables.categories} />
       <Element
