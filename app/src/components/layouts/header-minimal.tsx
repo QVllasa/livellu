@@ -1,6 +1,5 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
-import StaticMenu from './menu/static-menu';
 import { useRouter } from 'next/router';
 import { useAtom } from 'jotai';
 import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
@@ -9,7 +8,6 @@ import dynamic from 'next/dynamic';
 import { authorizationAtom } from '@/store/authorization-atom';
 import SearchWithSuggestion from '@/components/ui/search/search-with-suggestion';
 import Link from '@/components/ui/link';
-import GroupsDropdownMenu from './menu/groups-menu';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 
 
@@ -46,7 +44,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
           )}
 
           <ul className="hidden shrink-0 items-center space-x-7 ltr:ml-10 ltr:mr-auto rtl:mr-10 rtl:ml-auto rtl:space-x-reverse lg:flex 2xl:space-x-10">
-            <StaticMenu />
+
             <li className="hidden lg:inline-block xl:hidden">
               <Link
                 href={`${router.asPath}search`}
@@ -79,7 +77,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
         )}
 
         <div className="hidden shrink-0 items-center space-x-9 rtl:space-x-reverse lg:flex">
-          <GroupsDropdownMenu variant="minimal" />
+
           {isMultilangEnable ? (
             <div className="ms-auto lg:me-5 xl:me-8 2xl:me-10 flex-shrink-0">
               <LanguageSwitcher />

@@ -2,7 +2,6 @@ import { FilterIcon } from '@/components/icons/filter-icon';
 import { useTranslation } from 'next-i18next';
 import { useAtom } from 'jotai';
 import { drawerAtom } from '@/store/drawer-atom';
-import GroupsDropdownMenu from './menu/groups-menu';
 import classNames from 'classnames';
 
 export default function FilterBar({
@@ -31,7 +30,6 @@ export default function FilterBar({
         <FilterIcon width="18" height="14" className="ltr:mr-2 rtl:ml-2" />
         {t('text-filter')}
       </button>
-      <GroupsDropdownMenu />
     </div>
   );
 }
