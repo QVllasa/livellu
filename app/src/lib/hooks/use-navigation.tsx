@@ -19,7 +19,7 @@ const useNavigation = (params: any) => {
                     };
                     return modifiedItem;
                 });
-                setNavigationData(data.sort((a, b) => a.order - b.order));
+                setNavigationData(data.sort((a, b) => a?.order - b?.order));
                 setLoading(false);
             })
             .catch(err => {

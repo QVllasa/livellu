@@ -34,7 +34,7 @@ export interface Navigation {
     children: { data: Entity<Navigation>[] };
     parent?: { data: Entity<Navigation> };
     icon?: any;
-    order?: number;
+    order: number;
     subtitle?: string;
     articles: { data: Entity<Article>[] };
     page?: { data: Page };
