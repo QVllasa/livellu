@@ -4,7 +4,6 @@ export const API_ENDPOINTS = {
   PRODUCTS_REVIEWS_ABUSE_REPORT: '/abusive_reports',
   PRODUCTS_QUESTIONS: '/questions',
   FEEDBACK: '/feedbacks',
-  CATEGORIES: '/categories',
   TYPES: '/types',
   TAGS: '/tags',
   SHOPS: '/shops',
@@ -62,4 +61,5 @@ export const API_ENDPOINTS = {
   PRODUCTS: '/products',
   ARTICLE_CATEGORIES: '/article-categories',
   MERCHANTS: '/merchants',
+  CATEGORIES: '/categories',
 };

@@ -14,18 +14,14 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "description": {
       "type": "text"
     },
     "slug": {
       "type": "string"
-    },
-    "navigation_item": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::navigation.navigation"
     },
     "articles": {
       "type": "relation",
@@ -48,6 +44,12 @@
     "is_featured": {
       "type": "boolean",
       "default": false
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "article_categories"
     }
   }
 }

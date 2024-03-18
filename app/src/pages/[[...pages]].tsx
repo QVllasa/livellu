@@ -13,6 +13,8 @@ import {BackgroundDiagonalLines} from "@/components/backgrounds/background-diago
 import {Button} from "@/shadcn/components/ui/button";
 import {Merchants} from "@/components/merchants/merchants";
 import BannerShort from "@/components/banners/banner-short";
+import {useCategories} from "@/framework/category";
+import {CategoryCard} from "@/components/categories/category-card";
 
 
 export {getStaticPaths, getStaticProps};
@@ -25,18 +27,25 @@ const Home: NextPageWithLayout<
     const {width} = useWindowSize();
     const {type} = useType();
 
-    const filterArticleCategories = {
+    const filterCategoriesLevel0 = {
+        filters: {
+            identifier: {
+                $startsWith: '0_'
+            }
+        },
         populate: {
             article_categories: {
                 populate: '*'
-            }
+            },
+            image: {
+                populate: '*'
+            },
         }
     }
 
-    // const{articleCategories} = useArticleCategories(filterArticleCategories);
-    const {navigationData} = useNavigation(filterArticleCategories);
+    const {categories} = useCategories(filterCategoriesLevel0);
 
-    console.log("navigationData: ", navigationData)
+    console.log("categories: ", categories)
 
 
     useEffect(() => {
@@ -57,31 +66,27 @@ const Home: NextPageWithLayout<
 
             <BackgroundDiagonalLines/>
             <Element name="grid" className="grid  max-w-7xl mx-auto gap-8">
-                {navigationData.map((navigation, index) => (
-                    navigation.url !== '/' &&
+
                     <div className="relative py-12">
-
-
                         <div className="mx-auto  max-w-7xl ">
-
                             <div className="relative mx-auto max-w-2xl lg:mx-0">
-                                <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl"> {navigation.title}</h2>
+                                <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">Räume</h2>
                                 <p className="mt-2 text-base leading-8 text-gray-600">
                                     Learn how to grow your business with our expert advice.
                                 </p>
                             </div>
                             <div className="mx-auto mt-4 grid max-w-2xl auto-rows-fr grid-cols-1 gap-2 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-                                {navigation.article_categories.data.slice(0, 4).map((articleCategory, index) => (
-                                    <ArticleCategoryCard key={articleCategory.id} articleCategory={articleCategory.attributes}/>
+                                {categories.map((category, index) => (
+                                    <CategoryCard key={category.id} category={category}/>
                                 ))}
 
                             </div>
                             <div className={'relative flex justify-start mt-12'}>
-                                <Button>Mehr {navigation.title}</Button>
+                                <Button>Mehr</Button>
                             </div>
                         </div>
                     </div>
-                ))}
+
             </Element>
             <Divider title={'Unsere Partnershops'}/>
             <Merchants/>

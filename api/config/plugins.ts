@@ -2,8 +2,8 @@
 export default ({ env }) => ({
   upload: {
     config: {
+      sizeLimit: 3500 * 1024 * 1024,
       providerOptions: {
-        sizeLimit: 3500 * 1024 * 1024,
         localServer: {
           maxage: 300000
         },

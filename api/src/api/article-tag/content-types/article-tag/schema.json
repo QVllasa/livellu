@@ -4,7 +4,8 @@
   "info": {
     "singularName": "article-tag",
     "pluralName": "article-tags",
-    "displayName": "ArticleTag"
+    "displayName": "ArticleTag",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -18,7 +19,7 @@
     "label": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
       "type": "string",

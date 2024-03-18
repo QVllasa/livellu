@@ -9,7 +9,7 @@ import {BackgroundWaves} from "@/components/backgrounds/backgroud-waves";
 import {ArticleCard} from "@/components/article/article-card";
 
 
-const ArticleCateogryPage = () => {
+const ArticleCategoryPage = () => {
     const router = useRouter();
     const {slug} = router.query;
 
@@ -66,9 +66,9 @@ const ArticleCateogryPage = () => {
 
 
 
-ArticleCateogryPage.getLayout = function getLayout(page: any) {
+ArticleCategoryPage.getLayout = function getLayout(page: any) {
     return <HomeLayout>{page}</HomeLayout>;
 };
 
 
-export default ArticleCateogryPage;
+export default ArticleCategoryPage;

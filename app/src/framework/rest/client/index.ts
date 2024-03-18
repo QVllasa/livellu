@@ -7,7 +7,7 @@ import type {
     AuthorQueryOptions,
     AuthResponse,
     BestSellingProductQueryOptions,
-    Card,
+    Card, Category,
     CategoryPaginator,
     CategoryQueryOptions,
     ChangePasswordUserInput,
@@ -129,14 +129,6 @@ class Client {
                 `${API_ENDPOINTS.PRODUCTS_REVIEWS}/${input.id}`,
                 input
             ),
-    };
-    categories = {
-        all: ({type, ...params}: Partial<CategoryQueryOptions>) =>
-            HttpClient.get<CategoryPaginator>(API_ENDPOINTS.CATEGORIES, {
-                searchJoin: 'and',
-                ...params,
-                ...(type && {search: HttpClient.formatSearchParams({type})}),
-            }),
     };
     tags = {
         all: (params: Partial<TagQueryOptions>) =>
@@ -395,7 +387,12 @@ class Client {
             return HttpClient.get<ArticleCategory>(`${API_ENDPOINTS.ARTICLE_CATEGORIES}`, params)
         }
     };
-
+    categories = {
+        all: (params?: any) => HttpClient.get<Category>(API_ENDPOINTS.CATEGORIES, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}`, params)
+        }
+    }
     merchants = {
         all: (params?: any) => HttpClient.get<Merchant>(API_ENDPOINTS.MERCHANTS, params),
         get: (params: any) => {

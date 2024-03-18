@@ -77,22 +77,17 @@
       },
       "type": "string"
     },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "navigation_item"
-    },
     "page": {
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::page.page",
       "inversedBy": "navigation_item"
     },
-    "article_categories": {
+    "category": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article-category.article-category"
+      "relation": "oneToOne",
+      "target": "api::category.category",
+      "inversedBy": "navigation_item"
     }
   }
 }

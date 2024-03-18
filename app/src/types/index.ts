@@ -41,6 +41,7 @@ export interface Navigation {
     article_categories: { data: Entity<ArticleCategory>[] };
     locale: string;
     localizations?: { data: Entity<Navigation>[] };
+    category?: { data: Entity<Category> };
 }
 
 export interface Page {
@@ -107,6 +108,11 @@ export interface ArticleTag {
 }
 
 export interface Category {
+    id?: number;
+    ignored?: boolean;
+    article_categories: { data: Entity<ArticleCategory>[] };
+    image?: { data: Entity<Media> };
+    content?: string;
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
@@ -118,6 +124,7 @@ export interface Category {
     cat2?: string;
     cat3?: string;
     isCategory?: boolean;
+    navigation_item?: { data: Entity<Navigation> };
 }
 
 export interface Feed {

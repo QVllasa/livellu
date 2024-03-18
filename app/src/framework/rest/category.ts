@@ -1,59 +1,64 @@
-import type { CategoryPaginator, CategoryQueryOptions } from '@/types';
-import { useInfiniteQuery } from 'react-query';
-import client from './client';
-import { API_ENDPOINTS } from './client/api-endpoints';
-import { mapPaginatorData } from '@/framework/utils/data-mappers';
-import { useRouter } from "next/router";
-import {MANUFACTURERS} from "@/db/manufacturers";
-import {CATEGORIES} from "@/db/categories";
+import {useEffect, useState} from "react";
+import {Article, Category, Entity, Product} from "@/types";
+import Client from "@/framework/client";
 
-export function useCategories(options?: Partial<CategoryQueryOptions>) {
-  const { locale } = useRouter();
+export function useCategories(params?: any) {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<Error | null>(null);
 
-  const formattedOptions = {
-    ...options,
-    language: locale
-  }
+  useEffect(() => {
+    setLoading(true);
+    Client.categories.all(params)
+        .then(response => {
+          const data: Category[] = response.data.map((entity: Entity<Category>) => {
+            const id = entity.id;
+            const modifiedItem: Category = {
+              ...entity.attributes,
+              id: id
+            };
+            return modifiedItem;
+          });
+          setCategories(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          setError(err);
+          setLoading(false);
+        });
+  }, []);
 
-  // const {
-  //   data,
-  //   isLoading,
-  //   error,
-  //   fetchNextPage,
-  //   hasNextPage,
-  //   isFetching,
-  //   isFetchingNextPage,
-  // } = useInfiniteQuery<CategoryPaginator, Error>(
-  //   [API_ENDPOINTS.CATEGORIES, formattedOptions],
-  //   ({ queryKey, pageParam }) =>
-  //     client.categories.all(Object.assign({}, queryKey[1], pageParam)),
-  //   {
-  //     getNextPageParam: ({ current_page, last_page }) =>
-  //       last_page > current_page && { page: current_page + 1 },
-  //   }
-  // );
+  return {categories, loading, error};
+}
 
-  function handleLoadMore() {
-    // fetchNextPage();
-  }
 
-  const data = JSON.parse(CATEGORIES)
-  const isLoading = false;
-  const error = false;
-  const isFetching = false;
-  const isFetchingNextPage = false;
-  const hasNextPage = false;
+export function useCategory(params?: any) {
+    const [category, setCategory] = useState<Category | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
+    const [error, setError] = useState<Error | null>(null);
 
-  return {
-    categories: data?.pages?.flatMap((page: { data: any; }) => page.data) ?? [],
-    paginatorInfo: Array.isArray(data?.pages)
-      ? mapPaginatorData(data?.pages[data.pages.length - 1])
-      : null,
-    isLoading,
-    error,
-    isFetching,
-    isLoadingMore: isFetchingNextPage,
-    loadMore: handleLoadMore,
-    hasMore: Boolean(hasNextPage),
-  };
+    useEffect(() => {
+        (async () => {
+            setLoading(true);
+            Client.categories.get(params)
+                .then(response => {
+                    const data: Category[] = response.data.map((entity: Entity<Category>) => {
+                        const id = entity.id;
+                        const modifiedItem: Category = {
+                            ...entity.attributes,
+                            id: id
+                        };
+                        return modifiedItem;
+                    });
+                    setCategory(data[0] ?? null);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    setError(err);
+                    setLoading(false);
+                });
+        })();
+    }, []);
+
+    return {category, loading, error};
 }

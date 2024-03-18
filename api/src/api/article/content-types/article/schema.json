@@ -70,12 +70,6 @@
       "relation": "oneToMany",
       "target": "api::article.article"
     },
-    "navigation_item": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::navigation.navigation",
-      "inversedBy": "articles"
-    },
     "sections": {
       "type": "component",
       "repeatable": true,

@@ -4,14 +4,12 @@ import { User } from '../../../../common/schemas-to-ts/User';
 import { ArticleCategory } from '../../../article-category/content-types/article-category/article-category';
 import { ArticleTag } from '../../../article-tag/content-types/article-tag/article-tag';
 import { Seo } from '../../../../components/seo/interfaces/Seo';
-import { Navigation } from '../../../navigation/content-types/navigation/navigation';
 import { ArticleSection } from '../../../../components/article/interfaces/ArticleSection';
 import { Media } from '../../../../common/schemas-to-ts/Media';
 import { User_Plain } from '../../../../common/schemas-to-ts/User';
 import { ArticleCategory_Plain } from '../../../article-category/content-types/article-category/article-category';
 import { ArticleTag_Plain } from '../../../article-tag/content-types/article-tag/article-tag';
 import { Seo_Plain } from '../../../../components/seo/interfaces/Seo';
-import { Navigation_Plain } from '../../../navigation/content-types/navigation/navigation';
 import { ArticleSection_Plain } from '../../../../components/article/interfaces/ArticleSection';
 import { Seo_NoRelations } from '../../../../components/seo/interfaces/Seo';
 import { ArticleSection_NoRelations } from '../../../../components/article/interfaces/ArticleSection';
@@ -28,7 +26,6 @@ export interface Article {
     article_tags: { data: ArticleTag[] };
     seo?: Seo;
     related_articles: { data: Article[] };
-    navigation_item?: { data: Navigation };
     sections: ArticleSection[];
     featured_image?: { data: Media };
   };
@@ -43,7 +40,6 @@ export interface Article_Plain {
   article_tags: ArticleTag_Plain[];
   seo?: Seo_Plain;
   related_articles: Article_Plain[];
-  navigation_item?: Navigation_Plain;
   sections: ArticleSection_Plain[];
   featured_image?: Media;
 }
@@ -58,7 +54,6 @@ export interface Article_NoRelations {
   article_tags: number[];
   seo?: Seo_NoRelations;
   related_articles: number[];
-  navigation_item?: number;
   sections: ArticleSection_NoRelations[];
   featured_image?: number;
 }
@@ -73,7 +68,6 @@ export interface Article_AdminPanelLifeCycle {
   article_tags: AdminPanelRelationPropertyModification<ArticleTag_Plain>;
   seo?: Seo_Plain;
   related_articles: AdminPanelRelationPropertyModification<Article_Plain>;
-  navigation_item?: AdminPanelRelationPropertyModification<Navigation_Plain>;
   sections: ArticleSection_Plain[];
   featured_image?: AdminPanelRelationPropertyModification<Media>;
 }
