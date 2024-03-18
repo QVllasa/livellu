@@ -73,6 +73,9 @@
       "relation": "oneToOne",
       "target": "api::navigation.navigation",
       "inversedBy": "category"
+    },
+    "summary": {
+      "type": "text"
     }
   }
 }

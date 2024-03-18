@@ -1,11 +1,15 @@
 import Link from '@/components/ui/link';
 import useNavigation from "@/lib/hooks/use-navigation";
-import React from "react";
+import React, {useState} from "react";
 
 import {cn} from "@/shadcn/lib/utils"
 
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu"
-import {Navigation} from "@/types";
+import {ArticleCategory, Navigation} from "@/types";
+import {Button} from "@/shadcn/components/ui/button";
+import {ChevronRight} from "@/components/icons/chevron-right";
+import {ChevronDown} from "lucide-react";
+import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/shadcn/components/ui/collapsible";
 
 
 const Navigation = () => {
@@ -15,13 +19,19 @@ const Navigation = () => {
 
         populate: {
             category: {
-                populate: '*'
+                populate: {
+                    article_categories: {
+                        populate: '*'
+                    },
+                    child_categories: {
+                        populate: '*'
+                    },
+                }
             }
         }
     }
 
     const {navigationData, loading, error} = useNavigation(filter);
-
 
 
     if (loading) {
@@ -34,10 +44,6 @@ const Navigation = () => {
 
     let home = navigationData.find((item: Navigation) => item?.url === '/');
 
-    const navigationItems = navigationData?.filter((item: Navigation) => item.category?.data?.attributes?.child_categories?.data ).filter(Boolean)
-
-    console.log("navigationItems", navigationItems)
-
 
     return (
         <NavigationMenu>
@@ -49,7 +55,8 @@ const Navigation = () => {
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
-                {navigationItems.map(({url, title, icon, category}, index) =>
+                {navigationData.map(({url, title, icon, category}, index) =>
+                    url !== '/' &&
                     <NavigationMenuItem key={index + (title ?? '')}>
                         <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                         <NavigationMenuContent>
@@ -59,7 +66,9 @@ const Navigation = () => {
                                         key={attributes.name}
                                         title={attributes.name}
                                         href={'/category/' + (attributes.identifier ?? '/')}
+                                        category={attributes}
                                     >
+                                        <span>{attributes.summary}</span>
                                     </ListItem>
                                 ))}
                             </ul>
@@ -75,31 +84,49 @@ const Navigation = () => {
 
 export default Navigation;
 
+const ListItem = ({title, children, category, ...props}) => {
+    const [isOpen, setIsOpen] = useState(false)
 
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
->(({className, title, children, ...props}, ref) => {
+    console.log('category: ', category)
+
     return (
         <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-gray-500">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
+            <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+                <div className={'flex gap-0 justify-between w-full'}>
+                    <NavigationMenuLink asChild>
+                        <a
+                            className={cn(
+                                "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 focus:bg-gray-100",
+                            )}
+                            {...props}
+                        >
+                            <div className="text-sm font-medium leading-none">{title}</div>
+                            <p className="line-clamp-2 text-sm leading-snug text-gray-500">
+                                {children}
+                            </p>
+                        </a>
+                    </NavigationMenuLink>
+                    <CollapsibleTrigger>
+                        <Button variant="ghost" className={'flex gap-4 h-full'}>
+                            {!isOpen ? <ChevronRight className="h-4 w-4"/> : <ChevronDown className="h-4 w-4"/>}
+                            <span className="sr-only">Toggle</span>
+                        </Button>
+                    </CollapsibleTrigger>
+                </div>
+                <CollapsibleContent className="rounded-xl flex cursor-pointer items-center px-5 text-sm capitalize text-heading transition duration-200 ">
+                    <ul className="grid w-[200px] gap-3 md:w-[300px] grid-cols-1 lg:w-[400px] py-4">
+                        {category?.article_categories?.data?.map(({attributes}) => {
+                            console.log("articleCategory: ", attributes)
+                            return <li className={'hover:text-accent'} key={attributes.title}>
+                                <a href={'/article-category/' + (attributes.slug ?? '/')}> <span>{attributes.title}</span></a>
+                            </li>
+                        })}
+                    </ul>
+                </CollapsibleContent>
+            </Collapsible>
         </li>
     )
-})
+}
 
 ListItem.displayName = 'ListItem';
 

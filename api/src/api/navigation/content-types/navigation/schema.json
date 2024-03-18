@@ -87,7 +87,7 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "api::category.category",
-      "inversedBy": "navigation_item"
+      "mappedBy": "navigation_item"
     }
   }
 }

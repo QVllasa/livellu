@@ -40,25 +40,34 @@ export function useCategory(params?: any) {
     useEffect(() => {
         (async () => {
             setLoading(true);
-            Client.categories.get(params)
-                .then(response => {
-                    const data: Category[] = response.data.map((entity: Entity<Category>) => {
-                        const id = entity.id;
-                        const modifiedItem: Category = {
-                            ...entity.attributes,
-                            id: id
-                        };
-                        return modifiedItem;
-                    });
-                    setCategory(data[0] ?? null);
-                    setLoading(false);
-                })
-                .catch(err => {
-                    setError(err);
-                    setLoading(false);
-                });
+            try {
+                const data = await fetchCategory(params);
+                setCategory(data);
+                setLoading(false);
+            }catch (err: any) {
+                setError(err);
+                setLoading(false);
+            }
         })();
     }, []);
 
+
+
     return {category, loading, error};
+}
+
+
+export const fetchCategory = async (params: any) => {
+    return Client.categories.get(params)
+        .then(response => {
+            const data: Category[] = response.data.map((entity: Entity<Category>) => {
+                const id = entity.id;
+                const modifiedItem: Category = {
+                    ...entity.attributes,
+                    id: id
+                };
+                return modifiedItem;
+            });
+            return data[0] ?? null;
+        });
 }

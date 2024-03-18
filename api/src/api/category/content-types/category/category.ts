@@ -23,6 +23,7 @@ export interface Category {
     image?: { data: Media };
     content?: string;
     navigation_item?: { data: Navigation };
+    summary?: string;
   };
 }
 export interface Category_Plain {
@@ -40,6 +41,7 @@ export interface Category_Plain {
   image?: Media;
   content?: string;
   navigation_item?: Navigation_Plain;
+  summary?: string;
 }
 
 export interface Category_NoRelations {
@@ -57,6 +59,7 @@ export interface Category_NoRelations {
   image?: number;
   content?: string;
   navigation_item?: number;
+  summary?: string;
 }
 
 export interface Category_AdminPanelLifeCycle {
@@ -74,4 +77,5 @@ export interface Category_AdminPanelLifeCycle {
   image?: AdminPanelRelationPropertyModification<Media>;
   content?: string;
   navigation_item?: AdminPanelRelationPropertyModification<Navigation_Plain>;
+  summary?: string;
 }

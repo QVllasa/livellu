@@ -125,6 +125,7 @@ export interface Category {
     cat3?: string;
     isCategory?: boolean;
     navigation_item?: { data: Entity<Navigation> };
+    summary?: string;
 }
 
 export interface Feed {

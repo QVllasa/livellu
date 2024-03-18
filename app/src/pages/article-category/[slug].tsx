@@ -38,12 +38,13 @@ const ArticleCategoryPage = () => {
         return <div>Loading...</div>
     }
 
+    console.log("articleCategory: ", articleCategory)
 
     return (
         <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32 -mt-14">
             <div className="absolute inset-0 -z-10 overflow-hidden">
-                <BackgroundSquares/>
-                {/*<BackgroundCircles/>*/}
+                {/*<BackgroundSquares/>*/}
+                <BackgroundCircles/>
                 <BackgroundDiagonalLines/>
             </div>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
