@@ -32,31 +32,6 @@ export function useCategories(params?: any) {
 }
 
 
-export function useCategory(params?: any) {
-    const [category, setCategory] = useState<Category | null>(null);
-    const [loading, setLoading] = useState<boolean>(true);
-    const [error, setError] = useState<Error | null>(null);
-
-    useEffect(() => {
-        (async () => {
-            setLoading(true);
-            try {
-                const data = await fetchCategory(params);
-                setCategory(data);
-                setLoading(false);
-            }catch (err: any) {
-                setError(err);
-                setLoading(false);
-            }
-        })();
-    }, []);
-
-
-
-    return {category, loading, error};
-}
-
-
 export const fetchCategory = async (params: any) => {
     return Client.categories.get(params)
         .then(response => {

@@ -1,72 +1,27 @@
 import HomeLayout from "@/components/layouts/_home";
-import {useRouter} from "next/router";
 import {BackgroundSquares} from "@/components/backgrounds/background-squares";
 import {BackgroundDiagonalLines} from "@/components/backgrounds/background-diagonal-lines";
 import {fetchCategory} from "@/framework/category";
 import {ArticleCategoryCard} from "@/components/article/article-category-card";
 import {CategoryCard} from "@/components/categories/category-card";
-import {useEffect, useState} from "react";
-import {Category} from "@/types";
+import {ParsedUrlQuery} from 'querystring';
+import {GetServerSideProps} from 'next';
+import {Category, NextPageWithLayout} from "@/types";
 
+interface IParams extends ParsedUrlQuery {
+    identifier: string;
+}
 
-const CategoryPage = () => {
-    const router = useRouter();
-    const {identifier} = router.query;
-    const [category, setCategory] = useState<Category>();
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
+interface CategoryPageProps {
+    category?: Category; // Optional, da es möglich ist, dass keine Kategorie zurückgegeben wird
+    error?: string;
+}
 
-
-    useEffect(() => {
-        (async () => {
-            if (!identifier) {
-                // Frühzeitiger Rückkehr, wenn kein identifier vorhanden ist
-                return;
-            }
-
-            console.log("identifier: ", identifier)
-            // Startet den Ladezustand
-            setLoading(true);
-
-            const filter = {
-                filters: {
-                    identifier: {
-                        $eq: identifier
-                    }
-                },
-                populate: {
-                    child_categories: {
-                        populate: 'image'
-                    },
-                    article_categories: {
-                        populate: 'featured_image'
-                    },
-                    image: {
-                        populate: '*'
-                    },
-                }
-            };
-
-            // Ersetzen Sie `useCategory` durch Ihre eigene Logik, um die Daten zu fetchen.
-            // Angenommen, `fetchCategory` ist eine Funktion, die eine Kategorie basierend auf dem Filter abruft
-            fetchCategory(filter).then(data => {
-                setCategory(data);
-                setLoading(false);
-            }).catch(err => {
-                console.error(err);
-                setError(err);
-                setLoading(false);
-            });
-        })();
-    }, [identifier])
-
-    if (loading) {
-        return <div>Loading...</div>
-    }
-
+const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({category, error}) => {
     if (error) {
         return <div>Error: {error}</div>
     }
+
 
     if (!category) {
         return <div>Kategorie nicht gefunden.</div>
@@ -109,6 +64,39 @@ const CategoryPage = () => {
     )
 }
 
+
+export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (context) => {
+    const {identifier} = context.params as IParams;
+    try {
+        const filter = {
+            filters: {
+                identifier: {
+                    $eq: identifier
+                }
+            },
+            populate: {
+                child_categories: {
+                    populate: 'image'
+                },
+                article_categories: {
+                    populate: 'featured_image'
+                },
+                image: {
+                    populate: '*'
+                },
+            }
+        };
+
+        const category = await fetchCategory(filter); // Stellen Sie sicher, dass diese Funktion die erwarteten Daten zurückgibt
+        if (!category) {
+            return {props: {category: undefined}};
+        }
+        return {props: {category}};
+    } catch (error) {
+        console.error('Fehler beim Abrufen der Kategorie:', error);
+        return {props: {error: error}};
+    }
+}
 
 CategoryPage.getLayout = function getLayout(page: any) {
     return <HomeLayout>{page}</HomeLayout>;
