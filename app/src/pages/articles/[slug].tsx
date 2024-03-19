@@ -9,7 +9,6 @@ import ProductCard from "@/components/products/cards/product-card";
 import {ProductsSlider} from "@/components/products/products-slider";
 import {BackgroundSquares} from "@/components/backgrounds/background-squares";
 
-const host = (process?.env?.NEXT_PUBLIC_STRAPI_HOST ?? 'host_missing');
 
 export const ArticlePage = () => {
     const router = useRouter();
@@ -108,7 +107,7 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
             </div>
             <div className={` -ml-12 p-12 lg:sticky lg:top-20  ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'} lg:row-span-2 lg:row-start-1 lg:overflow-hidden`}>
                 {section?.featured_image?.data && <Image
-                    src={host + section?.featured_image?.data?.attributes?.url}
+                    src={section?.featured_image?.data?.attributes?.url}
                     width={section?.featured_image?.data?.attributes?.width}
                     height={section?.featured_image?.data?.attributes?.height}
                     alt=""
