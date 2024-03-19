@@ -14,7 +14,7 @@ export const Merchants = () => {
                             merchant.logo_image?.data && <div key={index} className="col-span-1">
                                 <img
                                     className="min-h-12 max-h-12 w-full object-contain"
-                                    src={(process.env.NEXT_PUBLIC_STRAPI_HOST ?? '') + '' + merchant.logo_image?.data?.attributes?.url}
+                                    src={merchant.logo_image?.data?.attributes?.url??''}
                                     alt={merchant.name}
                                     width={merchant.logo_image?.data?.attributes?.width}
                                     height={merchant.logo_image?.data?.attributes?.height}

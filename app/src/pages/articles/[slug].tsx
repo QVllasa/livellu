@@ -55,7 +55,7 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <Image
-                    src={host + article?.featured_image?.data?.attributes?.url}
+                    src={article?.featured_image?.data?.attributes?.url??''}
                     width={article?.featured_image?.data?.attributes?.width}
                     height={article?.featured_image?.data?.attributes?.height}
                     alt=""

@@ -72,7 +72,7 @@ function Slide({articleCategory}: { articleCategory: ArticleCategory }) {
         <>
             <div className="relative">
                 <Image
-                    src={(process.env.NEXT_PUBLIC_STRAPI_HOST ?? '') + '' + articleCategory.featured_image?.data.attributes.url ?? ''}
+                    src={articleCategory.featured_image?.data.attributes.url ?? ''}
                     alt={articleCategory.title}
                     layout="fill"
                     objectFit="cover"
