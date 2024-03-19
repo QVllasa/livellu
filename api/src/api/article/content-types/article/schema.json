@@ -88,6 +88,9 @@
         "images"
       ],
       "pluginOptions": {}
+    },
+    "context": {
+      "type": "string"
     }
   }
 }

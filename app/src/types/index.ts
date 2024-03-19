@@ -220,6 +220,7 @@ export interface Article {
     locale: string;
     featured_image?: { data: Entity<Media> };
     localizations?: { data: Entity<Article>[] };
+    context?: string;
 }
 
 export interface Seo {
@@ -240,6 +241,7 @@ export interface ArticleCategory {
     featured_image?: { data: Entity<Media> };
     content?: string;
     is_featured?: boolean;
+    context?: string;
 }
 
 

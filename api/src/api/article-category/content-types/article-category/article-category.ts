@@ -18,6 +18,7 @@ export interface ArticleCategory {
     content?: string;
     is_featured?: boolean;
     category?: { data: Category };
+    context?: string;
   };
 }
 export interface ArticleCategory_Plain {
@@ -30,6 +31,7 @@ export interface ArticleCategory_Plain {
   content?: string;
   is_featured?: boolean;
   category?: Category_Plain;
+  context?: string;
 }
 
 export interface ArticleCategory_NoRelations {
@@ -42,6 +44,7 @@ export interface ArticleCategory_NoRelations {
   content?: string;
   is_featured?: boolean;
   category?: number;
+  context?: string;
 }
 
 export interface ArticleCategory_AdminPanelLifeCycle {
@@ -54,4 +57,5 @@ export interface ArticleCategory_AdminPanelLifeCycle {
   content?: string;
   is_featured?: boolean;
   category?: AdminPanelRelationPropertyModification<Category_Plain>;
+  context?: string;
 }

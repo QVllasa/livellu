@@ -28,6 +28,7 @@ export interface Article {
     related_articles: { data: Article[] };
     sections: ArticleSection[];
     featured_image?: { data: Media };
+    context?: string;
   };
 }
 export interface Article_Plain {
@@ -42,6 +43,7 @@ export interface Article_Plain {
   related_articles: Article_Plain[];
   sections: ArticleSection_Plain[];
   featured_image?: Media;
+  context?: string;
 }
 
 export interface Article_NoRelations {
@@ -56,6 +58,7 @@ export interface Article_NoRelations {
   related_articles: number[];
   sections: ArticleSection_NoRelations[];
   featured_image?: number;
+  context?: string;
 }
 
 export interface Article_AdminPanelLifeCycle {
@@ -70,4 +73,5 @@ export interface Article_AdminPanelLifeCycle {
   related_articles: AdminPanelRelationPropertyModification<Article_Plain>;
   sections: ArticleSection_Plain[];
   featured_image?: AdminPanelRelationPropertyModification<Media>;
+  context?: string;
 }

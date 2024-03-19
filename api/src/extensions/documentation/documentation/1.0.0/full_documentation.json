@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-03-18T23:32:49.401Z"
+    "x-generation-date": "2024-03-19T14:11:49.566Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -178,6 +178,9 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "context": {
+                "type": "string"
               }
             }
           }
@@ -1894,6 +1897,9 @@
                                         }
                                       }
                                     },
+                                    "context": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -2104,6 +2110,9 @@
                             }
                           }
                         }
+                      },
+                      "context": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -2340,6 +2349,9 @@
                 }
               }
             }
+          },
+          "context": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -2795,6 +2807,9 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "context": {
+                "type": "string"
               }
             }
           }
@@ -4091,6 +4106,9 @@
                                         }
                                       }
                                     },
+                                    "context": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -4705,6 +4723,9 @@
                             }
                           }
                         },
+                        "context": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -4915,6 +4936,9 @@
                 }
               }
             }
+          },
+          "context": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -6840,6 +6864,9 @@
                                                         }
                                                       }
                                                     },
+                                                    "context": {
+                                                      "type": "string"
+                                                    },
                                                     "createdAt": {
                                                       "type": "string",
                                                       "format": "date-time"
@@ -7050,6 +7077,9 @@
                                             }
                                           }
                                         }
+                                      },
+                                      "context": {
+                                        "type": "string"
                                       },
                                       "createdAt": {
                                         "type": "string",
@@ -9724,6 +9754,9 @@
                                                                     }
                                                                   }
                                                                 },
+                                                                "context": {
+                                                                  "type": "string"
+                                                                },
                                                                 "createdAt": {
                                                                   "type": "string",
                                                                   "format": "date-time"
@@ -9934,6 +9967,9 @@
                                                         }
                                                       }
                                                     }
+                                                  },
+                                                  "context": {
+                                                    "type": "string"
                                                   },
                                                   "createdAt": {
                                                     "type": "string",
@@ -12654,6 +12690,9 @@
                                                                     }
                                                                   }
                                                                 },
+                                                                "context": {
+                                                                  "type": "string"
+                                                                },
                                                                 "createdAt": {
                                                                   "type": "string",
                                                                   "format": "date-time"
@@ -12864,6 +12903,9 @@
                                                         }
                                                       }
                                                     }
+                                                  },
+                                                  "context": {
+                                                    "type": "string"
                                                   },
                                                   "createdAt": {
                                                     "type": "string",
@@ -14768,6 +14810,9 @@
                                                                   }
                                                                 }
                                                               },
+                                                              "context": {
+                                                                "type": "string"
+                                                              },
                                                               "createdAt": {
                                                                 "type": "string",
                                                                 "format": "date-time"
@@ -14978,6 +15023,9 @@
                                                       }
                                                     }
                                                   }
+                                                },
+                                                "context": {
+                                                  "type": "string"
                                                 },
                                                 "createdAt": {
                                                   "type": "string",
@@ -16784,6 +16832,9 @@
                                                       }
                                                     }
                                                   },
+                                                  "context": {
+                                                    "type": "string"
+                                                  },
                                                   "createdAt": {
                                                     "type": "string",
                                                     "format": "date-time"
@@ -16994,6 +17045,9 @@
                                           }
                                         }
                                       }
+                                    },
+                                    "context": {
+                                      "type": "string"
                                     },
                                     "createdAt": {
                                       "type": "string",
