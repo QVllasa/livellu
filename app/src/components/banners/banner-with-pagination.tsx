@@ -1,9 +1,9 @@
 import { Swiper, SwiperSlide, Pagination } from '@/components/ui/slider';
-import { Image } from '@/components/ui/image';
 import { productPlaceholder } from '@/lib/placeholders';
 import Link from '@/components/ui/link';
 import { Routes } from '@/config/routes';
 import type { Banner } from '@/types';
+import Image from 'next/image';
 
 interface BannerProps {
   banners: Banner[] | undefined;

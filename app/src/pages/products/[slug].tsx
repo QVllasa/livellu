@@ -10,8 +10,6 @@ import {getStaticPaths, getStaticProps} from '@/framework/product.ssr';
 
 export {getStaticPaths, getStaticProps};
 
-const Details = dynamic(() => import('@/components/products/details/details'));
-
 
 
 const ProductPage: NextPageWithLayout<
@@ -28,7 +26,7 @@ const ProductPage: NextPageWithLayout<
             <AttributesProvider>
                 <div className="min-h-screen bg-light">
                     <>
-                        <Details product={product}/>
+                        {/*<Details product={product}/>*/}
                     </>
                     {product?.related_products?.length > 1 && (
                             <div className="p-5 lg:p-14 xl:p-16">

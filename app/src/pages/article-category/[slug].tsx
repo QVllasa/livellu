@@ -13,11 +13,6 @@ const ArticleCategoryPage = () => {
     const router = useRouter();
     const {slug} = router.query;
 
-    if (!slug) {
-        return <div>Loading...</div>
-    }
-
-
     const filter = {
         filters: {
             slug: {
@@ -34,7 +29,8 @@ const ArticleCategoryPage = () => {
     const {articleCategory, loading, error} = useArticleCategory(filter);
 
 
-    if (!articleCategory) {
+    // Then handle the condition inside the component
+    if (!slug || !articleCategory) {
         return <div>Loading...</div>
     }
 

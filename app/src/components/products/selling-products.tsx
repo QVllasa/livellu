@@ -3,7 +3,6 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/product-card';
 import ErrorMessage from '@/components/ui/error-message';
-import { usePopularProducts } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import { Image } from '@/components/ui/image';
@@ -21,18 +20,18 @@ interface Props {
 
 export default function SellingProductsGrid({ className, limit = 6 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = usePopularProducts({ range: 30 });
+  // const { products, isLoading, error } = usePopularProducts({ range: 30 });
   const router = useRouter();
 
   // if (error) return <ErrorMessage message={error.message} />;
 
-  if (!isLoading ) {
-    return (
-      <SectionBlock title={t('text-selling-books')}>
-        <NotFound text="text-not-found" className="mx-auto w-7/12" />
-      </SectionBlock>
-    );
-  }
+  // if (!isLoading ) {
+  //   return (
+  //     <SectionBlock title={t('text-selling-books')}>
+  //       <NotFound text="text-not-found" className="mx-auto w-7/12" />
+  //     </SectionBlock>
+  //   );
+  // }
 
   return (
     <SectionBlock title={t('text-selling-books')}>

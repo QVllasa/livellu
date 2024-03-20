@@ -29,47 +29,19 @@ export { getServerSideProps } from '@/framework/search.ssr';
 export default function SearchPage() {
   const { query } = useRouter();
   const { searchType, ...restQuery }: any = query;
-  const {
-    products,
-    isLoading,
-    paginatorInfo,
-    error,
-    loadMore,
-    isLoadingMore,
-    hasMore,
-  } = useProducts({
-    limit: PRODUCTS_PER_PAGE,
-    orderBy: 'created_at',
-    sortedBy: 'DESC',
-    ...(query?.category && { categories: query?.category }),
-    ...(searchType && { type: searchType }),
-    ...restQuery,
-  });
+
 
   // if (error) return <ErrorMessage message={error.message} />;
   return (
     <div className="w-full">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         {/* //FIXME: */}
-        <SearchCount
-          from={paginatorInfo?.firstItem ?? 0}
-          to={paginatorInfo?.lastItem ?? 0}
-          total={paginatorInfo?.total ?? 0}
-        />
+
         <div className="mt-4 max-w-xs md:mt-0">
           <Sorting variant="dropdown" />
         </div>
       </div>
-      <Grid
-        // TODO: Fix types
-        products={products as any}
-        loadMore={loadMore}
-        isLoading={isLoading}
-        isLoadingMore={isLoadingMore}
-        hasMore={hasMore}
-        error={error}
-        column="five"
-      />
+
     </div>
   );
 }

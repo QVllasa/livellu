@@ -10,19 +10,19 @@ import { useTranslation } from 'next-i18next';
 export function useCards(params?: any, options?: any) {
 
 
-  const { data, isLoading, error } = useQuery<Card[], Error>(
-    [API_ENDPOINTS.CARDS, params],
-    () => client.cards.all(params),
-    {
-      // enabled: isAuthorized,
-      ...options,
-    }
-  );
+  // const { data, isLoading, error } = useQuery<Card[], Error>(
+  //   [API_ENDPOINTS.CARDS, params],
+  //   () => client.cards.all(params),
+  //   {
+  //     // enabled: isAuthorized,
+  //     ...options,
+  //   }
+  // );
 
   return {
-    cards: data ?? [],
-    isLoading,
-    error,
+    // cards: data ?? [],
+    // isLoading,
+    // error,
   };
 }
 

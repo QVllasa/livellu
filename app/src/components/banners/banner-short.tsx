@@ -6,6 +6,7 @@ import {useArticleCategories} from "@/framework/article";
 import {Button} from "@/shadcn/components/ui/button";
 import Link from "next/link";
 import {ChevronLeftIcon, ChevronRightIcon} from "lucide-react";
+import {FALLBACK_IMG} from "@/lib/constants";
 
 
 const BannerShort = () => {
@@ -68,12 +69,16 @@ export default BannerShort;
 
 
 function Slide({articleCategory}: { articleCategory: ArticleCategory }) {
+    const imgObj = articleCategory?.featured_image?.data ? articleCategory?.featured_image?.data.attributes : FALLBACK_IMG
+
     return (
         <>
             <div className="relative">
                 <Image
-                    src={articleCategory.featured_image?.data.attributes.url ?? ''}
+                    src={process.env.NEXT_PUBLIC_STRAPI_HOST+imgObj.url}
                     alt={articleCategory.title}
+                    width={imgObj.width}
+                    height={imgObj.height}
                     layout="fill"
                     objectFit="cover"
                     className="absolute z-0"

@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import {cn} from "@/shadcn/lib/utils"
 
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu"
-import {ArticleCategory, Navigation} from "@/types";
+import {ArticleCategory, Entity, Navigation} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ChevronRight} from "@/components/icons/chevron-right";
 import {ChevronDown} from "lucide-react";
@@ -84,7 +84,15 @@ const Navigation = () => {
 
 export default Navigation;
 
-const ListItem = ({title, children, category, ...props}) => {
+
+interface ListItemProps {
+    title: string;
+    children: React.ReactNode;
+    category: any; // Replace 'any' with the actual type of 'category'
+    [key: string]: any; // for the rest of the properties
+}
+
+const ListItem: React.FC<ListItemProps> = ({title, children, category, ...props}) => {
     const [isOpen, setIsOpen] = useState(false)
 
     console.log('category: ', category)
@@ -115,7 +123,7 @@ const ListItem = ({title, children, category, ...props}) => {
                 </div>
                 <CollapsibleContent className="rounded-xl flex cursor-pointer items-center px-5 text-sm capitalize text-heading transition duration-200 ">
                     <ul className="grid w-[200px] gap-3 md:w-[300px] grid-cols-1 lg:w-[400px] py-4">
-                        {category?.article_categories?.data?.map(({attributes}) => {
+                        {category?.article_categories?.data?.map(({attributes}: Entity<ArticleCategory>) => {
                             console.log("articleCategory: ", attributes)
                             return <li className={'hover:text-accent'} key={attributes.title}>
                                 <a href={'/article-category/' + (attributes.slug ?? '/')}> <span>{attributes.title}</span></a>

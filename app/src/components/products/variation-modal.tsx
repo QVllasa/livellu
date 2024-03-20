@@ -9,7 +9,6 @@ import {
   useAttributes,
 } from '@/components/products/details/attributes.context';
 import { AddToCart } from './add-to-cart/add-to-cart';
-import { useProduct } from '@/framework/product';
 
 interface Props {
   product: any;
@@ -57,13 +56,13 @@ const Variation = ({ product }: Props) => {
 };
 
 const ProductVariation = ({ productSlug }: { productSlug: string }) => {
-  const { product, isLoading } = useProduct({
-    slug: productSlug,
-  });
-  if (isLoading || !product) return <div>Loading</div>;
+  // const { product, isLoading } = useProduct({
+  //   slug: productSlug,
+  // });
+  // if (isLoading || !product) return <div>Loading</div>;
   return (
     <AttributesProvider>
-      <Variation product={product} />
+      {/*<Variation product={product} />*/}
     </AttributesProvider>
   );
 };

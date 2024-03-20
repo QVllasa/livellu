@@ -24,6 +24,8 @@ export const ContactPage = () => {
             <div className="mb-8 flex w-full items-center justify-center overflow-hidden">
               <Image
                 src={contactIllustration}
+                height={500}
+                width={500}
                 alt={t('nav-menu-contact')}
                 className="h-auto w-full"
               />

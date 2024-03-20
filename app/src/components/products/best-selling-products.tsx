@@ -3,7 +3,6 @@ import NotFound from '@/components/ui/not-found';
 import rangeMap from '@/lib/range-map';
 import ProductCard from '@/components/products/cards/product-card';
 import ErrorMessage from '@/components/ui/error-message';
-import { useBestSellingProducts } from '@/framework/product';
 import SectionBlock from '@/components/ui/section-block';
 import { useTranslation } from 'next-i18next';
 import classNames from 'classnames';
@@ -20,7 +19,6 @@ export default function BestSellingProductsGrid({
   variables,
 }: Props) {
   const { t } = useTranslation('common');
-  const { products, isLoading, error } = useBestSellingProducts(variables);
 
   // if (error) return <ErrorMessage message={error.message} />;
   // if (!isLoading && !products.length) {

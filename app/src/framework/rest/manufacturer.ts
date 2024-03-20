@@ -73,13 +73,13 @@ export function useTopManufacturers(options: Pick<QueryOptions, 'limit'>) {
     language: locale,
   };
 
-  const { data, isLoading, error } = useQuery<Manufacturer[], Error>(
-    [API_ENDPOINTS.MANUFACTURERS_TOP, formattedOptions],
-    ({ queryKey }) => client.manufacturers.top(queryKey[1] as QueryOptions)
-  );
+  // const { data, isLoading, error } = useQuery<Manufacturer[], Error>(
+  //   [API_ENDPOINTS.MANUFACTURERS_TOP, formattedOptions],
+  //   ({ queryKey }) => client.manufacturers.top(queryKey[1] as QueryOptions)
+  // );
   return {
-    manufacturers: data ?? [],
-    isLoading,
-    error,
+    // manufacturers: data ?? [],
+    // isLoading,
+    // error,
   };
 }

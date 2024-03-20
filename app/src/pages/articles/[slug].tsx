@@ -5,18 +5,13 @@ import ReactMarkdown from 'react-markdown';
 import Image from "next/image";
 
 import {ArticleSection} from "@/types";
-import ProductCard from "@/components/products/cards/product-card";
 import {ProductsSlider} from "@/components/products/products-slider";
-import {BackgroundSquares} from "@/components/backgrounds/background-squares";
+import {FALLBACK_IMG} from "@/lib/constants";
 
 
 export const ArticlePage = () => {
     const router = useRouter();
     const {slug} = router.query;
-
-    if (!slug) {
-        return <div>Loading...</div>
-    }
 
     const filter = {
         filters: {
@@ -40,9 +35,12 @@ export const ArticlePage = () => {
 
     console.log('article: ', article)
 
-    if (!article) {
+    if (!article || !slug) {
         return <div>Loading...</div>
     }
+
+    const imgObj = article?.featured_image?.data ? article?.featured_image?.data.attributes : FALLBACK_IMG
+
 
     return (
         <div className=" px-6 lg:px-8 ">
@@ -54,9 +52,9 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <Image
-                    src={article?.featured_image?.data?.attributes?.url??''}
-                    width={article?.featured_image?.data?.attributes?.width}
-                    height={article?.featured_image?.data?.attributes?.height}
+                    src={process.env.NEXT_PUBLIC_STRAPI_HOST + imgObj.url}
+                    width={imgObj.width}
+                    height={imgObj.height}
                     alt=""
                     className="aspect-[5/2] w-full object-cover rounded-3xl mt-6 sm:mt-12"
                 />
@@ -81,6 +79,8 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
         }
     };
 
+    const imgObj = section?.featured_image?.data ? section?.featured_image?.data.attributes : FALLBACK_IMG
+
 
     return <>
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-2 lg:items-start lg:gap-y-10 ">
@@ -89,7 +89,6 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
                     <div className="lg:max-w-lg">
                         <ReactMarkdown
                             key={index}
-                            children={section?.content}
                             components={{
                                 h2: ({node, ...props}) => <h1 className={'mt-12 text-2xl font-bold tracking-tight text-gray-900'} {...props} />,
                                 h3: ({node, ...props}) => <h1 className={'mt-12 text-xl font-bold tracking-tight text-gray-900 sm:text-2xl'} {...props} />,
@@ -101,21 +100,23 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
                                 li: ({node, ...props}) => <li className={''} {...props} />,
                                 em: ({node, ...props}) => <em className={''} {...props} />,
                             }}
-                        />
+                        >
+                            {section?.content}
+                        </ReactMarkdown>
                     </div>
                 </div>
             </div>
             <div className={` -ml-12 p-12 lg:sticky lg:top-20  ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'} lg:row-span-2 lg:row-start-1 lg:overflow-hidden`}>
-                {section?.featured_image?.data && <Image
-                    src={section?.featured_image?.data?.attributes?.url}
-                    width={section?.featured_image?.data?.attributes?.width}
-                    height={section?.featured_image?.data?.attributes?.height}
+                <Image
+                    src={process.env.NEXT_PUBLIC_STRAPI_HOST + imgObj?.url}
+                    width={imgObj?.width}
+                    height={imgObj?.height}
                     alt=""
                     className={`scale-x-[-100%]  w-[48rem] max-w-none rounded-xl bg-gray-900 shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem]`}
-                />}
+                />
             </div>
         </div>
-        <ProductsSlider filter={filter} />
+        <ProductsSlider filter={filter}/>
     </>
 
 };

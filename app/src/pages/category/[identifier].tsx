@@ -65,6 +65,7 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({category, error}) 
 }
 
 
+// @ts-ignore
 export const getServerSideProps: GetServerSideProps<CategoryPageProps> = async (context) => {
     const {identifier} = context.params as IParams;
     try {

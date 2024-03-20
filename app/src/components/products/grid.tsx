@@ -97,21 +97,21 @@ export default function ProductsGrid({
   variables,
   column = 'auto',
 }: ProductsGridProps) {
-  const { products, loadMore, isLoadingMore, isLoading, hasMore, error } =
-    useProducts(variables);
+  // const { products, loadMore, isLoadingMore, isLoading, hasMore, error } =
+  //   useProducts(variables);
 
-  const productsItem: any = products;
-  return (
-    <Grid
-      products={productsItem}
-      loadMore={loadMore}
-      isLoading={isLoading}
-      isLoadingMore={isLoadingMore}
-      hasMore={hasMore}
-      error={error}
-      className={className}
-      gridClassName={gridClassName}
-      column={column}
-    />
-  );
+  // const productsItem: any = products;
+  return (<> </>);
+    // <Grid
+    //   products={productsItem}
+    //   loadMore={loadMore}
+    //   isLoading={isLoading}
+    //   isLoadingMore={isLoadingMore}
+    //   hasMore={hasMore}
+    //   error={error}
+    //   className={className}
+    //   gridClassName={gridClassName}
+    //   column={column}
+    // />
+
 }

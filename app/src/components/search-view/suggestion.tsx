@@ -20,24 +20,24 @@ const AutoSuggestionBox: React.FC<AutoSuggestionProps> = ({
   seeMore,
 }) => {
   const { query } = useRouter();
-  const { isLoading, products, error } = useProducts({
-    type: query?.pages?.[0] as string,
-    searchQuery
-  });
+  // const { isLoading, products, error } = useProducts({
+  //   type: query?.pages?.[0] as string,
+  //   searchQuery
+  // });
 
   // if (error) return <ErrorMessage message={error.message} />;
 
-  return (
-    <AutoSuggestion
-      suggestions={products}
-      notFound={!isLoading && !products.length}
-      visible={visible}
-      seeMoreLink={seeMoreLink}
-      seeMore={seeMore}
-      className={className}
-      showLoaders={isLoading && !products.length}
-    />
-  );
+  return (<> </>);
+    // <AutoSuggestion
+    //   suggestions={products}
+    //   notFound={!isLoading && !products.length}
+    //   visible={visible}
+    //   seeMoreLink={seeMoreLink}
+    //   seeMore={seeMore}
+    //   className={className}
+    //   showLoaders={isLoading && !products.length}
+    // />
+
 };
 
 export default AutoSuggestionBox;

@@ -12,7 +12,14 @@ export const PRODUCT_INITIAL_FETCH_LIMIT = 30;
 export const DEFAULT_LANGUAGE = process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE ?? "en";
 export const EMAIL_VERIFIED = 'emailVerified';
 
+
+export const FALLBACK_IMG = {
+    url: '/uploads/fallback_image.webp',
+    width: 500,
+    height: 500
+};
+
 export function getDirection(language: string | undefined) {
-  if (!language) return 'ltr';
-  return RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
+    if (!language) return 'ltr';
+    return RTL_LANGUAGES.includes(language) ? 'rtl' : 'ltr';
 }

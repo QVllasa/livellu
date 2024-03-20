@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import StickyBox from 'react-sticky-box';
-export { getStaticPaths, getStaticProps } from '@/framework/manufacturer.ssr';
 
 const MobileNavigation = dynamic(
   () => import('@/components/layouts/mobile-navigation'),
@@ -26,11 +25,10 @@ export default function Manufacturer({ manufacturer, variables }: any) {
   const { t } = useTranslation('common');
   const { query } = useRouter();
 
-  const { products, loadMore, isLoadingMore, isLoading, hasMore, error } =
-    useProducts({ ...variables, ...query });
+
   const { width } = useWindowSize();
 
-  const productsItem: any = products;
+  // const productsItem: any = products;
   return (
     <>
       <div className="flex w-full flex-col">
@@ -38,15 +36,15 @@ export default function Manufacturer({ manufacturer, variables }: any) {
         <h2 className="mb-8 text-3xl font-semibold tracking-tight text-heading">
           {t('text-books')}
         </h2>
-        <Grid
-          products={productsItem}
-          loadMore={loadMore}
-          isLoading={isLoading}
-          isLoadingMore={isLoadingMore}
-          hasMore={hasMore}
-          error={error}
-          column="five"
-        />
+        {/*<Grid*/}
+        {/*  products={productsItem}*/}
+        {/*  loadMore={loadMore}*/}
+        {/*  isLoading={isLoading}*/}
+        {/*  isLoadingMore={isLoadingMore}*/}
+        {/*  hasMore={hasMore}*/}
+        {/*  error={error}*/}
+        {/*  column="five"*/}
+        {/*/>*/}
       </div>
     </>
   );
