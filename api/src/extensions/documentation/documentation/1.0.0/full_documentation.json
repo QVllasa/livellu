@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-03-19T14:11:49.566Z"
+    "x-generation-date": "2024-03-25T16:50:12.063Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -343,6 +343,7 @@
                                                   "action": {
                                                     "type": "string"
                                                   },
+                                                  "actionParameters": {},
                                                   "subject": {
                                                     "type": "string"
                                                   },
@@ -2993,6 +2994,7 @@
                                                                 "action": {
                                                                   "type": "string"
                                                                 },
+                                                                "actionParameters": {},
                                                                 "subject": {
                                                                   "type": "string"
                                                                 },
@@ -5268,6 +5270,7 @@
                                                   "action": {
                                                     "type": "string"
                                                   },
+                                                  "actionParameters": {},
                                                   "subject": {
                                                     "type": "string"
                                                   },
@@ -5465,7 +5468,7 @@
               "data": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/ArticleTag"
+                  "$ref": "#/components/schemas/ArticleTagListResponseDataItemLocalized"
                 }
               }
             }
@@ -5876,6 +5879,7 @@
                                                                                             "action": {
                                                                                               "type": "string"
                                                                                             },
+                                                                                            "actionParameters": {},
                                                                                             "subject": {
                                                                                               "type": "string"
                                                                                             },
@@ -8096,6 +8100,7 @@
                                                   "action": {
                                                     "type": "string"
                                                   },
+                                                  "actionParameters": {},
                                                   "subject": {
                                                     "type": "string"
                                                   },
@@ -8580,6 +8585,7 @@
                                                                 "action": {
                                                                   "type": "string"
                                                                 },
+                                                                "actionParameters": {},
                                                                 "subject": {
                                                                   "type": "string"
                                                                 },
@@ -11543,6 +11549,7 @@
                                                                             "action": {
                                                                               "type": "string"
                                                                             },
+                                                                            "actionParameters": {},
                                                                             "subject": {
                                                                               "type": "string"
                                                                             },
@@ -13347,7 +13354,7 @@
               "data": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/Navigation"
+                  "$ref": "#/components/schemas/NavigationListResponseDataItemLocalized"
                 }
               }
             }
@@ -13663,6 +13670,7 @@
                                                                           "action": {
                                                                             "type": "string"
                                                                           },
+                                                                          "actionParameters": {},
                                                                           "subject": {
                                                                             "type": "string"
                                                                           },
@@ -15844,6 +15852,7 @@
                                                                                           "action": {
                                                                                             "type": "string"
                                                                                           },
+                                                                                          "actionParameters": {},
                                                                                           "subject": {
                                                                                             "type": "string"
                                                                                           },
@@ -23480,7 +23489,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfull registration",
+            "description": "Successful registration",
             "content": {
               "application/json": {
                 "schema": {
