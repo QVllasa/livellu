@@ -4,18 +4,18 @@ import Client from "@/framework/client";
 import {Category, Colour, Entity} from "@/types";
 
 // Atom für alle Kategorien
-export const allColourAtom = atom(
+export const allColorAtom = atom(
     async (get) => {
 
         const params = {
             filters: {
-                isColour: {
+                isColor: {
                     $eq: true
                 }
             },
             populate: {
-                child_categories: {populate: '*'},
-                parent_categories: {populate: '*'},
+                child_colors: {populate: '*'},
+                parent_colors: {populate: '*'},
             },
             pagination: {
                 page: 1,
@@ -23,7 +23,7 @@ export const allColourAtom = atom(
             }
         }
 
-        const response = await Client.colours.all(params)
+        const response = await Client.colors.all(params)
         return response.data.map((entity: Entity<Colour>) => {
             const id = entity.id;
             const modifiedItem: Colour = {
@@ -36,4 +36,4 @@ export const allColourAtom = atom(
 );
 
 
-export const currentColourAtom = atom<null | Colour>(null);
+export const currentColorAtom = atom<null | Colour>(null);

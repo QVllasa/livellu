@@ -180,19 +180,22 @@ function MoebelPage() {
                     <div className="flex items-center">
                         <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
                     </div>
-                    <Suspense fallback={<div>Loading...</div>}>
+                    <Suspense fallback={<ArrowPathIcon className="mr-2 h-12 w-12 animate-spin" />}>
                         <Breadcrumbs/>
                     </Suspense>
 
                     <div
                         className="flex flex-1 items-center justify-center rounded-lg border border-dashed shadow-sm" x-chunk="dashboard-02-chunk-1"
                     >
-                        <ArrowPathIcon className="mr-2 h-12 w-12 animate-spin" />
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                            {products.map((product, index) => (
-                                <ProductCard key={index} product={product}/>
-                            ))}
-                        </div>
+                        <Suspense fallback={<ArrowPathIcon className="mr-2 h-12 w-12 animate-spin" />}>
+
+                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                                {products.map((product, index) => (
+                                    <ProductCard key={index} product={product}/>
+                                ))}
+                            </div>
+                        </Suspense>
+
                     </div>
                 </main>
             </div>

@@ -44,6 +44,8 @@ const Navigation = () => {
 
     let home = navigationData.find((item: Navigation) => item?.url === '/');
 
+    console.log("navigationData: ", navigationData)
+
 
     return (
         <NavigationMenu>
@@ -58,21 +60,31 @@ const Navigation = () => {
                 {navigationData.map(({url, title, icon, category}, index) =>
                     url !== '/' &&
                     <NavigationMenuItem key={index + (title ?? '')}>
-                        <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
-                        <NavigationMenuContent>
-                            <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
-                                {category?.data?.attributes.child_categories?.data?.map(({attributes}) => (
-                                    <ListItem
-                                        key={attributes.name}
-                                        title={attributes.name}
-                                        href={'/category/' + (attributes.identifier ?? '/')}
-                                        category={attributes}
-                                    >
-                                        <span>{attributes.summary}</span>
-                                    </ListItem>
-                                ))}
-                            </ul>
-                        </NavigationMenuContent>
+                        {category?.data?.attributes.child_categories?.data?.length ? (
+                            <>
+                                <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
+                                <NavigationMenuContent>
+                                    <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
+                                        {category?.data?.attributes.child_categories?.data?.map(({attributes}) => (
+                                            <ListItem
+                                                key={attributes.name}
+                                                title={attributes.name}
+                                                href={'/category/' + (attributes.identifier ?? '/')}
+                                                category={attributes}
+                                            >
+                                                <span>{attributes.summary}</span>
+                                            </ListItem>
+                                        ))}
+                                    </ul>
+                                </NavigationMenuContent>
+                            </>
+                        ) : (
+                            <Link href={url} passHref>
+                                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                                    {title}
+                                </NavigationMenuLink>
+                            </Link>
+                        )}
                     </NavigationMenuItem>
                 )
                 }

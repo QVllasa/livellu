@@ -11,7 +11,7 @@ import type {
     CategoryPaginator,
     CategoryQueryOptions,
     ChangePasswordUserInput,
-    CheckoutVerificationInput, Colour,
+    CheckoutVerificationInput, Color,
     CouponPaginator,
     CouponQueryOptions,
     CreateAbuseReportInput,
@@ -393,10 +393,10 @@ class Client {
             return HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}`, params)
         }
     }
-    colours = {
-        all: (params?: any) => HttpClient.get<Colour>(API_ENDPOINTS.COLOURS, {...params}),
+    colors = {
+        all: (params?: any) => HttpClient.get<Color>(API_ENDPOINTS.COLOR, {...params}),
         get: (params: any) => {
-            return HttpClient.get<Colour>(`${API_ENDPOINTS.COLOURS}`, params)
+            return HttpClient.get<Color>(`${API_ENDPOINTS.COLOR}`, params)
         }
     }
     merchants = {
