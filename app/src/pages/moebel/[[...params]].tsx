@@ -19,6 +19,9 @@ import {currentCategoryAtom} from "@/store/category";
 import {useAtom} from "jotai";
 import {capitalize} from "lodash";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
+import {ColorFilter} from "@/components/filters/color-filter";
+import {MaterialFilter} from "@/components/filters/material-filter";
+import {BrandFilter} from "@/components/filters/brand-filter";
 
 
 
@@ -62,6 +65,9 @@ function MoebelPage() {
                     <div className="flex-1 h-full ">
                         <Suspense fallback={<div>Loading...</div>}>
                             <CategoryFilter/>
+                            <ColorFilter/>
+                            <MaterialFilter/>
+                            <BrandFilter/>
                         </Suspense>
 
 

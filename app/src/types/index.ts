@@ -135,9 +135,31 @@ export interface Color {
     updatedAt: Date;
     label: string;
     slug: string;
+    code: string;
     parent_categories?: { data: Entity<Color>[] };
     child_categories?: { data: Entity<Color>[] };
     isColour?: boolean;
+}
+
+
+export interface Brand {
+    id?: number;
+    createdAt: Date;
+    updatedAt: Date;
+    label: string;
+    slug: string;
+    brandId: string;
+}
+
+export interface Material {
+    id?: number;
+    createdAt: Date;
+    updatedAt: Date;
+    label: string;
+    slug: string;
+    parent_categories?: { data: Entity<Material>[] };
+    child_categories?: { data: Entity<Material>[] };
+    isMaterial?: boolean;
 }
 
 export interface Feed {

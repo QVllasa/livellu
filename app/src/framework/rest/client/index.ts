@@ -6,7 +6,7 @@ import type {
     AuthorPaginator,
     AuthorQueryOptions,
     AuthResponse,
-    BestSellingProductQueryOptions,
+    BestSellingProductQueryOptions, Brand,
     Card, Category,
     CategoryPaginator,
     CategoryQueryOptions,
@@ -30,7 +30,7 @@ import type {
     LoginUserInput,
     Manufacturer,
     ManufacturerPaginator,
-    ManufacturerQueryOptions, Merchant,
+    ManufacturerQueryOptions, Material, Merchant,
     MyQuestionQueryOptions,
     MyReportsQueryOptions,
     Navigation,
@@ -397,6 +397,18 @@ class Client {
         all: (params?: any) => HttpClient.get<Color>(API_ENDPOINTS.COLOR, {...params}),
         get: (params: any) => {
             return HttpClient.get<Color>(`${API_ENDPOINTS.COLOR}`, params)
+        }
+    }
+    materials = {
+        all: (params?: any) => HttpClient.get<Material>(API_ENDPOINTS.MATERIAL, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<Material>(`${API_ENDPOINTS.MATERIAL}`, params)
+        }
+    }
+    brands = {
+        all: (params?: any) => HttpClient.get<Brand>(API_ENDPOINTS.BRAND, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<Brand>(`${API_ENDPOINTS.BRAND}`, params)
         }
     }
     merchants = {

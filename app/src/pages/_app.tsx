@@ -13,6 +13,7 @@ import QueryProvider from '@/framework/client/query-provider';
 import { getDirection } from '@/lib/constants';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
+import {TooltipProvider} from "@/shadcn/components/ui/tooltip";
 const ToastContainer = dynamic(
   () => import('react-toastify').then((module) => module.ToastContainer),
   { ssr: false }
@@ -38,6 +39,7 @@ function CustomApp({
   return (
     <>
       <div dir={dir}>
+          <TooltipProvider>
           <QueryProvider pageProps={pageProps}>
             <SearchProvider>
               <ModalProvider>
@@ -51,6 +53,7 @@ function CustomApp({
               </ModalProvider>
             </SearchProvider>
           </QueryProvider>
+          </TooltipProvider>
       </div>
     </>
   );

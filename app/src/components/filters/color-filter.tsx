@@ -2,24 +2,18 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Input} from "@/shadcn/components/ui/input";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
 import {useAtom} from "jotai";
 import {Color} from "@/types";
 import {allColorAtom, currentColorAtom} from "@/store/color";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 
 // Helper function to find color by slug in the nested structure
 const findColorBySlug = (colors, slug) => {
     for (const color of colors) {
         if (color.slug?.toLowerCase() === slug || color.attributes?.slug?.toLowerCase() === slug) {
             return {id: color.id, ...color};
-        }
-        if (color.child_categories?.data?.length) {
-            const found = findColorBySlug(color.child_colors.data, slug);
-            if (found) {
-                return {id: found.id, ...found.attributes};
-            }
         }
     }
     return null;
@@ -28,13 +22,14 @@ const findColorBySlug = (colors, slug) => {
 export const ColorFilter = () => {
     const [selectedColor, setSelectedColor] = useState<Color | null>(null);
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
-    const [childColors, setChildColors] = useState<Color[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
     const [allColors] = useAtom(allColorAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
+
+    console.log("filteredColors: ", filteredColors);
 
     useEffect(() => {
         // Extract the current color from the route
@@ -47,7 +42,6 @@ export const ColorFilter = () => {
         if (!colorSlug) {
             console.log("no color slug found");
             setFilteredColors(allColors);
-            setChildColors(allColors);
             setCurrentColor(null);
             setSearchTerm(''); // Clear the input
             return;
@@ -59,22 +53,12 @@ export const ColorFilter = () => {
         if (!currentColor) {
             console.log("no current color found");
             setFilteredColors(allColors);
-            setChildColors(allColors);
             setCurrentColor(null);
             setSearchTerm(''); // Clear the input
             return;
         }
 
-        // Determine the categories to display
-        const categoriesToDisplay = currentColor.child_categories?.data?.length ?
-            currentColor.child_categories.data.map(item => ({id: item.id, ...item.attributes})) : [currentColor];
-
-        // Set the filtered categories
-        setChildColors(categoriesToDisplay);
-        setFilteredColors(categoriesToDisplay);
         setSearchTerm(''); // Clear the input
-
-        console.log("categoriesToDisplay: ", categoriesToDisplay);
 
         setCurrentColor(currentColor);
         setSelectedColor(currentColor);
@@ -94,48 +78,50 @@ export const ColorFilter = () => {
         router.push(updatedPath);
     };
 
-    const handleSearchSelect = (event) => {
-        const value = event.target.value;
-        if (value === '') {
-            setFilteredColors(childColors);
-            setSearchTerm('');
-            return;
-        }
-        setSearchTerm(value);
-        setFilteredColors(childColors.filter((item: Color) => item.label.toLowerCase().includes(value.toLowerCase())));
-    };
 
     return (
-        <div className="w-64 p-4">
+        <div className="w-64 p-4 relative">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-bold">Kategorien</h4>
+                        <h4 className="text-sm font-medium">Farbe{': '}
+                            <span className={'font-bold'}>
+                                {capitalize(currentColor?.label)}
+                            </span>
+                        </h4>
                     </AccordionTrigger>
                     <AccordionContent>
-                        {childColors.length > 1 && (
-                            <div className="w-full mb-4">
-                                <Input
-                                    type="text"
-                                    placeholder="Search categories..."
-                                    value={searchTerm}
-                                    onChange={handleSearchSelect}
-                                />
-                            </div>
-                        )}
-                        <ScrollArea className="max-h-64 overflow-auto">
-                            <ul>
+
+                        <ScrollArea className="max-h-64 overflow-y-scroll w-full">
+                            <ul className="grid grid-cols-5 gap-1">
                                 {filteredColors.map((item) => (
-                                    <li key={item.id} className="mb-1">
-                                        <Button
-                                            size={'sm'}
-                                            variant={selectedColor?.slug === item.slug ? 'solid' : 'outline'}
-                                            onClick={() => handleColorClick(item)}
-                                            className={`w-full ${selectedColor?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                            disabled={selectedColor?.slug === item.slug} // Disable the button if it is the selected color
-                                        >
-                                            {capitalize(item.label)}
-                                        </Button>
+                                    <li key={item.id} className="relative">
+                                        <Tooltip delay={[100, 0]}>
+                                            <TooltipTrigger>
+                                                <Button
+                                                    size={'icon'}
+                                                    variant="ghost"
+                                                    style={{
+                                                        backgroundColor: item.code ?? 'transparent',
+                                                        width: '32px',
+                                                        height: '32px',
+                                                        border: item.code ? 'none' : '1px solid #ccc',
+                                                        backdropFilter: item.code ? 'none' : 'blur(10px)',
+                                                        WebkitBackdropFilter: item.code ? 'none' : 'blur(10px)',
+                                                        backgroundClip: 'padding-box',
+                                                        borderRadius: '50%',
+                                                        opacity: item.code ? '1' : '0.7'
+                                                    }}
+                                                    onClick={() => handleColorClick(item)}
+                                                    className={`relative ${selectedColor?.slug === item.slug ? 'ring-2 ring-offset-2 ring-blue-500' : ''}`}
+                                                >
+                                                    <span className="sr-only">{capitalize(item.label)}</span>
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent>
+                                                <span>{capitalize(item.label)}</span>
+                                            </TooltipContent>
+                                        </Tooltip>
                                     </li>
                                 ))}
                             </ul>

@@ -1,21 +1,21 @@
 // store.js
 import {atom} from 'jotai';
 import Client from "@/framework/client";
-import { Color, Entity} from "@/types";
+import { Brand, Entity} from "@/types";
 
 // Atom für alle Kategorien
-export const allColorAtom = atom(
+export const allBrandAtom = atom(
     async (get) => {
 
         const params = {
             filters: {
-                isColor: {
-                    $eq: true
-                }
+                // isBrand: {
+                //     $eq: true
+                // }
             },
             populate: {
-                child_colors: {populate: '*'},
-                parent_colors: {populate: '*'},
+                child_brands: {populate: '*'},
+                parent_brands: {populate: '*'},
             },
             pagination: {
                 page: 1,
@@ -23,10 +23,10 @@ export const allColorAtom = atom(
             }
         }
 
-        const response = await Client.colors.all(params)
-        return response.data.map((entity: Entity<Color>) => {
+        const response = await Client.brands.all(params)
+        return response.data.map((entity: Entity<Brand>) => {
             const id = entity.id;
-            const modifiedItem: Color = {
+            const modifiedItem: Brand = {
                 ...entity.attributes,
                 id: id
             };
@@ -36,4 +36,4 @@ export const allColorAtom = atom(
 );
 
 
-export const currentColorAtom = atom<null | Color>(null);
+export const currentBrandAtom = atom<null | Brand>(null);

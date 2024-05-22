@@ -110,7 +110,11 @@ export const CategoryFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-bold">Kategorien</h4>
+                        <h4 className="text-sm font-medium">Kategorie{': '}
+                            <span className={'font-bold'}>
+                                {capitalize(currentCategory?.name)}
+                            </span>
+                        </h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         {childCategories.length > 1 && (

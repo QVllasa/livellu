@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "brands",
+  "info": {
+    "singularName": "brand",
+    "pluralName": "brands",
+    "displayName": "Brand"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "text",
+      "unique": true,
+      "required": true
+    },
+    "slug": {
+      "type": "text",
+      "unique": true,
+      "required": true
+    },
+    "brandId": {
+      "type": "text",
+      "unique": true,
+      "required": true
+    }
+  }
+}

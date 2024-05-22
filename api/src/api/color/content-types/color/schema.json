@@ -28,7 +28,7 @@
       "target": "api::color.color",
       "mappedBy": "parent_colors"
     },
-    "is_color": {
+    "isColor": {
       "type": "boolean",
       "default": false
     },

@@ -63,4 +63,7 @@ export const API_ENDPOINTS = {
   MERCHANTS: '/merchants',
   CATEGORIES: '/categories',
   COLOR: '/colors',
+  MATERIAL: '/materials',
+  BRAND: '/brands',
+
 };

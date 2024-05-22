@@ -887,6 +887,37 @@ export interface ApiArticleTagArticleTag extends Schema.CollectionType {
   };
 }
 
+export interface ApiBrandBrand extends Schema.CollectionType {
+  collectionName: 'brands';
+  info: {
+    singularName: 'brand';
+    pluralName: 'brands';
+    displayName: 'Brand';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    label: Attribute.Text & Attribute.Required & Attribute.Unique;
+    slug: Attribute.Text & Attribute.Required & Attribute.Unique;
+    brandId: Attribute.Text & Attribute.Required & Attribute.Unique;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::brand.brand',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCategoryCategory extends Schema.CollectionType {
   collectionName: 'categories';
   info: {
@@ -970,7 +1001,7 @@ export interface ApiColorColor extends Schema.CollectionType {
       'manyToMany',
       'api::color.color'
     >;
-    is_color: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isColor: Attribute.Boolean & Attribute.DefaultTo<false>;
     code: Attribute.String;
     slug: Attribute.Text;
     createdAt: Attribute.DateTime;
@@ -1412,6 +1443,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::article-category.article-category': ApiArticleCategoryArticleCategory;
       'api::article-tag.article-tag': ApiArticleTagArticleTag;
+      'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::feed.feed': ApiFeedFeed;
