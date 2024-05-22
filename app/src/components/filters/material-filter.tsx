@@ -1,20 +1,18 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
-import {Button} from "@/shadcn/components/ui/button";
-import {Input} from "@/shadcn/components/ui/input";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
-import {capitalize} from "lodash";
-import {useAtom} from "jotai";
-import {Material} from "@/types";
-import {currentMaterialAtom} from "@/store/material";
-import {findMaterialBySlug} from "@/framework/utils/find-by-slug";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
+import { Button } from "@/shadcn/components/ui/button";
+import { Input } from "@/shadcn/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
+import { capitalize } from "lodash";
+import { useAtom } from "jotai";
+import { Material } from "@/types";
+import { currentMaterialAtom } from "@/store/material";
+import { findMaterialBySlug } from "@/framework/utils/find-by-slug";
 
-
-export const MaterialFilter = ({allMaterials}) => {
+export const MaterialFilter = ({ allMaterials }) => {
     const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
     const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
-    const [childMaterials, setChildMaterials] = useState<Material[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
@@ -32,11 +30,8 @@ export const MaterialFilter = ({allMaterials}) => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const materialSlug = pathSegments.find(segment => findMaterialBySlug(allMaterials, segment.toLowerCase()));
 
-
         if (!materialSlug) {
-
             setFilteredMaterials(allMaterials);
-
             setCurrentMaterial(null);
             setSearchTerm(''); // Clear the input
             return;
@@ -46,9 +41,7 @@ export const MaterialFilter = ({allMaterials}) => {
         const currentMaterial = findMaterialBySlug(allMaterials, materialSlug.toLowerCase());
 
         if (!currentMaterial) {
-
             setFilteredMaterials(allMaterials);
-
             setCurrentMaterial(null);
             setSearchTerm(''); // Clear the input
             return;
@@ -59,26 +52,34 @@ export const MaterialFilter = ({allMaterials}) => {
     }, [router.asPath, router.query, allMaterials]);
 
     const handleMaterialClick = (material: Material) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-
-
-        const updatedPathSegments = pathSegments.filter(segment => !allMaterials.some(cat => cat.slug.toLowerCase() === segment));
-        const updatedPath = `/${[...updatedPathSegments, material.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentMaterial(material);
-        setSelectedMaterial(material);
-        router.push(updatedPath);
+        if (selectedMaterial?.slug === material.slug) {
+            // Unselect the material
+            setCurrentMaterial(null);
+            setSelectedMaterial(null);
+            // Remove material from the URL
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => segment.toLowerCase() !== material.slug.toLowerCase());
+            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
+            router.push(updatedPath);
+        } else {
+            // Select the material
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => !allMaterials.some(cat => cat.slug.toLowerCase() === segment));
+            const updatedPath = `/${[...updatedPathSegments, material.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
+            setCurrentMaterial(material);
+            setSelectedMaterial(material);
+            router.push(updatedPath);
+        }
     };
 
     const handleSearchSelect = (event) => {
         const value = event.target.value;
+        setSearchTerm(value);
         if (value === '') {
-            setFilteredMaterials(childMaterials);
-            setSearchTerm('');
+            setFilteredMaterials(allMaterials);
             return;
         }
-        setSearchTerm(value);
-        setFilteredMaterials(childMaterials.filter((item: Material) => item.label.toLowerCase().includes(value.toLowerCase())));
+        setFilteredMaterials(allMaterials.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())));
     };
 
     return (
@@ -110,7 +111,6 @@ export const MaterialFilter = ({allMaterials}) => {
                                             variant={selectedMaterial?.slug === item.slug ? 'solid' : 'outline'}
                                             onClick={() => handleMaterialClick(item)}
                                             className={`relative w-full ${selectedMaterial?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                            disabled={selectedMaterial?.slug === item.slug} // Disable the button if it is the selected material
                                         >
                                             <span className={'truncate'}> {capitalize(item.label)}</span>
                                         </Button>

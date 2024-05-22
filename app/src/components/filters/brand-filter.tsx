@@ -53,14 +53,24 @@ export const BrandFilter = ({ allBrands }) => {
     }, [router.asPath, router.query, allBrands]);
 
     const handleBrandClick = (brand) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-
-        const updatedPathSegments = pathSegments.filter(segment => !allBrands.some(cat => cat.slug.toLowerCase() === segment));
-        const updatedPath = `/${[...updatedPathSegments, brand.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentBrand(brand);
-        setSelectedBrand(brand);
-        router.push(updatedPath);
+        if (selectedBrand?.slug === brand.slug) {
+            // Unselect the brand
+            setCurrentBrand(null);
+            setSelectedBrand(null);
+            // Remove brand from the URL
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => segment.toLowerCase() !== brand.slug.toLowerCase());
+            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
+            router.push(updatedPath);
+        } else {
+            // Select the brand
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => !allBrands.some(cat => cat.slug.toLowerCase() === segment));
+            const updatedPath = `/${[...updatedPathSegments, brand.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
+            setCurrentBrand(brand);
+            setSelectedBrand(brand);
+            router.push(updatedPath);
+        }
     };
 
     const handleSearchSelect = (event) => {
@@ -102,7 +112,7 @@ export const BrandFilter = ({ allBrands }) => {
                                             variant={selectedBrand?.slug === item.slug ? 'solid' : 'outline'}
                                             onClick={() => handleBrandClick(item)}
                                             className={`relative w-full ${selectedBrand?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                            disabled={selectedBrand?.slug === item.slug} // Disable the button if it is the selected brand
+
                                         >
                                             <span className={'truncate'}> {capitalize(item.label)}</span>
                                         </Button>

@@ -6,13 +6,11 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/sh
 import {capitalize} from "lodash";
 import {useAtom} from "jotai";
 import {Color} from "@/types";
-import {allColorAtom, currentColorAtom} from "@/store/color";
+import {currentColorAtom} from "@/store/color";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {findColorBySlug} from "@/framework/utils/find-by-slug";
 
-
-
-export const ColorFilter = ({ allColors }) => {
+export const ColorFilter = ({allColors}) => {
     const [selectedColor, setSelectedColor] = useState<Color | null>(null);
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -31,7 +29,6 @@ export const ColorFilter = ({ allColors }) => {
         // Extract the current color from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const colorSlug = pathSegments.find(segment => findColorBySlug(allColors, segment.toLowerCase()));
-
 
         if (!colorSlug) {
             setFilteredColors(allColors);
@@ -57,18 +54,35 @@ export const ColorFilter = ({ allColors }) => {
     }, [router.asPath, router.query, allColors]);
 
     const handleColorClick = (color: Color) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-
-
-
-        const updatedPathSegments = pathSegments.filter(segment => !allColors.some(cat => cat.slug.toLowerCase() === segment));
-        const updatedPath = `/${[...updatedPathSegments, color.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentColor(color);
-        setSelectedColor(color);
-        router.push(updatedPath);
+        if (selectedColor?.slug === color.slug) {
+            // Unselect the color
+            setCurrentColor(null);
+            setSelectedColor(null);
+            // Remove color from the URL
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => segment.toLowerCase() !== color.slug.toLowerCase());
+            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
+            router.push(updatedPath);
+        } else {
+            // Select the color
+            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+            const updatedPathSegments = pathSegments.filter(segment => !allColors.some(cat => cat.slug.toLowerCase() === segment));
+            const updatedPath = `/${[...updatedPathSegments, color.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
+            setCurrentColor(color);
+            setSelectedColor(color);
+            router.push(updatedPath);
+        }
     };
 
+    const handleSearchSelect = (event) => {
+        const value = event.target.value;
+        setSearchTerm(value);
+        if (value === '') {
+            setFilteredColors(allColors);
+            return;
+        }
+        setFilteredColors(allColors.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())));
+    };
 
     return (
         <div className="w-64 p-4 relative">
@@ -82,7 +96,6 @@ export const ColorFilter = ({ allColors }) => {
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
-
                         <ScrollArea className="max-h-64 overflow-y-scroll w-full">
                             <ul className="grid grid-cols-5 gap-1">
                                 {filteredColors.map((item) => (
