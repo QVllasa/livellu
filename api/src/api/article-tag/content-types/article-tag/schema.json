@@ -24,6 +24,12 @@
       },
       "type": "string",
       "required": true
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "article_tags"
     }
   }
 }

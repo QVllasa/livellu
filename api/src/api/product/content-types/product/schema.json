@@ -74,12 +74,6 @@
     "dimensions": {
       "type": "text"
     },
-    "colour": {
-      "type": "text"
-    },
-    "material": {
-      "type": "text"
-    },
     "categoryIdentifier": {
       "type": "text"
     },
@@ -126,6 +120,22 @@
       "type": "text"
     },
     "altImageUrl": {
+      "type": "text"
+    },
+    "color": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::color.color"
+    },
+    "material": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::material.material"
+    },
+    "original_color": {
+      "type": "text"
+    },
+    "original_material": {
       "type": "text"
     }
   }

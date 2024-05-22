@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "colors",
+  "info": {
+    "singularName": "color",
+    "pluralName": "colors",
+    "displayName": "Color",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "label": {
+      "type": "text",
+      "unique": true
+    },
+    "parent_colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "inversedBy": "child_colors"
+    },
+    "child_colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "mappedBy": "parent_colors"
+    },
+    "is_color": {
+      "type": "boolean",
+      "default": false
+    },
+    "code": {
+      "type": "string",
+      "unique": false
+    },
+    "slug": {
+      "type": "text"
+    }
+  }
+}

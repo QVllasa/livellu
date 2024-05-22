@@ -23,12 +23,6 @@
     "slug": {
       "type": "string"
     },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "article_category"
-    },
     "featured_image": {
       "type": "media",
       "multiple": false,
@@ -53,6 +47,12 @@
     },
     "context": {
       "type": "string"
+    },
+    "posts": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::post.post",
+      "mappedBy": "article_categories"
     }
   }
 }

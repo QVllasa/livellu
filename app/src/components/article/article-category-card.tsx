@@ -6,6 +6,7 @@ import {FALLBACK_IMG} from "@/lib/constants";
 export const ArticleCategoryCard = ({articleCategory}: { articleCategory: ArticleCategory }) => {
 
     const imgObj = articleCategory?.featured_image?.data ? articleCategory?.featured_image?.data.attributes : FALLBACK_IMG
+    const provider = articleCategory?.featured_image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
 
 
     return <article

@@ -40,6 +40,7 @@ export const ArticlePage = () => {
     }
 
     const imgObj = article?.featured_image?.data ? article?.featured_image?.data.attributes : FALLBACK_IMG
+    const provider = article?.featured_image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
 
 
     return (
@@ -52,7 +53,7 @@ export const ArticlePage = () => {
                     </div>
                 </div>
                 <Image
-                    src={process.env.NEXT_PUBLIC_STRAPI_HOST + imgObj.url}
+                    src={provider + imgObj.url}
                     width={imgObj.width}
                     height={imgObj.height}
                     alt=""
@@ -80,6 +81,7 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
     };
 
     const imgObj = section?.featured_image?.data ? section?.featured_image?.data.attributes : FALLBACK_IMG
+    const provider = section?.featured_image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
 
 
     return <>
@@ -108,7 +110,7 @@ const ArticleSection = ({section, index}: { section: ArticleSection, index: numb
             </div>
             <div className={` -ml-12 p-12 lg:sticky lg:top-20  ${isEven ? 'lg:col-start-2' : 'lg:col-start-1'} lg:row-span-2 lg:row-start-1 lg:overflow-hidden`}>
                 <Image
-                    src={process.env.NEXT_PUBLIC_STRAPI_HOST + imgObj?.url}
+                    src={provider+ imgObj?.url}
                     width={imgObj?.width}
                     height={imgObj?.height}
                     alt=""

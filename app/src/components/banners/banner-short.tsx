@@ -70,12 +70,15 @@ export default BannerShort;
 
 function Slide({articleCategory}: { articleCategory: ArticleCategory }) {
     const imgObj = articleCategory?.featured_image?.data ? articleCategory?.featured_image?.data.attributes : FALLBACK_IMG
+    const provider = articleCategory?.featured_image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
+
+    console.log("img",imgObj)
 
     return (
         <>
             <div className="relative">
                 <Image
-                    src={process.env.NEXT_PUBLIC_STRAPI_HOST+imgObj.url}
+                    src={provider+imgObj.url}
                     alt={articleCategory.title}
                     width={imgObj.width}
                     height={imgObj.height}

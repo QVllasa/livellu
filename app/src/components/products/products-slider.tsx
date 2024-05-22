@@ -6,10 +6,8 @@ import {useProducts} from "@/framework/product";
 
 export const ProductsSlider = (props: {filter: any}) => {
     const {filter} = props;
-    console.log("filter: ", filter)
     const {products} = useProducts(filter);
 
-    console.log("products: ", products)
 
     return (<>
         <div className={'flex justify-center mt-24'}>

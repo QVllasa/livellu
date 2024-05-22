@@ -62,4 +62,5 @@ export const API_ENDPOINTS = {
   ARTICLE_CATEGORIES: '/article-categories',
   MERCHANTS: '/merchants',
   CATEGORIES: '/categories',
+  COLOURS: '/colours',
 };

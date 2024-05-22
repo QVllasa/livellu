@@ -788,90 +788,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiArticleArticle extends Schema.CollectionType {
-  collectionName: 'articles';
-  info: {
-    singularName: 'article';
-    pluralName: 'articles';
-    displayName: 'Article';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        versions: {
-          versioned: true;
-        };
-      }>;
-    slug: Attribute.String &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        versions: {
-          versioned: true;
-        };
-      }>;
-    summary: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        versions: {
-          versioned: true;
-        };
-      }>;
-    author: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    >;
-    article_category: Attribute.Relation<
-      'api::article.article',
-      'manyToOne',
-      'api::article-category.article-category'
-    >;
-    article_tags: Attribute.Relation<
-      'api::article.article',
-      'oneToMany',
-      'api::article-tag.article-tag'
-    >;
-    seo: Attribute.Component<'seo.seo'> &
-      Attribute.SetPluginOptions<{
-        versions: {
-          versioned: true;
-        };
-      }>;
-    related_articles: Attribute.Relation<
-      'api::article.article',
-      'oneToMany',
-      'api::article.article'
-    >;
-    sections: Attribute.Component<'article.article-section', true> &
-      Attribute.SetPluginOptions<{
-        versions: {
-          versioned: true;
-        };
-      }>;
-    featured_image: Attribute.Media;
-    context: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiArticleCategoryArticleCategory
   extends Schema.CollectionType {
   collectionName: 'article_categories';
@@ -888,11 +804,6 @@ export interface ApiArticleCategoryArticleCategory
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     description: Attribute.Text;
     slug: Attribute.String;
-    articles: Attribute.Relation<
-      'api::article-category.article-category',
-      'oneToMany',
-      'api::article.article'
-    >;
     featured_image: Attribute.Media;
     content: Attribute.RichText & Attribute.DefaultTo<'no content'>;
     is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -902,6 +813,11 @@ export interface ApiArticleCategoryArticleCategory
       'api::category.category'
     >;
     context: Attribute.String;
+    posts: Attribute.Relation<
+      'api::article-category.article-category',
+      'manyToMany',
+      'api::post.post'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -943,6 +859,11 @@ export interface ApiArticleTagArticleTag extends Schema.CollectionType {
           localized: false;
         };
       }>;
+    posts: Attribute.Relation<
+      'api::article-tag.article-tag',
+      'manyToMany',
+      'api::post.post'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -975,7 +896,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String & Attribute.Required;
@@ -1008,9 +929,9 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::navigation.navigation'
     >;
     summary: Attribute.Text;
+    slug: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::category.category',
       'oneToOne',
@@ -1019,6 +940,49 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiColorColor extends Schema.CollectionType {
+  collectionName: 'colors';
+  info: {
+    singularName: 'color';
+    pluralName: 'colors';
+    displayName: 'Color';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    label: Attribute.Text & Attribute.Unique;
+    parent_colors: Attribute.Relation<
+      'api::color.color',
+      'manyToMany',
+      'api::color.color'
+    >;
+    child_colors: Attribute.Relation<
+      'api::color.color',
+      'manyToMany',
+      'api::color.color'
+    >;
+    is_color: Attribute.Boolean & Attribute.DefaultTo<false>;
+    code: Attribute.String;
+    slug: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::color.color',
       'oneToOne',
       'admin::user'
     > &
@@ -1056,6 +1020,48 @@ export interface ApiFeedFeed extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::feed.feed', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::feed.feed', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiMaterialMaterial extends Schema.CollectionType {
+  collectionName: 'materials';
+  info: {
+    singularName: 'material';
+    pluralName: 'materials';
+    displayName: 'Material';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    label: Attribute.Text & Attribute.Unique;
+    is_material: Attribute.Boolean & Attribute.DefaultTo<false>;
+    parent_materials: Attribute.Relation<
+      'api::material.material',
+      'manyToMany',
+      'api::material.material'
+    >;
+    child_materials: Attribute.Relation<
+      'api::material.material',
+      'manyToMany',
+      'api::material.material'
+    >;
+    slug: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::material.material',
+      'oneToOne',
+      'admin::user'
+    > &
       Attribute.Private;
   };
 }
@@ -1228,6 +1234,50 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPostPost extends Schema.CollectionType {
+  collectionName: 'posts';
+  info: {
+    singularName: 'post';
+    pluralName: 'posts';
+    displayName: 'Post';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    text: Attribute.Text & Attribute.Required;
+    slug: Attribute.Text & Attribute.Required;
+    summary: Attribute.Text & Attribute.Required;
+    author: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'>;
+    article_categories: Attribute.Relation<
+      'api::post.post',
+      'manyToMany',
+      'api::article-category.article-category'
+    >;
+    article_tags: Attribute.Relation<
+      'api::post.post',
+      'manyToMany',
+      'api::article-tag.article-tag'
+    >;
+    seo: Attribute.Component<'seo.seo'>;
+    related_posts: Attribute.Relation<
+      'api::post.post',
+      'oneToMany',
+      'api::post.post'
+    >;
+    sections: Attribute.Component<'article.article-section', true>;
+    featured_image: Attribute.Media;
+    context: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::post.post', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Schema.CollectionType {
   collectionName: 'products';
   info: {
@@ -1266,8 +1316,6 @@ export interface ApiProductProduct extends Schema.CollectionType {
     description: Attribute.Text;
     promotion: Attribute.Text;
     dimensions: Attribute.Text;
-    colour: Attribute.Text;
-    material: Attribute.Text;
     categoryIdentifier: Attribute.Text;
     slug: Attribute.Text;
     merchantId: Attribute.String;
@@ -1284,6 +1332,18 @@ export interface ApiProductProduct extends Schema.CollectionType {
     reviews: Attribute.Text;
     rating: Attribute.Text;
     altImageUrl: Attribute.Text;
+    color: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::color.color'
+    >;
+    material: Attribute.Relation<
+      'api::product.product',
+      'oneToOne',
+      'api::material.material'
+    >;
+    original_color: Attribute.Text;
+    original_material: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1295,6 +1355,36 @@ export interface ApiProductProduct extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::product.product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRouteRoute extends Schema.CollectionType {
+  collectionName: 'routes';
+  info: {
+    singularName: 'route';
+    pluralName: 'routes';
+    displayName: 'Route';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::route.route',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::route.route',
       'oneToOne',
       'admin::user'
     > &
@@ -1320,15 +1410,18 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'api::article.article': ApiArticleArticle;
       'api::article-category.article-category': ApiArticleCategoryArticleCategory;
       'api::article-tag.article-tag': ApiArticleTagArticleTag;
       'api::category.category': ApiCategoryCategory;
+      'api::color.color': ApiColorColor;
       'api::feed.feed': ApiFeedFeed;
+      'api::material.material': ApiMaterialMaterial;
       'api::merchant.merchant': ApiMerchantMerchant;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
+      'api::post.post': ApiPostPost;
       'api::product.product': ApiProductProduct;
+      'api::route.route': ApiRouteRoute;
     }
   }
 }

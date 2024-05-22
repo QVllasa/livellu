@@ -117,6 +117,7 @@ export interface Category {
     updatedAt: Date;
     publishedAt?: Date;
     name: string;
+    slug: string;
     parent_categories?: { data: Entity<Category>[] };
     child_categories?: { data: Entity<Category>[] };
     cat1?: string;
@@ -126,6 +127,17 @@ export interface Category {
     isCategory?: boolean;
     navigation_item?: { data: Entity<Navigation> };
     summary?: string;
+}
+
+export interface Color {
+    id?: number;
+    createdAt: Date;
+    updatedAt: Date;
+    label: string;
+    slug: string;
+    parent_categories?: { data: Entity<Color>[] };
+    child_categories?: { data: Entity<Color>[] };
+    isColour?: boolean;
 }
 
 export interface Feed {
