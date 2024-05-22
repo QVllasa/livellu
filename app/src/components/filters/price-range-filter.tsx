@@ -84,8 +84,9 @@ export const PriceRangeFilter = () => {
                 />
             </div>
             <div className="flex items-center mb-4">
-                <Button onClick={decrementMinPrice}>-</Button>
+
                 <Slider
+
                     value={[currentMinPrice, currentMaxPrice]}
                     min={0}
                     max={1000}
@@ -93,20 +94,9 @@ export const PriceRangeFilter = () => {
                     onValueChange={handleSliderChange}
                     className="mx-4 flex-grow"
                 />
-                <Button onClick={incrementMinPrice}>+</Button>
+
             </div>
-            <div className="flex items-center">
-                <Button onClick={decrementMaxPrice}>-</Button>
-                <Slider
-                    value={[currentMinPrice, currentMaxPrice]}
-                    min={0}
-                    max={1000}
-                    step={10}
-                    onValueChange={handleSliderChange}
-                    className="mx-4 flex-grow"
-                />
-                <Button onClick={incrementMaxPrice}>+</Button>
-            </div>
+
         </div>
     );
 };

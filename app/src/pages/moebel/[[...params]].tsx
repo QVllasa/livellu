@@ -26,6 +26,7 @@ import {fetchCategories} from "@/framework/category.ssr";
 import {CategoryFilter} from "@/components/filters/category-filter";
 import {ColorFilter} from "@/components/filters/color-filter";
 import {MaterialFilter} from "@/components/filters/material-filter";
+import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 
 function MoebelPage({ allBrands, allColors, products,  allMaterials, allCategories }) {
     const router = useRouter();
@@ -52,6 +53,7 @@ function MoebelPage({ allBrands, allColors, products,  allMaterials, allCategori
                             <CategoryFilter allCategories={allCategories} />
                             <ColorFilter allColors={allColors} />
                             <MaterialFilter allMaterials={allMaterials} />
+                            <PriceRangeFilter />
                         </Suspense>
                     </div>
                 </div>
