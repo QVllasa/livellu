@@ -8,18 +8,16 @@ import {
 } from "@/shadcn/components/ui/breadcrumb";
 import { useAtom } from "jotai";
 import { currentCategoryAtom, allCategoriesAtom } from "@/store/category";
-import {capitalize} from "lodash";
-import {useRouter} from "next/router";
+import { capitalize } from "lodash";
+import { useRouter } from "next/router";
 
 // Helper function to find the path to the current category
 const findCategoryPath = (categories, categoryId, path = []) => {
     for (const category of categories) {
         if (category.id === categoryId) {
-            console.log("category top: ", category)
             return [...path, category];
         }
         if (category.child_categories?.data?.length) {
-            console.log("category nested: ", category)
             const result = findCategoryPath(category.child_categories.data, categoryId, [...path, category]);
             if (result) {
                 return result;
@@ -66,7 +64,17 @@ export const Breadcrumbs = () => {
         }
     };
 
+    const handleMoebelClick = () => {
+        const pathSegments = router.asPath.split('/').filter(segment => segment);
+        const categorySlug = pathSegments.find(segment => findCategoryBySlug(allCategories, segment.toLowerCase()));
 
+        if (categorySlug) {
+            const updatedPathSegments = pathSegments.filter(segment => segment !== categorySlug);
+            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
+            setCurrentCategory(null);
+            router.push(updatedPath);
+        }
+    };
 
     return (
         <Breadcrumb>
@@ -76,7 +84,10 @@ export const Breadcrumbs = () => {
                 </BreadcrumbItem>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                    <BreadcrumbLink href="/moebel">Möbel</BreadcrumbLink>
+                    <BreadcrumbLink href="/moebel" onClick={(e) => {
+                        e.preventDefault();
+                        handleMoebelClick();
+                    }}>Möbel</BreadcrumbLink>
                 </BreadcrumbItem>
                 {categoryPath?.map((category, index) => {
                     const isLast = index === categoryPath.length - 1;

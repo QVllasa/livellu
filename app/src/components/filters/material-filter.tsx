@@ -7,19 +7,11 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/sh
 import {capitalize} from "lodash";
 import {useAtom} from "jotai";
 import {Material} from "@/types";
-import {allMaterialAtom, currentMaterialAtom} from "@/store/material";
+import {currentMaterialAtom} from "@/store/material";
+import {findMaterialBySlug} from "@/framework/utils/find-by-slug";
 
-// Helper function to find material by slug in the nested structure
-const findMaterialBySlug = (materials, slug) => {
-    for (const material of materials) {
-        if (material.slug?.toLowerCase() === slug || material.attributes?.slug?.toLowerCase() === slug) {
-            return {id: material.id, ...material};
-        }
-    }
-    return null;
-};
 
-export const MaterialFilter = () => {
+export const MaterialFilter = ({allMaterials}) => {
     const [selectedMaterial, setSelectedMaterial] = useState<Material | null>(null);
     const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
     const [childMaterials, setChildMaterials] = useState<Material[]>([]);
@@ -27,21 +19,22 @@ export const MaterialFilter = () => {
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
-    const [allMaterials] = useAtom(allMaterialAtom);
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
 
-    console.log("filteredMaterials: ", filteredMaterials);
+    useEffect(() => {
+        if (!searchTerm) {
+            setFilteredMaterials(allMaterials);
+        }
+    }, [allMaterials, searchTerm]);
 
     useEffect(() => {
         // Extract the current material from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const materialSlug = pathSegments.find(segment => findMaterialBySlug(allMaterials, segment.toLowerCase()));
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("materialSlug: ", materialSlug);
 
         if (!materialSlug) {
-            console.log("no material slug found");
+
             setFilteredMaterials(allMaterials);
 
             setCurrentMaterial(null);
@@ -53,7 +46,7 @@ export const MaterialFilter = () => {
         const currentMaterial = findMaterialBySlug(allMaterials, materialSlug.toLowerCase());
 
         if (!currentMaterial) {
-            console.log("no current material found");
+
             setFilteredMaterials(allMaterials);
 
             setCurrentMaterial(null);
@@ -68,8 +61,6 @@ export const MaterialFilter = () => {
     const handleMaterialClick = (material: Material) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("material: ", material);
 
         const updatedPathSegments = pathSegments.filter(segment => !allMaterials.some(cat => cat.slug.toLowerCase() === segment));
         const updatedPath = `/${[...updatedPathSegments, material.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');

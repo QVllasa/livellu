@@ -42,4 +42,4 @@ export const allCategoriesAtom = atom(
 
 // Atome für die Filterzustände
 // atom für null und string
-export const currentCategoryAtom = atom<null | Category>(null);
+export const currentCategoryAtom = atom<null | any | Category>(null);

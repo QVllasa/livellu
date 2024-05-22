@@ -8,41 +8,34 @@ import {useAtom} from "jotai";
 import {Color} from "@/types";
 import {allColorAtom, currentColorAtom} from "@/store/color";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
+import {findColorBySlug} from "@/framework/utils/find-by-slug";
 
-// Helper function to find color by slug in the nested structure
-const findColorBySlug = (colors, slug) => {
-    for (const color of colors) {
-        if (color.slug?.toLowerCase() === slug || color.attributes?.slug?.toLowerCase() === slug) {
-            return {id: color.id, ...color};
-        }
-    }
-    return null;
-};
 
-export const ColorFilter = () => {
+
+export const ColorFilter = ({ allColors }) => {
     const [selectedColor, setSelectedColor] = useState<Color | null>(null);
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
-    const [allColors] = useAtom(allColorAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
 
-    console.log("filteredColors: ", filteredColors);
+    useEffect(() => {
+        if (allColors.length > 0) {
+            setFilteredColors(allColors);
+        }
+    }, [allColors]);
 
     useEffect(() => {
         // Extract the current color from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const colorSlug = pathSegments.find(segment => findColorBySlug(allColors, segment.toLowerCase()));
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("colorSlug: ", colorSlug);
 
         if (!colorSlug) {
-            console.log("no color slug found");
             setFilteredColors(allColors);
-            setCurrentColor(null);
+            setCurrentColor({});
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -51,9 +44,8 @@ export const ColorFilter = () => {
         const currentColor = findColorBySlug(allColors, colorSlug.toLowerCase());
 
         if (!currentColor) {
-            console.log("no current color found");
             setFilteredColors(allColors);
-            setCurrentColor(null);
+            setCurrentColor({});
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -67,8 +59,7 @@ export const ColorFilter = () => {
     const handleColorClick = (color: Color) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("color: ", color);
+
 
         const updatedPathSegments = pathSegments.filter(segment => !allColors.some(cat => cat.slug.toLowerCase() === segment));
         const updatedPath = `/${[...updatedPathSegments, color.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');

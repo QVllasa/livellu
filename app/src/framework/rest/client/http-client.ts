@@ -44,6 +44,7 @@ export class HttpClient {
         const filterParams = qs.stringify(params, {
             encodeValuesOnly: true, // prettify URL
         })
+        console.log('filterParams:', filterParams)
         try {
             // Make the HTTP request using Axios
             const response = await Axios.get<ApiResponse<T>>(collection + '?' + filterParams);

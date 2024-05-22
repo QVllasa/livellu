@@ -36,4 +36,4 @@ export const allBrandAtom = atom(
 );
 
 
-export const currentBrandAtom = atom<null | Brand>(null);
+export const currentBrandAtom = atom<null | any | Brand>(null);

@@ -1,7 +1,7 @@
 // store.js
 import {atom} from 'jotai';
 import Client from "@/framework/client";
-import { Material, Entity} from "@/types";
+import {Entity, Material} from "@/types";
 
 // Atom für alle Kategorien
 export const allMaterialAtom = atom(
@@ -36,4 +36,4 @@ export const allMaterialAtom = atom(
 );
 
 
-export const currentMaterialAtom = atom<null | Material>(null);
+export const currentMaterialAtom = atom<null | any | Material>(null);

@@ -8,25 +8,11 @@ import { capitalize } from "lodash";
 import { useAtom } from "jotai";
 import { Category } from "@/types";
 import { allCategoriesAtom, currentCategoryAtom } from "@/store/category";
+import {findCategoryBySlug} from "@/framework/utils/find-by-slug";
 
-// Helper function to find category by slug in the nested structure
-const findCategoryBySlug = (categories, slug) => {
-    for (const category of categories) {
-        if (category.slug?.toLowerCase() === slug || category.attributes?.slug?.toLowerCase() === slug) {
-            return { id: category.id, ...category };
-        }
-        if (category.child_categories?.data?.length) {
-            const found = findCategoryBySlug(category.child_categories.data, slug);
-            if (found) {
-                return { id: found.id, ...found.attributes };
-            }
-        }
-    }
-    return null;
-};
+
 
 export const CategoryFilter = () => {
-    const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
     const [childCategories, setChildCategories] = useState<Category[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -41,11 +27,7 @@ export const CategoryFilter = () => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const categorySlug = pathSegments.find(segment => findCategoryBySlug(allCategories, segment.toLowerCase()));
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("categorySlug: ", categorySlug);
-
         if (!categorySlug) {
-            console.log("no category slug found");
             setFilteredCategories(allCategories);
             setChildCategories(allCategories);
             setCurrentCategory(null);
@@ -57,7 +39,6 @@ export const CategoryFilter = () => {
         const currentCategory = findCategoryBySlug(allCategories, categorySlug.toLowerCase());
 
         if (!currentCategory) {
-            console.log("no current category found");
             setFilteredCategories(allCategories);
             setChildCategories(allCategories);
             setCurrentCategory(null);
@@ -74,23 +55,18 @@ export const CategoryFilter = () => {
         setFilteredCategories(categoriesToDisplay);
         setSearchTerm(''); // Clear the input
 
-        console.log("categoriesToDisplay: ", categoriesToDisplay);
 
         setCurrentCategory(currentCategory);
-        setSelectedCategory(currentCategory);
     }, [router.asPath, router.query, allCategories]);
 
     const handleCategoryClick = (category: Category) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("category: ", category);
 
         const updatedPathSegments = pathSegments.filter(segment => !allCategories.some(cat => cat.slug.toLowerCase() === segment));
         const updatedPath = `/${[...updatedPathSegments, category.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
 
         setCurrentCategory(category);
-        setSelectedCategory(category);
         router.push(updatedPath);
     };
 
@@ -133,10 +109,10 @@ export const CategoryFilter = () => {
                                     <li key={item.id} className="mb-1">
                                         <Button
                                             size={'sm'}
-                                            variant={selectedCategory?.slug === item.slug ? 'solid' : 'outline'}
+                                            variant={currentCategory?.slug === item.slug ? 'solid' : 'outline'}
                                             onClick={() => handleCategoryClick(item)}
-                                            className={`w-full ${selectedCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                            disabled={selectedCategory?.slug === item.slug} // Disable the button if it is the selected category
+                                            className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                            disabled={currentCategory?.slug === item.slug} // Disable the button if it is the selected category
                                         >
                                             {capitalize(item.name)}
                                         </Button>

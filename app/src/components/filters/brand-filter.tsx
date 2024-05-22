@@ -1,50 +1,39 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
-import {Button} from "@/shadcn/components/ui/button";
-import {Input} from "@/shadcn/components/ui/input";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
-import {capitalize} from "lodash";
-import {useAtom} from "jotai";
-import {Brand} from "@/types";
-import {allBrandAtom, currentBrandAtom} from "@/store/brand";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
+import { Button } from "@/shadcn/components/ui/button";
+import { Input } from "@/shadcn/components/ui/input";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
+import { capitalize } from "lodash";
+import { useAtom } from "jotai";
+import { currentBrandAtom } from "@/store/brand";
+import {findBrandBySlug} from "@/framework/utils/find-by-slug";
 
-// Helper function to find brand by slug in the nested structure
-const findBrandBySlug = (brands, slug) => {
-    for (const brand of brands) {
-        if (brand.slug?.toLowerCase() === slug || brand.attributes?.slug?.toLowerCase() === slug) {
-            return {id: brand.id, ...brand};
-        }
-    }
-    return null;
-};
 
-export const BrandFilter = () => {
-    const [selectedBrand, setSelectedBrand] = useState<Brand | null>(null);
-    const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
-    const [childBrands, setChildBrands] = useState<Brand[]>([]);
+
+export const BrandFilter = ({ allBrands }) => {
+    const [selectedBrand, setSelectedBrand] = useState(null);
+    const [filteredBrands, setFilteredBrands] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
-    const [allBrands] = useAtom(allBrandAtom);
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
 
-    console.log("filteredBrands: ", filteredBrands);
+    useEffect(() => {
+        if (!searchTerm) {
+            setFilteredBrands(allBrands);
+        }
+    }, [allBrands, searchTerm]);
 
     useEffect(() => {
         // Extract the current brand from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const brandSlug = pathSegments.find(segment => findBrandBySlug(allBrands, segment.toLowerCase()));
 
-        console.log("pathSegments: ", pathSegments);
-        console.log("brandSlug: ", brandSlug);
-
         if (!brandSlug) {
-            console.log("no brand slug found");
             setFilteredBrands(allBrands);
-
-            setCurrentBrand(null);
+            setCurrentBrand({});
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -53,10 +42,8 @@ export const BrandFilter = () => {
         const currentBrand = findBrandBySlug(allBrands, brandSlug.toLowerCase());
 
         if (!currentBrand) {
-            console.log("no current brand found");
             setFilteredBrands(allBrands);
-
-            setCurrentBrand(null);
+            setCurrentBrand({});
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -65,11 +52,8 @@ export const BrandFilter = () => {
         setSelectedBrand(currentBrand);
     }, [router.asPath, router.query, allBrands]);
 
-    const handleBrandClick = (brand: Brand) => {
+    const handleBrandClick = (brand) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-
-        console.log("pathSegments: ", pathSegments);
-        console.log("brand: ", brand);
 
         const updatedPathSegments = pathSegments.filter(segment => !allBrands.some(cat => cat.slug.toLowerCase() === segment));
         const updatedPath = `/${[...updatedPathSegments, brand.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
@@ -81,13 +65,12 @@ export const BrandFilter = () => {
 
     const handleSearchSelect = (event) => {
         const value = event.target.value;
+        setSearchTerm(value);
         if (value === '') {
-            setFilteredBrands(childBrands);
-            setSearchTerm('');
+            setFilteredBrands(allBrands);
             return;
         }
-        setSearchTerm(value);
-        setFilteredBrands(childBrands.filter((item: Brand) => item.label.toLowerCase().includes(value.toLowerCase())));
+        setFilteredBrands(allBrands.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())));
     };
 
     return (
@@ -95,7 +78,7 @@ export const BrandFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Brand{': '}
+                        <h4 className="text-sm font-medium">Marke{': '}
                             <span className={'font-bold'}>
                                 {capitalize(currentBrand?.label)}
                             </span>

@@ -36,4 +36,4 @@ export const allColorAtom = atom(
 );
 
 
-export const currentColorAtom = atom<null | Color>(null);
+export const currentColorAtom = atom<null | any | Color>(null);
