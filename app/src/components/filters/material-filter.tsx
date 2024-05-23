@@ -28,7 +28,7 @@ export const MaterialFilter = ({ allMaterials }) => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const materialSlug = pathSegments.find(segment => findMaterialBySlug(allMaterials, segment.toLowerCase()));
 
-        console.log("materialSlug: ", materialSlug)
+        console.log("materialSlug: ", materialSlug);
 
         if (!materialSlug) {
             setFilteredMaterials(allMaterials);
@@ -59,6 +59,15 @@ export const MaterialFilter = ({ allMaterials }) => {
         console.log("material clicked: ", material);
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
+        // Remove the current material if it is clicked again
+        if (currentMaterial?.slug === material.slug) {
+            const updatedPathSegments = pathSegments.filter(segment => !findMaterialBySlug(allMaterials, segment.toLowerCase()));
+            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
+            setCurrentMaterial(null);
+            router.push(updatedPath);
+            return;
+        }
+
         const updatedPathSegments = pathSegments.filter(segment => !findMaterialBySlug(allMaterials, segment.toLowerCase()));
         const newPathSegments = [...updatedPathSegments, material.slug.toLowerCase()];
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
@@ -67,15 +76,6 @@ export const MaterialFilter = ({ allMaterials }) => {
         router.push(updatedPath);
     };
 
-    const handleSearchSelect = (event) => {
-        const value = event.target.value;
-        setSearchTerm(value);
-        if (value === '') {
-            setFilteredMaterials(allMaterials);
-            return;
-        }
-        setFilteredMaterials(allMaterials.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())));
-    };
 
     return (
         <div className="w-64 p-4 relative">
@@ -89,14 +89,6 @@ export const MaterialFilter = ({ allMaterials }) => {
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
-                        <div className="w-full mb-4">
-                            <Input
-                                type="text"
-                                placeholder="Search materials..."
-                                value={searchTerm}
-                                onChange={handleSearchSelect}
-                            />
-                        </div>
                         <ScrollArea className="max-h-64 overflow-y-scroll w-full">
                             <ul>
                                 {filteredMaterials.map((item) => (
