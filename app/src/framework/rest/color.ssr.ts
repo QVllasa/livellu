@@ -1,7 +1,27 @@
 // utils/fetchColors.js
 import Client from "@/framework/client";
 
-export async function fetchColors() {
+export async function fetchColorSlugs() {
+    const params = {
+        filters: {
+            isColor: {
+                $eq: true,
+            },
+        },
+        populate: {
+            slug: "*",
+        },
+        pagination: {
+            page: 1,
+            pageSize: 1000,
+        },
+    };
+
+    return fetchColors(params);
+}
+
+
+export async function fetchAllColors() {
     const params = {
         filters: {
             isColor: {
@@ -17,6 +37,13 @@ export async function fetchColors() {
             pageSize: 1000,
         },
     };
+
+    return fetchColors(params);
+}
+
+
+
+export async function fetchColors(params) {
 
     const response = await Client.colors.all(params);
     const allColors = response.data.map((entity) => {

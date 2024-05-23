@@ -10,12 +10,12 @@ export async function fetchCategories() {
         },
         pagination: {
             page: 1,
-            pageSize: 1000,
+            pageSize: 10,
         },
     };
 
     const response = await Client.categories.all(params);
-    const allCategorys = response.data.map((entity) => {
+    const allCategories = response.data.map((entity) => {
         const id = entity.id;
         const modifiedItem = {
             ...entity.attributes,
@@ -24,5 +24,5 @@ export async function fetchCategories() {
         return modifiedItem;
     });
 
-    return allCategorys;
+    return allCategories;
 }

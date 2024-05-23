@@ -1068,7 +1068,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   };
   attributes: {
     label: Attribute.Text & Attribute.Unique;
-    is_material: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isMaterial: Attribute.Boolean & Attribute.DefaultTo<false>;
     parent_materials: Attribute.Relation<
       'api::material.material',
       'manyToMany',
@@ -1265,6 +1265,27 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiPathPath extends Schema.CollectionType {
+  collectionName: 'paths';
+  info: {
+    singularName: 'path';
+    pluralName: 'paths';
+    displayName: 'Path';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::path.path', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::path.path', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostPost extends Schema.CollectionType {
   collectionName: 'posts';
   info: {
@@ -1451,6 +1472,7 @@ declare module '@strapi/types' {
       'api::merchant.merchant': ApiMerchantMerchant;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
+      'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
       'api::product.product': ApiProductProduct;
       'api::route.route': ApiRouteRoute;

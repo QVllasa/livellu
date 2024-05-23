@@ -1,18 +1,49 @@
 // utils/fetchMaterials.js
 import Client from "@/framework/client";
 
-export async function fetchMaterials() {
+export async function fetchMaterialSlugs() {
     const params = {
-        filters: {},
-        populate: {
-            child_materials: { populate: "*" },
-            parent_materials: { populate: "*" },
+        filters: {
+            isMaterial: {
+                $eq: true,
+            },
+            parent_materials: {id:  { $null: true }}
+
         },
-        pagination: {
-            page: 1,
-            pageSize: 1000,
+        populate: {
+            slug: "*",
         },
     };
+    return fetchMaterials(params);
+
+}
+
+
+export async function fetchAllMaterials() {
+    const params = {
+        filters: {
+            isMaterial: {
+                $eq: true,
+            },
+            parent_materials: {id:  { $null: true }}
+
+        },
+        populate: {
+            child_materials: {
+                populate: {
+                    child_materials: {
+                        populate: "*",
+                    },
+                },
+            },
+        },
+    };
+
+    return fetchMaterials(params);
+}
+
+
+export async function fetchMaterials(params) {
 
     const response = await Client.materials.all(params);
     const allMaterials = response.data.map((entity) => {

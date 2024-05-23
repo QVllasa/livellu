@@ -1,7 +1,21 @@
 // utils/fetchBrands.js
 import Client from "@/framework/client";
 
-export async function fetchBrands() {
+export async function fetchBrandSlugs(){
+    const params = {
+        filters: {},
+        populate: {
+            slug: "*",
+        },
+        pagination: {
+            page: 1,
+            pageSize: 1000,
+        },
+    };
+    return fetchBrands(params)
+}
+
+export async function fetchAllBrands(){
     const params = {
         filters: {},
         populate: {
@@ -10,9 +24,14 @@ export async function fetchBrands() {
         },
         pagination: {
             page: 1,
-            pageSize: 1000,
+            pageSize: 10,
         },
     };
+    return fetchBrands(params)
+}
+
+export async function fetchBrands(params) {
+
 
     const response = await Client.brands.all(params);
     const allBrands = response.data.map((entity) => {

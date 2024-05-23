@@ -12,7 +12,7 @@ const ProductCard = (props: { product: Product }) => {
             <CardContent className="flex items-center justify-center p-0">
                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden  duration-300">
                     {/* Product Image */}
-                    <img className="w-full h-48 object-cover object-center" src={product.image_url} alt="Placeholder"/>
+                    <img className="w-full h-48 object-contain p-3" src={product.image_url} alt="Placeholder"/>
 
                     {/* Product Details */}
                     <div className="p-4">

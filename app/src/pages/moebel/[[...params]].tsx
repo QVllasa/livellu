@@ -23,9 +23,9 @@ import { MaterialFilter } from "@/components/filters/material-filter";
 import { findBrandBySlug, findColorBySlug, findMaterialBySlug, findCategoryBySlug } from "@/framework/utils/find-by-slug";
 import {fetchProducts} from "@/framework/product";
 import {fetchCategories} from "@/framework/category.ssr";
-import {fetchMaterials} from "@/framework/material.ssr";
-import {fetchColors} from "@/framework/color.ssr";
-import {fetchBrands} from "@/framework/brand.ssr";
+import {fetchAllMaterials, fetchMaterials, fetchMaterialSlugs} from "@/framework/material.ssr";
+import {fetchAllColors, fetchColors, fetchColorSlugs} from "@/framework/color.ssr";
+import {fetchAllBrands, fetchBrands, fetchBrandSlugs} from "@/framework/brand.ssr";
 
 function MoebelPage({ allBrands, allColors, allMaterials, allCategories, products, initialBrand, initialColor, initialMaterial, initialCategory }) {
     const router = useRouter();
@@ -150,9 +150,9 @@ function MoebelPage({ allBrands, allColors, allMaterials, allCategories, product
 
 // Fetch dynamic paths for SSG
 export async function getStaticPaths() {
-    const allBrands = await fetchBrands();
-    const allColors = await fetchColors();
-    const allMaterials = await fetchMaterials();
+    const allBrands = await fetchBrandSlugs();
+    const allColors = await fetchColorSlugs();
+    const allMaterials = await fetchMaterialSlugs();
     const allCategories = await fetchCategories();
 
     const paths = [];
@@ -182,9 +182,9 @@ export async function getStaticPaths() {
 
 // Fetch data at build time for SSG
 export async function getStaticProps({ params }) {
-    const allBrands = await fetchBrands();
-    const allColors = await fetchColors();
-    const allMaterials = await fetchMaterials();
+    const allBrands = await fetchAllBrands();
+    const allColors = await fetchAllColors();
+    const allMaterials = await fetchAllMaterials();
     const allCategories = await fetchCategories();
     const { params: routeParams = [] } = params;
     const filters = { $and: [] };

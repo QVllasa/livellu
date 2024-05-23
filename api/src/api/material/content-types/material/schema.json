@@ -17,7 +17,7 @@
       "unique": true,
       "required": false
     },
-    "is_material": {
+    "isMaterial": {
       "type": "boolean",
       "default": false
     },
