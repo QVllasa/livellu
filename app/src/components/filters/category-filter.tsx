@@ -8,9 +8,7 @@ import { capitalize } from "lodash";
 import { useAtom } from "jotai";
 import { Category } from "@/types";
 import { allCategoriesAtom, currentCategoryAtom } from "@/store/category";
-import {findCategoryBySlug} from "@/framework/utils/find-by-slug";
-
-
+import { findCategoryBySlug } from "@/framework/utils/find-by-slug";
 
 export const CategoryFilter = () => {
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
@@ -23,9 +21,8 @@ export const CategoryFilter = () => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
 
     useEffect(() => {
-        // Extract the current category from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => findCategoryBySlug(allCategories, segment.toLowerCase()));
+        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 
         if (!categorySlug) {
             setFilteredCategories(allCategories);
@@ -35,8 +32,7 @@ export const CategoryFilter = () => {
             return;
         }
 
-        // Find the current category using the original nested structure
-        const currentCategory = findCategoryBySlug(allCategories, categorySlug.toLowerCase());
+        const currentCategory = findCategoryBySlug(allCategories, categorySlug.replace('category-', ''));
 
         if (!currentCategory) {
             setFilteredCategories(allCategories);
@@ -46,15 +42,13 @@ export const CategoryFilter = () => {
             return;
         }
 
-        // Determine the categories to display
-        const categoriesToDisplay = currentCategory.child_categories?.data?.length ?
-            currentCategory.child_categories.data.map(item => ({ id: item.id, ...item.attributes })) : [currentCategory];
+        const categoriesToDisplay = currentCategory.child_categories?.data?.length
+            ? currentCategory.child_categories.data.map(item => ({ id: item.id, ...item.attributes }))
+            : [currentCategory];
 
-        // Set the filtered categories
         setChildCategories(categoriesToDisplay);
         setFilteredCategories(categoriesToDisplay);
         setSearchTerm(''); // Clear the input
-
 
         setCurrentCategory(currentCategory);
     }, [router.asPath, router.query, allCategories]);
@@ -62,12 +56,18 @@ export const CategoryFilter = () => {
     const handleCategoryClick = (category: Category) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
+        const categoryIndex = pathSegments.findIndex(segment => segment.startsWith('category-'));
 
-        const updatedPathSegments = pathSegments.filter(segment => !allCategories.some(cat => cat.slug.toLowerCase() === segment));
-        const updatedPath = `/${[...updatedPathSegments, category.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
+        if (categoryIndex !== -1) {
+            pathSegments[categoryIndex] = `category-${category.slug.toLowerCase()}`;
+        } else {
+            pathSegments.push(`category-${category.slug.toLowerCase()}`);
+        }
+
+        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
 
         setCurrentCategory(category);
-        router.push(updatedPath);
+        router.push(updatedPath, undefined, { scroll: false });
     };
 
     const handleSearchSelect = (event) => {

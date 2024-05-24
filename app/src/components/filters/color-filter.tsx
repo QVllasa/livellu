@@ -1,16 +1,16 @@
-import {useEffect, useState} from "react";
-import {useRouter} from "next/router";
-import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
-import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
-import {capitalize} from "lodash";
-import {useAtom} from "jotai";
-import {Color} from "@/types";
-import {currentColorAtom} from "@/store/color";
-import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
-import {findColorBySlug} from "@/framework/utils/find-by-slug";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
+import { Button } from "@/shadcn/components/ui/button";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
+import { capitalize } from "lodash";
+import { useAtom } from "jotai";
+import { Color } from "@/types";
+import { currentColorAtom } from "@/store/color";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/shadcn/components/ui/tooltip";
+import { findColorBySlug } from "@/framework/utils/find-by-slug";
 
-export const ColorFilter = ({allColors}) => {
+export const ColorFilter = ({ allColors }) => {
     const [selectedColor, setSelectedColor] = useState<Color | null>(null);
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -28,11 +28,11 @@ export const ColorFilter = ({allColors}) => {
     useEffect(() => {
         // Extract the current color from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const colorSlug = pathSegments.find(segment => findColorBySlug(allColors, segment.toLowerCase()));
+        const colorSlug = pathSegments.find(segment => segment.startsWith('color-'));
 
         if (!colorSlug) {
             setFilteredColors(allColors);
-            setCurrentColor({});
+            setCurrentColor(null);
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -42,7 +42,7 @@ export const ColorFilter = ({allColors}) => {
 
         if (!currentColor) {
             setFilteredColors(allColors);
-            setCurrentColor({});
+            setCurrentColor(null);
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -53,25 +53,26 @@ export const ColorFilter = ({allColors}) => {
         setSelectedColor(currentColor);
     }, [router.asPath, router.query, allColors]);
 
-    const handleColorClick = (color: Color) => {
-        if (selectedColor?.slug === color.slug) {
-            // Unselect the color
-            setCurrentColor(null);
-            setSelectedColor(null);
-            // Remove color from the URL
-            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-            const updatedPathSegments = pathSegments.filter(segment => segment.toLowerCase() !== color.slug.toLowerCase());
-            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
-            router.push(updatedPath);
+    const handleColorClick = (color) => {
+        console.log("color clicked: ", color);
+        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+
+        // Find the index of the current color slug
+        const colorIndex = pathSegments.findIndex(segment => segment.startsWith('color-'));
+
+        if (colorIndex !== -1) {
+            // Replace the existing color slug with the new one
+            pathSegments[colorIndex] = color.slug.toLowerCase();
         } else {
-            // Select the color
-            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-            const updatedPathSegments = pathSegments.filter(segment => !allColors.some(cat => cat.slug.toLowerCase() === segment));
-            const updatedPath = `/${[...updatedPathSegments, color.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
-            setCurrentColor(color);
-            setSelectedColor(color);
-            router.push(updatedPath);
+            // If no color slug exists, append the new one
+            pathSegments.push(color.slug.toLowerCase());
         }
+
+        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
+
+        setCurrentColor(color);
+        setSelectedColor(color);
+        router.push(updatedPath, undefined, { scroll: false });
     };
 
     const handleSearchSelect = (event) => {

@@ -7,9 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { capitalize } from "lodash";
 import { useAtom } from "jotai";
 import { currentBrandAtom } from "@/store/brand";
-import {findBrandBySlug} from "@/framework/utils/find-by-slug";
-
-
+import { findBrandBySlug } from "@/framework/utils/find-by-slug";
 
 export const BrandFilter = ({ allBrands }) => {
     const [selectedBrand, setSelectedBrand] = useState(null);
@@ -27,23 +25,21 @@ export const BrandFilter = ({ allBrands }) => {
     }, [allBrands, searchTerm]);
 
     useEffect(() => {
-        // Extract the current brand from the route
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const brandSlug = pathSegments.find(segment => findBrandBySlug(allBrands, segment.toLowerCase()));
+        const brandSlug = pathSegments.find(segment => segment.startsWith('brand-'));
 
         if (!brandSlug) {
             setFilteredBrands(allBrands);
-            setCurrentBrand({});
+            setCurrentBrand(null);
             setSearchTerm(''); // Clear the input
             return;
         }
 
-        // Find the current brand using the original nested structure
-        const currentBrand = findBrandBySlug(allBrands, brandSlug.toLowerCase());
+        const currentBrand = findBrandBySlug(allBrands, brandSlug.replace('brand-', ''));
 
         if (!currentBrand) {
             setFilteredBrands(allBrands);
-            setCurrentBrand({});
+            setCurrentBrand(null);
             setSearchTerm(''); // Clear the input
             return;
         }
@@ -53,24 +49,21 @@ export const BrandFilter = ({ allBrands }) => {
     }, [router.asPath, router.query, allBrands]);
 
     const handleBrandClick = (brand) => {
-        if (selectedBrand?.slug === brand.slug) {
-            // Unselect the brand
-            setCurrentBrand(null);
-            setSelectedBrand(null);
-            // Remove brand from the URL
-            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-            const updatedPathSegments = pathSegments.filter(segment => segment.toLowerCase() !== brand.slug.toLowerCase());
-            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
-            router.push(updatedPath);
+        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+
+        const brandIndex = pathSegments.findIndex(segment => segment.startsWith('brand-'));
+
+        if (brandIndex !== -1) {
+            pathSegments[brandIndex] = `brand-${brand.slug.toLowerCase()}`;
         } else {
-            // Select the brand
-            const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
-            const updatedPathSegments = pathSegments.filter(segment => !allBrands.some(cat => cat.slug.toLowerCase() === segment));
-            const updatedPath = `/${[...updatedPathSegments, brand.slug.toLowerCase()].join('/')}`.replace(/\/+/g, '/');
-            setCurrentBrand(brand);
-            setSelectedBrand(brand);
-            router.push(updatedPath);
+            pathSegments.push(`brand-${brand.slug.toLowerCase()}`);
         }
+
+        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
+
+        setCurrentBrand(brand);
+        setSelectedBrand(brand);
+        router.push(updatedPath, undefined, { scroll: false });
     };
 
     const handleSearchSelect = (event) => {
@@ -112,7 +105,6 @@ export const BrandFilter = ({ allBrands }) => {
                                             variant={selectedBrand?.slug === item.slug ? 'solid' : 'outline'}
                                             onClick={() => handleBrandClick(item)}
                                             className={`relative w-full ${selectedBrand?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-
                                         >
                                             <span className={'truncate'}> {capitalize(item.label)}</span>
                                         </Button>

@@ -65,5 +65,6 @@ export const API_ENDPOINTS = {
   COLOR: '/colors',
   MATERIAL: '/materials',
   BRAND: '/brands',
+  PATHS: '/paths'
 
 };

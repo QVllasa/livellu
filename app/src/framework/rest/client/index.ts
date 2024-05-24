@@ -39,7 +39,7 @@ import type {
     OrderQueryOptions,
     OtpLoginInputType,
     OTPResponse,
-    PasswordChangeResponse,
+    PasswordChangeResponse, Path,
     PaymentIntentCollection,
     PopularProductQueryOptions,
     Product,
@@ -409,6 +409,13 @@ class Client {
         all: (params?: any) => HttpClient.get<Brand>(API_ENDPOINTS.BRAND, {...params}),
         get: (params: any) => {
             return HttpClient.get<Brand>(`${API_ENDPOINTS.BRAND}`, params)
+        }
+    }
+
+    paths = {
+        all: (params?: any) => HttpClient.get<Path>(API_ENDPOINTS.PATHS, {...params}),
+        get: (params: any) => {
+            return HttpClient.get<Path>(`${API_ENDPOINTS.PATHS}`, params)
         }
     }
     merchants = {

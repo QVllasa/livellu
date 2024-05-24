@@ -61,7 +61,7 @@ export function useProducts() {
 export async function fetchProducts(filters) {
     const params = {
         filters: {
-            ...filters,
+            // ...filters,
         },
         pagination: {
             page: 1,

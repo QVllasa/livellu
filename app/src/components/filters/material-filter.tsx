@@ -26,56 +26,43 @@ export const MaterialFilter = ({ allMaterials }) => {
 
     useEffect(() => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const materialSlug = pathSegments.find(segment => findMaterialBySlug(allMaterials, segment.toLowerCase()));
-
-        console.log("materialSlug: ", materialSlug);
+        const materialSlug = pathSegments.find(segment => segment.startsWith('material-'));
 
         if (!materialSlug) {
             setFilteredMaterials(allMaterials);
             setCurrentMaterial(null);
-            setSearchTerm('');
+            setSearchTerm(''); // Clear the input
             return;
         }
 
-        const foundMaterial = findMaterialBySlug(allMaterials, materialSlug.toLowerCase());
-
-        console.log("foundMaterial: ", foundMaterial);
+        const foundMaterial = findMaterialBySlug(allMaterials, materialSlug.replace('material-', ''));
 
         if (!foundMaterial) {
             setFilteredMaterials(allMaterials);
             setCurrentMaterial(null);
-            setSearchTerm('');
+            setSearchTerm(''); // Clear the input
             return;
         }
 
         setCurrentMaterial(foundMaterial);
     }, [router.asPath, router.query, allMaterials]);
 
-    useEffect(() => {
-        console.log("currentMaterial updated: ", currentMaterial);
-    }, [currentMaterial]);
-
     const handleMaterialClick = (material) => {
-        console.log("material clicked: ", material);
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
-        // Remove the current material if it is clicked again
-        if (currentMaterial?.slug === material.slug) {
-            const updatedPathSegments = pathSegments.filter(segment => !findMaterialBySlug(allMaterials, segment.toLowerCase()));
-            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
-            setCurrentMaterial(null);
-            router.push(updatedPath);
-            return;
+        const materialIndex = pathSegments.findIndex(segment => segment.startsWith('material-'));
+
+        if (materialIndex !== -1) {
+            pathSegments[materialIndex] = `material-${material.slug.toLowerCase()}`;
+        } else {
+            pathSegments.push(`material-${material.slug.toLowerCase()}`);
         }
 
-        const updatedPathSegments = pathSegments.filter(segment => !findMaterialBySlug(allMaterials, segment.toLowerCase()));
-        const newPathSegments = [...updatedPathSegments, material.slug.toLowerCase()];
-        const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
+        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
 
         setCurrentMaterial(material);
-        router.push(updatedPath);
+        router.push(updatedPath, undefined, { scroll: false });
     };
-
 
     return (
         <div className="w-64 p-4 relative">

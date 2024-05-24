@@ -151,6 +151,13 @@ export interface Brand {
     brandId: string;
 }
 
+export interface Path {
+    id?: number;
+    createdAt: Date;
+    updatedAt: Date;
+    name: string;
+}
+
 export interface Material {
     id?: number;
     createdAt: Date;
