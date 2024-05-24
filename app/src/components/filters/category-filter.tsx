@@ -21,7 +21,8 @@ export const CategoryFilter = () => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
 
     useEffect(() => {
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
+        // Extract the current category from the route
+        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
         const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 
         if (!categorySlug) {
@@ -32,7 +33,8 @@ export const CategoryFilter = () => {
             return;
         }
 
-        const currentCategory = findCategoryBySlug(allCategories, categorySlug.replace('category-', ''));
+        // Find the current category using the original nested structure
+        const currentCategory = findCategoryBySlug(allCategories, categorySlug.toLowerCase());
 
         if (!currentCategory) {
             setFilteredCategories(allCategories);
@@ -42,13 +44,15 @@ export const CategoryFilter = () => {
             return;
         }
 
-        const categoriesToDisplay = currentCategory.child_categories?.data?.length
-            ? currentCategory.child_categories.data.map(item => ({ id: item.id, ...item.attributes }))
-            : [currentCategory];
+        // Determine the categories to display
+        const categoriesToDisplay = currentCategory.child_categories?.data?.length ?
+            currentCategory.child_categories.data.map(item => ({ id: item.id, ...item.attributes })) : [currentCategory];
 
+        // Set the filtered categories
         setChildCategories(categoriesToDisplay);
         setFilteredCategories(categoriesToDisplay);
         setSearchTerm(''); // Clear the input
+
 
         setCurrentCategory(currentCategory);
     }, [router.asPath, router.query, allCategories]);
@@ -59,14 +63,19 @@ export const CategoryFilter = () => {
         const categoryIndex = pathSegments.findIndex(segment => segment.startsWith('category-'));
 
         if (categoryIndex !== -1) {
-            pathSegments[categoryIndex] = `category-${category.slug.toLowerCase()}`;
+            if (currentCategory?.slug === category.slug) {
+                pathSegments.splice(categoryIndex, 1); // Remove the category if it is clicked again
+                setCurrentCategory(null);
+            } else {
+                pathSegments[categoryIndex] = `${category.slug.toLowerCase()}`;
+                setCurrentCategory(category);
+            }
         } else {
-            pathSegments.push(`category-${category.slug.toLowerCase()}`);
+            pathSegments.push(`${category.slug.toLowerCase()}`);
+            setCurrentCategory(category);
         }
 
         const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentCategory(category);
         router.push(updatedPath, undefined, { scroll: false });
     };
 

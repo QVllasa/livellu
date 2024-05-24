@@ -8,8 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/shadcn/components/ui/sheet"
 import { getLayout } from "@/components/layouts/layout";
 import { Button } from '@/shadcn/components/ui/button';
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
-import { Suspense, useEffect } from "react";
-import { useRouter } from "next/router";
+import { Suspense } from "react";
 import { currentCategoryAtom } from "@/store/category";
 import { useAtom } from "jotai";
 import { capitalize } from "lodash";
@@ -22,15 +21,23 @@ import { MaterialFilter } from "@/components/filters/material-filter";
 import { findBrandBySlug, findCategoryBySlug, findColorBySlug, findMaterialBySlug } from "@/framework/utils/find-by-slug";
 import { fetchProducts } from "@/framework/product";
 import { fetchCategories } from "@/framework/category.ssr";
-import { fetchAllMaterials, fetchMaterialSlugs } from "@/framework/material.ssr";
-import { fetchAllColors, fetchColorSlugs } from "@/framework/color.ssr";
-import { fetchAllBrands, fetchBrandSlugs } from "@/framework/brand.ssr";
-import { fetchAllPaths } from "@/framework/paths.ssr";
+import { fetchAllMaterials } from "@/framework/material.ssr";
+import { fetchAllColors } from "@/framework/color.ssr";
+import { fetchAllBrands } from "@/framework/brand.ssr";
 import Head from "next/head";
 
-function MoebelPage({ canonicalUrl, allBrands, allColors, allMaterials, allCategories, products }) {
-    const router = useRouter();
-    const { params } = router.query;
+function MoebelPage({
+                        canonicalUrl,
+                        allBrands,
+                        allColors,
+                        allMaterials,
+                        allCategories,
+                        products,
+                        page,
+                        pageSize,
+                        pageCount,
+                        total,
+                    }) {
     const [currentCategory] = useAtom(currentCategoryAtom);
 
     return (
@@ -135,7 +142,7 @@ function MoebelPage({ canonicalUrl, allBrands, allColors, allMaterials, allCateg
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </header>
-                    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+                    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 w-auto relative">
                         <div className="flex items-center">
                             <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
                         </div>
@@ -143,7 +150,7 @@ function MoebelPage({ canonicalUrl, allBrands, allColors, allMaterials, allCateg
                             <Breadcrumbs />
                         </Suspense>
                         <Suspense fallback={<ArrowPathIcon className="mr-2 h-12 w-12 animate-spin" />}>
-                            <ProductsGrid products={products} />
+                            <ProductsGrid products={products} page={page} pageCount={pageCount} />
                         </Suspense>
                     </main>
                 </div>
@@ -152,59 +159,19 @@ function MoebelPage({ canonicalUrl, allBrands, allColors, allMaterials, allCateg
     );
 }
 
-// Fetch dynamic paths for SSG
-export async function getStaticPaths() {
-    const allBrands = await fetchBrandSlugs();
-    const allColors = await fetchColorSlugs();
-    const allMaterials = await fetchMaterialSlugs();
-    const allCategories = await fetchCategories();
-
-    const paths = [];
-
-    // Generate paths for each combination of category, material, color, and brand
-    const combinations = (arr) => {
-        let result = [[]];
-        for (let i = 0; i < arr.length; i++) {
-            let current = [];
-            result.forEach(r => {
-                current.push(r.concat([arr[i]]));
-            });
-            result = result.concat(current);
-        }
-        return result.filter(r => r.length > 0);
-    };
-
-    const brands = allBrands.map(b => `brand-${b.slug}`);
-    const colors = allColors.map(c => `color-${c.slug}`);
-    const materials = allMaterials.map(m => `material-${m.slug}`);
-    const categories = allCategories.map(c => `category-${c.slug}`);
-
-    const allSlugs = [...categories, ...materials, ...colors, ...brands];
-    const allCombinations = combinations(allSlugs);
-
-    allCombinations.forEach(combo => {
-        const orderedCombo = [
-            combo.find(s => s.startsWith('category-')),
-            combo.find(s => s.startsWith('material-')),
-            combo.find(s => s.startsWith('color-')),
-            combo.find(s => s.startsWith('brand-')),
-        ].filter(Boolean);
-
-        paths.push({ params: { params: orderedCombo } });
-    });
-
-    return {
-        paths,
-        fallback: 'blocking', // 'blocking' or 'true' allows new paths to be generated at runtime
-    };
-}
-
-// Fetch data at build time for SSG
-export async function getStaticProps({ params }) {
-    const allBrands = await fetchAllBrands();
-    const allColors = await fetchAllColors();
-    const allMaterials = await fetchAllMaterials();
-    const allCategories = await fetchCategories();
+// Fetch data at request time for SSR
+export async function getServerSideProps({ params, query }) {
+    const [
+        allBrands,
+        allColors,
+        allMaterials,
+        allCategories,
+    ] = await Promise.all([
+        fetchAllBrands(),
+        fetchAllColors(),
+        fetchAllMaterials(),
+        fetchCategories()
+    ]);
     const filters = { $and: [] };
 
     let initialBrand = null;
@@ -213,23 +180,25 @@ export async function getStaticProps({ params }) {
     let initialCategory = null;
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
-        params.params.find(p => p.startsWith('category-')),
-        params.params.find(p => p.startsWith('material-')),
-        params.params.find(p => p.startsWith('color-')),
-        params.params.find(p => p.startsWith('brand-')),
+        params.params?.find(p => p.startsWith('category-')),
+        params.params?.find(p => p.startsWith('material-')),
+        params.params?.find(p => p.startsWith('color-')),
+        params.params?.find(p => p.startsWith('brand-')),
     ];
 
+    console.log(categoryParam, materialParam, colorParam, brandParam )
+
     if (categoryParam) {
-        initialCategory = findCategoryBySlug(allCategories, categoryParam.replace('category-', ''));
+        initialCategory = findCategoryBySlug(allCategories, categoryParam);
     }
     if (materialParam) {
-        initialMaterial = findMaterialBySlug(allMaterials, materialParam.replace('material-', ''));
+        initialMaterial = findMaterialBySlug(allMaterials, materialParam);
     }
     if (colorParam) {
-        initialColor = findColorBySlug(allColors, colorParam.replace('color-', ''));
+        initialColor = findColorBySlug(allColors, colorParam);
     }
     if (brandParam) {
-        initialBrand = findBrandBySlug(allBrands, brandParam.replace('brand-', ''));
+        initialBrand = findBrandBySlug(allBrands, brandParam);
     }
 
     const filtersToApply = [
@@ -241,13 +210,20 @@ export async function getStaticProps({ params }) {
 
     filters.$and = filtersToApply;
 
-    const products = await fetchProducts(filters);
+    const page = parseInt(query.page) || 1;
+    const pageSize = 3; // Adjust the page size as needed
+
+
+    const { products, total, pageCount } = await fetchProducts(filters, { page, pageSize }, 'productName', 'asc');
+
     const canonicalUrl = [
-        initialCategory ? `category-${initialCategory.slug}` : null,
-        initialMaterial ? `material-${initialMaterial.slug}` : null,
-        initialColor ? `color-${initialColor.slug}` : null,
-        initialBrand ? `brand-${initialBrand.slug}` : null,
+        initialCategory ? `${initialCategory.slug}` : null,
+        initialMaterial ? `${initialMaterial.slug}` : null,
+        initialColor ? `${initialColor.slug}` : null,
+        initialBrand ? `${initialBrand.slug}` : null,
     ].filter(Boolean).join('/');
+
+
 
     return {
         props: {
@@ -261,8 +237,11 @@ export async function getStaticProps({ params }) {
             initialColor,
             initialMaterial,
             initialCategory,
+            page,
+            pageSize,
+            pageCount,
+            total,
         },
-        revalidate: 60, // Revalidate every 60 seconds to update the data
     };
 }
 

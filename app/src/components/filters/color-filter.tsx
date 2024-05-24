@@ -11,7 +11,6 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/shadcn/components/ui/
 import { findColorBySlug } from "@/framework/utils/find-by-slug";
 
 export const ColorFilter = ({ allColors }) => {
-    const [selectedColor, setSelectedColor] = useState<Color | null>(null);
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
@@ -26,8 +25,7 @@ export const ColorFilter = ({ allColors }) => {
     }, [allColors]);
 
     useEffect(() => {
-        // Extract the current color from the route
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
+        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
         const colorSlug = pathSegments.find(segment => segment.startsWith('color-'));
 
         if (!colorSlug) {
@@ -37,7 +35,6 @@ export const ColorFilter = ({ allColors }) => {
             return;
         }
 
-        // Find the current color using the original nested structure
         const currentColor = findColorBySlug(allColors, colorSlug.toLowerCase());
 
         if (!currentColor) {
@@ -47,31 +44,28 @@ export const ColorFilter = ({ allColors }) => {
             return;
         }
 
-        setSearchTerm(''); // Clear the input
-
         setCurrentColor(currentColor);
-        setSelectedColor(currentColor);
     }, [router.asPath, router.query, allColors]);
 
     const handleColorClick = (color) => {
-        console.log("color clicked: ", color);
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
-        // Find the index of the current color slug
         const colorIndex = pathSegments.findIndex(segment => segment.startsWith('color-'));
 
         if (colorIndex !== -1) {
-            // Replace the existing color slug with the new one
-            pathSegments[colorIndex] = color.slug.toLowerCase();
+            if (currentColor?.slug === color.slug) {
+                pathSegments.splice(colorIndex, 1); // Remove the color if it is clicked again
+                setCurrentColor(null);
+            } else {
+                pathSegments[colorIndex] = `${color.slug.toLowerCase()}`;
+                setCurrentColor(color);
+            }
         } else {
-            // If no color slug exists, append the new one
-            pathSegments.push(color.slug.toLowerCase());
+            pathSegments.push(`${color.slug.toLowerCase()}`);
+            setCurrentColor(color);
         }
 
         const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentColor(color);
-        setSelectedColor(color);
         router.push(updatedPath, undefined, { scroll: false });
     };
 
@@ -92,7 +86,7 @@ export const ColorFilter = ({ allColors }) => {
                     <AccordionTrigger>
                         <h4 className="text-sm font-medium">Farbe{': '}
                             <span className={'font-bold'}>
-                                {capitalize(currentColor?.label)}
+                                {capitalize(currentColor?.label ?? "None")}
                             </span>
                         </h4>
                     </AccordionTrigger>
@@ -118,7 +112,7 @@ export const ColorFilter = ({ allColors }) => {
                                                         opacity: item.code ? '1' : '0.7'
                                                     }}
                                                     onClick={() => handleColorClick(item)}
-                                                    className={`relative ${selectedColor?.slug === item.slug ? 'ring-2 ring-offset-2 ring-blue-500' : ''}`}
+                                                    className={`relative ${currentColor?.slug === item.slug ? 'ring-2 ring-offset-2 ring-blue-500' : ''}`}
                                                 >
                                                     <span className="sr-only">{capitalize(item.label)}</span>
                                                 </Button>

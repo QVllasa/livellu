@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useAtom } from "jotai";
-import { Product, Entity } from "@/types";
+import {useEffect, useState} from "react";
+import {useAtom} from "jotai";
+import {Entity, Product} from "@/types";
 import Client from "@/framework/client";
-import { currentCategoryAtom } from "@/store/category";
-import { currentColorAtom } from "@/store/color";
-import { currentMaterialAtom } from "@/store/material";
-import { currentBrandAtom } from "@/store/brand";
+import {currentCategoryAtom} from "@/store/category";
+import {currentColorAtom} from "@/store/color";
+import {currentMaterialAtom} from "@/store/material";
+import {currentBrandAtom} from "@/store/brand";
 
 export function useProducts() {
     const [currentCategory] = useAtom(currentCategoryAtom);
@@ -19,10 +19,10 @@ export function useProducts() {
 
     const productsFilter = {
         filters: {
-            category: currentCategory?.name ? { $eq: currentCategory.name } : undefined,
-            color: currentColor?.label ? { $eq: currentColor.label } : undefined,
-            material: currentMaterial?.label ? { $eq: currentMaterial.label } : undefined,
-            brandName: currentBrand?.label ? { $eq: currentBrand.label } : undefined,
+            category: currentCategory?.name ? {$eq: currentCategory.name} : undefined,
+            color: currentColor?.label ? {$eq: currentColor.label} : undefined,
+            material: currentMaterial?.label ? {$eq: currentMaterial.label} : undefined,
+            brandName: currentBrand?.label ? {$eq: currentBrand.label} : undefined,
         },
         pagination: {
             page: 1,
@@ -52,25 +52,27 @@ export function useProducts() {
             });
     }, [currentCategory, currentColor, currentMaterial, currentBrand]);
 
-    return { products, loading, error };
+    return {products, loading, error};
 }
 
 
-
-
-export async function fetchProducts(filters) {
+export async function fetchProducts(filters, pagination, sortBy = '', order = '') {
     const params = {
         filters: {
-            // ...filters,
+            ...filters,
         },
         pagination: {
             page: 1,
             pageSize: 10, // Adjust the pageSize as needed
+            ...pagination
         },
+        sort: `${sortBy}:${order}`, // Strapi sorting syntax
     };
 
+    console.log("params: ", params)
+
     const response = await Client.products.all(params);
-    const products = response.data.map((entity) => {
+    const products = response.data.map((entity: Entity<Product>) => {
         const id = entity.id;
         const modifiedItem = {
             ...entity.attributes,
@@ -79,5 +81,5 @@ export async function fetchProducts(filters) {
         return modifiedItem;
     });
 
-    return products;
+    return {products, ...response.meta.pagination};
 }

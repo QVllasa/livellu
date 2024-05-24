@@ -25,7 +25,7 @@ export const MaterialFilter = ({ allMaterials }) => {
     }, [allMaterials, searchTerm]);
 
     useEffect(() => {
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
+        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
         const materialSlug = pathSegments.find(segment => segment.startsWith('material-'));
 
         if (!materialSlug) {
@@ -35,7 +35,7 @@ export const MaterialFilter = ({ allMaterials }) => {
             return;
         }
 
-        const foundMaterial = findMaterialBySlug(allMaterials, materialSlug.replace('material-', ''));
+        const foundMaterial = findMaterialBySlug(allMaterials, materialSlug);
 
         if (!foundMaterial) {
             setFilteredMaterials(allMaterials);
@@ -53,14 +53,19 @@ export const MaterialFilter = ({ allMaterials }) => {
         const materialIndex = pathSegments.findIndex(segment => segment.startsWith('material-'));
 
         if (materialIndex !== -1) {
-            pathSegments[materialIndex] = `material-${material.slug.toLowerCase()}`;
+            if (currentMaterial?.slug === material.slug) {
+                pathSegments.splice(materialIndex, 1); // Remove the material if it is clicked again
+                setCurrentMaterial(null);
+            } else {
+                pathSegments[materialIndex] = `${material.slug.toLowerCase()}`;
+                setCurrentMaterial(material);
+            }
         } else {
-            pathSegments.push(`material-${material.slug.toLowerCase()}`);
+            pathSegments.push(`${material.slug.toLowerCase()}`);
+            setCurrentMaterial(material);
         }
 
         const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentMaterial(material);
         router.push(updatedPath, undefined, { scroll: false });
     };
 

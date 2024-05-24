@@ -10,7 +10,6 @@ import { currentBrandAtom } from "@/store/brand";
 import { findBrandBySlug } from "@/framework/utils/find-by-slug";
 
 export const BrandFilter = ({ allBrands }) => {
-    const [selectedBrand, setSelectedBrand] = useState(null);
     const [filteredBrands, setFilteredBrands] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
@@ -21,31 +20,32 @@ export const BrandFilter = ({ allBrands }) => {
     useEffect(() => {
         if (!searchTerm) {
             setFilteredBrands(allBrands);
+        } else {
+            setFilteredBrands(allBrands.filter((brand) => brand.label.toLowerCase().includes(searchTerm.toLowerCase())));
         }
     }, [allBrands, searchTerm]);
 
     useEffect(() => {
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
+        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
         const brandSlug = pathSegments.find(segment => segment.startsWith('brand-'));
 
         if (!brandSlug) {
             setFilteredBrands(allBrands);
             setCurrentBrand(null);
-            setSearchTerm(''); // Clear the input
+            setSearchTerm('');
             return;
         }
 
-        const currentBrand = findBrandBySlug(allBrands, brandSlug.replace('brand-', ''));
+        const currentBrand = findBrandBySlug(allBrands, brandSlug);
 
         if (!currentBrand) {
             setFilteredBrands(allBrands);
             setCurrentBrand(null);
-            setSearchTerm(''); // Clear the input
+            setSearchTerm('');
             return;
         }
 
         setCurrentBrand(currentBrand);
-        setSelectedBrand(currentBrand);
     }, [router.asPath, router.query, allBrands]);
 
     const handleBrandClick = (brand) => {
@@ -54,15 +54,19 @@ export const BrandFilter = ({ allBrands }) => {
         const brandIndex = pathSegments.findIndex(segment => segment.startsWith('brand-'));
 
         if (brandIndex !== -1) {
-            pathSegments[brandIndex] = `brand-${brand.slug.toLowerCase()}`;
+            if (currentBrand?.slug === brand.slug) {
+                pathSegments.splice(brandIndex, 1); // Remove the brand if it is clicked again
+                setCurrentBrand(null);
+            } else {
+                pathSegments[brandIndex] = `${brand.slug.toLowerCase()}`;
+                setCurrentBrand(brand);
+            }
         } else {
-            pathSegments.push(`brand-${brand.slug.toLowerCase()}`);
+            pathSegments.push(`${brand.slug.toLowerCase()}`);
+            setCurrentBrand(brand);
         }
 
         const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-
-        setCurrentBrand(brand);
-        setSelectedBrand(brand);
         router.push(updatedPath, undefined, { scroll: false });
     };
 
@@ -102,9 +106,9 @@ export const BrandFilter = ({ allBrands }) => {
                                     <li key={item.id} className="mb-1 relative w-56">
                                         <Button
                                             size={'sm'}
-                                            variant={selectedBrand?.slug === item.slug ? 'solid' : 'outline'}
+                                            variant={currentBrand?.slug === item.slug ? 'solid' : 'outline'}
                                             onClick={() => handleBrandClick(item)}
-                                            className={`relative w-full ${selectedBrand?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                            className={`relative w-full ${currentBrand?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
                                         >
                                             <span className={'truncate'}> {capitalize(item.label)}</span>
                                         </Button>
