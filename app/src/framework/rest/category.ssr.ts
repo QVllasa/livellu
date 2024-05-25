@@ -3,14 +3,16 @@ import Client from "@/framework/client";
 
 export async function fetchCategories() {
     const params = {
-        filters: {},
+        filters: {
+            // isCategory: {$eq: true}
+        },
         populate: {
             child_categories: { populate: "*" },
             parent_categories: { populate: "*" },
         },
         pagination: {
             page: 1,
-            pageSize: 10,
+            pageSize: 1000,
         },
     };
 
