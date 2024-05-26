@@ -4,11 +4,24 @@ import Client from "@/framework/client";
 export async function fetchCategories() {
     const params = {
         filters: {
-            // isCategory: {$eq: true}
+            isCategory: {$eq: true}
         },
         populate: {
-            child_categories: { populate: "*" },
-            parent_categories: { populate: "*" },
+            child_categories: {
+                populate: "*",
+                // filters: {
+                //     isCategory: {$eq: true}
+                // },
+                // populate: {
+                //     child_categories: {
+                //         filters: {
+                //             isCategory: {$eq: true}
+                //         },
+                //         populate: "*"
+                //     },
+                // }
+            },
+            parent_categories: {populate: "*"},
         },
         pagination: {
             page: 1,

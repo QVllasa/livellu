@@ -42,9 +42,9 @@ const findCategoryBySlug = (categories, slug) => {
     return null;
 };
 
-export const Breadcrumbs = () => {
+export const Breadcrumbs = ({allCategories}) => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
-    const [allCategories] = useAtom(allCategoriesAtom);
+
     const router = useRouter();
 
     // Find the path to the current category

@@ -69,7 +69,6 @@ export async function fetchProducts(filters, pagination, sortBy = '', order = ''
         sort: `${sortBy}:${order}`, // Strapi sorting syntax
     };
 
-    console.log("params: ", params)
 
     const response = await Client.products.all(params);
     const products = response.data.map((entity: Entity<Product>) => {

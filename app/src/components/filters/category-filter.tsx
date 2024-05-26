@@ -10,14 +10,14 @@ import { Category } from "@/types";
 import { allCategoriesAtom, currentCategoryAtom } from "@/store/category";
 import { findCategoryBySlug } from "@/framework/utils/find-by-slug";
 
-export const CategoryFilter = () => {
+export const CategoryFilter = ({allCategories}) => {
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
     const [childCategories, setChildCategories] = useState<Category[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
-    const [allCategories] = useAtom(allCategoriesAtom);
+    // const [allCategories] = useAtom(allCategoriesAtom);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
 
     useEffect(() => {
@@ -46,7 +46,7 @@ export const CategoryFilter = () => {
 
         // Determine the categories to display
         const categoriesToDisplay = currentCategory.child_categories?.data?.length ?
-            currentCategory.child_categories.data.map(item => ({ id: item.id, ...item.attributes })) : [currentCategory];
+            currentCategory.child_categories.data.filter(item => item.attributes.isCategory).map(item => ({ id: item.id, ...item.attributes })) : [currentCategory];
 
         // Set the filtered categories
         setChildCategories(categoriesToDisplay);
