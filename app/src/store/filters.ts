@@ -26,3 +26,6 @@ export const currentCategoryAtom = atom<null | any | Category>(null);
 export const currentColorAtom = atom<null | any | Color>(null);
 export const currentMaterialAtom = atom<null | any | Material>(null);
 export const currentBrandAtom = atom<null | any | Brand>(null);
+
+
+export const priceRangeAtom = atom([0, 10000]); // Example initial range

@@ -1358,7 +1358,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     >;
     brandName: Attribute.Text;
     currency: Attribute.Text;
-    price: Attribute.Text;
+    price: Attribute.Decimal;
     tracking: Attribute.Text;
     thumbnail: Attribute.Text;
     image_url: Attribute.Text;

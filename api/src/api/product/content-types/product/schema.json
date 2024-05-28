@@ -45,7 +45,7 @@
       "type": "text"
     },
     "price": {
-      "type": "text"
+      "type": "decimal"
     },
     "tracking": {
       "type": "text"

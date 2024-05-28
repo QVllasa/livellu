@@ -18,6 +18,7 @@ import PageSizeSelector from "@/components/filters/page-size-selector";
 import { ArrowPathIcon } from "@heroicons/react/16/solid";
 import { ProductsGrid } from "@/components/products/products-grid";
 import { CategoryFilter } from "@/components/filters/category-filter";
+import { PriceRangeFilter } from "@/components/filters/price-range-filter";
 
 function MoebelPage({
                         initialCategory,
@@ -32,7 +33,6 @@ function MoebelPage({
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    // Debounce function for search input
     const debouncedSearch = debounce((terms) => {
         setLoading(true);
         const query = {
@@ -85,6 +85,7 @@ function MoebelPage({
                         </div>
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
+                                <PriceRangeFilter setLoading={setLoading} />
                                 <BrandFilter />
                                 <CategoryFilter />
                                 <ColorFilter />
@@ -106,7 +107,7 @@ function MoebelPage({
                                     onChange={handleSearchChange}
                                 />
                             </form>
-                            <div className=" flex gap-2 flex-wrap">
+                            <div className="flex gap-2 flex-wrap">
                                 {searchTerms.map((term) => (
                                     <div
                                         key={term}
@@ -152,7 +153,6 @@ function MoebelPage({
     );
 }
 
-// Fetch data at request time for SSR
 export async function getServerSideProps({ params, query }) {
     const filters = { $and: [] };
 
@@ -202,10 +202,21 @@ export async function getServerSideProps({ params, query }) {
         filters.$and.push(...searchFilters);
     }
 
-    const page = parseInt(query.page) || 1;
-    const pageSize = parseInt(query.pageSize) || 30; // Adjust the page size as needed
+    if (query.minPrice || query.maxPrice) {
+        const minPrice = query.minPrice ? parseInt(query.minPrice) : 0;
+        const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : 10000;
+        filters.$and.push({
+            price: {
+                $gte: minPrice,
+                $lte: maxPrice,
+            },
+        });
+    }
 
-    const { products, total, pageCount } = await fetchProducts(filters, { page, pageSize }, 'productName', 'asc');
+    const page = parseInt(query.page) || 1;
+    const pageSize = parseInt(query.pageSize) || 30;
+
+    const { products, total, pageCount } = await fetchProducts(filters, { page, pageSize }, 'price', 'desc');
 
     return {
         props: {

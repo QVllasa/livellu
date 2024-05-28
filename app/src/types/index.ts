@@ -212,7 +212,7 @@ export interface Product {
     merchants?: { data: Entity<Merchant>[] };
     brandName?: string;
     currency?: string;
-    price?: string;
+    price?: number;
     tracking?: string;
     thumbnail?: string;
     image_url?: string;

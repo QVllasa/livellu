@@ -1,102 +1,60 @@
-import { useAtom } from 'jotai';
-import { useRouter } from 'next/router';
-import { Button } from '@/shadcn/components/ui/button';
-import { Input } from '@/shadcn/components/ui/input';
-import { Slider } from '@/shadcn/components/ui/slider';
-import {
-    minPriceAtom,
-    maxPriceAtom,
-    currentMinPriceAtom,
-    currentMaxPriceAtom,
-} from '@/store/price';
+// components/filters/price-range-filter.tsx
+import { useRouter } from "next/router";
+import { Slider } from "./price-slider-component";
+import { useEffect, useState, useCallback } from "react";
+import debounce from "lodash/debounce";
 
-export const PriceRangeFilter = () => {
-    const [currentMinPrice, setCurrentMinPrice] = useAtom(currentMinPriceAtom);
-    const [currentMaxPrice, setCurrentMaxPrice] = useAtom(currentMaxPriceAtom);
+export const PriceRangeFilter = ({ setLoading }) => {
     const router = useRouter();
+    const { minPrice, maxPrice } = router.query;
+    const [priceRange, setPriceRange] = useState([Number(minPrice) || 0, Number(maxPrice) || 10000]);
 
-    const updateQueryParams = (min, max) => {
-        const query = { ...router.query, minPrice: min, maxPrice: max };
-        router.push({
-            pathname: router.pathname,
-            query: query,
-        }, undefined, { shallow: true });
-    };
+    useEffect(() => {
+        if (minPrice || maxPrice) {
+            setPriceRange([Number(minPrice) || 0, Number(maxPrice) || 10000]);
+        }
+    }, [minPrice, maxPrice]);
 
-    const handleMinPriceChange = (e) => {
-        const value = Number(e.target.value);
-        setCurrentMinPrice(value);
-        updateQueryParams(value, currentMaxPrice);
-    };
+    const updatePriceInURL = useCallback(
+        debounce((values: number[]) => {
+            const query = { ...router.query };
 
-    const handleMaxPriceChange = (e) => {
-        const value = Number(e.target.value);
-        setCurrentMaxPrice(value);
-        updateQueryParams(currentMinPrice, value);
-    };
+            if (values[0] === 0) {
+                delete query.minPrice;
+            } else {
+                query.minPrice = values[0];
+            }
 
-    const handleSliderChange = ([newMin, newMax]) => {
-        setCurrentMinPrice(newMin);
-        setCurrentMaxPrice(newMax);
-        updateQueryParams(newMin, newMax);
-    };
+            if (values[1] === 10000) {
+                delete query.maxPrice;
+            } else {
+                query.maxPrice = values[1];
+            }
 
-    const incrementMinPrice = () => {
-        const newMin = Math.min(currentMinPrice + 10, currentMaxPrice);
-        setCurrentMinPrice(newMin);
-        updateQueryParams(newMin, currentMaxPrice);
-    };
+            setLoading(true);
+            router.push({
+                pathname: router.pathname,
+                query,
+            }, undefined, { scroll: false });
+        }, 750),
+        [router, setLoading]
+    );
 
-    const decrementMinPrice = () => {
-        const newMin = Math.max(currentMinPrice - 10, 0);
-        setCurrentMinPrice(newMin);
-        updateQueryParams(newMin, currentMaxPrice);
-    };
-
-    const incrementMaxPrice = () => {
-        const newMax = Math.min(currentMaxPrice + 10, 1000);
-        setCurrentMaxPrice(newMax);
-        updateQueryParams(currentMinPrice, newMax);
-    };
-
-    const decrementMaxPrice = () => {
-        const newMax = Math.max(currentMaxPrice - 10, currentMinPrice);
-        setCurrentMaxPrice(newMax);
-        updateQueryParams(currentMinPrice, newMax);
+    const handlePriceChange = (values: number[]) => {
+        setPriceRange(values);
+        updatePriceInURL(values);
     };
 
     return (
-        <div className="w-64 p-4">
-            <h4 className="text-sm font-bold mb-4">Price Range</h4>
-            <div className="flex justify-between items-center mb-4">
-                <Input
-                    type="number"
-                    value={currentMinPrice}
-                    onChange={handleMinPriceChange}
-                    placeholder="Min Price"
-                />
-                <span className="mx-2">-</span>
-                <Input
-                    type="number"
-                    value={currentMaxPrice}
-                    onChange={handleMaxPriceChange}
-                    placeholder="Max Price"
-                />
-            </div>
-            <div className="flex items-center mb-4">
-
-                <Slider
-
-                    value={[currentMinPrice, currentMaxPrice]}
-                    min={0}
-                    max={1000}
-                    step={10}
-                    onValueChange={handleSliderChange}
-                    className="mx-4 flex-grow"
-                />
-
-            </div>
-
+        <div className="w-64 p-4 relative">
+            <Slider
+                formatLabel={(value) => `${value} €`}
+                min={0}
+                max={10000}
+                step={10}
+                value={priceRange}
+                onValueChange={handlePriceChange}
+            />
         </div>
     );
 };
