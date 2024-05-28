@@ -82,29 +82,21 @@ const Header = ({ layout }: { layout?: string }) => {
               )}
             />
 
-            {isMultilangEnable ? (
-              <div className="ltr:ml-auto rtl:mr-auto lg:hidden">
-                <LanguageSwitcher />
-              </div>
-            ) : (
-              ''
-            )}
-
           </div>
 
           {isHomePage ? (
             <>
-              {/*{(show || layout === 'modern') && (*/}
-              {/*  <div className="mx-auto hidden w-full overflow-hidden px-10 lg:block xl:w-11/12 2xl:w-10/12">*/}
-              {/*    <Search label={t('text-search-label')} variant="minimal" />*/}
-              {/*  </div>*/}
-              {/*)}*/}
+              {(show || layout === 'modern') && (
+                <div className="mx-auto hidden w-full overflow-hidden px-10 lg:block xl:w-11/12 2xl:w-10/12">
+                  <Search label={t('text-search-label')} variant="minimal" />
+                </div>
+              )}
 
-              {/*{displayMobileHeaderSearch && (*/}
-              {/*  <div className="absolute top-0 block h-full w-full bg-light px-5 pt-1.5 ltr:left-0 rtl:right-0 md:pt-2 lg:hidden">*/}
-              {/*    <Search label={t('text-search-label')} variant="minimal" />*/}
-              {/*  </div>*/}
-              {/*)}*/}
+              {displayMobileHeaderSearch && (
+                <div className="absolute top-0 block h-full w-full bg-light px-5 pt-1.5 ltr:left-0 rtl:right-0 md:pt-2 lg:hidden">
+                  <Search label={t('text-search-label')} variant="minimal" />
+                </div>
+              )}
             </>
           ) : null}
 

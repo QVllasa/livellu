@@ -10,7 +10,7 @@ export async function fetchAllPaths() {
 export async function fetchPaths(params = null) {
 
     const response = await Client.paths.all(params);
-    console.log("response:", response)
+
     const allPaths = response.data.map((entity) => {
         const id = entity.id;
         const modifiedItem = {

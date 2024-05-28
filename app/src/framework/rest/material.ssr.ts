@@ -18,6 +18,18 @@ export async function fetchMaterialSlugs() {
 
 }
 
+export async function fetchMaterialBySlug(slug: any) {
+    if (!slug) return Promise.resolve([]);
+    const params = {
+        filters: {
+            slug: {
+                $eq: slug,
+            },
+        },
+    };
+    return await fetchMaterials(params);
+}
+
 
 export async function fetchAllMaterials() {
     const params = {
@@ -43,7 +55,7 @@ export async function fetchAllMaterials() {
 }
 
 
-export async function fetchMaterials(params) {
+export async function fetchMaterials(params: any) {
 
     const response = await Client.materials.all(params);
     const allMaterials = response.data.map((entity) => {

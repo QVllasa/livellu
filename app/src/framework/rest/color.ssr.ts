@@ -20,6 +20,19 @@ export async function fetchColorSlugs() {
     return fetchColors(params);
 }
 
+export async function fetchColorBySlug(slug) {
+    if (!slug) return Promise.resolve([]);
+    const params = {
+        filters: {
+            slug: {
+                $eq: slug,
+            },
+        },
+    };
+
+    return fetchColors(params);
+}
+
 
 export async function fetchAllColors() {
     const params = {

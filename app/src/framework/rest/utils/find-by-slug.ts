@@ -12,12 +12,12 @@ export const findBrandBySlug = (brands, slug) => {
 export const findCategoryBySlug = (categories, slug) => {
     for (const category of categories) {
         if (category.slug?.toLowerCase() === slug || category.attributes?.slug?.toLowerCase() === slug) {
-            console.log("category found 1", category)
+
             return { id: category.id, ...category };
         }
         if (category.child_categories?.data?.length) {
             const found = findCategoryBySlug(category.child_categories.data, slug);
-            console.log("category found 2", category)
+
             if (found) {
                 return { id: found.id, ...found.attributes };
             }

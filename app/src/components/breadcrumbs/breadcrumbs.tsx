@@ -7,7 +7,7 @@ import {
     BreadcrumbPage
 } from "@/shadcn/components/ui/breadcrumb";
 import { useAtom } from "jotai";
-import { currentCategoryAtom, allCategoriesAtom } from "@/store/category";
+import { currentCategoryAtom, allCategoriesAtom } from "@/store/filters";
 import { capitalize } from "lodash";
 import { useRouter } from "next/router";
 
@@ -42,8 +42,9 @@ const findCategoryBySlug = (categories, slug) => {
     return null;
 };
 
-export const Breadcrumbs = ({allCategories}) => {
+export const Breadcrumbs = () => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
+    const [allCategories] = useAtom(allCategoriesAtom);
 
     const router = useRouter();
 
@@ -92,17 +93,20 @@ export const Breadcrumbs = ({allCategories}) => {
                 {categoryPath?.map((category, index) => {
                     const isLast = index === categoryPath.length - 1;
                     return (
-                        <BreadcrumbItem key={category.id}>
+                        <div className={'flex gap-2'}  key={category.id}>
                             <BreadcrumbSeparator />
-                            {isLast ? (
-                                <BreadcrumbPage>{capitalize(currentCategory.name)}</BreadcrumbPage>
-                            ) : (
-                                <BreadcrumbLink href={`/${category.slug}`} onClick={(e) => {
-                                    e.preventDefault();
-                                    handleBreadcrumbClick(category);
-                                }}>{capitalize(category.name)}</BreadcrumbLink>
-                            )}
-                        </BreadcrumbItem>
+                            <BreadcrumbItem>
+                                {isLast ? (
+                                    <BreadcrumbPage>{capitalize(currentCategory.name)}</BreadcrumbPage>
+                                ) : (
+                                    <BreadcrumbLink href={`/${category.slug}`} onClick={(e) => {
+                                        e.preventDefault();
+                                        handleBreadcrumbClick(category);
+                                    }}>{capitalize(category.name)}</BreadcrumbLink>
+                                )}
+                            </BreadcrumbItem>
+                        </div>
+
                     );
                 })}
             </BreadcrumbList>

@@ -7,16 +7,19 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { capitalize } from "lodash";
 import { useAtom } from "jotai";
 import { Material } from "@/types";
-import { currentMaterialAtom } from "@/store/material";
+import {allMaterialsAtom, currentMaterialAtom} from "@/store/filters";
 import { findMaterialBySlug } from "@/framework/utils/find-by-slug";
+import {fetchAllMaterials} from "@/framework/material.ssr";
 
-export const MaterialFilter = ({ allMaterials }) => {
+export const MaterialFilter = ( ) => {
     const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
+    const [allMaterials] = useAtom(allMaterialsAtom);
+
 
     useEffect(() => {
         if (!searchTerm) {
@@ -47,7 +50,7 @@ export const MaterialFilter = ({ allMaterials }) => {
         setCurrentMaterial(foundMaterial);
     }, [router.asPath, router.query, allMaterials]);
 
-    const handleMaterialClick = (material) => {
+    const handleMaterialClick = (material: Material) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
         const materialIndex = pathSegments.findIndex(segment => segment.startsWith('material-'));
@@ -74,10 +77,10 @@ export const MaterialFilter = ({ allMaterials }) => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Material{': '}
-                            <span className={'font-bold'}>
-                                {capitalize(currentMaterial?.label ?? "None")}
-                            </span>
+                        <h4 className="text-sm font-medium">Material:
+                            {/*<span className={'font-bold'}>*/}
+                            {/*    {capitalize(currentMaterial?.label ?? "")}*/}
+                            {/*</span>*/}
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
@@ -106,7 +109,7 @@ const MaterialItem = ({ item, currentMaterial, handleMaterialClick }) => {
             <li key={item.id} className="mb-1 relative w-56">
                 <Button
                     size={'sm'}
-                    variant={currentMaterial?.slug === item.slug ? 'solid' : 'outline'}
+                    variant={currentMaterial?.slug === item.slug ? null : 'outline'}
                     onClick={() => handleMaterialClick(item)}
                     className={`relative w-full font-bold ${currentMaterial?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
                 >

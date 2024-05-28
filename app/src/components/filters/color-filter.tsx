@@ -6,17 +6,28 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { capitalize } from "lodash";
 import { useAtom } from "jotai";
 import { Color } from "@/types";
-import { currentColorAtom } from "@/store/color";
+import {allColorsAtom, currentColorAtom} from "@/store/filters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shadcn/components/ui/tooltip";
 import { findColorBySlug } from "@/framework/utils/find-by-slug";
+import {fetchAllColors} from "@/framework/color.ssr";
 
-export const ColorFilter = ({ allColors }) => {
+
+export const ColorFilter = () => {
     const [filteredColors, setFilteredColors] = useState<Color[]>([]);
-    const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
+    const [allColors, setAllColors] = useAtom(allColorsAtom);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const colors = await fetchAllColors();
+            setAllColors(colors);
+        };
+
+        fetchData();
+    }, [setAllColors]);
 
     useEffect(() => {
         if (allColors.length > 0) {
@@ -31,7 +42,6 @@ export const ColorFilter = ({ allColors }) => {
         if (!colorSlug) {
             setFilteredColors(allColors);
             setCurrentColor(null);
-            setSearchTerm(''); // Clear the input
             return;
         }
 
@@ -40,14 +50,13 @@ export const ColorFilter = ({ allColors }) => {
         if (!currentColor) {
             setFilteredColors(allColors);
             setCurrentColor(null);
-            setSearchTerm(''); // Clear the input
             return;
         }
 
         setCurrentColor(currentColor);
     }, [router.asPath, router.query, allColors]);
 
-    const handleColorClick = (color) => {
+    const handleColorClick = (color: Color) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
 
         const colorIndex = pathSegments.findIndex(segment => segment.startsWith('color-'));
@@ -69,25 +78,16 @@ export const ColorFilter = ({ allColors }) => {
         router.push(updatedPath, undefined, { scroll: false });
     };
 
-    const handleSearchSelect = (event) => {
-        const value = event.target.value;
-        setSearchTerm(value);
-        if (value === '') {
-            setFilteredColors(allColors);
-            return;
-        }
-        setFilteredColors(allColors.filter((item) => item.label.toLowerCase().includes(value.toLowerCase())));
-    };
 
     return (
         <div className="w-64 p-4 relative">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Farbe{': '}
-                            <span className={'font-bold'}>
-                                {capitalize(currentColor?.label ?? "None")}
-                            </span>
+                        <h4 className="text-sm font-medium">Farbe:
+                            {/*<span className={'font-bold'}>*/}
+                            {/*    {capitalize(currentColor?.label ?? "")}*/}
+                            {/*</span>*/}
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
@@ -95,8 +95,8 @@ export const ColorFilter = ({ allColors }) => {
                             <ul className="grid grid-cols-5 gap-1">
                                 {filteredColors.map((item) => (
                                     <li key={item.id} className="relative">
-                                        <Tooltip delay={[100, 0]}>
-                                            <TooltipTrigger>
+                                        <Tooltip >
+                                            <TooltipTrigger asChild>
                                                 <Button
                                                     size={'icon'}
                                                     variant="ghost"

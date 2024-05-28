@@ -3,9 +3,9 @@ import {useAtom} from "jotai";
 import {Entity, Product} from "@/types";
 import Client from "@/framework/client";
 import {currentCategoryAtom} from "@/store/category";
-import {currentColorAtom} from "@/store/color";
-import {currentMaterialAtom} from "@/store/material";
-import {currentBrandAtom} from "@/store/brand";
+import {currentColorAtom} from "@/store/filters";
+import {currentMaterialAtom} from "@/store/filters";
+import {currentBrandAtom} from "@/store/filters";
 
 export function useProducts() {
     const [currentCategory] = useAtom(currentCategoryAtom);
@@ -31,7 +31,6 @@ export function useProducts() {
     };
 
     useEffect(() => {
-        console.log("currentBrand:", currentBrand)
         setLoading(true);
         Client.products.all(productsFilter)
             .then(response => {

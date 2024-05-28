@@ -33,7 +33,6 @@ export const ArticlePage = () => {
     const {article, loading, error} = useArticle(filter);
 
 
-    console.log('article: ', article)
 
     if (!article || !slug) {
         return <div>Loading...</div>

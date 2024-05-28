@@ -6,11 +6,13 @@ import { Input } from "@/shadcn/components/ui/input";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
 import { capitalize } from "lodash";
 import { useAtom } from "jotai";
-import { Category } from "@/types";
-import { allCategoriesAtom, currentCategoryAtom } from "@/store/category";
+import {Category, Entity} from "@/types";
+import { allCategoriesAtom, currentCategoryAtom } from "@/store/filters";
 import { findCategoryBySlug } from "@/framework/utils/find-by-slug";
+import {fetchAllCategories} from "@/framework/category.ssr";
 
-export const CategoryFilter = ({allCategories}) => {
+export const CategoryFilter = () => {
+
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
     const [childCategories, setChildCategories] = useState<Category[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
@@ -19,6 +21,9 @@ export const CategoryFilter = ({allCategories}) => {
     const router = useRouter();
     // const [allCategories] = useAtom(allCategoriesAtom);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
+    const [allCategories] = useAtom(allCategoriesAtom);
+
+
 
     useEffect(() => {
         // Extract the current category from the route
@@ -46,7 +51,7 @@ export const CategoryFilter = ({allCategories}) => {
 
         // Determine the categories to display
         const categoriesToDisplay = currentCategory.child_categories?.data?.length ?
-            currentCategory.child_categories.data.filter(item => item.attributes.isCategory).map(item => ({ id: item.id, ...item.attributes })) : [currentCategory];
+            currentCategory.child_categories.data.filter((item: Entity<Category>) => item.attributes.isCategory).map((item: Entity<Category>) => ({ id: item.id, ...item.attributes })) : [currentCategory];
 
         // Set the filtered categories
         setChildCategories(categoriesToDisplay);
@@ -79,7 +84,7 @@ export const CategoryFilter = ({allCategories}) => {
         router.push(updatedPath, undefined, { scroll: false });
     };
 
-    const handleSearchSelect = (event) => {
+    const handleSearchSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         if (value === '') {
             setFilteredCategories(childCategories);
@@ -95,10 +100,10 @@ export const CategoryFilter = ({allCategories}) => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Kategorie{': '}
-                            <span className={'font-bold'}>
-                                {capitalize(currentCategory?.name)}
-                            </span>
+                        <h4 className="text-sm font-medium">Kategorie:
+                            {/*<span className={'font-bold'}>*/}
+                            {/*    {capitalize(currentCategory?.name) ?? 'undefined'}*/}
+                            {/*</span>*/}
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
@@ -118,7 +123,7 @@ export const CategoryFilter = ({allCategories}) => {
                                     <li key={item.id} className="mb-1">
                                         <Button
                                             size={'sm'}
-                                            variant={currentCategory?.slug === item.slug ? 'solid' : 'outline'}
+                                            variant={currentCategory?.slug === item.slug ? null : 'outline'}
                                             onClick={() => handleCategoryClick(item)}
                                             className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
                                             disabled={currentCategory?.slug === item.slug} // Disable the button if it is the selected category

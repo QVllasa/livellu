@@ -34,7 +34,6 @@ const ArticleCategoryPage = () => {
         return <div>Loading...</div>
     }
 
-    console.log("articleCategory: ", articleCategory)
 
     return (
         <div className="relative isolate overflow-hidden bg-white py-24 sm:py-32 -mt-14">

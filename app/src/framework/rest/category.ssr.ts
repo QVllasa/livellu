@@ -1,33 +1,21 @@
 // utils/fetchCategorys.js
 import Client from "@/framework/client";
 
-export async function fetchCategories() {
+
+export async function fetchCategoryBySlug(slug: string) {
+    if (!slug) return Promise.resolve([]);
     const params = {
         filters: {
-            isCategory: {$eq: true}
-        },
-        populate: {
-            child_categories: {
-                populate: "*",
-                // filters: {
-                //     isCategory: {$eq: true}
-                // },
-                // populate: {
-                //     child_categories: {
-                //         filters: {
-                //             isCategory: {$eq: true}
-                //         },
-                //         populate: "*"
-                //     },
-                // }
-            },
-            parent_categories: {populate: "*"},
-        },
-        pagination: {
-            page: 1,
-            pageSize: 1000,
+            slug: {
+                $eq: slug
+            }
         },
     };
+
+    return await fetchCategories(params)
+}
+
+export async function fetchCategories(params: any) {
 
     const response = await Client.categories.all(params);
     const allCategories = response.data.map((entity) => {
@@ -40,4 +28,22 @@ export async function fetchCategories() {
     });
 
     return allCategories;
+}
+
+export async function fetchAllCategories() {
+    const params = {
+        filters: {
+            // isCategory: {$eq: true}
+        },
+        populate: {
+            child_categories: '*',
+            parent_categories: '*',
+        },
+        pagination: {
+            page: 1,
+            pageSize: 1000,
+        },
+    };
+
+    return fetchCategories(params);
 }
