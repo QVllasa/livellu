@@ -24,6 +24,8 @@ export const CategoryFilter = () => {
     const [allCategories] = useAtom(allCategoriesAtom);
 
 
+    console.log("allCategories: ", allCategories)
+    console.log("currentCategory: ", currentCategory)
 
     useEffect(() => {
         // Extract the current category from the route
@@ -38,8 +40,6 @@ export const CategoryFilter = () => {
             return;
         }
 
-        // Find the current category using the original nested structure
-        const currentCategory = findCategoryBySlug(allCategories, categorySlug.toLowerCase());
 
         if (!currentCategory) {
             setFilteredCategories(allCategories);
@@ -60,7 +60,7 @@ export const CategoryFilter = () => {
 
 
         setCurrentCategory(currentCategory);
-    }, [router.asPath, router.query, allCategories]);
+    }, [router.asPath, router.query, allCategories, currentCategory]);
 
     const handleCategoryClick = (category: Category) => {
         const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");

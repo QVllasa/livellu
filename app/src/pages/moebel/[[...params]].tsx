@@ -19,7 +19,10 @@ import {ArrowPathIcon} from "@heroicons/react/16/solid";
 import {ProductsGrid} from "@/components/products/products-grid";
 import {CategoryFilter} from "@/components/filters/category-filter";
 import {PriceRangeFilter} from "@/components/filters/price-range-filter";
-import PageOrderSelector from "@/components/filters/page-order-selector";
+import PageSortSelector from "@/components/filters/page-sort-selector";
+import {useAtom} from "jotai/index";
+import {currentCategoryAtom, sortsAtom} from "@/store/filters";
+import {Brand, Category, Color, Material} from "@/types";
 
 function MoebelPage({
                         initialCategory,
@@ -28,11 +31,15 @@ function MoebelPage({
                         pageSize,
                         pageCount,
                         total,
+                        sort
                     }) {
+    const [, setCurrentCategoryAtom] = useAtom(currentCategoryAtom);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchTerms, setSearchTerms] = useState([]);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
+    setCurrentCategoryAtom(initialCategory)
 
     const debouncedSearch = debounce((terms) => {
         setLoading(true);
@@ -68,7 +75,7 @@ function MoebelPage({
 
     useEffect(() => {
         if (router.query.search) {
-            setSearchTerms(router.query.search.split(' '));
+            setSearchTerms(router.query.search?.split(' '));
         }
         setLoading(false);
     }, [router.query.search, products]);
@@ -87,8 +94,8 @@ function MoebelPage({
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <PriceRangeFilter setLoading={setLoading}/>
-                                <BrandFilter/>
                                 <CategoryFilter/>
+                                <BrandFilter/>
                                 <ColorFilter/>
                                 <MaterialFilter/>
                             </Suspense>
@@ -133,8 +140,11 @@ function MoebelPage({
                                 <h1 className="text-lg font-semibold md:text-2xl">Inventory</h1>
                                 <span className={'font-light text-xs text-gray-500'}>{total} Produkte</span>
                             </div>
-                            <PageSizeSelector currentSize={pageSize}/>
-                            <PageOrderSelector/>
+                            <div className={'flex gap-4 justify-center'}>
+                                <PageSizeSelector currentSize={pageSize}/>
+                                <PageSortSelector sort={sort}/>
+                            </div>
+
                         </div>
 
                         <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
@@ -156,12 +166,13 @@ function MoebelPage({
 }
 
 export async function getServerSideProps({params, query}) {
+    const sorts = sortsAtom
     const filters = {$and: []};
 
-    let initialBrand = null;
-    let initialColor = null;
-    let initialMaterial = null;
-    let initialCategory = null;
+    let initialBrand: Brand | null = null;
+    let initialColor: Color| null = null;
+    let initialMaterial: Material| null = null;
+    let initialCategory: Category | null = null;
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
         params.params?.find((p) => p.startsWith('category-')),
@@ -185,9 +196,9 @@ export async function getServerSideProps({params, query}) {
     }
 
     const filtersToApply = [
-        initialMaterial ? {original_material: initialMaterial[0].label} : null,
-        initialColor ? {original_color: initialColor[0].label} : null,
-        initialBrand ? {brandName: initialBrand[0].label} : null,
+        initialMaterial ? {original_material: initialMaterial?.label} : null,
+        initialColor ? {original_color: initialColor?.label} : null,
+        initialBrand ? {brandName: initialBrand?.label} : null,
     ].filter(Boolean);
 
     filters.$and.push(...filtersToApply);
@@ -217,9 +228,9 @@ export async function getServerSideProps({params, query}) {
 
     const page = parseInt(query.page) || 1;
     const pageSize = parseInt(query.pageSize) || 30;
-    const order = query.order || 'asc';
+    const sort = sorts.find(el => el.value === query.sort) || 'asc';
 
-    const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize}, 'price', order);
+    const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize}, 'price', sort?.value ?? 'asc');
 
     return {
         props: {
@@ -229,6 +240,7 @@ export async function getServerSideProps({params, query}) {
             pageSize,
             pageCount,
             total,
+            sort
         },
     };
 }

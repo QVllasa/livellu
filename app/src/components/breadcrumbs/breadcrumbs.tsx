@@ -10,50 +10,53 @@ import { useAtom } from "jotai";
 import { currentCategoryAtom, allCategoriesAtom } from "@/store/filters";
 import { capitalize } from "lodash";
 import { useRouter } from "next/router";
+import { Category } from "@/types";
+import { useEffect, useState } from "react";
 
-// Helper function to find the path to the current category
-const findCategoryPath = (categories, categoryId, path = []) => {
-    for (const category of categories) {
-        if (category.id === categoryId) {
-            return [...path, category];
-        }
-        if (category.child_categories?.data?.length) {
-            const result = findCategoryPath(category.child_categories.data, categoryId, [...path, category]);
-            if (result) {
-                return result;
-            }
+// Helper function to extract path directly from current category
+function extractParentPath(category: Category | null): Category[] {
+    const path: Category[] = [];
+
+    while (category) {
+        path.unshift(category);
+        if (category.parent_categories && category.parent_categories.data && category.parent_categories.data.length > 0) {
+            const parent = category.parent_categories.data[0];
+            category = { id: parent.id, ...parent.attributes };
+        } else {
+            category = null;
         }
     }
-    return null;
-};
 
-const findCategoryBySlug = (categories, slug) => {
-    for (const category of categories) {
-        if (category.slug?.toLowerCase() === slug || category.attributes?.slug?.toLowerCase() === slug) {
-            return { id: category.id, ...category };
-        }
-        if (category.child_categories?.data?.length) {
-            const found = findCategoryBySlug(category.child_categories.data, slug);
-            if (found) {
-                return { id: found.id, ...found.attributes };
-            }
-        }
-    }
-    return null;
-};
+    return path;
+}
+
+
 
 export const Breadcrumbs = () => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [allCategories] = useAtom(allCategoriesAtom);
+    const [categoryPath, setCategoryPath] = useState<Category[]>([]);
 
     const router = useRouter();
 
     // Find the path to the current category
-    const categoryPath = currentCategory ? findCategoryPath(allCategories, currentCategory.id) : [];
+    useEffect(() => {
+        if (currentCategory) {
+            const path = extractParentPath(currentCategory);
+            setCategoryPath(path);
+        }else {
+            setCategoryPath([]);
+        }
+    }, [currentCategory]);
+
+    useEffect(() => {
+        console.log("categoryPath: ", categoryPath)
+    }, [categoryPath]);
 
     const handleBreadcrumbClick = (category) => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => findCategoryBySlug(allCategories, segment.toLowerCase()));
+        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
+
 
         if (categorySlug) {
             const updatedPathSegments = pathSegments.map(segment =>
@@ -67,7 +70,7 @@ export const Breadcrumbs = () => {
 
     const handleMoebelClick = () => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => findCategoryBySlug(allCategories, segment.toLowerCase()));
+        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 
         if (categorySlug) {
             const updatedPathSegments = pathSegments.filter(segment => segment !== categorySlug);
@@ -90,23 +93,22 @@ export const Breadcrumbs = () => {
                         handleMoebelClick();
                     }}>Möbel</BreadcrumbLink>
                 </BreadcrumbItem>
-                {categoryPath?.map((category, index) => {
+                {categoryPath.map((category, index) => {
                     const isLast = index === categoryPath.length - 1;
                     return (
-                        <div className={'flex gap-2'}  key={category.id}>
+                        <div className={'flex gap-2'} key={category.id}>
                             <BreadcrumbSeparator />
                             <BreadcrumbItem>
                                 {isLast ? (
-                                    <BreadcrumbPage>{capitalize(currentCategory.name)}</BreadcrumbPage>
+                                    <BreadcrumbPage>{capitalize(category.name)}</BreadcrumbPage>
                                 ) : (
-                                    <BreadcrumbLink href={`/${category.slug}`} onClick={(e) => {
+                                    <BreadcrumbLink href="#" onClick={(e) => {
                                         e.preventDefault();
                                         handleBreadcrumbClick(category);
                                     }}>{capitalize(category.name)}</BreadcrumbLink>
                                 )}
                             </BreadcrumbItem>
                         </div>
-
                     );
                 })}
             </BreadcrumbList>

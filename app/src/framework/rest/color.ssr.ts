@@ -1,5 +1,6 @@
 // utils/fetchColors.js
 import Client from "@/framework/client";
+import {Color} from "@/types";
 
 export async function fetchColorSlugs() {
     const params = {
@@ -20,8 +21,8 @@ export async function fetchColorSlugs() {
     return fetchColors(params);
 }
 
-export async function fetchColorBySlug(slug) {
-    if (!slug) return Promise.resolve([]);
+export async function fetchColorBySlug(slug: string):Promise<Color|null> {
+    if (!slug) return Promise.resolve(null);
     const params = {
         filters: {
             slug: {
@@ -30,7 +31,7 @@ export async function fetchColorBySlug(slug) {
         },
     };
 
-    return fetchColors(params);
+    return fetchColor(params);
 }
 
 
@@ -56,7 +57,7 @@ export async function fetchAllColors() {
 
 
 
-export async function fetchColors(params) {
+export async function fetchColors(params: any) {
 
     const response = await Client.colors.all(params);
     const allColors = response.data.map((entity) => {
@@ -69,4 +70,20 @@ export async function fetchColors(params) {
     });
 
     return allColors;
+}
+
+
+export async function fetchColor(params: any) {
+
+    const response = await Client.colors.get(params);
+    const color = response.data.map((entity) => {
+        const id = entity.id;
+        const modifiedItem = {
+            ...entity.attributes,
+            id: id,
+        };
+        return modifiedItem;
+    });
+
+    return color[0];
 }

@@ -1,5 +1,6 @@
 // utils/fetchMaterials.js
 import Client from "@/framework/client";
+import {Material} from "@/types";
 
 export async function fetchMaterialSlugs() {
     const params = {
@@ -18,8 +19,8 @@ export async function fetchMaterialSlugs() {
 
 }
 
-export async function fetchMaterialBySlug(slug: any) {
-    if (!slug) return Promise.resolve([]);
+export async function fetchMaterialBySlug(slug: any): Promise<Material|null> {
+    if (!slug) return Promise.resolve(null);
     const params = {
         filters: {
             slug: {
@@ -27,7 +28,7 @@ export async function fetchMaterialBySlug(slug: any) {
             },
         },
     };
-    return await fetchMaterials(params);
+    return await fetchMaterial(params);
 }
 
 
@@ -68,4 +69,20 @@ export async function fetchMaterials(params: any) {
     });
 
     return allMaterials;
+}
+
+
+export async function fetchMaterial(params: any) {
+
+    const response = await Client.materials.get(params);
+    const material = response.data.map((entity) => {
+        const id = entity.id;
+        const modifiedItem = {
+            ...entity.attributes,
+            id: id,
+        };
+        return modifiedItem;
+    });
+
+    return material[0];
 }

@@ -29,3 +29,7 @@ export const currentBrandAtom = atom<null | any | Brand>(null);
 
 
 export const priceRangeAtom = atom([0, 10000]); // Example initial range
+
+export const sortsAtom = [
+    {label: 'Absteigend', value: 'desc'},
+    {label: 'Aufsteigend', value: 'asc'}]; // Example initial sort value

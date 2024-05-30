@@ -1,7 +1,8 @@
 // utils/fetchBrands.js
 import Client from "@/framework/client";
+import {Brand} from "@/types";
 
-export async function fetchBrandSlugs(){
+export async function fetchBrandSlugs() {
     const params = {
         filters: {},
         populate: {
@@ -15,12 +16,12 @@ export async function fetchBrandSlugs(){
     return fetchBrands(params)
 }
 
-export async function fetchAllBrands(){
+export async function fetchAllBrands() {
     const params = {
         filters: {},
         populate: {
-            child_brands: { populate: "*" },
-            parent_brands: { populate: "*" },
+            child_brands: {populate: "*"},
+            parent_brands: {populate: "*"},
         },
         pagination: {
             page: 1,
@@ -30,8 +31,8 @@ export async function fetchAllBrands(){
     return fetchBrands(params)
 }
 
-export async function fetchBrandBySlug(slug){
-    if (!slug) return Promise.resolve([]);
+export async function fetchBrandBySlug(slug: string): Promise<Brand | null> {
+    if (!slug) return Promise.resolve(null);
     const params = {
         filters: {
             slug: {
@@ -39,10 +40,10 @@ export async function fetchBrandBySlug(slug){
             }
         },
     };
-    return fetchBrands(params)
+    return fetchBrand(params)
 }
 
-export async function fetchBrands(params) {
+export async function fetchBrands(params: any) {
 
 
     const response = await Client.brands.all(params);
@@ -57,7 +58,7 @@ export async function fetchBrands(params) {
     return allBrands;
 }
 
-export async function fetchBrand(params) {
+export async function fetchBrand(params: any) {
 
     const response = await Client.brands.get(params);
     const brand = response.data.map((entity) => {
@@ -69,5 +70,5 @@ export async function fetchBrand(params) {
         return modifiedItem;
     });
 
-    return brand;
+    return brand[0];
 }

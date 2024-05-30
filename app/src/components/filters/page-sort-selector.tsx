@@ -2,17 +2,17 @@
 import {useRouter} from "next/router";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/shadcn/components/ui/dropdown-menu";
 import {Button} from "@/shadcn/components/ui/button";
+import {useAtom} from "jotai";
+import {sortsAtom} from "@/store/filters";
 
-const PageOrderSelector = ({orderBy}) => {
+const PageSortSelector = ({sort}) => {
     const router = useRouter();
-    const orders = [
-        {label: 'Absteigend', value: 'desc'},
-        {label: 'Aufsteigend', value: 'asc'}];
+    const sorts = sortsAtom
 
-    const handleOrderChange = (value) => {
+    const handleSortChange = (value) => {
         router.push({
             pathname: router.pathname,
-            query: {...router.query, order: value},
+            query: {...router.query, sort: value},
         });
     };
 
@@ -20,15 +20,15 @@ const PageOrderSelector = ({orderBy}) => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                    Sortierung: {orderBy}
+                    Sortierung: {sort.label}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-                {orders.map((value, index) => (
+                {sorts.map((value, index) => (
                     <DropdownMenuItem
                         key={index}
-                        onClick={() => handleOrderChange(value.value)}
-                        className={orderBy === value.value ? 'font-bold' : ''}
+                        onClick={() => handleSortChange(value.value)}
+                        className={sort.value === value.value ? 'font-bold' : ''}
                     >
                         {value.label}
                     </DropdownMenuItem>
@@ -39,4 +39,4 @@ const PageOrderSelector = ({orderBy}) => {
 }
     ;
 
-    export default PageOrderSelector;
+    export default PageSortSelector;
