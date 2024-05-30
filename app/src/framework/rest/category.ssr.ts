@@ -75,7 +75,11 @@ export async function fetchCategories(params: any) {
 export async function fetchAllCategories() {
     const params = {
         filters: {
-            isCategory: {$eq: true},
+            $and: [
+                { isCategory: { $eq: true } },
+                { parent_categories: { id: { $null: true } } },
+                { identifier: { $startsWith: "00_" } }
+            ]
         },
         populate: {
             child_categories: {
