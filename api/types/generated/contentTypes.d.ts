@@ -1397,7 +1397,7 @@ export interface ApiProductProduct extends Schema.CollectionType {
     category: Attribute.Relation<
       'api::product.product',
       'oneToOne',
-      'api::category.category'
+      'api::original-category.original-category'
     >;
     merchants: Attribute.Relation<
       'api::product.product',

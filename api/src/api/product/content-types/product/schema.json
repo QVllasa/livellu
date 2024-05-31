@@ -30,7 +30,7 @@
     "category": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::category.category"
+      "target": "api::original-category.original-category"
     },
     "merchants": {
       "type": "relation",
