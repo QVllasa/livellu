@@ -961,6 +961,11 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     >;
     summary: Attribute.Text;
     slug: Attribute.Text;
+    mapped_categories: Attribute.Relation<
+      'api::category.category',
+      'oneToMany',
+      'api::original-category.original-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1238,6 +1243,47 @@ export interface ApiNavigationNavigation extends Schema.CollectionType {
   };
 }
 
+export interface ApiOriginalCategoryOriginalCategory
+  extends Schema.CollectionType {
+  collectionName: 'original_categories';
+  info: {
+    singularName: 'original-category';
+    pluralName: 'original-categories';
+    displayName: 'Original Category';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    cat1: Attribute.Text;
+    cat2: Attribute.Text;
+    identifier: Attribute.Text;
+    cat3: Attribute.Text;
+    slug: Attribute.Text & Attribute.Unique;
+    parent_category: Attribute.Relation<
+      'api::original-category.original-category',
+      'manyToOne',
+      'api::category.category'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::original-category.original-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::original-category.original-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPagePage extends Schema.CollectionType {
   collectionName: 'pages';
   info: {
@@ -1271,12 +1317,14 @@ export interface ApiPathPath extends Schema.CollectionType {
     singularName: 'path';
     pluralName: 'paths';
     displayName: 'Path';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     name: Attribute.Text;
+    content: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::path.path', 'oneToOne', 'admin::user'> &
@@ -1420,6 +1468,7 @@ export interface ApiRouteRoute extends Schema.CollectionType {
     singularName: 'route';
     pluralName: 'routes';
     displayName: 'Route';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1471,6 +1520,7 @@ declare module '@strapi/types' {
       'api::material.material': ApiMaterialMaterial;
       'api::merchant.merchant': ApiMerchantMerchant;
       'api::navigation.navigation': ApiNavigationNavigation;
+      'api::original-category.original-category': ApiOriginalCategoryOriginalCategory;
       'api::page.page': ApiPagePage;
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;

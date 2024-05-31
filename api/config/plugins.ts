@@ -1,4 +1,5 @@
 export default ({env}) => ({
+    'prev-next-button': true,
     upload: {
       config: {
         provider: 'cloudinary',

@@ -79,6 +79,12 @@
     },
     "slug": {
       "type": "text"
+    },
+    "mapped_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::original-category.original-category",
+      "mappedBy": "parent_category"
     }
   }
 }
