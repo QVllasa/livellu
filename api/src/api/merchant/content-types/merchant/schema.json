@@ -24,12 +24,6 @@
       "relation": "oneToMany",
       "target": "api::feed.feed"
     },
-    "products": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::product.product",
-      "inversedBy": "merchants"
-    },
     "logo_image": {
       "allowedTypes": [
         "images"

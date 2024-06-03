@@ -215,22 +215,22 @@ export async function getServerSideProps({params, query}) {
         filters.$and.push(...searchFilters);
     }
 
-    if (query.minPrice || query.maxPrice) {
-        const minPrice = query.minPrice ? parseInt(query.minPrice) : 0;
-        const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : 10000;
-        filters.$and.push({
-            price: {
-                $gte: minPrice,
-                $lte: maxPrice,
-            },
-        });
-    }
+    // if (query.minPrice || query.maxPrice) {
+    //     const minPrice = query.minPrice ? parseInt(query.minPrice) : 0;
+    //     const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : 10000;
+    //     filters.$and.push({
+    //         price: {
+    //             $gte: minPrice,
+    //             $lte: maxPrice,
+    //         },
+    //     });
+    // }
 
     const page = parseInt(query.page) || 1;
     const pageSize = parseInt(query.pageSize) || 30;
     const sort = sorts.find(el => el.value === query.sort) || 'asc';
 
-    const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize}, 'price', sort?.value ?? 'asc');
+    const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize});
 
     return {
         props: {

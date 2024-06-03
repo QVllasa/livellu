@@ -58,7 +58,7 @@ export const API_ENDPOINTS = {
 
   NAVIGATIONS: '/navigations',
   ARTICLES: '/articles',
-  PRODUCTS: '/products',
+  PRODUCTS: '/items',
   ARTICLE_CATEGORIES: '/article-categories',
   MERCHANTS: '/merchants',
   CATEGORIES: '/categories',

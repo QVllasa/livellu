@@ -65,7 +65,7 @@ export async function fetchProducts(filters, pagination, sortBy = '', order = ''
             pageSize: 30, // Adjust the pageSize as needed
             ...pagination
         },
-        sort: `${sortBy}:${order}`, // Strapi sorting syntax
+        // sort: `${sortBy}:${order}`, // Strapi sorting syntax
     };
 
 

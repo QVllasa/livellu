@@ -1060,6 +1060,61 @@ export interface ApiFeedFeed extends Schema.CollectionType {
   };
 }
 
+export interface ApiItemItem extends Schema.CollectionType {
+  collectionName: 'items';
+  info: {
+    singularName: 'item';
+    pluralName: 'items';
+    displayName: 'Item';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    productId: Attribute.String;
+    merchantProductId: Attribute.Text;
+    ean: Attribute.Text;
+    deliveryTime: Attribute.Text;
+    brandName: Attribute.Text;
+    currency: Attribute.String;
+    price: Attribute.Decimal;
+    tracking: Attribute.Text;
+    thumbnail: Attribute.Text;
+    imageUrl: Attribute.Text;
+    merchantLink: Attribute.Text;
+    merchantImage: Attribute.Text;
+    productName: Attribute.Text;
+    description: Attribute.Text;
+    promotion: Attribute.String;
+    dimensions: Attribute.Text;
+    categoryIdentifier: Attribute.String;
+    slug: Attribute.String;
+    merchantId: Attribute.String;
+    shortDescription: Attribute.Text;
+    priceOld: Attribute.String;
+    deliveryCost: Attribute.String;
+    averageRating: Attribute.String;
+    brandId: Attribute.String;
+    dataFeedId: Attribute.String;
+    keywords: Attribute.Text;
+    isForSale: Attribute.Boolean;
+    language: Attribute.String;
+    large_image: Attribute.Text;
+    reviews: Attribute.Text;
+    rating: Attribute.Text;
+    altImageUrl: Attribute.Text;
+    original_color: Attribute.Text;
+    original_material: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiMaterialMaterial extends Schema.CollectionType {
   collectionName: 'materials';
   info: {
@@ -1120,11 +1175,6 @@ export interface ApiMerchantMerchant extends Schema.CollectionType {
       'api::merchant.merchant',
       'oneToMany',
       'api::feed.feed'
-    >;
-    products: Attribute.Relation<
-      'api::merchant.merchant',
-      'manyToMany',
-      'api::product.product'
     >;
     logo_image: Attribute.Media;
     createdAt: Attribute.DateTime;
@@ -1378,90 +1428,6 @@ export interface ApiPostPost extends Schema.CollectionType {
   };
 }
 
-export interface ApiProductProduct extends Schema.CollectionType {
-  collectionName: 'products';
-  info: {
-    singularName: 'product';
-    pluralName: 'products';
-    displayName: 'Product';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    productId: Attribute.Text & Attribute.Unique;
-    merchantProductId: Attribute.Text;
-    ean: Attribute.Text & Attribute.Required & Attribute.Unique;
-    deliveryTime: Attribute.Text;
-    category: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::original-category.original-category'
-    >;
-    merchants: Attribute.Relation<
-      'api::product.product',
-      'manyToMany',
-      'api::merchant.merchant'
-    >;
-    brandName: Attribute.Text;
-    currency: Attribute.Text;
-    price: Attribute.Decimal;
-    tracking: Attribute.Text;
-    thumbnail: Attribute.Text;
-    image_url: Attribute.Text;
-    merchantLink: Attribute.Text;
-    merchantImage: Attribute.Text;
-    productName: Attribute.Text;
-    description: Attribute.Text;
-    promotion: Attribute.Text;
-    dimensions: Attribute.Text;
-    categoryIdentifier: Attribute.Text;
-    slug: Attribute.Text;
-    merchantId: Attribute.String;
-    shortDescription: Attribute.Text;
-    priceOld: Attribute.String;
-    deliveryCost: Attribute.String;
-    averageRating: Attribute.Text;
-    brandId: Attribute.Text;
-    dataFeedId: Attribute.String;
-    isForSale: Attribute.Boolean;
-    keywords: Attribute.Text;
-    language: Attribute.Text;
-    large_image: Attribute.Text;
-    reviews: Attribute.Text;
-    rating: Attribute.Text;
-    altImageUrl: Attribute.Text;
-    color: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::color.color'
-    >;
-    material: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'api::material.material'
-    >;
-    original_color: Attribute.Text;
-    original_material: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::product.product',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiRouteRoute extends Schema.CollectionType {
   collectionName: 'routes';
   info: {
@@ -1517,6 +1483,7 @@ declare module '@strapi/types' {
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
       'api::feed.feed': ApiFeedFeed;
+      'api::item.item': ApiItemItem;
       'api::material.material': ApiMaterialMaterial;
       'api::merchant.merchant': ApiMerchantMerchant;
       'api::navigation.navigation': ApiNavigationNavigation;
@@ -1524,7 +1491,6 @@ declare module '@strapi/types' {
       'api::page.page': ApiPagePage;
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
-      'api::product.product': ApiProductProduct;
       'api::route.route': ApiRouteRoute;
     }
   }
