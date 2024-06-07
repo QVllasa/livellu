@@ -1,71 +1,78 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
-import { Button } from "@/shadcn/components/ui/button";
-import { Input } from "@/shadcn/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
-import { capitalize } from "lodash";
-import { useAtom } from "jotai";
-import {Category, Entity} from "@/types";
-import { allCategoriesAtom, currentCategoryAtom } from "@/store/filters";
-import { findCategoryBySlug } from "@/framework/utils/find-by-slug";
-import {fetchAllCategories} from "@/framework/category.ssr";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
+import {Button} from "@/shadcn/components/ui/button";
+import {Input} from "@/shadcn/components/ui/input";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {capitalize} from "lodash";
+import {useAtom} from "jotai";
+import {Category} from "@/types";
+import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
+import {arrangePathSegments} from "@/lib/utils";
+import {fetchCategoryBySlug} from "@/framework/category.ssr";
 
 export const CategoryFilter = () => {
-
     const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
+    const [originalCategories, setOriginalCategories] = useState<Category[]>([]);
     const [childCategories, setChildCategories] = useState<Category[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
 
     const router = useRouter();
-    // const [allCategories] = useAtom(allCategoriesAtom);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
+    const [currentOriginalCategory, setOriginalCategory] = useState<Category|null>(null)
     const [allCategories] = useAtom(allCategoriesAtom);
 
 
-    console.log("allCategories: ", allCategories)
-    console.log("currentCategory: ", currentCategory)
+    useEffect(() => {
+        console.log("filteredcategories: ", filteredCategories)
+    }, [filteredCategories])
+
 
     useEffect(() => {
-        // Extract the current category from the route
-        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
-
-        if (!categorySlug) {
-            setFilteredCategories(allCategories);
-            setChildCategories(allCategories);
-            setCurrentCategory(null);
-            setSearchTerm(''); // Clear the input
-            return;
-        }
-
-
         if (!currentCategory) {
             setFilteredCategories(allCategories);
             setChildCategories(allCategories);
-            setCurrentCategory(null);
-            setSearchTerm(''); // Clear the input
-            return;
+            setSearchTerm('');
         }
+    }, [currentCategory]);
 
-        // Determine the categories to display
-        const categoriesToDisplay = currentCategory.child_categories?.data?.length ?
-            currentCategory.child_categories.data.filter((item: Entity<Category>) => item.attributes.isCategory).map((item: Entity<Category>) => ({ id: item.id, ...item.attributes })) : [currentCategory];
+    useEffect(() => {
+        const fetchData = async () => {
+            const pathSegments = router.asPath.split(/[/?]/).filter(segment => !segment.startsWith('?'));
+            const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 
-        // Set the filtered categories
-        setChildCategories(categoriesToDisplay);
-        setFilteredCategories(categoriesToDisplay);
-        setSearchTerm(''); // Clear the input
+            if (!categorySlug) {
+                setFilteredCategories(allCategories);
+                setChildCategories(allCategories);
+                setCurrentCategory(null);
+                setSearchTerm('');
+                return;
+            }
+
+            const currentCategory = await fetchCategoryBySlug(categorySlug);
+
+            setCurrentCategory(currentCategory);
+
+            const categoriesToDisplay = currentCategory?.child_categories.data.map((item) => ({id: item.id, ...item.attributes}))
+
+            const originalCategoriesToDisplay = currentCategory?.original_categories?.data.map((item) => ({id: item.id, ...item.attributes}))
 
 
-        setCurrentCategory(currentCategory);
-    }, [router.asPath, router.query, allCategories, currentCategory]);
+            setChildCategories(categoriesToDisplay);
+            setFilteredCategories(categoriesToDisplay);
+            setOriginalCategories(originalCategoriesToDisplay)
+            setSearchTerm('');
+
+        };
+        fetchData();
+    }, [router.asPath, router.query, allCategories]);
 
     const handleCategoryClick = (category: Category) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
 
-        const categoryIndex = pathSegments.findIndex(segment => segment.startsWith('category-'));
+        const categoryIndex = pathSegments.findIndex(el => el?.startsWith('category-'));
 
         if (categoryIndex !== -1) {
             if (currentCategory?.slug === category.slug) {
@@ -76,13 +83,19 @@ export const CategoryFilter = () => {
                 setCurrentCategory(category);
             }
         } else {
-            pathSegments.push(`${category.slug.toLowerCase()}`);
+            pathSegments.unshift(`${category.slug.toLowerCase()}`);
             setCurrentCategory(category);
         }
 
-        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-        router.push(updatedPath, undefined, { scroll: false });
+        // Sort segments after
+        const sortedPathSegments = arrangePathSegments(pathSegments);
+
+        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
+
 
     const handleSearchSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
@@ -95,16 +108,34 @@ export const CategoryFilter = () => {
         setFilteredCategories(childCategories.filter((item: Category) => item.name.toLowerCase().includes(value.toLowerCase())));
     };
 
+
+    const handleOriginalCategoryClick = (category) => {
+        const currentQuery = { ...router.query };
+        const categorySlug = category.name;
+
+        if (currentQuery.category === categorySlug) {
+            // Remove the category if it's already in the query
+            delete currentQuery.category;
+            setOriginalCategory(null)
+        } else {
+            // Add or replace the category
+            currentQuery.category = categorySlug;
+            setOriginalCategory(category);
+        }
+
+
+        router.push({
+            pathname: router.pathname,
+            query: currentQuery,
+        });
+    };
+
     return (
         <div className="w-64 p-4">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Kategorie:
-                            {/*<span className={'font-bold'}>*/}
-                            {/*    {capitalize(currentCategory?.name) ?? 'undefined'}*/}
-                            {/*</span>*/}
-                        </h4>
+                        <h4 className="text-sm font-medium">Kategorie:</h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         {childCategories.length > 1 && (
@@ -119,19 +150,35 @@ export const CategoryFilter = () => {
                         )}
                         <ScrollArea className="max-h-64 overflow-auto">
                             <ul>
-                                {filteredCategories.map((item) => (
-                                    <li key={item.id} className="mb-1">
-                                        <Button
-                                            size={'sm'}
-                                            variant={currentCategory?.slug === item.slug ? null : 'outline'}
-                                            onClick={() => handleCategoryClick(item)}
-                                            className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                            disabled={currentCategory?.slug === item.slug} // Disable the button if it is the selected category
-                                        >
-                                            {capitalize(item.name)}
-                                        </Button>
-                                    </li>
-                                ))}
+                                {filteredCategories.length > 0 ?
+                                    filteredCategories.map((item) => (
+                                        <li key={item.id} className="mb-1">
+                                            <Button
+                                                size={'sm'}
+                                                variant={currentCategory?.slug === item.slug ? null : 'outline'}
+                                                onClick={() => handleCategoryClick(item)}
+                                                className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                                disabled={currentCategory?.slug === item.slug}
+                                            >
+                                                {capitalize(item.name)}
+                                            </Button>
+                                        </li>
+                                    ))
+                                    :
+                                    originalCategories.map((item) => (
+                                        <li key={item.id} className="mb-1">
+                                            <Button
+                                                size={'sm'}
+                                                variant={currentOriginalCategory?.name === item.name ? null : 'outline'}
+                                                onClick={() => handleOriginalCategoryClick(item)}
+                                                className={`w-full ${currentOriginalCategory?.name === item.name ? 'bg-blue-500 text-white' : ''}`}
+                                            >
+                                                {capitalize(item.name)}
+                                            </Button>
+                                        </li>
+                                    ))
+                                }
+
                             </ul>
                         </ScrollArea>
                     </AccordionContent>

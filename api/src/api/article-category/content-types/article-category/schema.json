@@ -39,12 +39,6 @@
       "type": "boolean",
       "default": false
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "article_categories"
-    },
     "context": {
       "type": "string"
     },

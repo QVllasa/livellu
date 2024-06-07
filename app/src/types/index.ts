@@ -109,24 +109,28 @@ export interface ArticleTag {
 
 export interface Category {
     id?: number;
-    ignored?: boolean;
-    article_categories: { data: Entity<ArticleCategory>[] };
     image?: { data: Entity<Media> };
     content?: string;
     createdAt: Date;
     updatedAt: Date;
-    publishedAt?: Date;
     name: string;
     slug: string;
     parent_categories?: { data: Entity<Category>[] };
     child_categories?: { data: Entity<Category>[] };
+    original_categories?: { data: Entity<OriginalCategory>[] };
+    identifier: string;
+    summary?: string;
+}
+
+export interface OriginalCategory {
+    id?: number;
+    createdAt: Date;
+    updatedAt: Date;
+    name: string;
     cat1?: string;
     identifier: string;
     cat2?: string;
     cat3?: string;
-    isCategory?: boolean;
-    navigation_item?: { data: Entity<Navigation> };
-    summary?: string;
 }
 
 export interface Color {

@@ -37,7 +37,7 @@
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
-      "inversedBy": "mapped_categories"
+      "inversedBy": "original_categories"
     }
   }
 }

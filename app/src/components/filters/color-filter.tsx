@@ -10,6 +10,7 @@ import {allColorsAtom, currentColorAtom} from "@/store/filters";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shadcn/components/ui/tooltip";
 import { findColorBySlug } from "@/framework/utils/find-by-slug";
 import {fetchAllColors} from "@/framework/color.ssr";
+import {arrangePathSegments} from "@/lib/utils";
 
 
 export const ColorFilter = () => {
@@ -57,9 +58,11 @@ export const ColorFilter = () => {
     }, [router.asPath, router.query, allColors]);
 
     const handleColorClick = (color: Color) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
 
-        const colorIndex = pathSegments.findIndex(segment => segment.startsWith('color-'));
+
+        const colorIndex = pathSegments.findIndex(el => el?.startsWith('color-'))
 
         if (colorIndex !== -1) {
             if (currentColor?.slug === color.slug) {
@@ -73,9 +76,14 @@ export const ColorFilter = () => {
             pathSegments.push(`${color.slug.toLowerCase()}`);
             setCurrentColor(color);
         }
+        //sort segments after
+        const sortedPathSegments = arrangePathSegments(pathSegments)
 
-        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-        router.push(updatedPath, undefined, { scroll: false });
+
+        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
 
 

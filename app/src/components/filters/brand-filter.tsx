@@ -6,14 +6,13 @@ import {Input} from "@/shadcn/components/ui/input";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
 import {useAtom} from "jotai";
-import {currentBrandAtom} from "@/store/filters";
+import {allBrandsAtom, currentBrandAtom} from "@/store/filters";
 import {findBrandBySlug} from "@/framework/utils/find-by-slug";
-import {fetchAllBrands} from "@/framework/brand.ssr";
 import {Brand} from "@/types";
-import {allBrandsAtom} from "@/store/filters";
+import {arrangePathSegments} from "@/lib/utils";
 
 export const BrandFilter = () => {
-    const [filteredBrands, setFilteredBrands] = useState([]);
+    const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
     const [allBrands] = useAtom(allBrandsAtom);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
@@ -57,9 +56,10 @@ export const BrandFilter = () => {
     }, [router.asPath, router.query, allBrands]);
 
     const handleBrandClick = (brand: Brand) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
 
-        const brandIndex = pathSegments.findIndex(segment => segment.startsWith('brand-'));
+        const brandIndex = pathSegments.findIndex(el => el?.startsWith('brand-'));
 
         if (brandIndex !== -1) {
             if (currentBrand?.slug === brand.slug) {
@@ -74,11 +74,17 @@ export const BrandFilter = () => {
             setCurrentBrand(brand);
         }
 
-        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-        router.push(updatedPath, undefined, {scroll: false});
+        // Sort segments after
+        const sortedPathSegments = arrangePathSegments(pathSegments);
+
+        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
 
-    const handleSearchSelect = (event: { target: { value: any; }; }) => {
+
+    const handleSearchSelect = (event: { target: { value: string } }) => {
         const value = event.target.value;
         setSearchTerm(value);
         if (value === '') {
@@ -93,11 +99,7 @@ export const BrandFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Marke:
-                            {/*<span className={'font-bold'}>*/}
-                            {/*    {capitalize(currentBrand?.label)}*/}
-                            {/*</span>*/}
-                        </h4>
+                        <h4 className="text-sm font-medium">Marke:</h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         <div className="w-full mb-4">

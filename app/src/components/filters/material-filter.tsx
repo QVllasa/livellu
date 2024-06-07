@@ -10,6 +10,7 @@ import { Material } from "@/types";
 import {allMaterialsAtom, currentMaterialAtom} from "@/store/filters";
 import { findMaterialBySlug } from "@/framework/utils/find-by-slug";
 import {fetchAllMaterials} from "@/framework/material.ssr";
+import {arrangePathSegments} from "@/lib/utils";
 
 export const MaterialFilter = ( ) => {
     const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
@@ -51,9 +52,10 @@ export const MaterialFilter = ( ) => {
     }, [router.asPath, router.query, allMaterials]);
 
     const handleMaterialClick = (material: Material) => {
-        const pathSegments = router.asPath.split('/').filter(segment => !segment.includes('?') && segment !== "");
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
 
-        const materialIndex = pathSegments.findIndex(segment => segment.startsWith('material-'));
+        const materialIndex = pathSegments.findIndex(el => el?.startsWith('material-'));
 
         if (materialIndex !== -1) {
             if (currentMaterial?.slug === material.slug) {
@@ -68,9 +70,15 @@ export const MaterialFilter = ( ) => {
             setCurrentMaterial(material);
         }
 
-        const updatedPath = `/${pathSegments.join('/')}`.replace(/\/+/g, '/');
-        router.push(updatedPath, undefined, { scroll: false });
+        // Sort segments after
+        const sortedPathSegments = arrangePathSegments(pathSegments);
+
+        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
+
 
     return (
         <div className="w-64 p-4 relative">

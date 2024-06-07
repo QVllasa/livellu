@@ -12,25 +12,8 @@ export async function fetchCategoryBySlug(slug: string): Promise<Category | null
             }
         },
         populate: {
-            child_categories: {
-                populate:
-                    {
-                        child_categories: {
-                            populate:
-                                {
-                                    child_categories: {populate: '*'},
-                                    parent_categories: {populate: "*"},
-                                }
-                        },
-                        parent_categories: {
-                            populate:
-                                {
-                                    child_categories: {populate: '*'},
-                                    parent_categories: {populate: "*"},
-                                }
-                        },
-                    }
-            },
+            child_categories: '*',
+            original_categories: '*',
             parent_categories: {
                 populate:
                     {
@@ -76,9 +59,8 @@ export async function fetchAllCategories() {
     const params = {
         filters: {
             $and: [
-                { isCategory: { $eq: true } },
-                { parent_categories: { id: { $null: true } } },
-                { identifier: { $startsWith: "00_" } }
+                {parent_categories: {id: {$null: true}}},
+                {identifier: {$startsWith: "00_"}}
             ]
         },
         populate: {
@@ -88,7 +70,24 @@ export async function fetchAllCategories() {
                         child_categories: {
                             populate:
                                 {
-                                    child_categories: {populate: '*'},
+                                    child_categories: {
+                                        populate: {
+                                            child_categories: {
+                                                populate:
+                                                    {
+                                                        child_categories: {populate: '*'},
+                                                        parent_categories: {populate: "*"},
+                                                    }
+                                            },
+                                            parent_categories: {
+                                                populate:
+                                                    {
+                                                        child_categories: {populate: '*'},
+                                                        parent_categories: {populate: "*"},
+                                                    }
+                                            },
+                                        }
+                                    },
                                     parent_categories: {populate: "*"},
                                 }
                         },
@@ -129,7 +128,6 @@ export async function fetchAllCategories() {
 export async function fetchCategory(params) {
 
     const response = await Client.categories.get(params);
-    console.log("response category: ", response.data);
     const category = response.data.map((entity) => {
         const id = entity.id;
         const modifiedItem = {

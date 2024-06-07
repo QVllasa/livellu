@@ -2,10 +2,11 @@
 import { useRouter } from "next/router";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shadcn/components/ui/dropdown-menu";
 import { Button } from "@/shadcn/components/ui/button";
+import {pageSizeAtom} from "@/store/filters";
 
 const PageSizeSelector = ({ currentSize }) => {
     const router = useRouter();
-    const pageSizes = [10, 20, 30, 50, 100];
+    const pageSizes = pageSizeAtom;
 
     const handlePageSizeChange = (size) => {
         router.push({

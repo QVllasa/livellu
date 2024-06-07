@@ -29,33 +29,10 @@
       "target": "api::category.category",
       "mappedBy": "parent_categories"
     },
-    "cat1": {
-      "type": "text"
-    },
     "identifier": {
-      "type": "text",
-      "required": true,
-      "unique": true
-    },
-    "cat2": {
-      "type": "string"
-    },
-    "cat3": {
-      "type": "string"
-    },
-    "isCategory": {
-      "type": "boolean",
-      "default": false
-    },
-    "ignored": {
-      "type": "boolean",
-      "default": false
-    },
-    "article_categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article-category.article-category",
-      "mappedBy": "category"
+      "type": "string",
+      "required": false,
+      "unique": false
     },
     "image": {
       "type": "media",
@@ -68,19 +45,13 @@
     "content": {
       "type": "richtext"
     },
-    "navigation_item": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::navigation.navigation",
-      "inversedBy": "category"
-    },
     "summary": {
       "type": "text"
     },
     "slug": {
       "type": "text"
     },
-    "mapped_categories": {
+    "original_categories": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::original-category.original-category",

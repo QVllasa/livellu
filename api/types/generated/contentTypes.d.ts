@@ -807,11 +807,6 @@ export interface ApiArticleCategoryArticleCategory
     featured_image: Attribute.Media;
     content: Attribute.RichText & Attribute.DefaultTo<'no content'>;
     is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
-    category: Attribute.Relation<
-      'api::article-category.article-category',
-      'manyToOne',
-      'api::category.category'
-    >;
     context: Attribute.String;
     posts: Attribute.Relation<
       'api::article-category.article-category',
@@ -941,27 +936,12 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'manyToMany',
       'api::category.category'
     >;
-    cat1: Attribute.Text;
-    identifier: Attribute.Text & Attribute.Required & Attribute.Unique;
-    cat2: Attribute.String;
-    cat3: Attribute.String;
-    isCategory: Attribute.Boolean & Attribute.DefaultTo<false>;
-    ignored: Attribute.Boolean & Attribute.DefaultTo<false>;
-    article_categories: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::article-category.article-category'
-    >;
+    identifier: Attribute.String;
     image: Attribute.Media;
     content: Attribute.RichText;
-    navigation_item: Attribute.Relation<
-      'api::category.category',
-      'oneToOne',
-      'api::navigation.navigation'
-    >;
     summary: Attribute.Text;
     slug: Attribute.Text;
-    mapped_categories: Attribute.Relation<
+    original_categories: Attribute.Relation<
       'api::category.category',
       'oneToMany',
       'api::original-category.original-category'
@@ -1200,78 +1180,32 @@ export interface ApiNavigationNavigation extends Schema.CollectionType {
   info: {
     singularName: 'navigation';
     pluralName: 'navigations';
-    displayName: 'NavigationItem';
+    displayName: 'Navigation';
     description: '';
   };
   options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
+    draftAndPublish: false;
   };
   attributes: {
-    title: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    slug: Attribute.Text &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    url: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    children: Attribute.Relation<
-      'api::navigation.navigation',
-      'oneToMany',
-      'api::navigation.navigation'
-    >;
-    parent: Attribute.Relation<
-      'api::navigation.navigation',
-      'manyToOne',
-      'api::navigation.navigation'
-    >;
+    title: Attribute.String;
+    slug: Attribute.String;
+    url: Attribute.String;
     icon: Attribute.Text &
-      Attribute.CustomField<'plugin::heroicons-field.icon-picker'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    order: Attribute.Integer &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    subtitle: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    page: Attribute.Relation<
+      Attribute.CustomField<'plugin::heroicons-field.icon-picker'>;
+    order: Attribute.Integer;
+    subtitle: Attribute.String;
+    parent_navigations: Attribute.Relation<
       'api::navigation.navigation',
-      'oneToOne',
-      'api::page.page'
+      'manyToMany',
+      'api::navigation.navigation'
     >;
-    category: Attribute.Relation<
+    child_navigations: Attribute.Relation<
       'api::navigation.navigation',
-      'oneToOne',
-      'api::category.category'
+      'manyToMany',
+      'api::navigation.navigation'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::navigation.navigation',
       'oneToOne',
@@ -1284,12 +1218,6 @@ export interface ApiNavigationNavigation extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::navigation.navigation',
-      'oneToMany',
-      'api::navigation.navigation'
-    >;
-    locale: Attribute.String;
   };
 }
 
@@ -1346,11 +1274,6 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    navigation_item: Attribute.Relation<
-      'api::page.page',
-      'oneToOne',
-      'api::navigation.navigation'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

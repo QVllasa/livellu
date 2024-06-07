@@ -13,12 +13,6 @@
   "attributes": {
     "title": {
       "type": "string"
-    },
-    "navigation_item": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::navigation.navigation",
-      "mappedBy": "page"
     }
   }
 }

@@ -4,90 +4,44 @@
   "info": {
     "singularName": "navigation",
     "pluralName": "navigations",
-    "displayName": "NavigationItem",
+    "displayName": "Navigation",
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
-  "pluginOptions": {
-    "i18n": {
-      "localized": true
-    }
-  },
+  "pluginOptions": {},
   "attributes": {
     "title": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "string"
     },
     "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "text"
-    },
-    "url": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "string"
     },
-    "children": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::navigation.navigation",
-      "mappedBy": "parent"
-    },
-    "parent": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::navigation.navigation",
-      "inversedBy": "children"
+    "url": {
+      "type": "string"
     },
     "icon": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "customField",
       "customField": "plugin::heroicons-field.icon-picker"
     },
     "order": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "integer"
     },
     "subtitle": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "string"
     },
-    "page": {
+    "parent_navigations": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::page.page",
-      "inversedBy": "navigation_item"
+      "relation": "manyToMany",
+      "target": "api::navigation.navigation",
+      "inversedBy": "child_navigations"
     },
-    "category": {
+    "child_navigations": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category",
-      "mappedBy": "navigation_item"
+      "relation": "manyToMany",
+      "target": "api::navigation.navigation",
+      "mappedBy": "parent_navigations"
     }
   }
 }
