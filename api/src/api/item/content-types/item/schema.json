@@ -12,74 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "productId": {
-      "type": "string"
-    },
-    "merchantProductId": {
-      "type": "text"
-    },
-    "ean": {
-      "type": "text"
-    },
-    "deliveryTime": {
-      "type": "text"
-    },
     "brandName": {
       "type": "text"
     },
     "currency": {
       "type": "string"
     },
-    "price": {
-      "type": "decimal"
-    },
-    "tracking": {
-      "type": "text"
-    },
-    "thumbnail": {
-      "type": "text"
-    },
-    "imageUrl": {
-      "type": "text"
-    },
-    "merchantLink": {
-      "type": "text"
-    },
-    "merchantImage": {
-      "type": "text"
-    },
-    "productName": {
-      "type": "text"
-    },
-    "description": {
-      "type": "text"
-    },
     "promotion": {
       "type": "string"
-    },
-    "dimensions": {
-      "type": "text"
     },
     "categoryIdentifier": {
       "type": "string"
     },
-    "slug": {
-      "type": "string"
-    },
-    "merchantId": {
-      "type": "string"
-    },
     "shortDescription": {
       "type": "text"
-    },
-    "priceOld": {
-      "type": "string"
-    },
-    "deliveryCost": {
-      "type": "string"
-    },
-    "averageRating": {
-      "type": "string"
     },
     "brandId": {
       "type": "string"
@@ -87,32 +33,19 @@
     "dataFeedId": {
       "type": "string"
     },
-    "keywords": {
-      "type": "text"
-    },
-    "isForSale": {
-      "type": "boolean"
-    },
     "language": {
       "type": "string"
     },
-    "large_image": {
-      "type": "text"
+    "groupId": {
+      "type": "string",
+      "unique": true,
+      "required": true
     },
-    "reviews": {
-      "type": "text"
-    },
-    "rating": {
-      "type": "text"
-    },
-    "altImageUrl": {
-      "type": "text"
-    },
-    "original_color": {
-      "type": "text"
-    },
-    "original_material": {
-      "type": "text"
+    "variants": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::variant.variant",
+      "mappedBy": "item"
     }
   }
 }

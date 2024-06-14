@@ -219,7 +219,7 @@ export interface Product {
     price?: number;
     tracking?: string;
     thumbnail?: string;
-    image_url?: string;
+    imageUrl?: string;
     merchantLink?: string;
     merchantImage?: string;
     productName?: string;

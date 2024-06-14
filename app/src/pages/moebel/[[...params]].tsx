@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Suspense, useEffect, useState} from "react";
+import {startTransition, Suspense, useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {Package2, Search} from "lucide-react";
 import {Input} from "@/shadcn/components/ui/input";
@@ -39,7 +39,14 @@ function MoebelPage({
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
-    setCurrentCategoryAtom(initialCategory)
+
+
+    useEffect(() => {
+        console.log("initial category: ", initialCategory);
+        startTransition(() => {
+            setCurrentCategoryAtom(initialCategory);
+        });
+    }, [router.asPath, router.query]);
 
     const debouncedSearch = debounce((terms) => {
         setLoading(true);
@@ -75,7 +82,9 @@ function MoebelPage({
 
     useEffect(() => {
         if (router.query.search) {
-            setSearchTerms(router.query.search?.split(' '));
+            startTransition(() => {
+                setSearchTerms(router.query.search?.split(' '));
+            });
         }
         setLoading(false);
     }, [router.query.search, products]);
@@ -170,8 +179,8 @@ export async function getServerSideProps({params, query}) {
     const filters = {$and: []};
 
     let initialBrand: Brand | null = null;
-    let initialColor: Color| null = null;
-    let initialMaterial: Material| null = null;
+    let initialColor: Color | null = null;
+    let initialMaterial: Material | null = null;
     let initialCategory: Category | null = null;
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
@@ -193,6 +202,16 @@ export async function getServerSideProps({params, query}) {
     }
     if (brandParam) {
         initialBrand = await fetchBrandBySlug(brandParam);
+    }
+
+    let categoryIds = initialCategory?.original_categories?.data.map(item => item.id) || [];
+
+    if (categoryIds.length === 0 && initialCategory) {
+        categoryIds = getOriginalCategoryIds(initialCategory);
+    }
+
+    if (categoryIds.length > 0) {
+        filters.$and.push({ categoryIdentifier: { $in: categoryIds } });
     }
 
     const filtersToApply = [
@@ -230,6 +249,9 @@ export async function getServerSideProps({params, query}) {
     const pageSize = parseInt(query.pageSize) || 48;
     const sort = sorts.find(el => el.value === query.sort) || 'asc';
 
+    console.log("filter: ", JSON.stringify(filters))
+
+
     const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize});
 
     return {
@@ -244,6 +266,18 @@ export async function getServerSideProps({params, query}) {
         },
     };
 }
+
+const getOriginalCategoryIds = (category) => {
+    let ids = category.original_categories?.data.map(item => item.id) || [];
+
+    if (category.child_categories?.data?.length > 0) {
+        category.child_categories.data.forEach(childCategory => {
+            ids = ids.concat(getOriginalCategoryIds(childCategory));
+        });
+    }
+
+    return ids;
+};
 
 MoebelPage.getLayout = getLayout;
 export default MoebelPage;

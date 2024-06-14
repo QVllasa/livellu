@@ -1052,40 +1052,20 @@ export interface ApiItemItem extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    productId: Attribute.String;
-    merchantProductId: Attribute.Text;
-    ean: Attribute.Text;
-    deliveryTime: Attribute.Text;
     brandName: Attribute.Text;
     currency: Attribute.String;
-    price: Attribute.Decimal;
-    tracking: Attribute.Text;
-    thumbnail: Attribute.Text;
-    imageUrl: Attribute.Text;
-    merchantLink: Attribute.Text;
-    merchantImage: Attribute.Text;
-    productName: Attribute.Text;
-    description: Attribute.Text;
     promotion: Attribute.String;
-    dimensions: Attribute.Text;
     categoryIdentifier: Attribute.String;
-    slug: Attribute.String;
-    merchantId: Attribute.String;
     shortDescription: Attribute.Text;
-    priceOld: Attribute.String;
-    deliveryCost: Attribute.String;
-    averageRating: Attribute.String;
     brandId: Attribute.String;
     dataFeedId: Attribute.String;
-    keywords: Attribute.Text;
-    isForSale: Attribute.Boolean;
     language: Attribute.String;
-    large_image: Attribute.Text;
-    reviews: Attribute.Text;
-    rating: Attribute.Text;
-    altImageUrl: Attribute.Text;
-    original_color: Attribute.Text;
-    original_material: Attribute.Text;
+    groupId: Attribute.String & Attribute.Required & Attribute.Unique;
+    variants: Attribute.Relation<
+      'api::item.item',
+      'oneToMany',
+      'api::variant.variant'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
@@ -1382,6 +1362,68 @@ export interface ApiRouteRoute extends Schema.CollectionType {
   };
 }
 
+export interface ApiVariantVariant extends Schema.CollectionType {
+  collectionName: 'variants';
+  info: {
+    singularName: 'variant';
+    pluralName: 'variants';
+    displayName: 'Variant';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    merchantId: Attribute.Text;
+    merchantProductId: Attribute.Text;
+    description: Attribute.Text;
+    tracking: Attribute.Text;
+    merchantImage: Attribute.Text;
+    thumbnail: Attribute.Text;
+    originalMaterial: Attribute.Text;
+    ean: Attribute.Text;
+    dimension: Attribute.Text;
+    priceOld: Attribute.String;
+    price: Attribute.Decimal;
+    productId: Attribute.Text;
+    merchantLink: Attribute.Text;
+    deliveryTime: Attribute.Text;
+    slug: Attribute.Text;
+    originalColor: Attribute.Text;
+    altImageUrl: Attribute.Text;
+    imageUrl: Attribute.Text;
+    deliveryCost: Attribute.Text;
+    productName: Attribute.Text;
+    averageRating: Attribute.Text;
+    keywords: Attribute.Text;
+    isForSale: Attribute.Boolean;
+    largeImage: Attribute.Text;
+    reviews: Attribute.Text;
+    rating: Attribute.Text;
+    item: Attribute.Relation<
+      'api::variant.variant',
+      'manyToOne',
+      'api::item.item'
+    >;
+    groupId: Attribute.Text;
+    variantId: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1415,6 +1457,7 @@ declare module '@strapi/types' {
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
       'api::route.route': ApiRouteRoute;
+      'api::variant.variant': ApiVariantVariant;
     }
   }
 }

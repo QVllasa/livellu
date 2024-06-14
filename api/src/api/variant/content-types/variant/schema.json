@@ -1,0 +1,106 @@
+{
+  "kind": "collectionType",
+  "collectionName": "variants",
+  "info": {
+    "singularName": "variant",
+    "pluralName": "variants",
+    "displayName": "Variant",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "merchantId": {
+      "type": "text"
+    },
+    "merchantProductId": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    },
+    "tracking": {
+      "type": "text"
+    },
+    "merchantImage": {
+      "type": "text"
+    },
+    "thumbnail": {
+      "type": "text"
+    },
+    "originalMaterial": {
+      "type": "text"
+    },
+    "ean": {
+      "type": "text"
+    },
+    "dimension": {
+      "type": "text"
+    },
+    "priceOld": {
+      "type": "string"
+    },
+    "price": {
+      "type": "decimal"
+    },
+    "productId": {
+      "type": "text"
+    },
+    "merchantLink": {
+      "type": "text"
+    },
+    "deliveryTime": {
+      "type": "text"
+    },
+    "slug": {
+      "type": "text"
+    },
+    "originalColor": {
+      "type": "text"
+    },
+    "altImageUrl": {
+      "type": "text"
+    },
+    "imageUrl": {
+      "type": "text"
+    },
+    "deliveryCost": {
+      "type": "text"
+    },
+    "productName": {
+      "type": "text"
+    },
+    "averageRating": {
+      "type": "text"
+    },
+    "keywords": {
+      "type": "text"
+    },
+    "isForSale": {
+      "type": "boolean"
+    },
+    "largeImage": {
+      "type": "text"
+    },
+    "reviews": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "text"
+    },
+    "item": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::item.item",
+      "inversedBy": "variants"
+    },
+    "groupId": {
+      "type": "text"
+    },
+    "variantId": {
+      "type": "string"
+    }
+  }
+}
