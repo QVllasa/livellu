@@ -59,8 +59,8 @@ export async function fetchAllCategories() {
     const params = {
         filters: {
             $and: [
-                {parent_categories: {id: {$null: true}}},
-                {identifier: {$startsWith: "00_"}}
+                // {parent_categories: {id: {$notNull: true}}},
+                {identifier: {$startsWith: "0000_"}}
             ]
         },
         populate: {

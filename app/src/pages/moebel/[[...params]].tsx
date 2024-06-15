@@ -4,7 +4,7 @@ import {useRouter} from "next/router";
 import {Package2, Search} from "lucide-react";
 import {Input} from "@/shadcn/components/ui/input";
 import {getLayout} from "@/components/layouts/layout";
-import {debounce} from "lodash";
+import {capitalize, debounce} from "lodash";
 import {fetchCategoryBySlug} from "@/framework/category.ssr";
 import {fetchMaterialBySlug} from "@/framework/material.ssr";
 import {fetchColorBySlug} from "@/framework/color.ssr";
@@ -16,12 +16,13 @@ import {ProductsGrid} from "@/components/products/products-grid";
 import {CategoryFilter} from "@/components/filters/category-filter";
 import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 import PageSortSelector from "@/components/filters/page-sort-selector";
-import {sortsAtom} from "@/store/filters";
+import {currentCategoryAtom, sortsAtom} from "@/store/filters";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {BrandFilter} from "@/components/filters/brand-filter";
 import {ColorFilter} from "@/components/filters/color-filter";
 import {MaterialFilter} from "@/components/filters/material-filter";
+import {useAtom} from "jotai/index";
 
 function MoebelPage({
                         products,
@@ -32,6 +33,7 @@ function MoebelPage({
                         sort
                     }) {
     const [loading, setLoading] = useState(false);
+    const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
 
 
     return (
@@ -42,7 +44,7 @@ function MoebelPage({
                         <div className="flex h-auto items-center border-b p-6  lg:px-4">
                             <Link href="/" className="flex items-center gap-2 font-semibold">
                                 <Package2 className="h-6 w-6"/>
-                                {/*<span className="">{capitalize(initialCategory?.name ?? 'Moebel')}</span>*/}
+                                <span className="">{capitalize(currentCategory?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
                         <div className="flex-1 h-full">

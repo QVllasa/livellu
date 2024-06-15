@@ -13,67 +13,91 @@ import {fetchCategoryBySlug} from "@/framework/category.ssr";
 
 
 export const CategoryFilter = () => {
-        const [filteredCategories, setFilteredCategories] = useState<Category[]>([]);
-        const [originalCategories, setOriginalCategories] = useState<Category[]>([]);
-        const [childCategories, setChildCategories] = useState<Category[]>([]);
+        const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[]>([]);
         const [searchTerm, setSearchTerm] = useState('');
         const [openItem, setOpenItem] = useState("item-1");
         const [loading, setLoading] = useState(false);
 
         const router = useRouter();
         const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
-        const [currentOriginalCategory, setOriginalCategory] = useState<Category | null>(null);
         const [allCategories] = useAtom(allCategoriesAtom);
 
 
         useEffect(() => {
-            const fetchCategory = async (slug) => {
-                if (!slug) return;
-                const fetchedCategory = await fetchCategoryBySlug(slug);
-                setCurrentCategory(fetchedCategory);
-            };
-
-            const categorySlug = router.asPath.split('/').find((p) => p.startsWith('category-'));
-            fetchCategory(categorySlug);
-        }, [router.asPath]);
+            const [pathSegments, queryString] = getPath()
+            fetchCategory(getSlug(pathSegments));
+        }, [router.asPath, router.query]);
 
         useEffect(() => {
-            console.log("currentCategory: ", currentCategory);
             if (!currentCategory) {
-                setFilteredCategories(allCategories);
-                setChildCategories(allCategories);
-                setOriginalCategories([]);
+                setCategoriesToDisplay(allCategories);
+
                 setSearchTerm('');
             }
         }, [currentCategory, allCategories]);
 
         useEffect(() => {
             if (currentCategory) {
-                const categoriesToDisplay = currentCategory.child_categories?.data.map((item) => ({
-                    id: item.id,
-                    ...item.attributes,
-                })) || [];
+                let categories: Category[] = [];
+                categories = getCategoriesToDisplay(currentCategory);
 
-                const originalCategoriesToDisplay = currentCategory.original_categories?.data.map((item) => ({
-                    id: item.id,
-                    ...item.attributes,
-                })) || [];
+                console.log("Categories to display: ", categories)
 
-                setChildCategories(categoriesToDisplay);
-                setFilteredCategories(categoriesToDisplay);
-                setOriginalCategories(originalCategoriesToDisplay);
+                setCategoriesToDisplay(categories);
                 setSearchTerm('');
                 setLoading(false);  // Stop loading once categories are set
             }
-        }, [currentCategory]);
+        }, [currentCategory, router.asPath, router.query]);
+
+
+        const getParentCategory = (category: any): Category => {
+            const cat: Category = {
+                id: category?.parent_categories?.data[0].id,
+                ...category?.parent_categories?.data[0].attributes
+            };
+            return cat;
+        }
+
+        const fetchCategory = async (slug: string) => {
+            if (!slug) return;
+            const fetchedCategory = await fetchCategoryBySlug(slug);
+            setCurrentCategory(fetchedCategory);
+        };
+
+
+        const getChildren = (category: Category) => {
+            return category?.child_categories?.data.map((item) => ({
+                id: item.id,
+                ...item.attributes,
+            })) || [];
+        }
+
+        const getCategoriesToDisplay = (category: Category) => {
+            let categories: Category[] = [];
+            if (category?.child_categories?.data.length !== 0) {
+                categories = getChildren(category);
+            } else if (category?.child_categories?.data?.length === 0 && category?.parent_categories?.data?.length > 0) {
+                const parent: Category = getParentCategory(category);
+                categories = getChildren(parent);
+            }
+            return categories;
+        }
+
+        const getPath = () => {
+            const [path, queryString] = router.asPath.split('?');
+            const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
+            return [pathSegments, queryString];
+        }
+
+        const getSlug = (pathSegments) => {
+            return pathSegments.find(el => el?.startsWith('category-'));
+        }
 
 
         const handleCategoryClick = async (category: Category) => {
             setLoading(true);  // Start loading when a category click is initiated
-            const [path, queryString] = router.asPath.split('?');
-            const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
-
-            const categoryIndex = pathSegments.findIndex(el => el?.startsWith('category-'));
+            const [pathSegments, queryString] = getPath();
+            const categoryIndex = pathSegments?.findIndex(el => el?.startsWith('category-'));
 
             if (categoryIndex !== -1) {
                 if (currentCategory?.slug === category.slug) {
@@ -97,35 +121,18 @@ export const CategoryFilter = () => {
             router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
         };
 
-        const handleSearchSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const handleSearchSelect = (event) => {
             const value = event.target.value;
+            console.log("Search value: ", value)
+            setSearchTerm(value);
+            let categories = getCategoriesToDisplay(currentCategory);
+            console.log("Search categories: ", categories)
             if (value === '') {
-                setFilteredCategories(childCategories);
-                setSearchTerm('');
+                setCategoriesToDisplay(categories);
                 return;
             }
-            setSearchTerm(value);
-            setFilteredCategories(childCategories.filter((item: Category) => item.name.toLowerCase().includes(value.toLowerCase())));
-        };
-
-        const handleOriginalCategoryClick = (category) => {
-            const currentQuery = {...router.query};
-            const categorySlug = category.name;
-
-            if (currentQuery.category === categorySlug) {
-                // Remove the category if it's already in the query
-                delete currentQuery.category;
-                setOriginalCategory(null);
-            } else {
-                // Add or replace the category
-                currentQuery.category = categorySlug;
-                setOriginalCategory(category);
-            }
-
-            router.push({
-                pathname: router.pathname,
-                query: currentQuery,
-            });
+            const filteredCategories = categories.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
+            setCategoriesToDisplay(filteredCategories);
         };
 
 
@@ -134,23 +141,21 @@ export const CategoryFilter = () => {
                 <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                     <AccordionItem value="item-1">
                         <AccordionTrigger>
-                            <h4 className="text-sm font-medium">Kategorie:</h4>
+                            <h4 className="text-sm font-medium">Kategorie</h4>
                         </AccordionTrigger>
                         <AccordionContent>
-                            {childCategories?.length > 1 && (
-                                <div className="w-full mb-4">
-                                    <Input
-                                        type="text"
-                                        placeholder="Search categories..."
-                                        value={searchTerm}
-                                        onChange={handleSearchSelect}
-                                    />
-                                </div>
-                            )}
+                            <div className="w-full mb-4">
+                                <Input
+                                    type="text"
+                                    placeholder="Search categories..."
+                                    value={searchTerm}
+                                    onChange={handleSearchSelect}
+                                />
+                            </div>
                             <ScrollArea className="max-h-64 overflow-auto">
                                 <ul>
-                                    {filteredCategories?.length > 0 ?
-                                        filteredCategories.map((item) => (
+                                    {categoriesToDisplay?.length > 0 &&
+                                        categoriesToDisplay.map((item) => (
                                             <li key={item.id} className="mb-1">
                                                 <Button
                                                     size={'sm'}
@@ -158,19 +163,6 @@ export const CategoryFilter = () => {
                                                     onClick={() => handleCategoryClick(item)}
                                                     className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
                                                     disabled={currentCategory?.slug === item.slug}
-                                                >
-                                                    {capitalize(item.name)}
-                                                </Button>
-                                            </li>
-                                        ))
-                                        :
-                                        originalCategories?.map((item) => (
-                                            <li key={item.id} className="mb-1">
-                                                <Button
-                                                    size={'sm'}
-                                                    variant={currentOriginalCategory?.name === item.name ? null : 'outline'}
-                                                    onClick={() => handleOriginalCategoryClick(item)}
-                                                    className={`w-full ${currentOriginalCategory?.name === item.name ? 'bg-blue-500 text-white' : ''}`}
                                                 >
                                                     {capitalize(item.name)}
                                                 </Button>
