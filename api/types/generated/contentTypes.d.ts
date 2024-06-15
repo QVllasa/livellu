@@ -804,7 +804,7 @@ export interface ApiArticleCategoryArticleCategory
     title: Attribute.String & Attribute.Required & Attribute.Unique;
     description: Attribute.Text;
     slug: Attribute.String;
-    featured_image: Attribute.Media;
+    featured_image: Attribute.Media<'images'>;
     content: Attribute.RichText & Attribute.DefaultTo<'no content'>;
     is_featured: Attribute.Boolean & Attribute.DefaultTo<false>;
     context: Attribute.String;
@@ -937,7 +937,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::category.category'
     >;
     identifier: Attribute.String;
-    image: Attribute.Media;
+    image: Attribute.Media<'images'>;
     content: Attribute.RichText;
     summary: Attribute.Text;
     slug: Attribute.Text;
@@ -1136,7 +1136,7 @@ export interface ApiMerchantMerchant extends Schema.CollectionType {
       'oneToMany',
       'api::feed.feed'
     >;
-    logo_image: Attribute.Media;
+    logo_image: Attribute.Media<'images'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1320,7 +1320,7 @@ export interface ApiPostPost extends Schema.CollectionType {
       'api::post.post'
     >;
     sections: Attribute.Component<'article.article-section', true>;
-    featured_image: Attribute.Media;
+    featured_image: Attribute.Media<'images'>;
     context: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;

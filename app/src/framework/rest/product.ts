@@ -3,9 +3,7 @@ import {useAtom} from "jotai";
 import {Entity, Product} from "@/types";
 import Client from "@/framework/client";
 import {currentCategoryAtom} from "@/store/category";
-import {currentColorAtom} from "@/store/filters";
-import {currentMaterialAtom} from "@/store/filters";
-import {currentBrandAtom} from "@/store/filters";
+import {currentBrandAtom, currentColorAtom, currentMaterialAtom} from "@/store/filters";
 
 export function useProducts() {
     const [currentCategory] = useAtom(currentCategoryAtom);
@@ -55,18 +53,23 @@ export function useProducts() {
 }
 
 
-export async function fetchProducts(filters, pagination, sortBy = '', order = '') {
+export async function fetchProducts(filters: any, pagination: any, sort: any) {
+    const sorting = sort ? {sort: `${sort.dimension}:${sort.value}`} : {}
     const params = {
         filters: {
             ...filters,
+            variants: {$notNull: true}
         },
+        populate: '*',
         pagination: {
             page: 1,
             pageSize: 30, // Adjust the pageSize as needed
             ...pagination
         },
-        // sort: `${sortBy}:${order}`, // Strapi sorting syntax
+        // ...sorting, // Strapi sorting syntax
     };
+
+    console.log("filter:  ", JSON.stringify(params));
 
 
     const response = await Client.products.all(params);

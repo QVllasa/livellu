@@ -30,8 +30,12 @@ export const currentBrandAtom = atom<null | any | Brand>(null);
 
 export const priceRangeAtom = atom([0, 10000]); // Example initial range
 
-export const sortsAtom = [
-    {label: 'Absteigend', value: 'desc'},
-    {label: 'Aufsteigend', value: 'asc'}]; // Example initial sort value
+export const sortsAtom: any = [
+    {id: "top", label: 'Top Empfehlung', dimension: 'price', value: 'desc'},
+    {id: "beliebtheit", label: 'Beliebtheit', dimension: 'price', value: 'desc'},
+    {id: "preisab", label: 'Preis Absteigend', dimension: 'price', value: 'desc'},
+    {id: "preisauf", label: 'Preis Aufsteigend', dimension: 'price', value: 'desc'},
+    {id: "rabatt", label: 'Höchte Rabatte', dimension: 'price', value: 'desc'},
+]
 
 export const pageSizeAtom = [24, 48, 96]

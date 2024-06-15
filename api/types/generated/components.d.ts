@@ -8,8 +8,8 @@ export interface ArticleArticleSection extends Schema.Component {
   };
   attributes: {
     content: Attribute.RichText & Attribute.DefaultTo<'# H1'>;
-    featured_image: Attribute.Media;
-    images: Attribute.Media;
+    featured_image: Attribute.Media<'images'>;
+    images: Attribute.Media<'images', true>;
     product_categories: Attribute.Relation<
       'article.article-section',
       'oneToMany',

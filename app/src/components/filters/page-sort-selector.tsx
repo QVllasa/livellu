@@ -9,10 +9,10 @@ const PageSortSelector = ({sort}) => {
     const router = useRouter();
     const sorts = sortsAtom
 
-    const handleSortChange = (value) => {
+    const handleSortChange = (id) => {
         router.push({
             pathname: router.pathname,
-            query: {...router.query, sort: value},
+            query: {...router.query, sort: id},
         });
     };
 
@@ -20,15 +20,15 @@ const PageSortSelector = ({sort}) => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                    Sortierung: {sort.label}
+                    Sortierung: {sort?.label}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
                 {sorts.map((value, index) => (
                     <DropdownMenuItem
                         key={index}
-                        onClick={() => handleSortChange(value.value)}
-                        className={sort.value === value.value ? 'font-bold' : ''}
+                        onClick={() => handleSortChange(value.id)}
+                        className={sort?.value === value.value ? 'font-bold' : ''}
                     >
                         {value.label}
                     </DropdownMenuItem>

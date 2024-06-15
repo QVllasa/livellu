@@ -34,7 +34,6 @@ function extractParentPath(category: Category | null): Category[] {
 
 export const Breadcrumbs = () => {
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
-    const [allCategories] = useAtom(allCategoriesAtom);
     const [categoryPath, setCategoryPath] = useState<Category[]>([]);
 
     const router = useRouter();
@@ -49,9 +48,6 @@ export const Breadcrumbs = () => {
         }
     }, [currentCategory]);
 
-    useEffect(() => {
-        console.log("categoryPath: ", categoryPath)
-    }, [categoryPath]);
 
     const handleBreadcrumbClick = (category) => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);

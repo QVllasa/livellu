@@ -9,6 +9,7 @@ import {useAtom} from "jotai";
 import {Category} from "@/types";
 import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
 import {arrangePathSegments} from "@/lib/utils";
+import {fetchCategoryBySlug} from "@/framework/category.ssr";
 
 
 export const CategoryFilter = () => {
@@ -17,13 +18,27 @@ export const CategoryFilter = () => {
         const [childCategories, setChildCategories] = useState<Category[]>([]);
         const [searchTerm, setSearchTerm] = useState('');
         const [openItem, setOpenItem] = useState("item-1");
+        const [loading, setLoading] = useState(false);
 
         const router = useRouter();
         const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
         const [currentOriginalCategory, setOriginalCategory] = useState<Category | null>(null);
         const [allCategories] = useAtom(allCategoriesAtom);
 
+
         useEffect(() => {
+            const fetchCategory = async (slug) => {
+                if (!slug) return;
+                const fetchedCategory = await fetchCategoryBySlug(slug);
+                setCurrentCategory(fetchedCategory);
+            };
+
+            const categorySlug = router.asPath.split('/').find((p) => p.startsWith('category-'));
+            fetchCategory(categorySlug);
+        }, [router.asPath]);
+
+        useEffect(() => {
+            console.log("currentCategory: ", currentCategory);
             if (!currentCategory) {
                 setFilteredCategories(allCategories);
                 setChildCategories(allCategories);
@@ -48,11 +63,13 @@ export const CategoryFilter = () => {
                 setFilteredCategories(categoriesToDisplay);
                 setOriginalCategories(originalCategoriesToDisplay);
                 setSearchTerm('');
+                setLoading(false);  // Stop loading once categories are set
             }
         }, [currentCategory]);
 
 
         const handleCategoryClick = async (category: Category) => {
+            setLoading(true);  // Start loading when a category click is initiated
             const [path, queryString] = router.asPath.split('?');
             const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
 

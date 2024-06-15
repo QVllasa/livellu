@@ -202,48 +202,66 @@ export interface Merchant {
     products?: { data: Entity<Product>[] };
     logo_image?: { data: Entity<Media> };
 }
+export interface Variant {
+    merchantId: string;
+    merchantProductId: string;
+    description: string;
+    tracking: string;
+    merchantImage: string;
+    thumbnail: string;
+    originalMaterial: string;
+    ean: string;
+    dimension: string;
+    priceOld: string;
+    price: number;
+    productId: string;
+    merchantLink: string;
+    deliveryTime: string;
+    slug: string;
+    originalColor: string;
+    altImageUrl: string;
+    imageUrl: string;
+    deliveryCost: string;
+    productName: string;
+    averageRating: string;
+    keywords: string;
+    isForSale: boolean;
+    largeImage: string;
+    reviews: string;
+    rating: string;
+    item: {
+        data: Entity<Product>;
+    };
+    groupId: string;
+    variantId: string;
+    createdAt: string;
+    updatedAt: string;
+    createdBy: number;
+    updatedBy: number;
+}
 
 export interface Product {
     id: number;
-    createdAt: Date;
-    updatedAt: Date;
-    publishedAt?: Date;
-    productId?: string;
-    merchantProductId?: string;
-    ean: string;
-    deliveryTime?: string;
-    category?: { data: Entity<Category> };
-    merchants?: { data: Entity<Merchant>[] };
-    brandName?: string;
-    currency?: string;
-    price?: number;
-    tracking?: string;
-    thumbnail?: string;
-    imageUrl?: string;
-    merchantLink?: string;
-    merchantImage?: string;
-    productName?: string;
-    description?: string;
-    promotion?: string;
-    dimensions?: string;
-    colour?: string;
-    material?: string;
-    categoryIdentifier?: string;
-    slug?: string;
-    merchantId?: string;
-    shortDescription?: string;
-    priceOld?: string;
-    deliveryCost?: string;
-    averageRating?: string;
-    brandId?: string;
-    dataFeedId?: string;
-    isForSale?: boolean;
-    keywords?: string;
-    language?: string;
-    large_image?: string;
-    reviews?: string;
-    rating?: string;
-    altImageUrl?: string;
+    brandName: string;
+    currency: string;
+    promotion: string;
+    categoryIdentifier: string;
+    shortDescription: string;
+    brandId: string;
+    dataFeedId: string;
+    language: string;
+    groupId: string;
+    variants: {
+        data: Entity<Variant>[];
+    };
+    createdAt: string;
+    updatedAt: string;
+    createdBy: {
+        data: User;
+    };
+    updatedBy: {
+        data: User;
+    };
 
 }
 
