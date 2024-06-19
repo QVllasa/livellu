@@ -18,6 +18,19 @@ export default ({env}) => ({
     "content-versioning": {
       enabled: false,
     },
+    meilisearch: {
+      config: {
+        // Your meili host
+        host: "http://localhost:7700",
+        // Your master key or private key
+        apiKey: env('MEILISEARCH_API_KEY'),
+        items: {
+          settings: {
+            filterableAttributes: ['categoryIdentifier', 'variants.price', 'variants.description'],
+          }
+        }
+      }
+    },
     'schemas-to-ts': {
       enabled: false,
       config: {

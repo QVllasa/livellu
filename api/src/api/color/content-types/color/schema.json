@@ -13,20 +13,8 @@
   "pluginOptions": {},
   "attributes": {
     "label": {
-      "type": "text",
+      "type": "string",
       "unique": true
-    },
-    "parent_colors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::color.color",
-      "inversedBy": "child_colors"
-    },
-    "child_colors": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::color.color",
-      "mappedBy": "parent_colors"
     },
     "isColor": {
       "type": "boolean",
@@ -38,6 +26,18 @@
     },
     "slug": {
       "type": "text"
+    },
+    "child_colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "mappedBy": "parent_colors"
+    },
+    "parent_colors": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::color.color",
+      "inversedBy": "child_colors"
     }
   }
 }

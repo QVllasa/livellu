@@ -4,49 +4,50 @@ import {debounce} from "lodash";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
-export const SearchFilter = ({setLoading }) => {
+export const SearchFilter = () => {
     const [searchTerm, setSearchTerm] = useState('');
-    const [searchTerms, setSearchTerms] = useState([]);
+    const [searchQuery, setSearchQuery] = useState([]);
     const router = useRouter();
 
-    const debouncedSearch = debounce((terms) => {
-        setLoading(true);
+    const handleSearch = (terms) => {
         const query = {
             ...router.query,
             search: terms.join(' '),
         };
-        router.push({
+        router.replace({
             pathname: router.pathname,
             query,
         });
-    }, 500);
+    };
 
     const handleSearchChange = (e) => {
+        console.log(e.target.value)
         setSearchTerm(e.target.value);
     };
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
+        console.log("submitted: ", e)
         if (searchTerm.trim()) {
-            const newSearchTerms = [...searchTerms, searchTerm.trim()];
-            setSearchTerms(newSearchTerms);
+            const newSearchTerms = [...searchQuery, searchTerm.trim()];
+            setSearchQuery(newSearchTerms);
             setSearchTerm('');
-            debouncedSearch(newSearchTerms);
+            handleSearch(newSearchTerms);
         }
     };
 
     const handleChipRemove = (term) => {
-        const newSearchTerms = searchTerms.filter((t) => t !== term);
-        setSearchTerms(newSearchTerms);
-        debouncedSearch(newSearchTerms);
+        const newSearchTerms = searchQuery.filter((t) => t !== term);
+        setSearchQuery(newSearchTerms);
+        handleSearch(newSearchTerms);
     };
+
 
 
     useEffect(() => {
         if (router.query.search) {
-            setSearchTerms(router.query.search?.split(' '));
+            setSearchQuery(router.query.search?.split(' '));
         }
-        setLoading(false);
     }, [router.query.search]);
 
     return <div className="w-full flex-1">
@@ -61,7 +62,7 @@ export const SearchFilter = ({setLoading }) => {
             />
         </form>
         <div className="flex gap-2 flex-wrap">
-            {searchTerms.map((term) => (
+            {searchQuery.map((term) => (
                 <div
                     key={term}
                     className="flex mt-2 items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"

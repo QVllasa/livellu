@@ -16,9 +16,6 @@ const Home: NextPageWithLayout = () => {
     const { query } = useRouter();
     const { width } = useWindowSize();
     const { type } = useType();
-    const [allCategories] = useAtom(allCategoriesAtom);
-
-    console.log("categories: ", allCategories)
 
     useEffect(() => {
         if (query.text || query.category) {
@@ -38,7 +35,6 @@ const Home: NextPageWithLayout = () => {
             <BackgroundDiagonalLines />
 
             <Suspense fallback={<div>Loading...</div>}>
-                <CategoryTree categories={allCategories ?? []} />
             </Suspense>
 
             <Merchants />

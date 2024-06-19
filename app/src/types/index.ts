@@ -140,9 +140,9 @@ export interface Color {
     label: string;
     slug: string;
     code: string;
-    parent_categories?: { data: Entity<Color>[] };
-    child_categories?: { data: Entity<Color>[] };
-    isColour?: boolean;
+    parent_colors?: { data: Entity<Color>[] };
+    child_colors?: { data: Entity<Color>[] };
+    isColor?: boolean;
 }
 
 

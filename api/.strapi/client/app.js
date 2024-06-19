@@ -8,6 +8,7 @@ import i18N from "@strapi/plugin-i18n/strapi-admin";
 import usersPermissions from "@strapi/plugin-users-permissions/strapi-admin";
 import entityRelationshipChart from "strapi-plugin-entity-relationship-chart/strapi-admin";
 import heroiconsField from "strapi-plugin-heroicons-field/strapi-admin";
+import meilisearch from "strapi-plugin-meilisearch/strapi-admin";
 import multiSelect from "strapi-plugin-multi-select/strapi-admin";
 import prevNextButton from "strapi-plugin-prev-next-button/strapi-admin";
 import { renderAdmin } from "@strapi/strapi/admin";
@@ -20,6 +21,7 @@ renderAdmin(document.getElementById("strapi"), {
     "users-permissions": usersPermissions,
     "entity-relationship-chart": entityRelationshipChart,
     "heroicons-field": heroiconsField,
+    meilisearch: meilisearch,
     "multi-select": multiSelect,
     "prev-next-button": prevNextButton,
   },

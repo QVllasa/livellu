@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "clean": "rimraf \"{.next,node_modules,__generated__,.cache,src/framework/graphql/**/*.d.ts}\"",
-    "dev": "NODE_OPTIONS='--max-old-space-size=8192' next dev -p 3003",
+    "dev": "NODE_OPTIONS='--max-old-space-size=1024' next dev -p 3003",
     "build": "NODE_OPTIONS='--max-old-space-size=8192' next build",
-    "start": "NODE_OPTIONS='--max-old-space-size=8192' next start -p $PORT",
+    "start": "next start -p $PORT",
     "lint": "next lint",
     "postbuild:rest": "next-sitemap",
     "prepare": "husky install"
@@ -55,6 +55,7 @@
     "js-cookie": "3.0.1",
     "little-state-machine": "4.8.0",
     "lodash": "^4.17.21",
+    "lottie-react": "^2.4.0",
     "lucide-react": "^0.341.0",
     "next": "13.2.3",
     "next-i18next": "13.2.1",
@@ -78,6 +79,7 @@
     "react-dropzone": "14.2.3",
     "react-hook-form": "7.43.5",
     "react-i18next": "12.2.0",
+    "react-lottie": "^1.2.4",
     "react-markdown": "^9.0.1",
     "react-otp-input": "2.4.0",
     "react-phone-input-2": "2.15.1",

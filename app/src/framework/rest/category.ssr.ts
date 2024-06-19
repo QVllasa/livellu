@@ -12,7 +12,22 @@ export async function fetchCategoryBySlug(slug: string): Promise<Category | null
             }
         },
         populate: {
-            child_categories: '*',
+            child_categories: {
+                populate:
+                    {
+                        child_categories: {
+                            populate:
+                                {
+                                    child_categories: {populate: '*'},
+                                    parent_categories: {populate: "*"},
+                                }
+                        },
+                        original_categories: {
+                            populate:
+                                '*'
+                        },
+                    }
+            },
             original_categories: '*',
             parent_categories: {
                 populate:

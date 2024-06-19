@@ -22,6 +22,10 @@ export const CategoryFilter = () => {
         const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
         const [allCategories] = useAtom(allCategoriesAtom);
 
+    useEffect(() => {
+        console.log("Current category: ", currentCategory)
+    }, [currentCategory]);
+
 
         useEffect(() => {
             const [pathSegments, queryString] = getPath()
@@ -41,7 +45,7 @@ export const CategoryFilter = () => {
                 let categories: Category[] = [];
                 categories = getCategoriesToDisplay(currentCategory);
 
-                console.log("Categories to display: ", categories)
+
 
                 setCategoriesToDisplay(categories);
                 setSearchTerm('');

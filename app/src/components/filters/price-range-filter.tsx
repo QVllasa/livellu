@@ -6,7 +6,7 @@ import debounce from "lodash/debounce";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 
-export const PriceRangeFilter = ({ setLoading }) => {
+export const PriceRangeFilter = () => {
     const router = useRouter();
     const { minPrice, maxPrice } = router.query;
     const [priceRange, setPriceRange] = useState([Number(minPrice) || 0, Number(maxPrice) || 10000]);
@@ -34,13 +34,13 @@ export const PriceRangeFilter = ({ setLoading }) => {
                 query.maxPrice = values[1];
             }
 
-            setLoading(true);
+
             router.push({
                 pathname: router.pathname,
                 query,
             }, undefined, { scroll: false });
         }, 750),
-        [router, setLoading]
+        [router]
     );
 
     const handlePriceChange = (values: number[]) => {

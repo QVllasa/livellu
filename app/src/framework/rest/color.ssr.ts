@@ -29,6 +29,9 @@ export async function fetchColorBySlug(slug: string):Promise<Color|null> {
                 $eq: slug,
             },
         },
+        populate: {
+            child_colors: { populate: "*" },
+        },
     };
 
     return fetchColor(params);

@@ -975,20 +975,20 @@ export interface ApiColorColor extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    label: Attribute.Text & Attribute.Unique;
-    parent_colors: Attribute.Relation<
-      'api::color.color',
-      'manyToMany',
-      'api::color.color'
-    >;
+    label: Attribute.String & Attribute.Unique;
+    isColor: Attribute.Boolean & Attribute.DefaultTo<false>;
+    code: Attribute.String;
+    slug: Attribute.Text;
     child_colors: Attribute.Relation<
       'api::color.color',
       'manyToMany',
       'api::color.color'
     >;
-    isColor: Attribute.Boolean & Attribute.DefaultTo<false>;
-    code: Attribute.String;
-    slug: Attribute.Text;
+    parent_colors: Attribute.Relation<
+      'api::color.color',
+      'manyToMany',
+      'api::color.color'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

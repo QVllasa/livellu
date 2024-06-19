@@ -28,7 +28,7 @@ export const ColorFilter = () => {
         };
 
         fetchData();
-    }, [setAllColors]);
+    }, []);
 
     useEffect(() => {
         if (allColors.length > 0) {
