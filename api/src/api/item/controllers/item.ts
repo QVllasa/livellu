@@ -75,7 +75,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       limit: parseInt(pageSize as string, 10),
       offset: (parseInt(page as string, 10) - 1) * parseInt(pageSize as string, 10),
       hitsPerPage: parseInt(pageSize as string, 10),
-      sort: ['variants.averageRating:asc'],
+      // sort: ['variants.averageRating:asc'],
     };
 
     try {

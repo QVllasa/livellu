@@ -40,6 +40,14 @@ export default ({env}) => ({
               maxTotalHits: 1000
             },
           }
+        },
+        color: {
+          settings: {
+            filterableAttributes: ['isColor', 'slug'],
+            pagination: {
+              maxTotalHits: 1000
+            },
+          }
         }
       }
     },

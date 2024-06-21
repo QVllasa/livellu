@@ -133,7 +133,8 @@ export async function getServerSideProps({params, query}) {
         initialMaterial = await fetchMaterialBySlug(materialParam);
     }
     if (colorParam) {
-        initialColor = await fetchColorBySlug(colorParam);
+        const data = await fetchColorBySlug(colorParam);
+        initialColor = data[0]
     }
     if (brandParam) {
         initialBrand = await fetchBrandBySlug(brandParam);

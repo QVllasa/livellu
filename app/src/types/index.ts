@@ -150,8 +150,8 @@ export interface Color {
     label: string;
     slug: string;
     code: string;
-    parent_colors?: { data: Entity<Color>[] };
-    child_colors?: { data: Entity<Color>[] };
+    parent_colors?: Color[] ;
+    child_colors?: Color[];
     isColor?: boolean;
 }
 
