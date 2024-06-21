@@ -38,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async ({
 
   await queryClient.prefetchQuery(
     [API_ENDPOINTS.CATEGORIES, categoryVariable],
-    ({ queryKey }) => client.categories.all(queryKey[1] as CategoryQueryOptions)
+    ({ queryKey }) => client.categories.get(queryKey[1] as CategoryQueryOptions)
   );
 
   return {

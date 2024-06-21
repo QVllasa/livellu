@@ -116,9 +116,7 @@ class Client {
                 searchJoin: 'and',
                 with: 'user',
                 ...params,
-                search: HttpClient.formatSearchParams({
-                    rating,
-                }),
+
             }),
         get: ({id}: { id: string }) =>
             HttpClient.get<Review>(`${API_ENDPOINTS.PRODUCTS_REVIEWS}/${id}`),
@@ -143,9 +141,7 @@ class Client {
     shops = {
         all: (params: Partial<ShopQueryOptions>) =>
             HttpClient.get<ShopPaginator>(API_ENDPOINTS.SHOPS, {
-                search: HttpClient.formatSearchParams({
-                    is_active: '1',
-                }),
+
                 ...params,
             }),
         get: (slug: string) =>
@@ -157,39 +153,13 @@ class Client {
         getSearchNearShops: ({lat, lng}: ShopMapLocation) =>
             HttpClient.get<any>(`${API_ENDPOINTS.NEAR_SHOPS}/${lat}/${lng}`),
     };
-    storeNotice = {
-        all: ({shop_id, ...params}: Partial<StoreNoticeQueryOptions>) => {
-            return HttpClient.get<StoreNoticePaginator>(API_ENDPOINTS.STORE_NOTICES, {
-                searchJoin: 'and',
-                shop_id: shop_id,
-                ...params,
-                search: HttpClient.formatSearchParams({shop_id}),
-            });
-        },
-    };
-    authors = {
-        all: ({name, ...params}: Partial<AuthorQueryOptions>) => {
-            return HttpClient.get<AuthorPaginator>(API_ENDPOINTS.AUTHORS, {
-                ...params,
-                search: HttpClient.formatSearchParams({
-                    name,
-                }),
-            });
-        },
-        top: (params: Pick<QueryOptions, 'limit'>) =>
-            HttpClient.get<Author[]>(API_ENDPOINTS.AUTHORS_TOP, params),
-        get: ({slug, language}: { slug: string; language?: string }) =>
-            HttpClient.get<Author>(`${API_ENDPOINTS.AUTHORS}/${slug}`, {
-                language,
-            }),
-    };
+
+
     manufacturers = {
         all: ({name, ...params}: Partial<ManufacturerQueryOptions>) =>
             HttpClient.get<ManufacturerPaginator>(API_ENDPOINTS.MANUFACTURERS, {
                 ...params,
-                search: HttpClient.formatSearchParams({
-                    name,
-                }),
+
             }),
         top: (params: Pick<QueryOptions, 'limit'>) =>
             HttpClient.get<Manufacturer[]>(API_ENDPOINTS.MANUFACTURERS_TOP, params),
@@ -376,9 +346,11 @@ class Client {
         all: (params?: any) => HttpClient.get<Navigation>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
     products = {
-        all: (params?: any) => HttpClient.get<Product>(API_ENDPOINTS.PRODUCTS, {...params}),
         get: (params: any) => {
             return HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}`, params)
+        },
+        getMinMaxPrice: () => {
+            return HttpClient.get<{min: number, max: number}>(`${API_ENDPOINTS.PRODUCTS}/min-max-price`)
         }
     };
     articlesCategories = {
@@ -388,7 +360,6 @@ class Client {
         }
     };
     categories = {
-        all: (params?: any) => HttpClient.get<Category>(API_ENDPOINTS.CATEGORIES, {...params}),
         get: (params: any) => {
             return HttpClient.get<Category>(`${API_ENDPOINTS.CATEGORIES}`, params)
         }

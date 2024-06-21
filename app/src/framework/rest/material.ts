@@ -9,7 +9,7 @@ export function useCategories(params?: any) {
 
   useEffect(() => {
     setLoading(true);
-    Client.categories.all(params)
+    Client.categories.get(params)
         .then(response => {
           const data: Category[] = response.data.map((entity: Entity<Category>) => {
             const id = entity.id;

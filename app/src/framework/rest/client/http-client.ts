@@ -39,18 +39,19 @@ Axios.interceptors.request.use((config) => {
 // );
 
 export class HttpClient {
-    static async get<T>(collection: string, params: Record<string, any> = {}): Promise<ApiResponse<T>> {
+    static async get<T>(collection: string, params: Record<string, any> = {}): Promise<ApiResponse<T> | any> {
         // Convert params object to URL search parameters
-        const filterParams = qs.stringify(params, {
+        const queryString = qs.stringify(params, {
             encodeValuesOnly: true, // prettify URL
-        })
+        });
         try {
-            // Make the HTTP request using Axios
-            const response = await Axios.get<ApiResponse<T>>(collection + '?' + filterParams);
+            console.log('URL: ', `${collection}?${queryString}`);
+            const response = await Axios.get<ApiResponse<T>>(`${collection}?${queryString}`);
             return response.data;
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                throw new Error(error.message);
+                console.error(error.message)
+                // throw new Error(error.message);
             } else {
                 throw new Error('An unknown error occurred');
             }
@@ -72,14 +73,5 @@ export class HttpClient {
         return response.data;
     }
 
-    static formatSearchParams(params: Partial<SearchParamOptions>) {
-        return Object.entries(params)
-            .filter(([, value]) => Boolean(value))
-            .map(([k, v]) =>
-                ['type', 'categories', 'tags', 'author', 'manufacturer'].includes(k)
-                    ? `${k}.slug:${v}`
-                    : `${k}:${v}`
-            )
-            .join(';');
-    }
+
 }

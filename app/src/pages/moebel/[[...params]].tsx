@@ -3,7 +3,6 @@ import {Suspense} from "react";
 import {Package2} from "lucide-react";
 import {getLayout} from "@/components/layouts/layout";
 import {capitalize} from "lodash";
-import {fetchCategoryBySlug} from "@/framework/category.ssr";
 import {fetchMaterialBySlug} from "@/framework/material.ssr";
 import {fetchColorBySlug} from "@/framework/color.ssr";
 import {fetchBrandBySlug} from "@/framework/brand.ssr";
@@ -11,34 +10,32 @@ import {fetchProducts} from "@/framework/product";
 import PageSizeSelector from "@/components/filters/page-size-selector";
 import {ProductsGrid} from "@/components/products/products-grid";
 import {CategoryFilter} from "@/components/filters/category-filter";
-import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 import PageSortSelector from "@/components/filters/page-sort-selector";
 import {currentBrandAtom, currentCategoryAtom, currentColorAtom, currentMaterialAtom, sortsAtom} from "@/store/filters";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {SearchFilter} from "@/components/filters/search-filter";
-import {BrandFilter} from "@/components/filters/brand-filter";
 import {useAtom} from "jotai/index";
+import {Category, Entity} from "@/types";
+import {BrandFilter} from "@/components/filters/brand-filter";
 import {ColorFilter} from "@/components/filters/color-filter";
 import {MaterialFilter} from "@/components/filters/material-filter";
+import {fetchAllCategories, fetchCategories} from "@/framework/category.ssr";
+import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 
 
 function MoebelPage({
                         sortedProducts,
                         page,
-                        pageSize,
                         pageCount,
                         total,
-                        sort
+                        initialCategory,
+                        allCategories
                     }) {
     // const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
-
-    console.log("currentColor: ", currentColor)
-
-    console.log("product: ", sortedProducts.length)
 
 
     const category = capitalize(currentCategory?.name) ?? 'Moebel';
@@ -62,15 +59,11 @@ function MoebelPage({
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
 
-                                <CategoryFilter/>
+                                <CategoryFilter current={initialCategory} all={allCategories}/>
                                 <BrandFilter/>
-                                {currentCategory && !currentCategory.identifier.startsWith('00_raeume')  && (<>
-
-                                    <ColorFilter/>
-                                    <PriceRangeFilter/>
-                                    <MaterialFilter/>
-                                </>
-                                    )}
+                                <ColorFilter/>
+                                <PriceRangeFilter/>
+                                <MaterialFilter/>
                             </Suspense>
                         </div>
                     </div>
@@ -86,8 +79,11 @@ function MoebelPage({
                                 <span className={'font-light text-xs text-gray-500'}>{total} Produkte</span>
                             </div>
                             <div className={'flex gap-4 justify-center'}>
-                                <PageSizeSelector currentSize={pageSize}/>
-                                <PageSortSelector sort={sort}/>
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <PageSizeSelector/>
+                                    <PageSortSelector/>
+                                </Suspense>
+
                             </div>
 
                         </div>
@@ -111,12 +107,14 @@ function MoebelPage({
 
 export async function getServerSideProps({params, query}) {
     const sorts = sortsAtom;
-    const filters = {"$and": []};
+    const filters: any = {};
 
     let initialBrand = null;
     let initialColor = null;
     let initialMaterial = null;
-    let initialCategory = null;
+    let initialCategory: Category | Entity<Category> | null = null;
+
+    const allCategories = await fetchAllCategories();
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
         params.params?.find((p) => p.startsWith('category-')),
@@ -126,7 +124,9 @@ export async function getServerSideProps({params, query}) {
     ];
 
     if (categoryParam) {
-        initialCategory = await fetchCategoryBySlug(categoryParam);
+        const data = await fetchCategories({slug: categoryParam});
+        initialCategory = data[0];
+
     }
 
     if (materialParam) {
@@ -139,7 +139,21 @@ export async function getServerSideProps({params, query}) {
         initialBrand = await fetchBrandBySlug(brandParam);
     }
 
-    const categoryIds = getOriginalCategoryIds(initialCategory);
+    // const categoryIds = getOriginalCategoryIds(initialCategory);
+
+    const categoryName = getLabel(categoryParam, 'category-');
+    const materialName = getLabel(materialParam, 'material-');
+    const colorName = getLabel(colorParam, 'color-');
+    const brandName = getLabel(brandParam, 'brand-');
+
+    const parentCategoryLabels = initialCategory?.parent_categories?.map(item => item.name) ?? [];
+    const searchTerms = [categoryName, brandName, colorName, materialName, query?.search].filter(Boolean);
+
+    console.log("searchTerms: ", searchTerms)
+
+
+    //merge search terms to single string and set it as search term
+    filters['searchTerms'] = searchTerms.join(' ');
 
     const colorIds = [];
 
@@ -149,100 +163,59 @@ export async function getServerSideProps({params, query}) {
         colorIds.push(...childColorIds);
     }
 
-    filters["$and"].push({"categoryIdentifier": {"$in": categoryIds}});
-
-    const filtersToApply = [
-        // initialMaterial ? {"variants": {"originalMaterial": {$containsi: initialMaterial.label}}} : null,
-        initialColor ? {"variants": {"originalColor": {$in: colorIds}}} : null,
-        initialBrand ? {"brandName": initialBrand.label} : null,
-    ].filter(Boolean);
-
-    filters["$and"].push(...filtersToApply);
-
-    if (query.search) {
-        const searchTerms = query.search.split(' ').map((term) => term.trim());
-        const searchFilters = searchTerms.map((term) => ({
-            "$or": [
-                {"variants": {"productName": {"$containsi": term}}},
-                {"variants": {"description": {"$containsi": term}}},
-                {"shortDescription": {"$containsi": term}},
-            ],
-        }));
-        filters["$and"].push(...searchFilters);
-    }
+    filters['variants.originalColor'] = colorIds;
 
     if (query.minPrice || query.maxPrice) {
-        const minPrice = query.minPrice ? parseInt(query.minPrice) : 0;
-        const maxPrice = query.maxPrice ? parseInt(query.maxPrice) : 10000;
-        filters["$and"].push({
-            "variants": {
-                "price": {
-                    "$gte": minPrice,
-                    "$lte": maxPrice,
-                }
-            },
-        });
+        filters['minPrice'] = query.minPrice ? parseInt(query.minPrice) : 0
+        filters['maxPrice'] = query.maxPrice ? parseInt(query.maxPrice) : 10000
     }
 
-    // filters["$and"].push({
-    //     "variants": {
-    //         "averageRating": {
-    //             "$gte": 3,
-    //         }
-    //     },
-    // });
+    let sort = sorts.find(el => el.id === query.sort) ?? null;
+    if (query.sort) {
+        // filters['sort'] = `${sort.dimension}:${sort.value}`;
+    }
 
-    const page = parseInt(query.page) || 1;
-    const pageSize = parseInt(query.pageSize) || 48;
-    const sort = sorts.find(el => el.id === query.sort) ?? null;
+    const page = parseInt(query.page ?? 0) || 1;
+    const pageSize = parseInt(query.pageSize ?? 0) || 48;
 
-    // const {products, total, pageCount} = await fetchProducts(filters, {page, pageSize}, sort);
+    filters['page'] = page;
+    filters['pageSize'] = pageSize;
 
-    let sortedProducts = [];
-    let pageCount = 0
-    let total = 0
-    // // Sort the variants of each product based on the selected color
-    // if (initialColor){
-    //     sortedProducts = products.map(product => {
-    //         const sortedVariants = initialColor
-    //             ? product.variants.data.sort((a, b) => {
-    //                 if (colorIds.includes(Number(a.attributes.originalColor))) return -1;
-    //                 if (colorIds.includes(Number(a.attributes.originalColor))) return 1;
-    //                 return 0;
-    //             })
-    //             : product.variants.data;
-    //
-    //         return { ...product, variants: { data: sortedVariants } };
-    //     });
-    // }
 
+    const {data, meta} = await fetchProducts(filters);
+
+    let sortedProducts = data;
+    let total = 0;
+    let pageCount = 0;
 
     return {
         props: {
             sortedProducts,
             page,
-            pageSize,
             pageCount,
             total,
-            sort
+            initialCategory,
+            allCategories
         },
     };
 }
 
+const getLabel = (str: string, prefix: string) => {
+    return str?.split(prefix,)[1] ?? null;    // remove the prefix
+}
 
-const getOriginalCategoryIds = (category: any) => {
-    let ids = category?.original_categories?.data.map(item => item.id) || [];
-
-    if (category?.child_categories?.data?.length > 0) {
-        category?.child_categories?.data.forEach(child => {
-            console.log("child: ", child)
-            ids = [...ids, ...(getOriginalCategoryIds(child.attributes))]
-        });
-    }
-
-
-    return ids;
-};
+// const getOriginalCategoryIds = (category: any) => {
+//     let ids = category?.original_categories?.map(item => item.id) || [];
+//
+//     if (category?.child_categories?.length > 0) {
+//         category?.child_categories?.forEach(child => {
+//             ids = [...ids, ...(getOriginalCategoryIds(child))]
+//         });
+//     }
+//
+//
+//     return ids;
+// };
 
 const NoProductsFound = () => (
     <div className="flex flex-col items-center justify-center h-full text-center p-6">

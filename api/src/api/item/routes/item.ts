@@ -7,13 +7,22 @@
 // export default factories.createCoreRouter('api::item.item');
 
 
-// path: src/api/item/routes/item.ts
+// path: src/api/item/routes/items.ts
 export default {
   routes: [
     {
       method: 'GET',
-      path: '/items/search',
-      handler: 'item-search.search',
+      path: '/items',
+      handler: 'item.get',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'GET',
+      path: '/items/min-max-price',
+      handler: 'item.getMinMaxPrice',
       config: {
         policies: [],
         middlewares: [],

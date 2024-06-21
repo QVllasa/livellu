@@ -5,180 +5,157 @@ import {Button} from "@/shadcn/components/ui/button";
 import {Input} from "@/shadcn/components/ui/input";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
-import {useAtom} from "jotai";
 import {Category} from "@/types";
-import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
 import {arrangePathSegments} from "@/lib/utils";
-import {fetchCategoryBySlug} from "@/framework/category.ssr";
+import {fetchCategories} from "@/framework/category.ssr";
+import {useAtom} from "jotai";
+import {currentCategoryAtom} from "@/store/filters";
 
+export const CategoryFilter = ({all, current}) => {
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[]>([]);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [openItem, setOpenItem] = useState("item-1");
+    const [loading, setLoading] = useState(false);
+    const [currentCategory, setCurrentCategory] = useState<Category | null>(current);
+    const [allCategories, setAllCategories] = useState<Category[]>(all);
+    const [categoryAtom,  setCategoryAtom] = useAtom(currentCategoryAtom)
 
-export const CategoryFilter = () => {
-        const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[]>([]);
-        const [searchTerm, setSearchTerm] = useState('');
-        const [openItem, setOpenItem] = useState("item-1");
-        const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
-        const router = useRouter();
-        const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
-        const [allCategories] = useAtom(allCategoriesAtom);
 
     useEffect(() => {
-        console.log("Current category: ", currentCategory)
-    }, [currentCategory]);
+        setCurrentCategory(current)
+        setCategoryAtom(current)
+    }, [current]);
 
 
-        useEffect(() => {
-            const [pathSegments, queryString] = getPath()
-            fetchCategory(getSlug(pathSegments));
-        }, [router.asPath, router.query]);
+    useEffect(() => {
+        if (!currentCategory) {
+            setCategoriesToDisplay(allCategories);
+            setSearchTerm('');
+        }
+    }, [currentCategory, allCategories]);
 
-        useEffect(() => {
-            if (!currentCategory) {
-                setCategoriesToDisplay(allCategories);
-
-                setSearchTerm('');
-            }
-        }, [currentCategory, allCategories]);
-
-        useEffect(() => {
-            if (currentCategory) {
-                let categories: Category[] = [];
-                categories = getCategoriesToDisplay(currentCategory);
-
-
-
+    useEffect(() => {
+        if (currentCategory) {
+            setLoading(true);
+             getCategoriesToDisplay(currentCategory).then(categories => {
                 setCategoriesToDisplay(categories);
                 setSearchTerm('');
-                setLoading(false);  // Stop loading once categories are set
-            }
-        }, [currentCategory, router.asPath, router.query]);
-
-
-        const getParentCategory = (category: any): Category => {
-            const cat: Category = {
-                id: category?.parent_categories?.data[0].id,
-                ...category?.parent_categories?.data[0].attributes
-            };
-            return cat;
+                setLoading(false);
+             })
         }
+    }, [currentCategory, router.asPath, router.query]);
 
-        const fetchCategory = async (slug: string) => {
-            if (!slug) return;
-            const fetchedCategory = await fetchCategoryBySlug(slug);
-            setCurrentCategory(fetchedCategory);
-        };
+    const getParentCategory = async (category: any) => {
+        return await fetchCategories({ slug: category?.parent_categories[0]?.slug });
+    };
 
-
-        const getChildren = (category: Category) => {
-            return category?.child_categories?.data.map((item) => ({
-                id: item.id,
-                ...item.attributes,
-            })) || [];
+    const getCategoriesToDisplay = async (category: Category) => {
+        if (category?.child_categories?.length !== 0) {
+            return category.child_categories;
+        } else {
+            const parent = await getParentCategory(category);
+            return parent[0].child_categories;
         }
+    };
 
-        const getCategoriesToDisplay = (category: Category) => {
-            let categories: Category[] = [];
-            if (category?.child_categories?.data.length !== 0) {
-                categories = getChildren(category);
-            } else if (category?.child_categories?.data?.length === 0 && category?.parent_categories?.data?.length > 0) {
-                const parent: Category = getParentCategory(category);
-                categories = getChildren(parent);
-            }
-            return categories;
-        }
+    const getPath = () => {
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
+        return [pathSegments, queryString];
+    };
 
-        const getPath = () => {
-            const [path, queryString] = router.asPath.split('?');
-            const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
-            return [pathSegments, queryString];
-        }
+    const getSlug = (pathSegments) => {
+        return pathSegments.find(el => el?.startsWith('category-'));
+    };
 
-        const getSlug = (pathSegments) => {
-            return pathSegments.find(el => el?.startsWith('category-'));
-        }
+    const handleCategoryClick = async (category: Category) => {
+        setLoading(true);
+        const [pathSegments, queryString] = getPath();
+        const categoryIndex = pathSegments?.findIndex(el => el?.startsWith('category-'));
 
-
-        const handleCategoryClick = async (category: Category) => {
-            setLoading(true);  // Start loading when a category click is initiated
-            const [pathSegments, queryString] = getPath();
-            const categoryIndex = pathSegments?.findIndex(el => el?.startsWith('category-'));
-
+        if (category?.slug === currentCategory?.slug) {
+            // Fetch parent category if the same category is clicked again
+            const fetchedCategory = await fetchCategories({slug: category.slug});
+            const parentCategory = await getParentCategory(fetchedCategory[0]);
+            // setCurrentCategory(parentCategory[0]);
+            const parentSlug = parentCategory[0].slug;
             if (categoryIndex !== -1) {
-                if (currentCategory?.slug === category.slug) {
-                    pathSegments.splice(categoryIndex, 1); // Remove the category if it is clicked again
-                    setCurrentCategory(null);
-                } else {
-                    pathSegments[categoryIndex] = `${category.slug.toLowerCase()}`;
-                    setCurrentCategory(category);
-                }
+                pathSegments[categoryIndex] = parentSlug.toLowerCase();
+            }
+        } else {
+            if (categoryIndex !== -1) {
+                pathSegments[categoryIndex] = category.slug.toLowerCase();
             } else {
-                pathSegments.unshift(`${category.slug.toLowerCase()}`);
-                setCurrentCategory(category);
+                pathSegments.unshift(category.slug.toLowerCase());
             }
+            // setCurrentCategory(category);
+        }
 
-            // Sort segments after
-            const sortedPathSegments = arrangePathSegments(pathSegments);
+        const sortedPathSegments = arrangePathSegments(pathSegments);
+        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
 
-            const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-            const queryParams = queryString ? `?${queryString}` : '';
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+    };
 
-            router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
-        };
+    const handleSearchSelect = async (event) => {
+        const value = event.target.value;
+        setSearchTerm(value);
+        let categories = await getCategoriesToDisplay(currentCategory);
+        if (value === '') {
+            setCategoriesToDisplay(categories);
+            return;
+        }
+        const filteredCategories = categories.filter(item => item.name.toLowerCase().includes(value.toLowerCase()));
+        setCategoriesToDisplay(filteredCategories);
+    };
 
-        const handleSearchSelect = (event) => {
-            const value = event.target.value;
-            console.log("Search value: ", value)
-            setSearchTerm(value);
-            let categories = getCategoriesToDisplay(currentCategory);
-            console.log("Search categories: ", categories)
-            if (value === '') {
-                setCategoriesToDisplay(categories);
-                return;
-            }
-            const filteredCategories = categories.filter((item) => item.name.toLowerCase().includes(value.toLowerCase()));
-            setCategoriesToDisplay(filteredCategories);
-        };
-
-
-        return (
-            <div className="w-64 p-4">
-                <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger>
-                            <h4 className="text-sm font-medium">Kategorie</h4>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                            <div className="w-full mb-4">
-                                <Input
-                                    type="text"
-                                    placeholder="Search categories..."
-                                    value={searchTerm}
-                                    onChange={handleSearchSelect}
-                                />
-                            </div>
-                            <ScrollArea className="max-h-64 overflow-auto">
+    return (
+        <div className="w-64 p-4">
+            <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
+                <AccordionItem value="item-1">
+                    <AccordionTrigger>
+                        <h4 className="text-sm font-medium">Kategorie</h4>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <div className="w-full mb-4">
+                            <Input
+                                type="text"
+                                placeholder="Search categories..."
+                                value={searchTerm}
+                                onChange={handleSearchSelect}
+                            />
+                        </div>
+                        <ScrollArea className="h-64 max-h-64 overflow-auto">
+                            {loading ? (
+                                <div className="flex items-center justify-center h-full">
+                                    <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                                    </svg>
+                                </div>
+                            ) : (
                                 <ul>
-                                    {categoriesToDisplay?.length > 0 &&
-                                        categoriesToDisplay.map((item) => (
-                                            <li key={item.id} className="mb-1">
-                                                <Button
-                                                    size={'sm'}
-                                                    variant={currentCategory?.slug === item.slug ? null : 'outline'}
-                                                    onClick={() => handleCategoryClick(item)}
-                                                    className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                                    disabled={currentCategory?.slug === item.slug}
-                                                >
-                                                    {capitalize(item.name)}
-                                                </Button>
-                                            </li>
-                                        ))
-                                    }
+                                    {categoriesToDisplay?.length > 0 && categoriesToDisplay.map((item) => (
+                                        <li key={item.id} className="mb-1">
+                                            <Button
+                                                size={'sm'}
+                                                variant={currentCategory?.slug === item.slug ? null : 'outline'}
+                                                onClick={() => handleCategoryClick(item)}
+                                                className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                            >
+                                                {capitalize(item.name)}
+                                            </Button>
+                                        </li>
+                                    ))}
                                 </ul>
-                            </ScrollArea>
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion>
-            </div>
-        );
-    }
-;
+                            )}
+                        </ScrollArea>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </div>
+    );
+};

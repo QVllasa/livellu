@@ -27,7 +27,7 @@ export const allCategoriesAtom = atom(
             }
         }
 
-        const response = await Client.categories.all(params)
+        const response = await Client.categories.get(params)
         return response.data.map((entity: Entity<Category>) => {
             const id = entity.id;
             const modifiedItem: Category = {

@@ -3,7 +3,8 @@ import type {ReactElement, ReactNode} from 'react';
 
 
 export interface ApiResponse<T> {
-    data: Entity<T>[];
+    //with entity or without entity
+    data: Entity<T>[] | T[];
     meta: MetaData;
 }
 
@@ -13,7 +14,16 @@ export interface Entity<T> {
 }
 
 export interface MetaData {
-    pagination: PaginationData;
+    pagination?: PaginationData;
+    page: number,
+    pageSize: number,
+    limit:  number,
+    offset: number,
+    total:  number,
+    totalPages: number,
+    hitsPerPage: number,
+    processingTimeMs: number,
+    query: string,
 }
 
 export interface PaginationData {
@@ -115,9 +125,9 @@ export interface Category {
     updatedAt: Date;
     name: string;
     slug: string;
-    parent_categories?: { data: Entity<Category>[] };
-    child_categories?: { data: Entity<Category>[] };
-    original_categories?: { data: Entity<OriginalCategory>[] };
+    parent_categories?:  Category[] ;
+    child_categories?: Category[] ;
+    original_categories?: OriginalCategory[] ;
     identifier: string;
     summary?: string;
 }
@@ -242,6 +252,7 @@ export interface Variant {
 
 export interface Product {
     id: number;
+    _meilisearch_id: string;
     brandName: string;
     currency: string;
     promotion: string;
@@ -251,9 +262,7 @@ export interface Product {
     dataFeedId: string;
     language: string;
     groupId: string;
-    variants: {
-        data: Entity<Variant>[];
-    };
+    variants: Variant[];
     createdAt: string;
     updatedAt: string;
     createdBy: {

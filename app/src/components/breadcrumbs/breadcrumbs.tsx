@@ -1,17 +1,10 @@
-import {
-    Breadcrumb,
-    BreadcrumbItem,
-    BreadcrumbLink,
-    BreadcrumbList,
-    BreadcrumbSeparator,
-    BreadcrumbPage
-} from "@/shadcn/components/ui/breadcrumb";
-import { useAtom } from "jotai";
-import { currentCategoryAtom, allCategoriesAtom } from "@/store/filters";
-import { capitalize } from "lodash";
-import { useRouter } from "next/router";
-import { Category } from "@/types";
-import { useEffect, useState } from "react";
+import {Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator} from "@/shadcn/components/ui/breadcrumb";
+import {useAtom} from "jotai";
+import {currentCategoryAtom} from "@/store/filters";
+import {capitalize} from "lodash";
+import {useRouter} from "next/router";
+import {Category} from "@/types";
+import {useEffect, useState} from "react";
 
 // Helper function to extract path directly from current category
 function extractParentPath(category: Category | null): Category[] {
@@ -19,9 +12,8 @@ function extractParentPath(category: Category | null): Category[] {
 
     while (category) {
         path.unshift(category);
-        if (category.parent_categories && category.parent_categories.data && category.parent_categories.data.length > 0) {
-            const parent = category.parent_categories.data[0];
-            category = { id: parent.id, ...parent.attributes };
+        if (category.parent_categories && category.parent_categories && category.parent_categories.length > 0) {
+            category = category.parent_categories[0];
         } else {
             category = null;
         }

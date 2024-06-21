@@ -1,17 +1,26 @@
 // components/ui/page-size-selector.js
-import { useRouter } from "next/router";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/shadcn/components/ui/dropdown-menu";
-import { Button } from "@/shadcn/components/ui/button";
+import {useRouter} from "next/router";
+import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/shadcn/components/ui/dropdown-menu";
+import {Button} from "@/shadcn/components/ui/button";
 import {pageSizeAtom} from "@/store/filters";
+import {useEffect, useState} from "react";
 
-const PageSizeSelector = ({ currentSize }) => {
+const PageSizeSelector = () => {
     const router = useRouter();
     const pageSizes = pageSizeAtom;
+    const [pageSize, setPageSize] = useState(48)
+
+    useEffect(() => {
+            if (router.query.pageSize) {
+                setPageSize(router.query.pageSize)
+            }
+        }
+        , [router.query.pageSize]);
 
     const handlePageSizeChange = (size) => {
         router.push({
             pathname: router.pathname,
-            query: { ...router.query, pageSize: size },
+            query: {...router.query, pageSize: size},
         });
     };
 
@@ -19,7 +28,7 @@ const PageSizeSelector = ({ currentSize }) => {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="outline" size="sm">
-                    Anzahl: {currentSize}
+                    Anzahl: {pageSize}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -27,7 +36,7 @@ const PageSizeSelector = ({ currentSize }) => {
                     <DropdownMenuItem
                         key={size}
                         onClick={() => handlePageSizeChange(size)}
-                        className={currentSize === size ? 'font-bold' : ''}
+                        className={pageSize === size ? 'font-bold' : ''}
                     >
                         {size}
                     </DropdownMenuItem>

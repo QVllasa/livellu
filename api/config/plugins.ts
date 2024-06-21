@@ -21,12 +21,24 @@ export default ({env}) => ({
     meilisearch: {
       config: {
         // Your meili host
-        host: "http://localhost:7700",
+        host: env('MEILISEARCH_HOST'),
         // Your master key or private key
         apiKey: env('MEILISEARCH_API_KEY'),
-        items: {
+        item: {
           settings: {
-            filterableAttributes: ['categoryIdentifier', 'variants.price', 'variants.description'],
+            filterableAttributes: ['categoryIdentifier', 'variants.price','variants.averageRating', 'variants.description', 'brandName', 'variants.originalColor', 'variants.originalMaterial', 'variants.productName'],
+            sortableAttributes: ['variants.price', 'variants.averageRating'],
+            pagination: {
+              maxTotalHits: 1000
+            },
+          }
+        },
+        category: {
+          settings: {
+            filterableAttributes: ['identifier', 'slug', 'level'],
+            pagination: {
+              maxTotalHits: 1000
+            },
           }
         }
       }
