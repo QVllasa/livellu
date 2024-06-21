@@ -37,7 +37,7 @@ services:
     image: getmeili/meilisearch
     command: meilisearch
     environment:
-      MEILI_MASTER_KEY: '7510VwYWCmVuVeZXzCj6bc49T6knJVk3TGiaSjZidS8' # Set your new master key
+      MEILI_MASTER_KEY: ${MEILI_MASTER_KEY} # Set your new master key
       MEILI_LOG_LEVEL: debug
       MEILI_NO_ANALYTICS: 'true'
       MEILI_HTTP_PAYLOAD_SIZE_LIMIT: 10Mb
