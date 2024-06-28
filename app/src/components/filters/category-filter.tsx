@@ -18,7 +18,7 @@ export const CategoryFilter = ({current}) => {
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useState<Category | null>(current);
     const [allCategories, setAllCategories] = useAtom(allCategoriesAtom);
-    const [categoryAtom,  setCategoryAtom] = useAtom(currentCategoryAtom)
+    const [categoryAtom, setCategoryAtom] = useAtom(currentCategoryAtom)
 
     const router = useRouter();
 
@@ -39,16 +39,16 @@ export const CategoryFilter = ({current}) => {
     useEffect(() => {
         if (currentCategory) {
             setLoading(true);
-             getCategoriesToDisplay(currentCategory).then(categories => {
+            getCategoriesToDisplay(currentCategory).then(categories => {
                 setCategoriesToDisplay(categories);
                 setSearchTerm('');
                 setLoading(false);
-             })
+            })
         }
     }, [currentCategory, router.asPath, router.query]);
 
     const getParentCategory = async (category: any) => {
-        return await fetchCategories({ slug: category?.parent_categories[0]?.slug });
+        return await fetchCategories({slug: category?.parent_categories[0]?.slug});
     };
 
     const getCategoriesToDisplay = async (category: Category) => {
@@ -117,7 +117,9 @@ export const CategoryFilter = ({current}) => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Kategorie</h4>
+                        <h4 className="text-sm font-medium">Kategorie:
+                            <span className={'font-semibold'}> {currentCategory && capitalize(currentCategory?.name)}</span>
+                        </h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         <div className="w-full mb-4">

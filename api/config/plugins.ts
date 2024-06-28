@@ -48,6 +48,14 @@ export default ({env}) => ({
               maxTotalHits: 1000
             },
           }
+        },
+        brand: {
+          settings: {
+            filterableAttributes: ['slug'],
+            pagination: {
+              maxTotalHits: 10000
+            },
+          }
         }
       }
     },

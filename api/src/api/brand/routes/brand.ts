@@ -1,7 +1,13 @@
-/**
- * brand router
- */
-
-import { factories } from '@strapi/strapi';
-
-export default factories.createCoreRouter('api::brand.brand');
+export default {
+  routes: [
+    {
+      method: 'GET',
+      path: '/brands',
+      handler: 'brand.get',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+  ],
+};

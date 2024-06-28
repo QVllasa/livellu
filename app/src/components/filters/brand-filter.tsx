@@ -99,7 +99,9 @@ export const BrandFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Marke:</h4>
+                        <h4 className="text-sm font-medium">Marke:
+                           <span className={'font-semibold'}> {currentBrand && currentBrand?.label}</span>
+                        </h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         <div className="w-full mb-4">

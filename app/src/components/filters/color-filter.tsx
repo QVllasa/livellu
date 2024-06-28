@@ -93,9 +93,7 @@ export const ColorFilter = () => {
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
                         <h4 className="text-sm font-medium">Farbe:
-                            {/*<span className={'font-bold'}>*/}
-                            {/*    {capitalize(currentColor?.label ?? "")}*/}
-                            {/*</span>*/}
+                            <span className={'font-semibold'}> {capitalize(currentColor?.label ?? "")}</span>
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>

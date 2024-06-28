@@ -365,7 +365,6 @@ class Client {
         }
     }
     colors = {
-        all: (params?: any) => HttpClient.get<Color>(API_ENDPOINTS.COLOR, {...params}),
         get: (params: any) => {
             return HttpClient.get<Color>(`${API_ENDPOINTS.COLOR}`, params)
         }
@@ -377,7 +376,6 @@ class Client {
         }
     }
     brands = {
-        all: (params?: any) => HttpClient.get<Brand>(API_ENDPOINTS.BRAND, {...params}),
         get: (params: any) => {
             return HttpClient.get<Brand>(`${API_ENDPOINTS.BRAND}`, params)
         }
