@@ -77,7 +77,6 @@ function MoebelPage({
                                 <span className={'font-light text-xs text-gray-500'}>
                                     {total >= 1000 ? 'mehr als 1000 Produkte gefunden' : `${total} Produkte gefunden`}
                                 </span>
-
                             </div>
                             <div className={'flex gap-4 justify-center'}>
                                 <Suspense fallback={<div>Loading...</div>}>
@@ -135,9 +134,7 @@ export async function getServerSideProps({params, query}) {
         const data = await fetchColorBySlug(colorParam);
         initialColor = data[0]
     }
-    if (brandParam) {
-        initialBrand = await fetchBrandBySlug(brandParam);
-    }
+
 
     // const categoryIds = getOriginalCategoryIds(initialCategory);
 
@@ -146,7 +143,6 @@ export async function getServerSideProps({params, query}) {
     const colorName = getLabel(colorParam, 'color-');
     const brandName = getLabel(brandParam, 'brand-');
 
-    const parentCategoryLabels = initialCategory?.parent_categories?.map(item => item.name) ?? [];
     const searchTerms = [categoryName, brandName, colorName, materialName, query?.search].filter(Boolean);
 
     console.log("searchTerms: ", searchTerms)
