@@ -9,15 +9,15 @@ import {Category} from "@/types";
 import {arrangePathSegments} from "@/lib/utils";
 import {fetchCategories} from "@/framework/category.ssr";
 import {useAtom} from "jotai";
-import {currentCategoryAtom} from "@/store/filters";
+import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
 
-export const CategoryFilter = ({all, current}) => {
+export const CategoryFilter = ({current}) => {
     const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useState<Category | null>(current);
-    const [allCategories, setAllCategories] = useState<Category[]>(all);
+    const [allCategories, setAllCategories] = useAtom(allCategoriesAtom);
     const [categoryAtom,  setCategoryAtom] = useAtom(currentCategoryAtom)
 
     const router = useRouter();

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Suspense} from "react";
+import {Suspense, useState} from "react";
 import {Package2} from "lucide-react";
 import {getLayout} from "@/components/layouts/layout";
 import {capitalize} from "lodash";
@@ -28,10 +28,9 @@ function MoebelPage({
                         page,
                         pageCount,
                         total,
-                        initialCategory,
-                        allCategories
+                        initialCategory
                     }) {
-    // const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
@@ -59,7 +58,7 @@ function MoebelPage({
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
 
-                                <CategoryFilter current={initialCategory} all={allCategories}/>
+                                <CategoryFilter current={initialCategory}/>
                                 <BrandFilter/>
                                 <ColorFilter/>
                                 <PriceRangeFilter/>
@@ -113,8 +112,6 @@ export async function getServerSideProps({params, query}) {
     let initialColor = null;
     let initialMaterial = null;
     let initialCategory: Category | Entity<Category> | null = null;
-
-    const allCategories = await fetchAllCategories();
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
         params.params?.find((p) => p.startsWith('category-')),
@@ -195,8 +192,7 @@ export async function getServerSideProps({params, query}) {
             page,
             pageCount,
             total,
-            initialCategory,
-            allCategories
+            initialCategory
         },
     };
 }
@@ -204,19 +200,6 @@ export async function getServerSideProps({params, query}) {
 const getLabel = (str: string, prefix: string) => {
     return str?.split(prefix,)[1] ?? null;    // remove the prefix
 }
-
-// const getOriginalCategoryIds = (category: any) => {
-//     let ids = category?.original_categories?.map(item => item.id) || [];
-//
-//     if (category?.child_categories?.length > 0) {
-//         category?.child_categories?.forEach(child => {
-//             ids = [...ids, ...(getOriginalCategoryIds(child))]
-//         });
-//     }
-//
-//
-//     return ids;
-// };
 
 const NoProductsFound = () => (
     <div className="flex flex-col items-center justify-center h-full text-center p-6">
