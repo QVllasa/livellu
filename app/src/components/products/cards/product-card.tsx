@@ -55,7 +55,7 @@ const ProductCard = (props: { product: Product }) => {
 
                         {/*Pricing*/}
                         <div className="flex justify-between items-center mt-6">
-                            <span className="text-gray-900 font-bold text-xl">{variant.price.toLocaleString() + ' ' + product.currency}</span>
+                            <span className="text-gray-900 font-bold text-xl" suppressHydrationWarning>{variant?.price?.toLocaleString() + ' ' + product?.currency}</span>
                             <Button>
                                 <Link href={variant.merchantLink ?? ''}>Zum Shop</Link>
                             </Button>
