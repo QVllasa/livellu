@@ -57,7 +57,6 @@ function MoebelPage({
                         </div>
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
-
                                 <CategoryFilter current={initialCategory}/>
                                 <BrandFilter/>
                                 <ColorFilter/>
@@ -182,9 +181,11 @@ export async function getServerSideProps({params, query}) {
 
     const {data, meta} = await fetchProducts(filters);
 
+
+
     let sortedProducts = data;
-    let total = 0;
-    let pageCount = 0;
+    let total = meta.total;
+    let pageCount = meta.totalPages;
 
     return {
         props: {

@@ -68,7 +68,7 @@ export const PriceRangeFilter = () => {
                     <AccordionTrigger>
                         <h4 className="text-sm font-medium">Preis:
                             {(priceRange[0] > defaultMin || priceRange[1] < defaultMax) && (
-                                <span className="font-bold ml-2">
+                                <span className="font-bold ml-2" suppressHydrationWarning>
                                     {priceRange[0].toLocaleString()}€ - {priceRange[1].toLocaleString()}€
                                 </span>
                             )}

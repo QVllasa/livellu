@@ -75,7 +75,7 @@ const Slider = React.forwardRef(
                                 top: `10px`,
                             }}
                         >
-                            <span className="text-xs flex truncate">
+                            <span className="text-xs flex truncate" suppressHydrationWarning>
                                 {formatLabel ? formatLabel(value) : value}
                             </span>
                         </div>

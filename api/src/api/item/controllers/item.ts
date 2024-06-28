@@ -74,9 +74,8 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       limit: parseInt(pageSize as string, 10),
       offset: (parseInt(page as string, 10) - 1) * parseInt(pageSize as string, 10),
-      hitsPerPage: parseInt(pageSize as string, 10),
-      // sort: ['variants.averageRating:asc'],
     };
+
 
     try {
       // Perform the search using Meilisearch
@@ -86,18 +85,16 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       const response = {
         data: searchResults.hits,
         meta: {
-          page: searchResults.page,
-          hitsPerPage: pageSize,
-          pageSize: searchResults.hitsPerPage,
-          limit: searchResults.limit,
-          offset: searchResults.offset,
-          total: searchResults.totalHits,
-          totalPages: searchResults.totalPages,
+          page: parseInt(page as string, 10),
+          pageSize: parseInt(pageSize as string, 10),
+          total: searchResults.estimatedTotalHits,
+          totalPages: Math.ceil(searchResults.estimatedTotalHits / parseInt(pageSize as string, 10)),
           processingTimeMs: searchResults.processingTimeMs,
           query: searchResults.query,
           // Add any additional meta information you need here
         },
       };
+
 
 
       return ctx.send(response);
