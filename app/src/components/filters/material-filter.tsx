@@ -124,12 +124,12 @@ const MaterialItem = ({ item, currentMaterial, handleMaterialClick }) => {
                     <span className={'truncate'}>{capitalize(item.label)}</span>
                 </Button>
             </li>
-            {item.child_materials?.data.length > 0 && (
+            {item.child_materials?.length > 0 && (
                 <ul className="pl-4">
-                    {item.child_materials.data.map((child) => (
+                    {item.child_materials.map((child) => (
                         <MaterialItem
                             key={child.id}
-                            item={{ id: child.id, ...child.attributes }}
+                            item={child}
                             currentMaterial={currentMaterial}
                             handleMaterialClick={handleMaterialClick}
                         />

@@ -178,8 +178,8 @@ export interface Material {
     updatedAt: Date;
     label: string;
     slug: string;
-    parent_materials?: { data: Entity<Material>[] };
-    child_materials?: { data: Entity<Material>[] };
+    parent_materials?: Material[] ;
+    child_materials?: Material[];
     isMaterial?: boolean;
 }
 

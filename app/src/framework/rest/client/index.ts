@@ -370,7 +370,6 @@ class Client {
         }
     }
     materials = {
-        all: (params?: any) => HttpClient.get<Material>(API_ENDPOINTS.MATERIAL, {...params}),
         get: (params: any) => {
             return HttpClient.get<Material>(`${API_ENDPOINTS.MATERIAL}`, params)
         }

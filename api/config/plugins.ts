@@ -56,6 +56,14 @@ export default ({env}) => ({
               maxTotalHits: 10000
             },
           }
+        },
+        material: {
+          settings: {
+            filterableAttributes: ['isMaterial','slug'],
+            pagination: {
+              maxTotalHits: 10000
+            },
+          }
         }
       }
     },

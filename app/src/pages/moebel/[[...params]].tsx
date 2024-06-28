@@ -74,7 +74,10 @@ function MoebelPage({
                         <div className="flex items-center justify-between">
                             <div>
                                 <h1 className="text-lg font-semibold md:text-2xl">{title}</h1>
-                                <span className={'font-light text-xs text-gray-500'}>{total} Produkte</span>
+                                <span className={'font-light text-xs text-gray-500'}>
+                                    {total >= 1000 ? 'mehr als 1000 Produkte gefunden' : `${total} Produkte gefunden`}
+                                </span>
+
                             </div>
                             <div className={'flex gap-4 justify-center'}>
                                 <Suspense fallback={<div>Loading...</div>}>
