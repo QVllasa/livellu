@@ -1,8 +1,8 @@
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
-import { Check, ChevronRight, Circle } from "lucide-react"
+import {Check, ChevronRight, Circle} from "lucide-react"
 
-import { cn } from "@/shadcn/lib/utils"
+import {cn} from "@/shadcn/lib/utils"
 
 const DropdownMenu = DropdownMenuPrimitive.Root
 
@@ -22,7 +22,8 @@ const DropdownMenuSubTrigger = React.forwardRef<
     inset?: boolean
   }
 >(({ className, inset, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.SubTrigger
+    //  @ts-ignore
+    <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
       "flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none focus:bg-slate-100 data-[state=open]:bg-slate-100 dark:focus:bg-slate-800 dark:data-[state=open]:bg-slate-800",
@@ -94,7 +95,8 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem>
 >(({ className, children, checked, ...props }, ref) => (
-  <DropdownMenuPrimitive.CheckboxItem
+    // @ts-ignore
+    <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-slate-100 focus:text-slate-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-800 dark:focus:text-slate-50",
@@ -118,7 +120,8 @@ const DropdownMenuRadioItem = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem>
 >(({ className, children, ...props }, ref) => (
-  <DropdownMenuPrimitive.RadioItem
+    // @ts-ignore
+    <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
       "relative flex cursor-default select-none items-center rounded-sm py-1.5 pl-8 pr-2 text-sm outline-none transition-colors focus:bg-slate-100 focus:text-slate-900 data-[disabled]:pointer-events-none data-[disabled]:opacity-50 dark:focus:bg-slate-800 dark:focus:text-slate-50",

@@ -1,17 +1,17 @@
-import { CustomDisclosure } from '@/components/ui/disclosure';
-import { useTranslation } from 'next-i18next';
+import {CustomDisclosure} from '@/components/ui/disclosure';
+
 import Search from '@/components/ui/search/search';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import Sorting from './sorting';
 import PriceFilter from '@/components/search-view/price-filter';
 import CategoryFilter from '@/components/search-view/category-filter-view';
 import TagFilter from '@/components/search-view/tag-filter-view';
 import ManufacturerFilter from '@/components/search-view/manufacturer-filter-view';
 import classNames from 'classnames';
-import { useAtom } from 'jotai';
-import { drawerAtom } from '@/store/drawer-atom';
+import {useAtom} from 'jotai';
+import {drawerAtom} from '@/store/drawer-atom';
 import ArrowNarrowLeft from '@/components/icons/arrow-narrow-left';
-import { useIsRTL } from '@/lib/locals';
+import {useIsRTL} from '@/lib/locals';
 import Button from '@/components/ui/button';
 
 const FieldWrapper = ({ children, title }: any) => (
@@ -21,7 +21,7 @@ const FieldWrapper = ({ children, title }: any) => (
 );
 
 function ClearFiltersButton() {
-  const { t } = useTranslation('common');
+  
   const router = useRouter();
 
   function clearFilters() {
@@ -48,7 +48,7 @@ function ClearFiltersButton() {
       className="text-sm font-semibold text-body transition-colors hover:text-red-500 focus:text-red-500 focus:outline-0 lg:m-0"
       onClick={clearFilters}
     >
-      {t('text-clear-all')}
+      {('text-clear-all')}
     </button>
   );
 }
@@ -59,7 +59,7 @@ const SidebarFilter: React.FC<{
 }> = ({ type, showManufacturers = true, className }) => {
   const router = useRouter();
   const { isRTL } = useIsRTL();
-  const { t } = useTranslation('common');
+  
   const [_, closeSidebar] = useAtom(drawerAtom);
 
   return (
@@ -81,11 +81,11 @@ const SidebarFilter: React.FC<{
               })}
               strokeWidth={1.7}
             />
-            <span className="sr-only">{t('text-close')}</span>
+            <span className="sr-only">{('text-close')}</span>
           </button>
 
           <h3 className="text-xl font-semibold text-heading lg:text-2xl">
-            {t('text-filter')}
+            {('text-filter')}
           </h3>
         </div>
 

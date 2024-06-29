@@ -1,10 +1,10 @@
 import Counter from '@/components/ui/counter';
-import { cartAnimation } from '@/lib/cart-animation';
-import { useCart } from '@/store/quick-cart/cart.context';
-import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
+import {cartAnimation} from '@/lib/cart-animation';
+import {useCart} from '@/store/quick-cart/cart.context';
+import {generateCartItem} from '@/store/quick-cart/generate-cart-item';
 import Button from '@/components/ui/button';
-import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
+
+import {useState} from 'react';
 
 interface Props {
   data: any;
@@ -37,7 +37,7 @@ export const AddToCartAlt = ({
   variation,
   disabled,
 }: Props) => {
-  const { t } = useTranslation('common');
+  
   const { addItemToCart, isInStock, isInCart, updateCartLanguage, language } = useCart();
   const item = generateCartItem(data, variation);
   const [quantity, setQuantity] = useState<number>(1);
@@ -84,7 +84,7 @@ export const AddToCartAlt = ({
         onClick={handleAddClick}
         disabled={disabled || outOfStock}
       >
-        {t('text-add-to-cart')}
+        {('text-add-to-cart')}
       </Button>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useTranslation } from 'next-i18next';
+
 
 interface Props {
   from: number;
@@ -7,12 +7,12 @@ interface Props {
 }
 
 const SearchCount = ({ from, to, total }: Props) => {
-  const { t } = useTranslation('common');
+  
 
   return (
-    <span className="text-sm font-semibold text-heading">{`${t(
+    <span className="text-sm font-semibold text-heading">{`${(
       'text-showing'
-    )} ${from} - ${to} ${t('text-of')} ${total} ${t('text-products')}`}</span>
+    )} ${from} - ${to} ${('text-of')} ${total} ${('text-products')}`}</span>
   );
 };
 

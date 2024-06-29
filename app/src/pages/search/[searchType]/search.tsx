@@ -6,7 +6,6 @@ import Sorting from '@/components/search-view/sorting';
 import {drawerAtom} from '@/store/drawer-atom';
 import {motion} from 'framer-motion';
 import {useAtom} from 'jotai';
-import {useTranslation} from 'next-i18next';
 import {useRouter} from 'next/router';
 import StickyBox from 'react-sticky-box';
 
@@ -42,7 +41,7 @@ export default function SearchPage() {
 }
 
 const GetLayout = (page: React.ReactElement) => {
-  const { t } = useTranslation('common');
+  
   const [_, setDrawerView] = useAtom(drawerAtom);
   return (
     <GeneralLayout>
@@ -68,7 +67,7 @@ const GetLayout = (page: React.ReactElement) => {
             }
             className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
           >
-            <span className="sr-only">{t('text-filter')}</span>
+            <span className="sr-only">{('text-filter')}</span>
             <FilterIcon width="17.05" height="18" />
           </motion.button>
         </MobileNavigation>

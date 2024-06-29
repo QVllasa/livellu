@@ -1,16 +1,10 @@
-import ProductLoader from '@/components/ui/loaders/product-loader';
-import NotFound from '@/components/ui/not-found';
-import rangeMap from '@/lib/range-map';
-import ProductCard from '@/components/products/cards/product-card';
-import ErrorMessage from '@/components/ui/error-message';
 import SectionBlock from '@/components/ui/section-block';
-import { useTranslation } from 'next-i18next';
-import { Image } from '@/components/ui/image';
-import { siteSettings } from '@/config/site';
-import { productPlaceholder } from '@/lib/placeholders';
+import {Image} from '@/components/ui/image';
+import {siteSettings} from '@/config/site';
+import {productPlaceholder} from '@/lib/placeholders';
 import Link from '@/components/ui/link';
-import { Routes } from '@/config/routes';
-import { useRouter } from 'next/router';
+import {Routes} from '@/config/routes';
+import {useRouter} from 'next/router';
 import classNames from 'classnames';
 
 interface Props {
@@ -19,7 +13,7 @@ interface Props {
 }
 
 export default function SellingProductsGrid({ className, limit = 6 }: Props) {
-  const { t } = useTranslation('common');
+  
   // const { products, isLoading, error } = usePopularProducts({ range: 30 });
   const router = useRouter();
 
@@ -27,14 +21,14 @@ export default function SellingProductsGrid({ className, limit = 6 }: Props) {
 
   // if (!isLoading ) {
   //   return (
-  //     <SectionBlock title={t('text-selling-books')}>
+  //     <SectionBlock title={('text-selling-books')}>
   //       <NotFound text="text-not-found" className="mx-auto w-7/12" />
   //     </SectionBlock>
   //   );
   // }
 
   return (
-    <SectionBlock title={t('text-selling-books')}>
+    <SectionBlock title={('text-selling-books')}>
       <div
         className={classNames(
           'grid w-full grid-cols-4 gap-6 xl:gap-8',

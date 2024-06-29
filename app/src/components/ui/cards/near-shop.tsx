@@ -1,19 +1,18 @@
-import { Image } from '@/components/ui/image';
-import { useTranslation } from 'next-i18next';
-import { formatAddress } from '@/lib/format-address';
-import { Routes } from '@/config/routes';
+import {Image} from '@/components/ui/image';
+
+import {formatAddress} from '@/lib/format-address';
+import {Routes} from '@/config/routes';
 import Link from '@/components/ui/link';
 import isEmpty from 'lodash/isEmpty';
-import { productPlaceholder } from '@/lib/placeholders';
-import { Shop } from '@/types';
-import Button from '../button';
+import {productPlaceholder} from '@/lib/placeholders';
+import {Shop} from '@/types';
 
 type ShopCardProps = {
   shop: Shop;
 };
 
 const NearShopCard: React.FC<ShopCardProps> = ({ shop }) => {
-  const { t } = useTranslation();
+  
   const isNew = false;
 
   return (
@@ -22,12 +21,12 @@ const NearShopCard: React.FC<ShopCardProps> = ({ shop }) => {
         <div className="relative z-10">
           {isNew && (
             <span className="absolute top-2 rounded bg-blue-500 px-2 py-1 text-xs text-light ltr:right-2 rtl:left-2">
-              {t('common:text-new')}
+              {('common:text-new')}
             </span>
           )}
           <div className="relative flex h-[170px] w-full max-w-full shrink-0 items-center justify-center overflow-hidden bg-gray-300">
             <Image
-              alt={t('common:text-logo')}
+              alt={('common:text-logo')}
               src={shop?.cover_image?.original ?? productPlaceholder}
               fill
               sizes="(max-width: 768px) 100vw"
@@ -45,7 +44,7 @@ const NearShopCard: React.FC<ShopCardProps> = ({ shop }) => {
           <div className="bottom-5 left-5 z-10 flex gap-4">
             <div className="relative z-20 -mt-14 flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-[3px] border-solid border-white shadow-md">
               <Image
-                alt={t('common:text-logo')}
+                alt={('common:text-logo')}
                 src={shop?.logo?.thumbnail ?? productPlaceholder}
                 fill
                 className="object-cover"
@@ -59,7 +58,7 @@ const NearShopCard: React.FC<ShopCardProps> = ({ shop }) => {
                 {/* <MapPin className="h-3.5 w-3.5 shrink-0 text-muted ltr:mr-1 rtl:ml-1" /> */}
                 {!isEmpty(formatAddress(shop?.address!))
                   ? formatAddress(shop?.address!)
-                  : t('common:text-no-address')}
+                  : ('common:text-no-address')}
               </span>
             </div>
           </div>

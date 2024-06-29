@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { useTranslation } from 'next-i18next';
+
 import Link from '@/components/ui/link';
 
 type SectionProps = {
@@ -22,7 +22,7 @@ const SectionBlock: React.FC<SectionProps> = ({
   href,
   children,
 }) => {
-  const { t } = useTranslation('common');
+  
   return (
     <div
       className={cn(
@@ -34,7 +34,7 @@ const SectionBlock: React.FC<SectionProps> = ({
         <div className="flex items-center justify-between mb-7 ">
           {title && (
             <h3 className="text-2xl font-semibold lg:text-[27px] 3xl:text-3xl">
-              {t(title)}
+              {(title)}
             </h3>
           )}
           {href && (
@@ -42,7 +42,7 @@ const SectionBlock: React.FC<SectionProps> = ({
               href={href}
               className="justify-end text-base font-semibold transition-colors hover:text-orange-500"
             >
-              {t('text-see-all')}
+              {('text-see-all')}
             </Link>
           )}
         </div>

@@ -1,8 +1,7 @@
-import { GoogleMapLocation } from '@/types';
-import { useJsApiLoader } from '@react-google-maps/api';
-import { useState, useCallback } from 'react';
-import { useTranslation } from 'react-i18next';
-import { atom } from 'jotai';
+import {GoogleMapLocation} from '@/types';
+import {useJsApiLoader} from '@react-google-maps/api';
+import {useCallback, useState} from 'react';
+import {atom} from 'jotai';
 
 export const locationAtom = atom<GoogleMapLocation | null>(null);
 
@@ -69,7 +68,7 @@ interface UseLocationProps {
 }
 
 export default function useLocation({ onChange, onChangeCurrentLocation, setInputValue }: UseLocationProps) {
-  const { t } = useTranslation();
+  
   const [autocomplete, setAutocomplete] = useState<any>(null);
   const { isLoaded, loadError } = useJsApiLoader({
     id: 'google_map_autocomplete',
@@ -132,6 +131,6 @@ export default function useLocation({ onChange, onChangeCurrentLocation, setInpu
     onPlaceChanged,
     getCurrentLocation,
     isLoaded,
-    loadError && t(loadError),
+    loadError,
   ];
 }

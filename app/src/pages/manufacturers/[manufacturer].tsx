@@ -9,7 +9,6 @@ import {motion} from 'framer-motion';
 import {useAtom} from 'jotai';
 import dynamic from 'next/dynamic';
 import {useRouter} from 'next/router';
-import {useTranslation} from 'next-i18next';
 import StickyBox from 'react-sticky-box';
 
 const MobileNavigation = dynamic(
@@ -20,7 +19,7 @@ const MobileNavigation = dynamic(
 );
 
 export default function Manufacturer({ manufacturer, variables }: any) {
-  const { t } = useTranslation('common');
+  
   const { query } = useRouter();
 
 
@@ -32,7 +31,7 @@ export default function Manufacturer({ manufacturer, variables }: any) {
       <div className="flex w-full flex-col">
         <Details manufacturer={manufacturer} />
         <h2 className="mb-8 text-3xl font-semibold tracking-tight text-heading">
-          {t('text-books')}
+          {('text-books')}
         </h2>
         {/*<Grid*/}
         {/*  products={productsItem}*/}
@@ -49,7 +48,7 @@ export default function Manufacturer({ manufacturer, variables }: any) {
 }
 
 const GetLayout = (page: React.ReactElement) => {
-  const { t } = useTranslation('common');
+  
   const [_, setDrawerView] = useAtom(drawerAtom);
   const type = page.props.manufacturer?.type?.slug;
   return (
@@ -77,7 +76,7 @@ const GetLayout = (page: React.ReactElement) => {
             }
             className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
           >
-            <span className="sr-only">{t('text-filter')}</span>
+            <span className="sr-only">{('text-filter')}</span>
             <FilterIcon width="17.05" height="18" />
           </motion.button>
         </MobileNavigation>

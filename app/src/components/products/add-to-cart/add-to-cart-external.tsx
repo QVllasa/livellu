@@ -1,11 +1,8 @@
-import Counter from '@/components/ui/counter';
-import { cartAnimation } from '@/lib/cart-animation';
-import { useCart } from '@/store/quick-cart/cart.context';
-import { generateCartItem } from '@/store/quick-cart/generate-cart-item';
-import Button from '@/components/ui/button';
-import { useTranslation } from 'next-i18next';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
+import {useCart} from '@/store/quick-cart/cart.context';
+import {generateCartItem} from '@/store/quick-cart/generate-cart-item';
+
+import {useState} from 'react';
+import {useRouter} from 'next/router';
 import Link from 'next/link';
 
 interface Props {
@@ -40,7 +37,7 @@ export const AddToCartExternal = ({
   disabled,
 }: Props) => {
   const router = useRouter();
-  const { t } = useTranslation('common');
+  
   const { addItemToCart, isInStock, isInCart, updateCartLanguage, language } =
     useCart();
   const item = generateCartItem(data, variation);

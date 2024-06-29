@@ -1,17 +1,16 @@
-import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { useTranslation } from 'next-i18next';
+import {ArrowNextIcon} from '@/components/icons/arrow-next';
+
 
 import Link from './link';
 
 const ListMenu = ({ dept, data, hasSubMenu, menuIndex }: any) => {
-  const { t } = useTranslation('menu');
   return (
     <li className="relative">
       <Link
         href={data.path}
         className="flex items-center justify-between py-2 ltr:pl-5 rtl:pr-5 ltr:xl:pl-7 rtl:xl:pr-7 ltr:pr-3 rtl:pl-3 ltr:xl:pr-3.5 rtl:xl:pl-3.5 transition-colors hover:text-accent"
       >
-        {t(data.label)}
+        {(data.label)}
         {data.subMenu && (
           <span className="text-sm mt-0.5 shrink-0">
             <ArrowNextIcon className="ltr:ml-1.5 rtl:mr-1.5 w-3.5" />

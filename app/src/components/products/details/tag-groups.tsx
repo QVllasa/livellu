@@ -1,5 +1,5 @@
 import Router from 'next/router';
-import { useTranslation } from 'next-i18next';
+
 interface Props {
   tags: any;
   basePath: string;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const TagGroups = ({ onClose, tags, basePath }: Props) => {
-  const { t } = useTranslation('common');
+  
 
   const handleClick = (path: string) => {
     Router.push(path);
@@ -18,7 +18,7 @@ const TagGroups = ({ onClose, tags, basePath }: Props) => {
   return (
     <div className="flex w-full flex-col items-start">
       <span className="pb-3 text-sm font-semibold capitalize text-heading">
-        {t('text-tags')}
+        {('text-tags')}
       </span>
       <div className="flex flex-row flex-wrap">
         {tags?.map((tag: any) => (

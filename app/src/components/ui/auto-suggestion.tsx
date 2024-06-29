@@ -1,12 +1,10 @@
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 import cn from 'classnames';
-import { useTranslation } from 'next-i18next';
 import Scrollbar from '@/components/ui/scrollbar';
-import Link from '@/components/ui/link';
-import { Image } from '@/components/ui/image';
-import { productPlaceholder } from '@/lib/placeholders';
-import { Routes } from '@/config/routes';
-import { Transition } from '@headlessui/react';
+import {Image} from '@/components/ui/image';
+import {productPlaceholder} from '@/lib/placeholders';
+import {Routes} from '@/config/routes';
+import {Transition} from '@headlessui/react';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
 
 type Props = {
@@ -28,7 +26,6 @@ const AutoSuggestion: React.FC<Props> = ({
   seeMore,
   seeMoreLink,
 }) => {
-  const { t } = useTranslation('common');
   const router = useRouter();
 
   const handleClick = (path: string) => {
@@ -55,7 +52,7 @@ const AutoSuggestion: React.FC<Props> = ({
           <Scrollbar className="h-full w-full">
             {notFound && (
               <h3 className="flex h-full w-full items-center justify-center py-10 font-semibold text-gray-400">
-                {t('text-no-products')}
+                {('text-no-products')}
               </h3>
             )}
 
@@ -97,7 +94,7 @@ const AutoSuggestion: React.FC<Props> = ({
                 onClick={seeMoreLink}
                 className="text-sm font-semibold text-accent transition-colors hover:text-accent-hover"
               >
-                {t('text-see-more')}
+                {('text-see-more')}
               </button>
             </div>
           )}

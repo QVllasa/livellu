@@ -1,13 +1,13 @@
-import { useState, Fragment } from 'react';
-import { Listbox, Transition } from '@headlessui/react';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
-import { LangSwitcherIcon } from '@/components/icons/lang-switcher-icon';
-import { languageMenu } from '@/lib/locals';
+import {Fragment, useState} from 'react';
+import {Listbox, Transition} from '@headlessui/react';
+
+import {useRouter} from 'next/router';
+import {LangSwitcherIcon} from '@/components/icons/lang-switcher-icon';
+import {languageMenu} from '@/lib/locals';
 import Cookies from 'js-cookie';
 
 export default function LanguageSwitcher() {
-  const { t } = useTranslation('common');
+  
   const router = useRouter();
   const { asPath, locale, locales } = router;
 
@@ -42,7 +42,7 @@ export default function LanguageSwitcher() {
               <span className="text-xl ltr:mr-3 rtl:ml-3">
                 {selectedItem.icon}
               </span>{' '}
-              {t(selectedItem.name)}
+              {(selectedItem.name)}
             </span>
             <span className="pointer-events-none absolute inset-y-0 hidden items-center ltr:right-0 ltr:pr-2 rtl:left-0 rtl:pl-2 xl:flex">
               <LangSwitcherIcon className="text-gray-400" aria-hidden="true" />
@@ -76,7 +76,7 @@ export default function LanguageSwitcher() {
                           selected ? 'font-medium' : 'font-normal'
                         } block truncate ltr:ml-1.5 rtl:mr-1.5`}
                       >
-                        {t(option.name)}
+                        {(option.name)}
                       </span>
                       {selected ? (
                         <span

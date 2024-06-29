@@ -1,10 +1,11 @@
 import Scrollbar from '@/components/ui/scrollbar';
 import Select from '@/components/ui/select/select';
-import { RadioGroup } from '@headlessui/react';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { useTranslation } from 'next-i18next';
-import { useIsRTL } from '@/lib/locals';
+import {RadioGroup} from '@headlessui/react';
+import {useRouter} from 'next/router';
+import {useEffect, useState} from 'react';
+
+import {useIsRTL} from '@/lib/locals';
+
 interface Plan {
   id: number | string;
   key: string;
@@ -46,7 +47,7 @@ type Props = {
 
 const Sorting: React.FC<Props> = ({ variant = 'radio' }) => {
   const router = useRouter();
-  const { t } = useTranslation('common');
+  
   const { isRTL } = useIsRTL();
   const [selected, setSelected] = useState(
     () =>
@@ -88,7 +89,7 @@ const Sorting: React.FC<Props> = ({ variant = 'radio' }) => {
         <Scrollbar style={{ maxHeight: '400px' }}>
           <RadioGroup value={selected} onChange={handleChange}>
             <RadioGroup.Label className="sr-only">
-              {t('text-sort')}
+              {('text-sort')}
             </RadioGroup.Label>
             <div className="space-y-4">
               {plans.map((plan) => (

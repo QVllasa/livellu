@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
-import { useIsRTL } from '@/lib/locals';
-import { ArrowPrevIcon } from '@/components/icons/arrow-prev';
-import { ArrowNextIcon } from '@/components/icons/arrow-next';
-import { Swiper, SwiperSlide, Navigation } from '@/components/ui/slider';
-import { productPlaceholder } from '@/lib/placeholders';
-import { Image } from '@/components/ui/image';
+import {useState} from 'react';
+
+import {useIsRTL} from '@/lib/locals';
+import {ArrowPrevIcon} from '@/components/icons/arrow-prev';
+import {ArrowNextIcon} from '@/components/icons/arrow-next';
+import {Navigation, Swiper, SwiperSlide} from '@/components/ui/slider';
+import {productPlaceholder} from '@/lib/placeholders';
+import {Image} from '@/components/ui/image';
 import Link from './link';
 
 interface CategoryItemProps {
@@ -31,7 +31,7 @@ const CategoryItem: React.FC<CategoryItemProps> = ({ item }) => {
 };
 
 function SolidCardCategory({ items }: any) {
-  const { t } = useTranslation('common');
+  
   const { isRTL } = useIsRTL();
 
   const [prevEl, setPrevEl] = useState<HTMLElement | null>(null);
@@ -96,14 +96,14 @@ function SolidCardCategory({ items }: any) {
         ref={(node) => setPrevEl(node)}
         className="banner-slider-prev absolute top-1/2 z-10 -mt-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-light text-heading shadow-300 outline-none transition-colors hover:text-orange-500 focus:outline-none ltr:-left-4 rtl:-right-4"
       >
-        <span className="sr-only">{t('text-previous')}</span>
+        <span className="sr-only">{('text-previous')}</span>
         {isRTL ? <ArrowNextIcon /> : <ArrowPrevIcon />}
       </div>
       <div
         ref={(node) => setNextEl(node)}
         className="banner-slider-next absolute top-1/2 z-10 -mt-4 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-light text-heading shadow-300 outline-none transition-colors hover:text-orange-500 focus:outline-none ltr:-right-4 rtl:-left-4"
       >
-        <span className="sr-only">{t('text-next')}</span>
+        <span className="sr-only">{('text-next')}</span>
         {isRTL ? <ArrowPrevIcon /> : <ArrowNextIcon />}
       </div>
     </div>

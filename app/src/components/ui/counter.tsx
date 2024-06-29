@@ -1,7 +1,7 @@
 import cn from 'classnames';
-import { PlusIcon } from '@/components/icons/plus-icon';
-import { MinusIcon } from '@/components/icons/minus-icon';
-import { useTranslation } from 'next-i18next';
+import {PlusIcon} from '@/components/icons/plus-icon';
+import {MinusIcon} from '@/components/icons/minus-icon';
+
 
 type ButtonEvent = (
   e: React.MouseEvent<HTMLButtonElement | MouseEvent>
@@ -54,7 +54,7 @@ const Counter: React.FC<CounterProps> = ({
   className,
   disabled,
 }) => {
-  const { t } = useTranslation('common');
+  
 
   return (
     <div
@@ -73,7 +73,7 @@ const Counter: React.FC<CounterProps> = ({
           }
         )}
       >
-        <span className="sr-only">{t('text-minus')}</span>
+        <span className="sr-only">{('text-minus')}</span>
         <MinusIcon className="h-3 w-3 stroke-2.5" />
       </button>
       <div
@@ -99,9 +99,9 @@ const Counter: React.FC<CounterProps> = ({
             'hover:!bg-gray-100': variant === 'pillVertical',
           }
         )}
-        title={disabled ? t('text-out-stock') : ''}
+        title={disabled ? ('text-out-stock') : ''}
       >
-        <span className="sr-only">{t('text-plus')}</span>
+        <span className="sr-only">{('text-plus')}</span>
         <PlusIcon className="md:w-4.5 h-3.5 w-3.5 stroke-2.5 md:h-4.5" />
       </button>
     </div>

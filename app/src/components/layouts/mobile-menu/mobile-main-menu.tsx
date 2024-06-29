@@ -1,6 +1,5 @@
 import {useRouter} from 'next/router';
 import {Routes} from '@/config/routes';
-import {useTranslation} from 'next-i18next';
 import DrawerWrapper from '@/components/ui/drawer/drawer-wrapper';
 import {useAtom} from 'jotai';
 import {drawerAtom} from '@/store/drawer-atom';
@@ -8,9 +7,8 @@ import useNavigation from "@/lib/hooks/use-navigation";
 import {Navigation} from "@/types";
 import React, {useState} from "react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/shadcn/components/ui/collapsible";
-import {CaretDown} from "@/components/icons/caret-down";
 import {Button} from "@/shadcn/components/ui/button";
-import {ChevronDown, SortAscIcon, SortDescIcon} from "lucide-react";
+import {ChevronDown} from "lucide-react";
 import {ChevronRight} from "@/components/icons/chevron-right";
 
 const headerLinks = [
@@ -21,7 +19,6 @@ const headerLinks = [
 ];
 
 export default function MobileMainMenu() {
-    const {t} = useTranslation('common');
     const router = useRouter();
     const [_, closeSidebar] = useAtom(drawerAtom);
     const [isOpen, setIsOpen] = useState(false)

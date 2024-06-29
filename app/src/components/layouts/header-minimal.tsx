@@ -1,20 +1,16 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
-import { useAtom } from 'jotai';
-import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
-import { useTranslation } from 'next-i18next';
-import dynamic from 'next/dynamic';
-import { authorizationAtom } from '@/store/authorization-atom';
+import {useRouter} from 'next/router';
+import {useAtom} from 'jotai';
+import {displayMobileHeaderSearchAtom} from '@/store/display-mobile-header-search-atom';
+import {authorizationAtom} from '@/store/authorization-atom';
 import SearchWithSuggestion from '@/components/ui/search/search-with-suggestion';
 import Link from '@/components/ui/link';
 import LanguageSwitcher from '@/components/ui/language-switcher';
 
 
-
 const HeaderMinimal = ({ layout }: { layout: string }) => {
   const router = useRouter();
-  const { t } = useTranslation('common');
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const [isAuthorize] = useAtom(authorizationAtom);
   const isMultilangEnable =
@@ -50,7 +46,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
                 href={`${router.asPath}search`}
                 className="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent"
               >
-                {t('text-search')}
+                {('text-search')}
               </Link>
             </li>
           </ul>
@@ -59,7 +55,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
         {displayMobileHeaderSearch && (
           <div className="absolute top-0 block h-full w-full bg-light px-5 pt-1.5 ltr:left-0 rtl:right-0 md:pt-2 lg:hidden">
             <SearchWithSuggestion
-              label={t('text-search-label')}
+              label={('text-search-label')}
               variant="minimal"
               seeMore={true}
             />
@@ -69,7 +65,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
         {layout === 'compact' && (
           <div className="mx-auto hidden w-full px-8 xl:flex xl:w-6/12 xl:px-10 xl:rtl:w-4/12 2xl:rtl:w-5/12">
             <SearchWithSuggestion
-              label={t('text-search-label')}
+              label={('text-search-label')}
               variant="minimal"
               seeMore={true}
             />
@@ -92,7 +88,7 @@ const HeaderMinimal = ({ layout }: { layout: string }) => {
             {/*  variant="button"*/}
             {/*  target="_blank"*/}
             {/*>*/}
-            {/*  {t('text-become-seller')}*/}
+            {/*  {('text-become-seller')}*/}
             {/*</Link>*/}
             {/*{isAuthorize ? <AuthorizedMenu minimal={true} /> : <JoinButton />}*/}
           </div>

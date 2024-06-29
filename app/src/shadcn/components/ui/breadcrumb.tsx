@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { ChevronRight, MoreHorizontal } from "lucide-react"
+import {Slot} from "@radix-ui/react-slot"
+import {ChevronRight, MoreHorizontal} from "lucide-react"
 
-import { cn } from "@/shadcn/lib/utils"
+import {cn} from "@/shadcn/lib/utils"
 
 const Breadcrumb = React.forwardRef<
   HTMLElement,
@@ -48,6 +48,7 @@ const BreadcrumbLink = React.forwardRef<
   const Comp = asChild ? Slot : "a"
 
   return (
+    //   @ts-ignore
     <Comp
       ref={ref}
       className={cn("transition-colors hover:text-slate-950 dark:hover:text-slate-50", className)}

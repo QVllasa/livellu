@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const runtimeCaching = require('next-pwa/cache');
-const {i18n} = require('./next-i18next.config');
+// const {i18n} = require('./next-i18next.config');
 const withPWA = require('next-pwa')({
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
@@ -9,7 +9,7 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
     reactStrictMode: true,
-    i18n,
+    // i18n,
     images: {
         domains: [
             'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',

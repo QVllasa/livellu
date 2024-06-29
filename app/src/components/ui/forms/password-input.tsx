@@ -1,9 +1,9 @@
-import React, { InputHTMLAttributes, useState } from 'react';
+import React, {InputHTMLAttributes, useState} from 'react';
 import cn from 'classnames';
 import Link from '@/components/ui/link';
-import { Eye } from '@/components/icons/eye-icon';
-import { EyeOff } from '@/components/icons/eye-off-icon';
-import { useTranslation } from 'next-i18next';
+import {Eye} from '@/components/icons/eye-icon';
+import {EyeOff} from '@/components/icons/eye-off-icon';
+
 
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -43,7 +43,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
     },
     ref
   ) => {
-    const { t } = useTranslation();
+    
     const [show, setShow] = useState(false);
 
     return (
@@ -58,7 +58,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
               href={forgotPageLink}
               className="text-xs text-accent transition-colors duration-200 hover:text-accent-hover focus:font-semibold focus:text-accent-700 focus:outline-0"
             >
-              {t('common:text-forgot-password')}
+              {('common:text-forgot-password')}
             </Link>
           )}
           {forgotPageRouteOnClick && (
@@ -67,7 +67,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
               type="button"
               className="text-xs text-accent transition-colors duration-200 hover:text-accent-hover focus:font-semibold focus:text-accent-700 focus:outline-0"
             >
-              {t('common:text-forgot-password')}
+              {('common:text-forgot-password')}
             </button>
           )}
         </div>

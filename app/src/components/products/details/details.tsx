@@ -1,30 +1,14 @@
-import BackButton from '@/components/ui/back-button';
-import { AddToCart } from '@/components/products/add-to-cart/add-to-cart';
-import usePrice from '@/lib/use-price';
-import { ThumbsCarousel } from '@/components/ui/thumb-carousel';
-import { useTranslation } from 'next-i18next';
-import { getVariations } from '@/lib/get-variations';
-import { useEffect, useMemo, useRef } from 'react';
-import isEqual from 'lodash/isEqual';
+import {useEffect, useRef} from 'react';
 import isEmpty from 'lodash/isEmpty';
-import Truncate from '@/components/ui/truncate';
-import { scroller, Element } from 'react-scroll';
-import CategoryBadges from './category-badges';
-import VariationPrice from './variation-price';
-import { useRouter } from 'next/router';
-import { Routes } from '@/config/routes';
-import type { Product } from '@/types';
-import { useAtom } from 'jotai';
-import VariationGroups from './variation-groups';
-import { isVariationSelected } from '@/lib/is-variation-selected';
-import { useModalAction } from '@/components/ui/modal/modal.context';
-import { stickyShortDetailsAtom } from '@/store/sticky-short-details-atom';
-import { useAttributes } from './attributes.context';
-import classNames from 'classnames';
-import { displayImage } from '@/lib/display-product-preview-images';
+import {Element, scroller} from 'react-scroll';
+import {useRouter} from 'next/router';
+import type {Product} from '@/types';
+import {useAtom} from 'jotai';
+import {useModalAction} from '@/components/ui/modal/modal.context';
+import {stickyShortDetailsAtom} from '@/store/sticky-short-details-atom';
+import {useAttributes} from './attributes.context';
 
-import { useIntersection } from 'react-use';
-import { StarIcon } from '@/components/icons/star-icon';
+import {useIntersection} from 'react-use';
 
 type Props = {
   product: Product;
@@ -38,7 +22,7 @@ const Details: React.FC<Props> = ({
 }) => {
 
 
-  const { t } = useTranslation('common');
+  
   const [_, setShowStickyShortDetails] = useAtom(stickyShortDetailsAtom);
 
   const router = useRouter();
@@ -215,11 +199,11 @@ const Details: React.FC<Props> = ({
               {/*      <>*/}
               {/*        {Number(quantity) > 0 ? (*/}
               {/*          <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">*/}
-              {/*            {quantity} {t('text-pieces-available')}*/}
+              {/*            {quantity} {('text-pieces-available')}*/}
               {/*          </span>*/}
               {/*        ) : (*/}
               {/*          <div className="whitespace-nowrap text-base text-red-500 ltr:lg:ml-7 rtl:lg:mr-7">*/}
-              {/*            {t('text-out-stock')}*/}
+              {/*            {('text-out-stock')}*/}
               {/*          </div>*/}
               {/*        )}*/}
               {/*      </>*/}
@@ -230,8 +214,8 @@ const Details: React.FC<Props> = ({
                 <span className="whitespace-nowrap text-base text-body ltr:lg:ml-7 rtl:lg:mr-7">
                   {selectedVariation?.is_disable ||
                     selectedVariation.quantity === 0
-                    ? t('text-out-stock')
-                    : `${selectedVariation.quantity} ${t(
+                    ? ('text-out-stock')
+                    : `${selectedVariation.quantity} ${(
                       'text-pieces-available'
                     )}`}
                 </span>
@@ -248,7 +232,7 @@ const Details: React.FC<Props> = ({
           {/*{shop?.name && (*/}
           {/*  <div className="mt-2 flex items-center">*/}
           {/*    <span className="py-1 text-sm font-semibold capitalize text-heading ltr:mr-6 rtl:ml-6">*/}
-          {/*      {t('common:text-sellers')}*/}
+          {/*      {('common:text-sellers')}*/}
           {/*    </span>*/}
 
           {/*    <button*/}
@@ -266,7 +250,7 @@ const Details: React.FC<Props> = ({
         className="border-b border-border-200 border-opacity-70 px-5 py-4 lg:px-16 lg:py-14"
       >
         <h2 className="mb-4 text-lg font-semibold tracking-tight text-heading md:mb-6">
-          {t('text-details')}
+          {('text-details')}
         </h2>
         {/*<p className="text-sm text-body">{description}</p>*/}
       </Element>

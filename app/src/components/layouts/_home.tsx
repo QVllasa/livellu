@@ -1,5 +1,4 @@
 import {motion} from 'framer-motion';
-import {useTranslation} from 'next-i18next';
 import {useAtom} from 'jotai';
 import Header from './header';
 import Footer from './footer';
@@ -7,8 +6,6 @@ import {SearchIcon} from '@/components/icons/search-icon';
 import {displayMobileHeaderSearchAtom} from '@/store/display-mobile-header-search-atom';
 
 import dynamic from 'next/dynamic';
-import Categories from "@/components/categories/categories";
-import useNavigation from "@/lib/hooks/use-navigation";
 
 const MobileNavigation = dynamic(() => import('./mobile-navigation'), {
     ssr: false,
@@ -17,7 +14,7 @@ const MobileNavigation = dynamic(() => import('./mobile-navigation'), {
 export default function HomeLayout({
                                        children,
                                    }: React.PropsWithChildren<{}>) {
-    const {t} = useTranslation('common');
+
     const [, setDisplayMobileHeaderSearch] = useAtom(
         displayMobileHeaderSearchAtom
     );
@@ -49,7 +46,7 @@ export default function HomeLayout({
                     onClick={() => setDisplayMobileHeaderSearch((prev) => !prev)}
                     className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                 >
-                    <span className="sr-only">{t('text-search')}</span>
+                    <span className="sr-only">{'suchen'}</span>
                     <SearchIcon width="17.05" height="18"/>
                 </motion.button>
             </MobileNavigation>

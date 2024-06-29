@@ -1,11 +1,9 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import cn from 'classnames';
-import { motion, AnimatePresence } from 'framer-motion';
-import { MinusIcon } from '@/components/icons/minus-icon';
-import { PlusIcon } from '@/components/icons/plus-icon';
-import { heightCollapse } from '@/lib/motion/height-collapse';
-import { useTranslation } from 'next-i18next';
-import { Disclosure } from '@headlessui/react';
+import {AnimatePresence, motion} from 'framer-motion';
+import {MinusIcon} from '@/components/icons/minus-icon';
+import {PlusIcon} from '@/components/icons/plus-icon';
+import {heightCollapse} from '@/lib/motion/height-collapse';
 
 type CollapseProps = {
   i: number;
@@ -28,7 +26,6 @@ const Collapse: React.FC<CollapseProps> = ({
   // active state style
   const activeClass = isOpen ? 'shadow-sm' : '';
 
-  const { t } = useTranslation(translatorNS);
 
   return (
     <div
@@ -43,7 +40,7 @@ const Collapse: React.FC<CollapseProps> = ({
         className="py-4 px-5 rounded cursor-pointer flex items-center justify-between transition-colors"
       >
         <h2 className="text-sm md:text-base font-semibold leading-relaxed text-heading">
-          {t(title)}
+          {(title)}
         </h2>
         {isOpen ? (
           <MinusIcon
@@ -65,7 +62,7 @@ const Collapse: React.FC<CollapseProps> = ({
             variants={heightCollapse()}
           >
             <div className="md:pt-1 pb-4 px-5 leading-7 text-sm md:text-base md:leading-loose text-body-dark">
-              {t(content)}
+              {(content)}
             </div>
           </motion.div>
         )}

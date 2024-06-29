@@ -1,16 +1,15 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
-import { useAtom } from 'jotai';
-import { displayMobileHeaderSearchAtom } from '@/store/display-mobile-header-search-atom';
-import { useTranslation } from 'next-i18next';
+import {useAtom} from 'jotai';
+import {displayMobileHeaderSearchAtom} from '@/store/display-mobile-header-search-atom';
+
 import dynamic from 'next/dynamic';
-import { authorizationAtom } from '@/store/authorization-atom';
-import { useIsHomePage } from '@/lib/use-is-homepage';
-import { useMemo, useState } from 'react';
-import { useHeaderSearch } from '@/layouts/headers/header-search-atom';
-import LanguageSwitcher from '@/components/ui/language-switcher';
-import { locationAtom } from '@/lib/use-location';
-import { useSettings } from '@/framework/settings';
+import {authorizationAtom} from '@/store/authorization-atom';
+import {useIsHomePage} from '@/lib/use-is-homepage';
+import {useMemo, useState} from 'react';
+import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
+import {locationAtom} from '@/lib/use-location';
+import {useSettings} from '@/framework/settings';
 import Navigation from "@/components/layouts/menu/navigation";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
@@ -18,7 +17,6 @@ const Search = dynamic(() => import('@/components/ui/search/search'));
 
 
 const Header = ({ layout }: { layout?: string }) => {
-  const { t } = useTranslation('common');
   const { show, hideHeaderSearch } = useHeaderSearch();
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const [isAuthorize] = useAtom(authorizationAtom);
@@ -88,13 +86,13 @@ const Header = ({ layout }: { layout?: string }) => {
             <>
               {(show || layout === 'modern') && (
                 <div className="mx-auto hidden w-full overflow-hidden px-10 lg:block xl:w-11/12 2xl:w-10/12">
-                  <Search label={t('text-search-label')} variant="minimal" />
+                  <Search label={('text-search-label')} variant="minimal" />
                 </div>
               )}
 
               {displayMobileHeaderSearch && (
                 <div className="absolute top-0 block h-full w-full bg-light px-5 pt-1.5 ltr:left-0 rtl:right-0 md:pt-2 lg:hidden">
-                  <Search label={t('text-search-label')} variant="minimal" />
+                  <Search label={('text-search-label')} variant="minimal" />
                 </div>
               )}
             </>

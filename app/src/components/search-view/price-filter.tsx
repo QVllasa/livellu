@@ -1,11 +1,11 @@
 import Slider from '@/components/ui/forms/range-slider';
-import { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import {useEffect, useMemo, useState} from 'react';
+import {useRouter} from 'next/router';
+
 
 const defaultPriceRange = [0, 1000];
 const PriceFilter = () => {
-  const { t } = useTranslation('common');
+  
   const router = useRouter();
   const selectedValues = useMemo(
     () =>
@@ -33,7 +33,7 @@ const PriceFilter = () => {
 
   return (
     <>
-      <span className="sr-only">{t('text-sort-by-price')}</span>
+      <span className="sr-only">{('text-sort-by-price')}</span>
       <Slider
         allowCross={false}
         range

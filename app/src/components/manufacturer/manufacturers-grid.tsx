@@ -1,14 +1,13 @@
 import Button from '@/components/ui/button';
 import NotFound from '@/components/ui/not-found';
-import { useTranslation } from 'next-i18next';
+
 import rangeMap from '@/lib/range-map';
 import ManufacturerLoader from '@/components/ui/loaders/manufacturer-loader';
-import { useManufacturers } from '@/framework/manufacturer';
-import ErrorMessage from '@/components/ui/error-message';
+import {useManufacturers} from '@/framework/manufacturer';
 import ManufacturerCard from './card';
-import { MANUFACTURERS_PER_PAGE } from '@/framework/client/variables';
-import { useRouter } from 'next/router';
-import { Key } from 'react';
+import {MANUFACTURERS_PER_PAGE} from '@/framework/client/variables';
+import {useRouter} from 'next/router';
+import {Key} from 'react';
 
 interface ManufacturersGridProps {
     limit?: number;
@@ -17,7 +16,7 @@ interface ManufacturersGridProps {
 const ManufacturersGrid: React.FC<ManufacturersGridProps> = ({
                                                                  limit = MANUFACTURERS_PER_PAGE,
                                                              }) => {
-    const {t} = useTranslation('common');
+
     const {locale} = useRouter();
     const {manufacturers, loadMore, isLoadingMore, isLoading, hasMore, error} =
         useManufacturers({
@@ -48,7 +47,7 @@ const ManufacturersGrid: React.FC<ManufacturersGridProps> = ({
       {hasMore && (
         <div className="flex items-center justify-center mt-12 lg:mt-16">
           <Button onClick={loadMore} size="big" loading={isLoadingMore}>
-            {t('text-explore-more')}
+            {('text-explore-more')}
           </Button>
         </div>
       )}

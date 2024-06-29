@@ -1,13 +1,12 @@
 import cn from 'classnames';
-import { avatarPlaceholder } from '@/lib/placeholders';
-import { useTranslation } from 'next-i18next';
-import { Image } from '@/components/ui/image';
-import Link from '@/components/ui/link';
-import { Routes } from '@/config/routes';
+import {avatarPlaceholder} from '@/lib/placeholders';
+
+import {Image} from '@/components/ui/image';
+import {Routes} from '@/config/routes';
 import isEmpty from 'lodash/isEmpty';
-import { getIcon } from '@/lib/get-icon';
+import {getIcon} from '@/lib/get-icon';
 import * as socialIcons from '@/components/icons/social';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 interface ManufacturerProps {
   item: any;
@@ -15,7 +14,7 @@ interface ManufacturerProps {
 }
 
 const ManufacturerCard: React.FC<ManufacturerProps> = ({ item, className }) => {
-  const { t } = useTranslation();
+  
   const router = useRouter();
 
   return (

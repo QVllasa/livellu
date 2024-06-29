@@ -4,7 +4,6 @@ import {NavbarIcon} from '@/components/icons/navbar-icon';
 import {HomeIcon} from '@/components/icons/home-icon';
 import {ShoppingBagIcon} from '@/components/icons/shopping-bag-icon';
 import {UserIcon} from '@/components/icons/user-icon';
-import {useTranslation} from 'next-i18next';
 import {useCart} from '@/store/quick-cart/cart.context';
 import {useModalAction} from '@/components/ui/modal/modal.context';
 import {useAtom} from 'jotai';
@@ -16,7 +15,6 @@ export default function MobileNavigation({
                                              children,
                                          }: React.PropsWithChildren<{}>) {
     const router = useRouter();
-    const {t} = useTranslation('common');
     const {openModal} = useModalAction();
     const [isAuthorize] = useAtom(authorizationAtom);
     const [_, setDrawerView] = useAtom(drawerAtom);
@@ -42,7 +40,7 @@ export default function MobileNavigation({
                         onClick={() => handleSidebar('MAIN_MENU_VIEW')}
                         className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                     >
-                        <span className="sr-only">{t('text-burger-menu')}</span>
+                        <span className="sr-only">{('text-burger-menu')}</span>
                         <NavbarIcon className={`${isRTL && 'rotate-180 transform'}`}/>
                     </motion.button>
 
@@ -53,7 +51,7 @@ export default function MobileNavigation({
                         onClick={() => router.push('/')}
                         className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                     >
-                        <span className="sr-only">{t('text-home')}</span>
+                        <span className="sr-only">{('text-home')}</span>
                         <HomeIcon/>
                     </motion.button>
 
@@ -62,7 +60,7 @@ export default function MobileNavigation({
                         onClick={() => handleSidebar('cart')}
                         className="product-cart relative flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                     >
-                        <span className="sr-only">{t('text-cart')}</span>
+                        <span className="sr-only">{('text-cart')}</span>
                         <ShoppingBagIcon/>
                         {totalUniqueItems > 0 && (
                             <span
@@ -78,7 +76,7 @@ export default function MobileNavigation({
                             onClick={() => handleSidebar('AUTH_MENU_VIEW')}
                             className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                         >
-                            <span className="sr-only">{t('text-user')}</span>
+                            <span className="sr-only">{('text-user')}</span>
                             <UserIcon/>
                         </motion.button>
                     ) : (
@@ -87,7 +85,7 @@ export default function MobileNavigation({
                             onClick={handleJoin}
                             className="flex h-full items-center justify-center p-2 focus:text-accent focus:outline-0"
                         >
-                            <span className="sr-only">{t('text-user')}</span>
+                            <span className="sr-only">{('text-user')}</span>
                             <UserIcon/>
                         </motion.button>
                     )}

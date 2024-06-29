@@ -1,14 +1,14 @@
-import { Image } from '@/components/ui/image';
-import { productPlaceholder } from '@/lib/placeholders';
-import { formatString } from '@/lib/format-string';
-import { useTranslation } from 'next-i18next';
+import {Image} from '@/components/ui/image';
+import {productPlaceholder} from '@/lib/placeholders';
+import {formatString} from '@/lib/format-string';
+
 
 interface CategoryItemProps {
   item: any;
   onClick: () => void;
 }
 const CategoryCard: React.FC<CategoryItemProps> = ({ item, onClick }) => {
-  const { t } = useTranslation('common');
+  
 
   return (
     <div
@@ -22,8 +22,8 @@ const CategoryCard: React.FC<CategoryItemProps> = ({ item, onClick }) => {
           {item?.children?.length
             ? `${item?.children?.length} ${
                 item?.children?.length > 1
-                  ? t('text-categories')
-                  : t('text-category')
+                  ? ('text-categories')
+                  : ('text-category')
               }`
             : item?.children?.length
             ? formatString(item?.products_count, 'Item')
@@ -31,7 +31,7 @@ const CategoryCard: React.FC<CategoryItemProps> = ({ item, onClick }) => {
         </span>
 
         <button className="mt-auto flex text-sm font-semibold text-accent underline opacity-100 transition-opacity group-hover:opacity-100 lg:opacity-0">
-          {t('text-view-more')}
+          {('text-view-more')}
         </button>
       </div>
 

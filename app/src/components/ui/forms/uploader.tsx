@@ -1,9 +1,9 @@
-import { useEffect, useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { useTranslation } from 'next-i18next';
-import { UploadIcon } from '@/components/icons/upload-icon';
+import {useCallback, useEffect} from 'react';
+import {useDropzone} from 'react-dropzone';
+
+import {UploadIcon} from '@/components/icons/upload-icon';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
-import { useUploads } from '@/framework/settings';
+import {useUploads} from '@/framework/settings';
 
 export default function Uploader({
   onChange,
@@ -12,7 +12,7 @@ export default function Uploader({
   onBlur,
   multiple = false,
 }: any) {
-  const { t } = useTranslation('common');
+  
   const {
     mutate: upload,
     isLoading,
@@ -82,10 +82,10 @@ export default function Uploader({
         <UploadIcon className="text-muted-light" />
         <p className="mt-4 text-sm text-center text-body">
           <span className="font-semibold text-accent">
-            {t('text-upload-highlight')}
+            {('text-upload-highlight')}
           </span>{' '}
-          {t('text-upload-message')} <br />
-          <span className="text-xs text-body">{t('text-img-format')}</span>
+          {('text-upload-message')} <br />
+          <span className="text-xs text-body">{('text-img-format')}</span>
         </p>
       </div>
 
@@ -94,7 +94,7 @@ export default function Uploader({
         {isLoading && (
           <div className="flex items-center h-16 mt-2 ltr:ml-2 rtl:mr-2">
             <Spinner
-              text={t('text-loading')}
+              text={('text-loading')}
               simple={true}
               className="w-6 h-6"
             />

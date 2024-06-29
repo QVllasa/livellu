@@ -1,7 +1,8 @@
 import SearchBox from '@/components/ui/search/search-box';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
-import { useSearch } from './search.context';
+import {useRouter} from 'next/router';
+
+import {useSearch} from './search.context';
+
 interface Props {
   label: string;
   variant?: 'minimal' | 'normal' | 'with-shadow' | 'flat';
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const Search: React.FC<Props> = ({ label, variant, ...props }) => {
-  const { t } = useTranslation();
+  
   const router = useRouter();
   const { searchTerm, updateSearchTerm } = useSearch();
   const handleOnChange = (e: any) => {
@@ -59,7 +60,7 @@ const Search: React.FC<Props> = ({ label, variant, ...props }) => {
       onChange={handleOnChange}
       value={searchTerm}
       name="search"
-      placeholder={t('common:text-search-placeholder')}
+      placeholder={('common:text-search-placeholder')}
       variant={variant}
       {...props}
     />

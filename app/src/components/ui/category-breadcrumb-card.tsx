@@ -1,9 +1,8 @@
-import { useRouter } from 'next/router';
-import { Image } from '@/components/ui/image';
-import CategoryImg from '@/assets/category-img.png';
+import {useRouter} from 'next/router';
+import {Image} from '@/components/ui/image';
 import ArrowForward from '@/assets/arrow-forward.png';
 import BreadcrumbButton from '@/components/ui/breadcrumb-button';
-import { useTranslation } from 'next-i18next';
+
 
 interface BreadcrumbButtonProps {
   text: string;
@@ -37,7 +36,7 @@ interface CategoryBreadcrumbProps {
 const CategoryBreadcrumb: React.FC<CategoryBreadcrumbProps> = ({
   categories,
 }) => {
-  const { t } = useTranslation('common');
+  
   const router = useRouter();
   const { pathname, query } = router;
 
@@ -72,7 +71,7 @@ const CategoryBreadcrumb: React.FC<CategoryBreadcrumbProps> = ({
   return (
     <div className="flex items-center space-x-5 rtl:space-x-reverse">
       <BreadcrumbButton
-        text={t('text-all-categories')}
+        text={('text-all-categories')}
         onClick={resetCategoryClick}
       />
 

@@ -1,20 +1,7 @@
-import { useRouter } from 'next/router';
-import Image from 'next/image';
-import cn from 'classnames';
-import { AddToCart } from '@/components/products/add-to-cart/add-to-cart';
-import usePrice from '@/lib/use-price';
-import { getVariations } from '@/lib/get-variations';
-import isEqual from 'lodash/isEqual';
-import isEmpty from 'lodash/isEmpty';
-import VariationPrice from './variation-price';
-import { useTranslation } from 'next-i18next';
-import { Routes } from '@/config/routes';
-import { useModalAction } from '@/components/ui/modal/modal.context';
-import VariationGroups from './variation-groups';
-import type { Product } from '@/types';
-import { isVariationSelected } from '@/lib/is-variation-selected';
-import { useMemo } from 'react';
-import { useAttributes } from './attributes.context';
+import {useRouter} from 'next/router';
+import {useModalAction} from '@/components/ui/modal/modal.context';
+import type {Product} from '@/types';
+import {useAttributes} from './attributes.context';
 
 interface ShortDetailsProps {
   product: Product;
@@ -22,7 +9,7 @@ interface ShortDetailsProps {
 }
 const ShortDetails: React.FC<ShortDetailsProps> = ({ product, isSticky }) => {
   const router = useRouter();
-  const { t } = useTranslation('common');
+  
 
   const { closeModal } = useModalAction();
   const { attributes } = useAttributes();
@@ -151,7 +138,7 @@ const ShortDetails: React.FC<ShortDetailsProps> = ({ product, isSticky }) => {
     //             />
     //           ) : (
     //             <div className="rounded bg-red-500 px-3 py-2 text-sm text-light">
-    //               {t('text-out-stock')}
+    //               {('text-out-stock')}
     //             </div>
     //           )}
     //         </div>

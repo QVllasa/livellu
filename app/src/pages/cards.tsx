@@ -1,12 +1,6 @@
-import Seo from '@/components/seo/seo';
 import DashboardLayout from '@/layouts/_dashboard';
 
-import Card from '@/components/ui/cards/card';
-import { useSettings } from '@/framework/settings';
-import { PaymentGateway } from '@/types';
-import { isStripeAvailable } from '@/lib/is-stripe-available';
-
-export { getStaticProps } from '@/framework/general.ssr';
+// export { getStaticProps } from '@/framework/general.ssr';
 
 const FeatureNotAvailable = () => {
   return (
@@ -21,20 +15,20 @@ const FeatureNotAvailable = () => {
 };
 
 const MyCardsPage = () => {
-  const { settings } = useSettings();
-
-  // validation check from front-end
-  const isStripeGatewayAvailable = isStripeAvailable(settings);
-  if (!isStripeGatewayAvailable) {
-    return <FeatureNotAvailable />;
-  }
+  // const { settings } = useSettings();
+  //
+  // // validation check from front-end
+  // const isStripeGatewayAvailable = isStripeAvailable(settings);
+  // if (!isStripeGatewayAvailable) {
+  //   return <FeatureNotAvailable />;
+  // }
 
   return (
     <>
-      <Seo noindex={true} nofollow={true} />
-      <Card className="shadow-n relative w-full self-stretch overflow-hidden md:p-16 md:pt-12">
+      {/*<Seo noindex={true} nofollow={true} />*/}
+      {/*<Card className="shadow-n relative w-full self-stretch overflow-hidden md:p-16 md:pt-12">*/}
 
-      </Card>
+      {/*</Card>*/}
     </>
   );
 };

@@ -1,10 +1,8 @@
-import { useTranslation } from 'next-i18next';
-import { siteSettings } from '@/config/site';
+import {siteSettings} from '@/config/site';
 import Link from '@/components/ui/link';
 import Logo from '@/components/ui/logo';
 
 const Footer = () => {
-  const { t } = useTranslation('common');
   return (
     <div className="flex w-full flex-col border-gray-800 bg-white px-5 md:px-10 lg:border-b-8 lg:px-[50px] xl:px-16">
       {/* Top */}
@@ -15,20 +13,20 @@ const Footer = () => {
           </div>
 
           <address className="mb-7 text-sm not-italic text-heading">
-            {t(siteSettings.footer.address)}
+            {(siteSettings.footer.address)}
           </address>
           <span className="mb-1 text-sm text-heading">
-            {t(siteSettings.footer.email)}
+            {(siteSettings.footer.email)}
           </span>
           <span className="text-sm text-heading">
-            {t(siteSettings.footer.phone)}
+            {(siteSettings.footer.phone)}
           </span>
         </div>
 
         {siteSettings.footer.menus.map((menu, idx) => (
           <div className="flex flex-col" key={`${menu.title}-${idx}`}>
             <h3 className="mt-3 mb-4 font-semibold text-heading lg:mb-7">
-              {t(menu.title)}
+              {(menu.title)}
             </h3>
 
             <ul className="space-y-3">
@@ -38,7 +36,7 @@ const Footer = () => {
                     href={link.href}
                     className="text-sm text-heading transition-colors hover:text-orange-500"
                   >
-                    {t(link.name)}
+                    {(link.name)}
                   </Link>
                 </li>
               ))}
@@ -54,14 +52,14 @@ const Footer = () => {
       {/* Bottom */}
       <div className="mt-8 flex w-full flex-col items-center border-t border-gray-200 pt-8 pb-12 lg:mt-0 lg:flex-row lg:justify-between lg:border-t-0">
         <span className="order-2 text-sm text-heading lg:order-1">
-          &copy; {t('text-copyright')} {new Date().getFullYear()}{' '}
+          &copy; {('text-copyright')} {new Date().getFullYear()}{' '}
           <Link
             className="font-bold text-heading transition-colors hover:text-accent"
             href={siteSettings.footer.copyright.href}
           >
             {siteSettings.footer.copyright.name}.
           </Link>{' '}
-          {t('text-rights-reserved')}
+          {('text-rights-reserved')}
         </span>
 
         {siteSettings.footer.payment_methods && (

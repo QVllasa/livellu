@@ -1,7 +1,7 @@
 import Card from '@/components/ui/cards/card';
 import Seo from '@/components/seo/seo';
 import DashboardLayout from '@/layouts/_dashboard';
-export { getStaticProps } from '@/framework/general.ssr';
+// export { getStaticProps } from '@/framework/general.ssr';
 
 const MyReportsPage = () => {
   return (

@@ -1,8 +1,8 @@
-import { InputHTMLAttributes } from 'react';
+import {InputHTMLAttributes} from 'react';
 import cn from 'classnames';
-import { SearchIcon } from '@/components/icons/search-icon';
-import { CloseIcon } from '@/components/icons/close-icon';
-import { useTranslation } from 'next-i18next';
+import {SearchIcon} from '@/components/icons/search-icon';
+import {CloseIcon} from '@/components/icons/close-icon';
+
 
 export interface Props extends InputHTMLAttributes<HTMLInputElement> {
   className?: string;
@@ -31,7 +31,7 @@ const SearchBox: React.FC<Props> = ({
   value,
   ...rest
 }) => {
-  const { t } = useTranslation();
+  
 
   return (
     <form onSubmit={onSubmit} className={cn('w-full', className)}>
@@ -73,7 +73,7 @@ const SearchBox: React.FC<Props> = ({
               }
             )}
           >
-            <span className="sr-only">{t('common:text-close')}</span>
+            <span className="sr-only">{('common:text-close')}</span>
             <CloseIcon className="h-3.5 w-3.5 md:h-3 md:w-3" />
           </button>
         )}
@@ -81,11 +81,11 @@ const SearchBox: React.FC<Props> = ({
         {variant === 'normal' ? (
           <button className="flex h-full min-w-[143px] items-center justify-center rounded-lg bg-accent px-8 font-semibold text-light transition-colors duration-200 hover:bg-accent-hover focus:bg-accent-hover focus:outline-0 ltr:rounded-tl-none ltr:rounded-bl-none rtl:rounded-tr-none rtl:rounded-br-none">
             <SearchIcon className="h-4 w-4 ltr:mr-2.5 rtl:ml-2.5" />
-            {t('common:text-search')}
+            {('common:text-search')}
           </button>
         ) : (
           <button className="absolute flex h-full w-10 items-center justify-center text-body transition-colors duration-200 hover:text-accent-hover focus:text-accent-hover focus:outline-0 ltr:left-0 rtl:right-0 md:w-14">
-            <span className="sr-only">{t('common:text-search')}</span>
+            <span className="sr-only">{('common:text-search')}</span>
             <SearchIcon className="h-4 w-4" />
           </button>
         )}

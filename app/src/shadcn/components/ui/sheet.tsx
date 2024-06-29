@@ -1,9 +1,9 @@
 import * as React from "react"
 import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { cva, type VariantProps } from "class-variance-authority"
-import { X } from "lucide-react"
+import {cva, type VariantProps} from "class-variance-authority"
+import {X} from "lucide-react"
 
-import { cn } from "@/shadcn/lib/utils"
+import {cn} from "@/shadcn/lib/utils"
 
 const Sheet = SheetPrimitive.Root
 
@@ -57,6 +57,7 @@ const SheetContent = React.forwardRef<
 >(({ side = "right", className, children, ...props }, ref) => (
   <SheetPortal>
     <SheetOverlay />
+    {/*  @ts-ignore */}
     <SheetPrimitive.Content
       ref={ref}
       className={cn(sheetVariants({ side }), className)}

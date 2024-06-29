@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useTranslation } from 'next-i18next';
+import {useState} from 'react';
+
 
 type TruncateProps = {
   expandedText?: string;
@@ -18,7 +18,7 @@ const Truncate: React.FC<TruncateProps> = ({
   btnClassName,
   onClick,
 }) => {
-  const { t } = useTranslation();
+  
   const [expanded, setExpanded] = useState(false);
 
   const toggleLines = () => {
@@ -46,7 +46,7 @@ const Truncate: React.FC<TruncateProps> = ({
             btnClassName ? btnClassName : ''
           }`}
         >
-          {t(!expanded ? compressText : expandedText)}
+          {(!expanded ? compressText : expandedText)}
         </button>
       </span>
     </>
