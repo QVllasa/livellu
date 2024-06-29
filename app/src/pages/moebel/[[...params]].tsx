@@ -5,7 +5,6 @@ import {getLayout} from "@/components/layouts/layout";
 import {capitalize} from "lodash";
 import {fetchMaterialBySlug} from "@/framework/material.ssr";
 import {fetchColorBySlug} from "@/framework/color.ssr";
-import {fetchBrandBySlug} from "@/framework/brand.ssr";
 import {fetchProducts} from "@/framework/product";
 import PageSizeSelector from "@/components/filters/page-size-selector";
 import {ProductsGrid} from "@/components/products/products-grid";
@@ -15,21 +14,24 @@ import {currentBrandAtom, currentCategoryAtom, currentColorAtom, currentMaterial
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {useAtom} from "jotai/index";
-import {Category, Entity} from "@/types";
+import {Category, Color, Entity, Product} from "@/types";
 import {BrandFilter} from "@/components/filters/brand-filter";
 import {ColorFilter} from "@/components/filters/color-filter";
 import {MaterialFilter} from "@/components/filters/material-filter";
-import {fetchAllCategories, fetchCategories} from "@/framework/category.ssr";
+import {fetchCategories} from "@/framework/category.ssr";
 import {PriceRangeFilter} from "@/components/filters/price-range-filter";
+import {GetServerSidePropsContext} from "next";
 
+interface MoebelPageProps {
+    sortedProducts: Product[];
+    page: number;
+    pageCount: number;
+    total: number;
+    initialCategory: Category | null;
 
-function MoebelPage({
-                        sortedProducts,
-                        page,
-                        pageCount,
-                        total,
-                        initialCategory
-                    }) {
+}
+
+function MoebelPage({sortedProducts, page, pageCount, total, initialCategory}: MoebelPageProps) {
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
@@ -105,7 +107,8 @@ function MoebelPage({
     );
 }
 
-export async function getServerSideProps({params, query}) {
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const {params, query} = context;
     const sorts = sortsAtom;
     const filters: any = {};
 
@@ -115,10 +118,10 @@ export async function getServerSideProps({params, query}) {
     let initialCategory: Category | Entity<Category> | null = null;
 
     const [categoryParam, materialParam, colorParam, brandParam] = [
-        params.params?.find((p) => p.startsWith('category-')),
-        params.params?.find((p) => p.startsWith('material-')),
-        params.params?.find((p) => p.startsWith('color-')),
-        params.params?.find((p) => p.startsWith('brand-')),
+        (params?.params as string[])?.find((p: string) => p.startsWith('category-')),
+        (params?.params as string[])?.find((p: string) => p.startsWith('material-')),
+        (params?.params as string[])?.find((p: string) => p.startsWith('color-')),
+        (params?.params as string[])?.find((p: string) => p.startsWith('brand-')),
     ];
 
     if (categoryParam) {
@@ -131,8 +134,7 @@ export async function getServerSideProps({params, query}) {
         initialMaterial = await fetchMaterialBySlug(materialParam);
     }
     if (colorParam) {
-        const data = await fetchColorBySlug(colorParam);
-        initialColor = data[0]
+        initialColor = await fetchColorBySlug(colorParam as string);
     }
 
 
@@ -155,15 +157,15 @@ export async function getServerSideProps({params, query}) {
 
     if (initialColor) {
         colorIds.push(initialColor.id);
-        const childColorIds = initialColor?.child_colors?.data ? initialColor?.child_colors?.data.map(item => item.id) : [];
+        const childColorIds = initialColor?.child_colors ? initialColor?.child_colors?.map((item: Color) => item.id) : [];
         colorIds.push(...childColorIds);
     }
 
     filters['variants.originalColor'] = colorIds;
 
     if (query.minPrice || query.maxPrice) {
-        filters['minPrice'] = query.minPrice ? parseInt(query.minPrice) : 0
-        filters['maxPrice'] = query.maxPrice ? parseInt(query.maxPrice) : 10000
+        filters['minPrice'] = query.minPrice ? parseInt(query.minPrice as string) : 0
+        filters['maxPrice'] = query.maxPrice ? parseInt(query.maxPrice as string) : 10000
     }
 
     let sort = sorts.find(el => el.id === query.sort) ?? null;
@@ -171,15 +173,14 @@ export async function getServerSideProps({params, query}) {
         // filters['sort'] = `${sort.dimension}:${sort.value}`;
     }
 
-    const page = parseInt(query.page ?? 0) || 1;
-    const pageSize = parseInt(query.pageSize ?? 0) || 48;
+    const page = parseInt((query.page as string) ?? 0) || 1;
+    const pageSize = parseInt((query.pageSize as string) ?? 0) || 48;
 
     filters['page'] = page;
     filters['pageSize'] = pageSize;
 
 
     const {data, meta} = await fetchProducts(filters);
-
 
 
     let sortedProducts = data;
@@ -197,7 +198,7 @@ export async function getServerSideProps({params, query}) {
     };
 }
 
-const getLabel = (str: string, prefix: string) => {
+const getLabel = (str: string | undefined, prefix: string) => {
     return str?.split(prefix,)[1] ?? null;    // remove the prefix
 }
 

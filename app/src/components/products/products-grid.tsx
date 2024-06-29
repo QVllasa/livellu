@@ -1,19 +1,18 @@
-import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 import ProductCard from "@/components/products/cards/product-card";
-import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious
-} from "@/shadcn/components/ui/pagination";
+import {Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from "@/shadcn/components/ui/pagination";
+import {Product} from "@/types";
 
-export const ProductsGrid = ({ products, page, pageCount }) => {
+interface ProductsGridProps {
+    products: Product[];
+    page: number;
+    pageCount: number;
+}
+
+export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) => {
     const router = useRouter();
 
-    const handlePageChange = (newPage) => {
+    const handlePageChange = (newPage: number) => {
         router.push({
             pathname: router.pathname,
             query: { ...router.query, page: newPage },

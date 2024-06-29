@@ -1,6 +1,5 @@
 import clsx from 'clsx';
-import { TestimonialItem } from '@/components/landing/testimonial/LandingTestimonial';
-import { LandingTestimonial } from '@/components/landing/testimonial/LandingTestimonial';
+import {LandingTestimonial, TestimonialItem} from 'components/landing/testimonial/LandingTestimonial';
 
 /**
  * Use this component to display a grid of testimonials.

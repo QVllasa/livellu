@@ -1,8 +1,7 @@
 // components/filters/price-range-filter.tsx
 import {useRouter} from "next/router";
 import {Slider} from "./price-slider-component";
-import {useCallback, useEffect, useState} from "react";
-import debounce from "lodash/debounce";
+import {useEffect, useState} from "react";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import Client from "@/framework/client";
 
@@ -44,13 +43,13 @@ export const PriceRangeFilter = () => {
         if (values[0] === defaultMin) {
             delete query.minPrice;
         } else {
-            query.minPrice = values[0];
+            query.minPrice = ''+values[0];
         }
 
         if (values[1] === defaultMax) {
             delete query.maxPrice;
         } else {
-            query.maxPrice = values[1];
+            query.maxPrice = ''+values[1];
         }
 
 

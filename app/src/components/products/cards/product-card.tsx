@@ -5,6 +5,7 @@ import Link from "next/link";
 import {currentBrandAtom, currentColorAtom, currentMaterialAtom} from "@/store/filters";
 import {useAtom} from "jotai";
 import {LandingRating} from "../../../../components/landing/rating/LandingRating";
+import Image from "next/image";
 
 const ProductCard = (props: { product: Product }) => {
     const {product} = props;
@@ -38,7 +39,7 @@ const ProductCard = (props: { product: Product }) => {
             <CardContent className="flex items-center justify-center p-0">
                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300">
                     {/* Product Image */}
-                    <img className="w-full h-48 object-contain p-3" src={variant?.altImageUrl} alt={variant.productName}/>
+                    <Image className="w-full h-48 object-contain p-3" src={variant?.altImageUrl} alt={variant.productName}/>
 
                     {/* Product Details */}
                     <div className="p-4">
@@ -49,7 +50,7 @@ const ProductCard = (props: { product: Product }) => {
                         {/*Ratings and Reviews*/}
 
                         <div className="flex items-center mt-2 text-yellow-400">
-                            <LandingRating className={'fill-yellow-400'} rating={variant.averageRating ?? 0}/>
+                            <LandingRating className={'fill-yellow-400'} rating={parseFloat(variant.averageRating ?? 0)}/>
                             <span className="ml-2 text-gray-400 font-semibold text-xs">{variant.averageRating ? parseFloat(variant?.averageRating).toFixed(1) : 0}</span>
                         </div>
 

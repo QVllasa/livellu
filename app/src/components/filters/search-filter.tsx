@@ -1,15 +1,14 @@
 import {Search} from "lucide-react";
 import {Input} from "@/shadcn/components/ui/input";
-import {debounce} from "lodash";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 export const SearchFilter = () => {
-    const [searchTerm, setSearchTerm] = useState('');
-    const [searchQuery, setSearchQuery] = useState([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
+    const [searchQuery, setSearchQuery] = useState<string[]>([]);
     const router = useRouter();
 
-    const handleSearch = (terms) => {
+    const handleSearch = (terms: string[]) => {
         const query = {
             ...router.query,
             search: terms.join(' '),
@@ -20,12 +19,12 @@ export const SearchFilter = () => {
         });
     };
 
-    const handleSearchChange = (e) => {
+    const handleSearchChange = (e: any) => {
         console.log(e.target.value)
         setSearchTerm(e.target.value);
     };
 
-    const handleSearchSubmit = (e) => {
+    const handleSearchSubmit = (e: any) => {
         e.preventDefault();
         console.log("submitted: ", e)
         if (searchTerm.trim()) {
@@ -36,7 +35,7 @@ export const SearchFilter = () => {
         }
     };
 
-    const handleChipRemove = (term) => {
+    const handleChipRemove = (term: string) => {
         const newSearchTerms = searchQuery.filter((t) => t !== term);
         setSearchQuery(newSearchTerms);
         handleSearch(newSearchTerms);
@@ -46,7 +45,7 @@ export const SearchFilter = () => {
 
     useEffect(() => {
         if (router.query.search) {
-            setSearchQuery(router.query.search?.split(' '));
+            setSearchQuery((router.query.search as string)?.split(' '));
         }
     }, [router.query.search]);
 

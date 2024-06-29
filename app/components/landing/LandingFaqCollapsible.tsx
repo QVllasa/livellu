@@ -1,11 +1,6 @@
-import { clsx } from 'clsx';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/shared/ui/accordion';
+import {clsx} from 'clsx';
+import {GlowBg} from 'components/shared/ui/glow-bg';
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger,} from 'components/shared/ui/accordion';
 
 export interface FaqItem {
   question: string;

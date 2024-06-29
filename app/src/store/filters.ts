@@ -1,6 +1,6 @@
 // Atoms for static data
 import {atom} from "jotai";
-import {Brand, Category, Color, Material} from "@/types";
+import {Brand, Category, Color, Material, Sort} from "@/types";
 import {fetchAllCategories} from "@/framework/category.ssr";
 import {fetchAllBrands} from "@/framework/brand.ssr";
 
@@ -28,7 +28,7 @@ export const currentMaterialAtom = atom<null | any | Material>(null);
 export const currentBrandAtom = atom<null | any | Brand>(null);
 
 
-export const sortsAtom: any = [
+export const sortsAtom: Sort[]  = [
     // {id: "top", label: 'Top Empfehlung', dimension: 'variants.price', value: 'desc'},
     {id: "beliebtheit", label: 'Beliebtheit', dimension: 'variants.averageRating', value: 'desc'},
     {id: "preisab", label: 'Preis Absteigend', dimension: 'variants.price', value: 'desc'},

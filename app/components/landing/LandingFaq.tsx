@@ -1,5 +1,5 @@
-import { clsx } from 'clsx';
-import { GlowBg } from '@/components/shared/ui/glow-bg';
+import {clsx} from 'clsx';
+import {GlowBg} from 'components/shared/ui/glow-bg';
 
 export interface FaqItem {
   question: string;

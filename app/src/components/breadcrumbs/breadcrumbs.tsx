@@ -41,7 +41,7 @@ export const Breadcrumbs = () => {
     }, [currentCategory]);
 
 
-    const handleBreadcrumbClick = (category) => {
+    const handleBreadcrumbClick = (category: Category) => {
         const pathSegments = router.asPath.split('/').filter(segment => segment);
         const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 

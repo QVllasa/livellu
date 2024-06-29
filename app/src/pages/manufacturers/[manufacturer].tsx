@@ -1,17 +1,15 @@
-import { FilterIcon } from '@/components/icons/filter-icon';
+import {FilterIcon} from '@/components/icons/filter-icon';
 // import MobileNavigation from '@/components/layouts/mobile-navigation';
 import GeneralLayout from '@/components/layouts/_general';
 import Details from '@/components/manufacturer/details';
-import { Grid } from '@/components/products/grid';
 import SidebarFilter from '@/components/search-view/sidebar-filter';
-import { useProducts } from '@/framework/product';
-import { useWindowSize } from '@/lib/use-window-size';
-import { drawerAtom } from '@/store/drawer-atom';
-import { motion } from 'framer-motion';
-import { useAtom } from 'jotai';
+import {useWindowSize} from '@/lib/use-window-size';
+import {drawerAtom} from '@/store/drawer-atom';
+import {motion} from 'framer-motion';
+import {useAtom} from 'jotai';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import { useTranslation } from 'next-i18next';
+import {useRouter} from 'next/router';
+import {useTranslation} from 'next-i18next';
 import StickyBox from 'react-sticky-box';
 
 const MobileNavigation = dynamic(

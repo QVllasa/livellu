@@ -132,6 +132,14 @@ export interface Category {
     summary?: string;
 }
 
+export interface Sort {
+    id: string;
+    value: string;
+    label: string;
+    dimension: string;
+
+}
+
 export interface OriginalCategory {
     id?: number;
     createdAt: Date;

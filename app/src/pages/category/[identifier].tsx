@@ -2,8 +2,6 @@ import HomeLayout from "@/components/layouts/_home";
 import {BackgroundSquares} from "@/components/backgrounds/background-squares";
 import {BackgroundDiagonalLines} from "@/components/backgrounds/background-diagonal-lines";
 import {fetchCategory} from "@/framework/category";
-import {ArticleCategoryCard} from "@/components/article/article-category-card";
-import {CategoryCard} from "@/components/categories/category-card";
 import {ParsedUrlQuery} from 'querystring';
 import {GetServerSideProps} from 'next';
 import {Category, NextPageWithLayout} from "@/types";
@@ -41,11 +39,11 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({category, error}) 
                         {category.content}
                     </p>
                 </div>
-                <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {category.article_categories.data.map((articleCategory) => (
-                        <ArticleCategoryCard articleCategory={articleCategory.attributes} key={articleCategory.id}/>
-                    ))}
-                </div>
+                {/*<div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">*/}
+                {/*    {category.article_categories.data.map((articleCategory) => (*/}
+                {/*        <ArticleCategoryCard articleCategory={articleCategory.attributes} key={articleCategory.id}/>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
             </div>
             <div className="mx-auto max-w-7xl px-6 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
@@ -54,11 +52,11 @@ const CategoryPage: NextPageWithLayout<CategoryPageProps> = ({category, error}) 
                         {category.content}
                     </p>
                 </div>
-                <div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-                    {category?.child_categories?.data.map((childCategory) => (
-                        <CategoryCard category={childCategory.attributes} key={childCategory.id}/>
-                    ))}
-                </div>
+                {/*<div className="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">*/}
+                {/*    {category?.child_categories?.data.map((childCategory) => (*/}
+                {/*        <CategoryCard category={childCategory.attributes} key={childCategory.id}/>*/}
+                {/*    ))}*/}
+                {/*</div>*/}
             </div>
         </div>
     )

@@ -11,8 +11,12 @@ import {fetchCategories} from "@/framework/category.ssr";
 import {useAtom} from "jotai";
 import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
 
-export const CategoryFilter = ({current}) => {
-    const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[]>([]);
+interface CategoryFilterProps {
+    current: Category | null;
+}
+
+export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
+    const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[] | undefined>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
     const [loading, setLoading] = useState(false);
@@ -51,24 +55,21 @@ export const CategoryFilter = ({current}) => {
         return await fetchCategories({slug: category?.parent_categories[0]?.slug});
     };
 
-    const getCategoriesToDisplay = async (category: Category) => {
+    const getCategoriesToDisplay = async (category: Category | null): Promise<Category[] | undefined> => {
         if (category?.child_categories?.length !== 0) {
-            return category.child_categories;
+            return category?.child_categories;
         } else {
             const parent = await getParentCategory(category);
             return parent[0].child_categories;
         }
     };
 
-    const getPath = () => {
+    const getPath = (): [string[], string | undefined] => {
         const [path, queryString] = router.asPath.split('?');
         const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
         return [pathSegments, queryString];
     };
 
-    const getSlug = (pathSegments) => {
-        return pathSegments.find(el => el?.startsWith('category-'));
-    };
 
     const handleCategoryClick = async (category: Category) => {
         setLoading(true);
@@ -100,7 +101,7 @@ export const CategoryFilter = ({current}) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
 
-    const handleSearchSelect = async (event) => {
+    const handleSearchSelect = async (event: any) => {
         const value = event.target.value;
         setSearchTerm(value);
         let categories = await getCategoriesToDisplay(currentCategory);
@@ -108,7 +109,7 @@ export const CategoryFilter = ({current}) => {
             setCategoriesToDisplay(categories);
             return;
         }
-        const filteredCategories = categories.filter(item => item.name.toLowerCase().includes(value.toLowerCase()));
+        const filteredCategories = categories?.filter((item: Category) => item.name.toLowerCase().includes(value.toLowerCase()));
         setCategoriesToDisplay(filteredCategories);
     };
 
@@ -140,7 +141,7 @@ export const CategoryFilter = ({current}) => {
                                 </div>
                             ) : (
                                 <ul>
-                                    {categoriesToDisplay?.length > 0 && categoriesToDisplay.map((item) => (
+                                    {categoriesToDisplay && categoriesToDisplay?.length > 0 && categoriesToDisplay.map((item) => (
                                         <li key={item.id} className="mb-1">
                                             <Button
                                                 size={'sm'}

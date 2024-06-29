@@ -1,7 +1,7 @@
 'use client';
-import { useState } from 'react';
+import {useState} from 'react';
 import clsx from 'clsx';
-import { Button } from '@/components/shared/ui/button';
+import {Button} from 'components/shared/ui/button';
 
 /**
  * Wraps the testimonial section in the landing page, and adds a "Read more" button (truncates to the given height).

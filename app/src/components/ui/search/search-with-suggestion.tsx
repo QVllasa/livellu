@@ -1,10 +1,9 @@
 import SearchBox from '@/components/ui/search/search-box';
-import { useTranslation } from 'next-i18next';
-import { useEffect, useState } from 'react';
-import AutoSuggestionBox from '@/components/search-view/suggestion';
+import {useTranslation} from 'next-i18next';
+import {useState} from 'react';
 import cn from 'classnames';
-import { useRouter } from 'next/router';
-import { Routes } from '@/config/routes';
+import {useRouter} from 'next/router';
+import {Routes} from '@/config/routes';
 import useHomepage from '@/lib/hooks/use-homepage';
 
 interface Props {
@@ -79,12 +78,7 @@ const SearchWithSuggestion: React.FC<Props> = ({
         {...props}
       />
 
-      <AutoSuggestionBox
-        searchQuery={searchTerm}
-        visible={Boolean(searchTerm.length > 2)}
-        seeMoreLink={onSearchMore}
-        seeMore={seeMore}
-      />
+
     </div>
   );
 };

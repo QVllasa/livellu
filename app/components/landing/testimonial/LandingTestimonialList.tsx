@@ -1,8 +1,5 @@
 import clsx from 'clsx';
-import {
-  LandingTestimonial,
-  TestimonialItem,
-} from '@/components/landing/testimonial/LandingTestimonial';
+import {LandingTestimonial, TestimonialItem,} from 'components/landing/testimonial/LandingTestimonial';
 
 /**
  * Shows a list of testimonials with a title and description.

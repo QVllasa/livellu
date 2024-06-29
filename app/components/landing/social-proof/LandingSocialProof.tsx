@@ -1,9 +1,6 @@
 import clsx from 'clsx';
-import {
-  LandingAvatar,
-  SocialProofItem,
-} from '@/components/landing/social-proof/LandingAvatar';
-import { LandingRating } from '@/components/landing/rating/LandingRating';
+import {LandingAvatar, SocialProofItem,} from 'components/landing/social-proof/LandingAvatar';
+import {LandingRating} from 'components/landing/rating/LandingRating';
 
 /**
  * Shows social proof with avatars, number of users and an optional rating.

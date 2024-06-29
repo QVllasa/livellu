@@ -12,12 +12,12 @@ const PageSizeSelector = () => {
 
     useEffect(() => {
             if (router.query.pageSize) {
-                setPageSize(router.query.pageSize)
+                setPageSize(parseInt(router.query.pageSize as string, 10));
             }
         }
         , [router.query.pageSize]);
 
-    const handlePageSizeChange = (size) => {
+    const handlePageSizeChange = (size: number) => {
         router.push({
             pathname: router.pathname,
             query: {...router.query, pageSize: size},

@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
-import { Button } from "@/shadcn/components/ui/button";
-import { Input } from "@/shadcn/components/ui/input";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
-import { capitalize } from "lodash";
-import { useAtom } from "jotai";
-import { Material } from "@/types";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
+import {Button} from "@/shadcn/components/ui/button";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {capitalize} from "lodash";
+import {useAtom} from "jotai";
+import {Material} from "@/types";
 import {allMaterialsAtom, currentMaterialAtom} from "@/store/filters";
-import { findMaterialBySlug } from "@/framework/utils/find-by-slug";
-import {fetchAllMaterials} from "@/framework/material.ssr";
+import {findMaterialBySlug} from "@/framework/utils/find-by-slug";
 import {arrangePathSegments} from "@/lib/utils";
 
-export const MaterialFilter = ( ) => {
+export const MaterialFilter = () => {
     const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
@@ -76,7 +74,7 @@ export const MaterialFilter = ( ) => {
         const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
 
 
@@ -111,7 +109,7 @@ export const MaterialFilter = ( ) => {
     );
 };
 
-const MaterialItem = ({ item, currentMaterial, handleMaterialClick }) => {
+const MaterialItem = ({item, currentMaterial, handleMaterialClick}: {item: Material, currentMaterial: Material, handleMaterialClick: (material: Material) => void}) => {
     return (
         <>
             <li key={item.id} className="mb-1 relative w-56">
@@ -124,15 +122,15 @@ const MaterialItem = ({ item, currentMaterial, handleMaterialClick }) => {
                     <span className={'truncate'}>{capitalize(item.label)}</span>
                 </Button>
             </li>
-            {item.child_materials?.length > 0 && (
+            {item?.child_materials && item?.child_materials?.length > 0 && (
                 <ul className="pl-4">
-                    {item.child_materials.map((child) => (
-                        <MaterialItem
-                            key={child.id}
-                            item={child}
-                            currentMaterial={currentMaterial}
-                            handleMaterialClick={handleMaterialClick}
-                        />
+                    {item?.child_materials?.map((child) => (
+                            <MaterialItem
+                                key={child.id}
+                                item={child}
+                                currentMaterial={currentMaterial}
+                                handleMaterialClick={handleMaterialClick}
+                            />
                     ))}
                 </ul>
             )}

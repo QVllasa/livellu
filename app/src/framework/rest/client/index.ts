@@ -1,36 +1,30 @@
 import type {
-    ApiResponse,
-    Article, ArticleCategory,
+    Article,
+    ArticleCategory,
     Attachment,
-    Author,
-    AuthorPaginator,
-    AuthorQueryOptions,
     AuthResponse,
-    BestSellingProductQueryOptions, Brand,
-    Card, Category,
-    CategoryPaginator,
-    CategoryQueryOptions,
+    Brand,
+    Card,
+    Category,
     ChangePasswordUserInput,
-    CheckoutVerificationInput, Color,
+    CheckoutVerificationInput,
+    Color,
     CouponPaginator,
     CouponQueryOptions,
-    CreateAbuseReportInput,
     CreateContactUsInput,
-    CreateFeedbackInput,
     CreateOrderInput,
     CreateOrderPaymentInput,
-    CreateQuestionInput,
     CreateRefundInput,
     CreateReviewInput,
     DownloadableFilePaginator,
     EmailChangeResponse,
-    Feedback,
     ForgotPasswordUserInput,
-    GetParams,
     LoginUserInput,
     Manufacturer,
     ManufacturerPaginator,
-    ManufacturerQueryOptions, Material, Merchant,
+    ManufacturerQueryOptions,
+    Material,
+    Merchant,
     MyQuestionQueryOptions,
     MyReportsQueryOptions,
     Navigation,
@@ -39,15 +33,12 @@ import type {
     OrderQueryOptions,
     OtpLoginInputType,
     OTPResponse,
-    PasswordChangeResponse, Path,
+    PasswordChangeResponse,
+    Path,
     PaymentIntentCollection,
-    PopularProductQueryOptions,
     Product,
-    ProductPaginator,
-    ProductQueryOptions,
     QueryOptions,
     QuestionPaginator,
-    QuestionQueryOptions,
     Refund,
     RefundPaginator,
     RegisterUserInput,
@@ -64,8 +55,6 @@ import type {
     ShopPaginator,
     ShopQueryOptions,
     SocialLoginInputType,
-    StoreNoticePaginator,
-    StoreNoticeQueryOptions,
     TagPaginator,
     TagQueryOptions,
     Type,
@@ -91,7 +80,7 @@ import {HttpClient} from './http-client';
 // @ts-ignore
 import * as qs from 'qs';
 
-class Client {
+class Clients {
     myQuestions = {
         all: (params: MyQuestionQueryOptions) =>
             HttpClient.get<QuestionPaginator>(API_ENDPOINTS.MY_QUESTIONS, {
@@ -394,8 +383,8 @@ class Client {
     };
 
 }
-
-export default new Client();
+const Client = new Clients();
+export default Client;
 
 
 

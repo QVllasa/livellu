@@ -48,19 +48,19 @@ const Navigation = () => {
                 {navigationData.map(({url, title, icon, category}, index) =>
                     url !== '/' &&
                     <NavigationMenuItem key={index + (title ?? '')}>
-                        {category?.data?.attributes.child_categories?.data?.length ? (
+                        {category?.data?.attributes.child_categories?.length ? (
                             <>
                                 <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                                 <NavigationMenuContent>
                                     <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
-                                        {category?.data?.attributes.child_categories?.data?.map(({attributes}) => (
+                                        {category?.data?.attributes.child_categories?.map((item) => (
                                             <ListItem
-                                                key={attributes.name}
-                                                title={attributes.name}
-                                                href={'/category/' + (attributes.identifier ?? '/')}
-                                                category={attributes}
+                                                key={item.name}
+                                                title={item.name}
+                                                href={'/category/' + (item.identifier ?? '/')}
+                                                category={item}
                                             >
-                                                <span>{attributes.summary}</span>
+                                                <span>{item.summary}</span>
                                             </ListItem>
                                         ))}
                                     </ul>

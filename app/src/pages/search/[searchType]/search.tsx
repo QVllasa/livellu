@@ -1,18 +1,13 @@
-import { FilterIcon } from '@/components/icons/filter-icon';
+import {FilterIcon} from '@/components/icons/filter-icon';
 // import MobileNavigation from '@/components/layouts/mobile-navigation';
 import GeneralLayout from '@/components/layouts/_general';
-import { Grid } from '@/components/products/grid';
-import SearchCount from '@/components/search-view/search-count';
 import SidebarFilter from '@/components/search-view/sidebar-filter';
 import Sorting from '@/components/search-view/sorting';
-import ErrorMessage from '@/components/ui/error-message';
-import { PRODUCTS_PER_PAGE } from '@/framework/client/variables';
-import { useProducts } from '@/framework/product';
-import { drawerAtom } from '@/store/drawer-atom';
-import { motion } from 'framer-motion';
-import { useAtom } from 'jotai';
-import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
+import {drawerAtom} from '@/store/drawer-atom';
+import {motion} from 'framer-motion';
+import {useAtom} from 'jotai';
+import {useTranslation} from 'next-i18next';
+import {useRouter} from 'next/router';
 import StickyBox from 'react-sticky-box';
 
 import dynamic from 'next/dynamic';
