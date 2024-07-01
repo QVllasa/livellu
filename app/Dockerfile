@@ -1,7 +1,7 @@
 # Install dependencies only when needed
 FROM node:20-alpine AS deps
 WORKDIR /app
-COPY package.json ./
+COPY ./package.json ./
 RUN yarn install
 
 # Rebuild the source code only when needed
