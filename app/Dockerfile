@@ -4,14 +4,15 @@ WORKDIR /app
 
 # Install dependencies only when needed
 FROM base AS deps
-COPY ./package.json ./yarn.lock ./
+WORKDIR /app
+COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
 FROM base AS builder
 WORKDIR /app
 COPY . .
-COPY --from=deps ./node_modules ./node_modules
+COPY --from=deps /app/node_modules ./node_modules
 
 # Add debug steps
 RUN yarn --version  # Überprüft die Yarn-Version
@@ -29,11 +30,11 @@ ENV NODE_ENV production
 COPY .env .env
 
 # Copy all necessary files from builder
-COPY --from=builder ./public ./public
-COPY --from=builder ./.next ./.next
-COPY --from=builder ./node_modules ./node_modules
-COPY --from=builder ./package.json ./package.json
-COPY --from=builder ./ .
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/ .
 
 EXPOSE 3000
 
