@@ -1,40 +1,19 @@
 FROM node:20-alpine
-
-# Installing libvips-dev for sharp compatibility
+# Installing libvips-dev for sharp Compatibility
 RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
-
-# Set environment variable
-ARG NODE_ENV=production
+ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 
-# Set the working directory
 WORKDIR /opt/
-
-# Copy package.json and yarn.lock
-COPY package.json yarn.lock ./
-
-# Install dependencies
+COPY package.json ./
 RUN yarn global add node-gyp
-RUN yarn config set network-timeout 600000 -g && yarn install --production
-
-# Add node_modules/.bin to $PATH
+RUN yarn config set network-timeout 600000 -g && yarn install
 ENV PATH /opt/node_modules/.bin:$PATH
 
-# Copy the rest of the application code
 WORKDIR /opt/app
 COPY . .
-
-# Change ownership to the node user
 RUN chown -R node:node /opt/app
-
-# Switch to the node user
 USER node
-
-# Build the application
-RUN yarn build
-
-# Expose the Strapi port
+RUN ["yarn", "build"]
 EXPOSE 1337
-
-# Start the application
-CMD ["yarn", "start"]
+CMD ["yarn", "develop"]
