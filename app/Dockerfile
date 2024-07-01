@@ -26,9 +26,6 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
-# Copy the .env file if it exists
-COPY .env .env
-
 # Copy all necessary files from builder
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next ./.next
