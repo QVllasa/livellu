@@ -1,9 +1,23 @@
-database_type: postgres
-database_url: postgresql://postgres:YOUR_DB_PASSWORD@YOUR_DB_HOST:5432/YOUR_DB_NAME
-meilisearch_url: http://YOUR_MEILISEARCH_HOST:7700
-meilisearch_api_key: YOUR_MEILISEARCH_API_KEY
-indexes:
-  - name: your_index_name
-    primary_key: id
-    schema: public
-    table: your_table_name
+debug: true
+plugins:
+  - meilisync.plugin.Plugin
+progress:
+  type: file
+source:
+  type: postgres
+  host: 65.108.149.184
+  port: 5432
+  user: postgres
+  password: 68ed12accbe10f7b
+  database: db
+meilisearch:
+  api_url: https://meilisearch.webqube.de
+  api_key: 7f81143476eec1521adbdb5ab3f02894a8a4ea05c0a2efdcd7e64dd533ec4a58
+  insert_size: 1000
+  insert_interval: 10
+sync:
+  - table: items
+    index: item
+    plugins:
+      - meilisync.plugin.Plugin
+    full: true
