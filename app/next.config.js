@@ -51,4 +51,17 @@ module.exports = withPWA({
             ignoreDuringBuilds: true,
         },
     }),
+    env: {
+        STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
+        NEXT_PUBLIC_STRAPI_REST_API_URL: process.env.NEXT_PUBLIC_STRAPI_REST_API_URL,
+        NEXT_PUBLIC_STRAPI_HOST: process.env.NEXT_PUBLIC_STRAPI_HOST,
+        NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST,
+        PORT: process.env.PORT,
+        FRAMEWORK_PROVIDER: process.env.FRAMEWORK_PROVIDER,
+        APPLICATION_MODE: process.env.APPLICATION_MODE,
+        NEXT_PUBLIC_SITE_URL: process.env.NEXT_PUBLIC_SITE_URL,
+        NEXT_PUBLIC_DEFAULT_LANGUAGE: process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE,
+        NEXT_PUBLIC_ENABLE_MULTI_LANG: process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG,
+        NEXT_PUBLIC_AVAILABLE_LANGUAGES: process.env.NEXT_PUBLIC_AVAILABLE_LANGUAGES,
+    },
 });
