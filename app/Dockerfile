@@ -30,4 +30,4 @@ COPY --from=builder /app/ .
 
 EXPOSE 3000
 
-CMD ["PORT=${PORT:-3000} yarn start"]
+CMD ["PORT=3000 yarn start"]
