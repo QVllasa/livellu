@@ -52,7 +52,7 @@ module.exports = withPWA({
         },
     }),
     env: {
-        STRAPI_API_TOKEN: process.env.STRAPI_API_TOKEN,
+        NEXT_PUBLIC_STRAPI_API_TOKEN: process.env.NEXT_PUBLIC_STRAPI_API_TOKEN,
         NEXT_PUBLIC_STRAPI_REST_API_URL: process.env.NEXT_PUBLIC_STRAPI_REST_API_URL,
         NEXT_PUBLIC_STRAPI_HOST: process.env.NEXT_PUBLIC_STRAPI_HOST,
         NEXT_PUBLIC_HOST: process.env.NEXT_PUBLIC_HOST,
