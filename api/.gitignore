@@ -253,4 +253,3 @@ dist
 
 .env.development
 
-yarn.lock

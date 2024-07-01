@@ -1,10 +1,10 @@
-import type {ApiResponse, SearchParamOptions} from '@/types';
+import type {ApiResponse} from '@/types';
 import axios from 'axios';
 // @ts-ignore
 import * as qs from 'qs';
 
 const Axios = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_STRAPI_REST_API_URL,
+    baseURL: 'https://livellu-api.webqube.de/api/',
     timeout: 5000000,
     headers: {
         'Content-Type': 'application/json',

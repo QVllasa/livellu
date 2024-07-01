@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="postgres@heroku" uuid="5ea2d522-6873-47ce-86e0-ea43a1c8a068">
-      <driver-ref>postgresql</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://ec2-54-152-122-111.compute-1.amazonaws.com:5432/d8oe88q8li9at3</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
     <data-source source="LOCAL" name="db@localhost" uuid="8c3caaae-1a20-49bc-b4d7-e881c9abe853">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
@@ -19,11 +12,18 @@
         <property name="adaptiveFetchMaximum" value="10000" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="default-data.sqlite" uuid="a69268f2-3fda-48e4-9ecd-7a6ffe1d6a79">
+    <data-source source="LOCAL" name="backup.sqlite" uuid="a69268f2-3fda-48e4-9ecd-7a6ffe1d6a79">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../livellu-importer/db/default-data.sqlite</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="db@caprover" uuid="77e0e1f2-8793-4c63-9f88-0f259b033d71">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://65.108.149.184:5432/db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>
