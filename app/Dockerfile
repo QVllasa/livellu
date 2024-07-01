@@ -9,14 +9,13 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-WORKDIR /app
 RUN yarn build
 
 # Production image, copy all the files and run next
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 # Copy the .env file if it exists
 COPY .env .env
@@ -30,4 +29,4 @@ COPY --from=builder /app/ .
 
 EXPOSE 3000
 
-CMD ["PORT=3000 yarn start"]
+CMD ["sh", "-c", "PORT=${PORT:-3000} yarn start"]
