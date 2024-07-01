@@ -16,7 +16,7 @@ RUN yarn build
 FROM node:20-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV development
 
 # Copy the .env file if it exists
 COPY .env .env
