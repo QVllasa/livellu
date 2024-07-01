@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Install dependencies only when needed
 FROM base AS deps
-COPY app/package.json app/yarn.lock ./
+COPY ./package.json ./yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
