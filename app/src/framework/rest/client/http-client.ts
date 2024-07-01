@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as qs from 'qs';
 
 const Axios = axios.create({
-    baseURL: 'https://livellu-api.webqube.de/api/',
+    baseURL: process.env.NEXT_PUBLIC_STRAPI_REST_API_URL,
     timeout: 5000000,
     headers: {
         'Content-Type': 'application/json',
