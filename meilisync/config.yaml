@@ -5,14 +5,14 @@ progress:
   type: file
 source:
   type: postgres
-  host: 65.108.149.184
+  host:
   port: 5432
   user: postgres
-  password: 68ed12accbe10f7b
+  password:
   database: db
 meilisearch:
   api_url: https://meilisearch.webqube.de
-  api_key: 7f81143476eec1521adbdb5ab3f02894a8a4ea05c0a2efdcd7e64dd533ec4a58
+  api_key:
   insert_size: 1000
   insert_interval: 10
 sync:
