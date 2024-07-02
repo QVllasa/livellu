@@ -20,9 +20,9 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       page = '1',
       pageSize = '48',
       searchTerms = '',
-      sort,
-      minPrice,
-      maxPrice} = filters;
+      sort = '',
+      minPrice ='',
+      maxPrice =''} = filters;
 
     console.log('sort: ', sort)
 
