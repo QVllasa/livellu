@@ -25,6 +25,7 @@ module.exports = withPWA({
             'livellu-api-d133f68c647d.herokuapp.com',
             'res.cloudinary.com',
             'livellu-app.webqube.de',
+            'livellu-api.webqube.de'
         ],
     },
     ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
