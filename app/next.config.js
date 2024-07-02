@@ -46,12 +46,13 @@ const nextConfig = withPWA({
                 protocol: 'https',
                 hostname: 'livellu-api.webqube.de',
                 pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: '**',
+                port: '',
+                pathname: '**',
             }
-            // {
-            //     protocol: 'https',
-            //     hostname: 'otto.de',
-            //     pathname: '/**',
-            // },
             // {
             //     protocol: 'https',
             //     hostname: 'i.otto.de',

@@ -19,7 +19,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
     const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[] | undefined>([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [openItem, setOpenItem] = useState("item-1");
-    const [loading, setLoading] = useState(false);
+    // const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useState<Category | null>(current);
     const [allCategories, setAllCategories] = useAtom(allCategoriesAtom);
     const [categoryAtom, setCategoryAtom] = useAtom(currentCategoryAtom)
@@ -42,11 +42,11 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
 
     useEffect(() => {
         if (currentCategory) {
-            setLoading(true);
+            // setLoading(true);
             getCategoriesToDisplay(currentCategory).then(categories => {
                 setCategoriesToDisplay(categories);
                 setSearchTerm('');
-                setLoading(false);
+                // setLoading(false);
             })
         }
     }, [currentCategory, router.asPath, router.query]);
@@ -72,7 +72,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
 
 
     const handleCategoryClick = async (category: Category) => {
-        setLoading(true);
+        // setLoading(true);
         const [pathSegments, queryString] = getPath();
         const categoryIndex = pathSegments?.findIndex(el => el?.startsWith('category-'));
 
@@ -132,14 +132,14 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
                             />
                         </div>
                         <ScrollArea className="h-64 max-h-64 overflow-auto">
-                            {loading ? (
-                                <div className="flex items-center justify-center h-full">
-                                    <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                                    </svg>
-                                </div>
-                            ) : (
+                            {/*{loading ? (*/}
+                            {/*    <div className="flex items-center justify-center h-full">*/}
+                            {/*        <svg className="animate-spin h-8 w-8 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">*/}
+                            {/*            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>*/}
+                            {/*            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>*/}
+                            {/*        </svg>*/}
+                            {/*    </div>*/}
+                            {/*) : (*/}
                                 <ul>
                                     {categoriesToDisplay && categoriesToDisplay?.length > 0 && categoriesToDisplay.map((item) => (
                                         <li key={item.id} className="mb-1">
@@ -154,7 +154,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
                                         </li>
                                     ))}
                                 </ul>
-                            )}
+                            {/*)}*/}
                         </ScrollArea>
                     </AccordionContent>
                 </AccordionItem>
