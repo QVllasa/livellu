@@ -80,7 +80,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
             // Fetch parent category if the same category is clicked again
             const fetchedCategory = await fetchCategories({slug: category.slug});
             const parentCategory = await getParentCategory(fetchedCategory[0]);
-            // setCurrentCategory(parentCategory[0]);
+            setCurrentCategory(parentCategory[0]);
             const parentSlug = parentCategory[0].slug;
             if (categoryIndex !== -1) {
                 pathSegments[categoryIndex] = parentSlug.toLowerCase();
@@ -91,7 +91,7 @@ export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
             } else {
                 pathSegments.unshift(category.slug.toLowerCase());
             }
-            // setCurrentCategory(category);
+            setCurrentCategory(category);
         }
 
         const sortedPathSegments = arrangePathSegments(pathSegments);
