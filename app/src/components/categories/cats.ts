@@ -34,28 +34,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -197,28 +197,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -281,28 +281,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -344,28 +344,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -503,28 +503,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -583,28 +583,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -646,28 +646,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -961,28 +961,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1041,28 +1041,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1121,28 +1121,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1201,28 +1201,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1281,28 +1281,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1344,28 +1344,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1542,28 +1542,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1622,28 +1622,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1702,28 +1702,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1782,28 +1782,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -1849,28 +1849,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2106,28 +2106,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2190,28 +2190,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2274,28 +2274,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2358,28 +2358,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2421,28 +2421,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2658,28 +2658,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2738,28 +2738,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2818,28 +2818,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2898,28 +2898,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -2961,28 +2961,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3198,28 +3198,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3278,28 +3278,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3358,28 +3358,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3438,28 +3438,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3501,28 +3501,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3699,28 +3699,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3779,28 +3779,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3859,28 +3859,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -3922,28 +3922,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4198,28 +4198,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4278,28 +4278,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4358,28 +4358,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4438,28 +4438,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4518,28 +4518,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4581,28 +4581,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4896,28 +4896,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -4976,28 +4976,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -5056,28 +5056,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -5136,28 +5136,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -5216,28 +5216,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -5296,28 +5296,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": "902",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": "903",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": "904",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": "905",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": "906",
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:18:25.000000Z",
@@ -5359,28 +5359,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -5557,28 +5557,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -5637,28 +5637,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -5717,28 +5717,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -5780,28 +5780,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -5978,28 +5978,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6058,28 +6058,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6138,28 +6138,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6201,28 +6201,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6407,28 +6407,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6487,28 +6487,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6567,28 +6567,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6630,28 +6630,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6693,28 +6693,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6756,28 +6756,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6819,28 +6819,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6882,28 +6882,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -6945,28 +6945,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:12.000000Z",
@@ -7008,28 +7008,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7206,28 +7206,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7286,28 +7286,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7366,28 +7366,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7429,28 +7429,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7666,28 +7666,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7746,28 +7746,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7826,28 +7826,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7906,28 +7906,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -7969,28 +7969,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8167,28 +8167,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8247,28 +8247,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8327,28 +8327,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8390,28 +8390,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8453,28 +8453,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8516,28 +8516,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:38.000000Z",
@@ -8579,28 +8579,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:28.000000Z",
@@ -8642,28 +8642,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:28.000000Z",
@@ -8705,28 +8705,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:28.000000Z",
@@ -8768,28 +8768,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:28.000000Z",
@@ -8831,28 +8831,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:28.000000Z",
@@ -8867,8 +8867,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "423",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/422/Juice_q1dlke.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/422/conversions/Juice_q1dlke-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/422/Juice_q1dlke.png",
+                "thumbnail": "https://livellu-app.webqube.de/422/conversions/Juice_q1dlke-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -8908,8 +8908,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "424",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/423/Coffee_j6vccc.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/423/conversions/Coffee_j6vccc-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/423/Coffee_j6vccc.png",
+                "thumbnail": "https://livellu-app.webqube.de/423/conversions/Coffee_j6vccc-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -8949,8 +8949,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "425",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/424/Cookies_ggshwp.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/424/conversions/Cookies_ggshwp-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/424/Cookies_ggshwp.png",
+                "thumbnail": "https://livellu-app.webqube.de/424/conversions/Cookies_ggshwp-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -8990,8 +8990,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "426",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/425/Round-Cake_rfsrkr.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/425/conversions/Round-Cake_rfsrkr-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/425/Round-Cake_rfsrkr.png",
+                "thumbnail": "https://livellu-app.webqube.de/425/conversions/Round-Cake_rfsrkr-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9031,8 +9031,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "427",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/426/Pita-Bread_bvrwtn.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/426/conversions/Pita-Bread_bvrwtn-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/426/Pita-Bread_bvrwtn.png",
+                "thumbnail": "https://livellu-app.webqube.de/426/conversions/Pita-Bread_bvrwtn-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9072,8 +9072,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "428",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/427/Chees-Cake_whi1yd.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/427/conversions/Chees-Cake_whi1yd-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/427/Chees-Cake_whi1yd.png",
+                "thumbnail": "https://livellu-app.webqube.de/427/conversions/Chees-Cake_whi1yd-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9113,8 +9113,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "429",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/428/Muffin_yiuqcf.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/428/conversions/Muffin_yiuqcf-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/428/Muffin_yiuqcf.png",
+                "thumbnail": "https://livellu-app.webqube.de/428/conversions/Muffin_yiuqcf-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9154,8 +9154,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "430",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/429/Danish_ybcbuq.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/429/conversions/Danish_ybcbuq-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/429/Danish_ybcbuq.png",
+                "thumbnail": "https://livellu-app.webqube.de/429/conversions/Danish_ybcbuq-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9195,8 +9195,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "431",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/430/Croissant_nqjflw.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/430/conversions/Croissant_nqjflw-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/430/Croissant_nqjflw.png",
+                "thumbnail": "https://livellu-app.webqube.de/430/conversions/Croissant_nqjflw-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9236,8 +9236,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "432",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/431/Feeter-pies_eidfxl.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/431/conversions/Feeter-pies_eidfxl-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/431/Feeter-pies_eidfxl.png",
+                "thumbnail": "https://livellu-app.webqube.de/431/conversions/Feeter-pies_eidfxl-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9277,8 +9277,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "433",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/432/Toast_ufzuwx.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/432/conversions/Toast_ufzuwx-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/432/Toast_ufzuwx.png",
+                "thumbnail": "https://livellu-app.webqube.de/432/conversions/Toast_ufzuwx-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9318,8 +9318,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": "434",
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/433/SoftBread_a85vlg.png",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/433/conversions/SoftBread_a85vlg-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/433/SoftBread_a85vlg.png",
+                "thumbnail": "https://livellu-app.webqube.de/433/conversions/SoftBread_a85vlg-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -9386,28 +9386,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -9584,28 +9584,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -9664,28 +9664,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -9744,28 +9744,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -9807,28 +9807,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10005,28 +10005,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10085,28 +10085,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10165,28 +10165,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10228,28 +10228,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10426,28 +10426,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10506,28 +10506,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10586,28 +10586,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10649,28 +10649,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10847,28 +10847,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -10927,28 +10927,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -11007,28 +11007,28 @@ export const CTEGORIES = JSON.stringify(
                 "promotional_sliders": [
                     {
                         "id": 902,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/offer-5.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/902/conversions/offer-5-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/902/offer-5.png",
+                        "thumbnail": "https://livellu-app.webqube.de/902/conversions/offer-5-thumbnail.jpg"
                     },
                     {
                         "id": 903,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/offer-4.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/903/conversions/offer-4-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/903/offer-4.png",
+                        "thumbnail": "https://livellu-app.webqube.de/903/conversions/offer-4-thumbnail.jpg"
                     },
                     {
                         "id": 904,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/offer-3.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/904/conversions/offer-3-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/904/offer-3.png",
+                        "thumbnail": "https://livellu-app.webqube.de/904/conversions/offer-3-thumbnail.jpg"
                     },
                     {
                         "id": 905,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/offer-2.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/905/conversions/offer-2-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/905/offer-2.png",
+                        "thumbnail": "https://livellu-app.webqube.de/905/conversions/offer-2-thumbnail.jpg"
                     },
                     {
                         "id": 906,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/offer-1.png",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/906/conversions/offer-1-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/906/offer-1.png",
+                        "thumbnail": "https://livellu-app.webqube.de/906/conversions/offer-1-thumbnail.jpg"
                     }
                 ],
                 "created_at": "2021-03-08T07:19:49.000000Z",
@@ -11043,8 +11043,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 935,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -11083,8 +11083,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 974,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/974/Allium.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/974/conversions/Allium-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/974/Allium.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/974/conversions/Allium-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11098,8 +11098,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11130,8 +11130,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 975,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/975/Cruciferous.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/975/conversions/Cruciferous-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/975/Cruciferous.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/975/conversions/Cruciferous-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11145,8 +11145,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11177,8 +11177,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 976,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/976/Edible-plant.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/976/conversions/Edible-plant-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/976/Edible-plant.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/976/conversions/Edible-plant-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11192,8 +11192,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11224,8 +11224,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 1342,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1342/Leafy-green.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1342/conversions/Leafy-green-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/1342/Leafy-green.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/1342/conversions/Leafy-green-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11239,8 +11239,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11271,8 +11271,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 977,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/977/Marrow.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/977/conversions/Marrow-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/977/Marrow.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/977/conversions/Marrow-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11286,8 +11286,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11318,8 +11318,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 978,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/978/Root.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/978/conversions/Root-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/978/Root.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/978/conversions/Root-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11333,8 +11333,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 935,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/Vegetable.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/935/conversions/Vegetable-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/935/Vegetable.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/935/conversions/Vegetable-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11367,8 +11367,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 936,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -11407,8 +11407,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 968,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/968/Chips.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/968/conversions/Chips-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/968/Chips.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/968/conversions/Chips-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11422,8 +11422,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11454,8 +11454,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 969,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/969/Cold-Drinks.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/969/conversions/Cold-Drinks-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/969/Cold-Drinks.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/969/conversions/Cold-Drinks-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11469,8 +11469,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11501,8 +11501,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 970,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/970/Cookies.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/970/conversions/Cookies-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/970/Cookies.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/970/conversions/Cookies-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11516,8 +11516,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11548,8 +11548,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 971,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/971/Dry-Fruits.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/971/conversions/Dry-Fruits-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/971/Dry-Fruits.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/971/conversions/Dry-Fruits-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11563,8 +11563,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11595,8 +11595,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 972,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/972/noodles.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/972/conversions/noodles-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/972/noodles.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/972/conversions/noodles-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11610,8 +11610,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11642,8 +11642,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 973,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/973/popcorn.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/973/conversions/popcorn-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/973/popcorn.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/973/conversions/popcorn-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11657,8 +11657,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 936,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/Snacks.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/936/conversions/Snacks-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/936/Snacks.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/936/conversions/Snacks-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11691,8 +11691,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 937,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/Pulse%26Rice.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/conversions/Pulse%26Rice-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/937/Pulse%26Rice.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/937/conversions/Pulse%26Rice-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -11731,8 +11731,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 966,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/966/Lentil.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/966/conversions/Lentil-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/966/Lentil.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/966/conversions/Lentil-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11746,8 +11746,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 937,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/Pulse%26Rice.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/conversions/Pulse%26Rice-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/937/Pulse%26Rice.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/937/conversions/Pulse%26Rice-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11778,8 +11778,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 967,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/967/Rice.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/967/conversions/Rice-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/967/Rice.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/967/conversions/Rice-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11793,8 +11793,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 937,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/Pulse%26Rice.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/937/conversions/Pulse%26Rice-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/937/Pulse%26Rice.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/937/conversions/Pulse%26Rice-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11827,8 +11827,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 938,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -11867,8 +11867,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 961,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/961/Beef.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/961/conversions/Beef-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/961/Beef.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/961/conversions/Beef-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11882,8 +11882,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 938,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11914,8 +11914,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 962,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/962/Chicken.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/962/conversions/Chicken-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/962/Chicken.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/962/conversions/Chicken-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11929,8 +11929,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 938,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -11961,8 +11961,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 963,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/963/Duck.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/963/conversions/Duck-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/963/Duck.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/963/conversions/Duck-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -11976,8 +11976,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 938,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12008,8 +12008,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 964,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/964/Lamb.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/964/conversions/Lamb-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/964/Lamb.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/964/conversions/Lamb-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12023,8 +12023,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 938,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12055,8 +12055,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 965,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/965/Turkey.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/965/conversions/Turkey-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/965/Turkey.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/965/conversions/Turkey-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12070,8 +12070,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 938,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/Meat-demo.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/938/conversions/Meat-demo-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/938/Meat-demo.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/938/conversions/Meat-demo-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12104,8 +12104,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 939,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -12144,8 +12144,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 955,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/955/Apple-%26-Pears.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/955/conversions/Apple-%26-Pears-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/955/Apple-%26-Pears.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/955/conversions/Apple-%26-Pears-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12159,8 +12159,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12191,8 +12191,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 956,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/956/Berries.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/956/conversions/Berries-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/956/Berries.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/956/conversions/Berries-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12206,8 +12206,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12238,8 +12238,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 957,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/957/Citrus.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/957/conversions/Citrus-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/957/Citrus.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/957/conversions/Citrus-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12253,8 +12253,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12285,8 +12285,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 958,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/958/Melons.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/958/conversions/Melons-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/958/Melons.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/958/conversions/Melons-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12300,8 +12300,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12332,8 +12332,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 959,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/959/Stone-Fruit.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/959/conversions/Stone-Fruit-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/959/Stone-Fruit.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/959/conversions/Stone-Fruit-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12347,8 +12347,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12379,8 +12379,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 960,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/960/Tropical-and-exotic.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/960/conversions/Tropical-and-exotic-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/960/Tropical-and-exotic.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/960/conversions/Tropical-and-exotic-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12394,8 +12394,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 939,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12428,8 +12428,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 940,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -12468,8 +12468,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 951,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/951/Farmed-Fish.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/951/conversions/Farmed-Fish-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/951/Farmed-Fish.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/951/conversions/Farmed-Fish-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12483,8 +12483,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 940,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12515,8 +12515,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 952,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/952/Fresh-water-fish.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/952/conversions/Fresh-water-fish-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/952/Fresh-water-fish.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/952/conversions/Fresh-water-fish-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12530,8 +12530,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 940,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12562,8 +12562,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 953,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/953/Sea-Fish.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/953/conversions/Sea-Fish-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/953/Sea-Fish.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/953/conversions/Sea-Fish-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12577,8 +12577,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 940,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12609,8 +12609,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 954,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/954/Shellfish.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/954/conversions/Shellfish-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/954/Shellfish.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/954/conversions/Shellfish-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12624,8 +12624,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 940,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12658,8 +12658,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 941,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/Dairy.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/conversions/Dairy-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/941/Dairy.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/941/conversions/Dairy-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -12698,8 +12698,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 984,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/984/Egg-Category.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/984/conversions/Egg-Category-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/984/Egg-Category.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/984/conversions/Egg-Category-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12713,8 +12713,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 941,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/Dairy.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/conversions/Dairy-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/941/Dairy.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/941/conversions/Dairy-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12744,8 +12744,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1335,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1335/Brown-Egg-Category.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1335/conversions/Brown-Egg-Category-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1335/Brown-Egg-Category.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1335/conversions/Brown-Egg-Category-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12768,8 +12768,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1336,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1336/White-Egg-Category.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1336/conversions/White-Egg-Category-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1336/White-Egg-Category.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1336/conversions/White-Egg-Category-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12794,8 +12794,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 1177,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1177/Dairy.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1177/conversions/Dairy-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/1177/Dairy.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/1177/conversions/Dairy-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12809,8 +12809,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 941,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/Dairy.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/941/conversions/Dairy-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/941/Dairy.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/941/conversions/Dairy-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -12840,8 +12840,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1179,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1179/Butter.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1179/conversions/Butter-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1179/Butter.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1179/conversions/Butter-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12864,8 +12864,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1180,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1180/Chees.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1180/conversions/Chees-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1180/Chees.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1180/conversions/Chees-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12888,8 +12888,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1181,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1181/Lequied-Milk.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1181/conversions/Lequied-Milk-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1181/Lequied-Milk.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1181/conversions/Lequied-Milk-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12912,8 +12912,8 @@ export const CTEGORIES = JSON.stringify(
                             "icon": null,
                             "image": {
                                 "id": 1182,
-                                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1182/Yogart-%26-Cream.jpg",
-                                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/1182/conversions/Yogart-%26-Cream-thumbnail.jpg"
+                                "original": "https://livellu-app.webqube.de/1182/Yogart-%26-Cream.jpg",
+                                "thumbnail": "https://livellu-app.webqube.de/1182/conversions/Yogart-%26-Cream-thumbnail.jpg"
                             },
                             "details": null,
                             "language": "en",
@@ -12940,8 +12940,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 942,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -12980,8 +12980,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 943,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/943/Bread.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/943/conversions/Bread-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/943/Bread.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/943/conversions/Bread-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -12995,8 +12995,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13027,8 +13027,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 944,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/944/Cake-%26-Pastry.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/944/conversions/Cake-%26-Pastry-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/944/Cake-%26-Pastry.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/944/conversions/Cake-%26-Pastry-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13042,8 +13042,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13074,8 +13074,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 945,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/945/Cookies.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/945/conversions/Cookies-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/945/Cookies.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/945/conversions/Cookies-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13089,8 +13089,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13121,8 +13121,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 946,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/946/Croissant.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/946/conversions/Croissant-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/946/Croissant.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/946/conversions/Croissant-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13136,8 +13136,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13168,8 +13168,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 947,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/947/Danish.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/947/conversions/Danish-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/947/Danish.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/947/conversions/Danish-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13183,8 +13183,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13215,8 +13215,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 948,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/948/Feteer-%26-Pies.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/948/conversions/Feteer-%26-Pies-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/948/Feteer-%26-Pies.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/948/conversions/Feteer-%26-Pies-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13230,8 +13230,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13262,8 +13262,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 949,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/949/Muffin.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/949/conversions/Muffin-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/949/Muffin.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/949/conversions/Muffin-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13277,8 +13277,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13309,8 +13309,8 @@ export const CTEGORIES = JSON.stringify(
                     "icon": null,
                     "image": {
                         "id": 950,
-                        "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/950/Pita-Bread.jpg",
-                        "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/950/conversions/Pita-Bread-thumbnail.jpg"
+                        "original": "https://livellu-app.webqube.de/950/Pita-Bread.jpg",
+                        "thumbnail": "https://livellu-app.webqube.de/950/conversions/Pita-Bread-thumbnail.jpg"
                     },
                     "details": null,
                     "language": "en",
@@ -13324,8 +13324,8 @@ export const CTEGORIES = JSON.stringify(
                         "icon": null,
                         "image": {
                             "id": 942,
-                            "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                            "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                            "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                            "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                         },
                         "details": null,
                         "language": "en",
@@ -13358,8 +13358,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 943,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/943/Bread.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/943/conversions/Bread-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/943/Bread.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/943/conversions/Bread-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13373,8 +13373,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13420,8 +13420,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 944,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/944/Cake-%26-Pastry.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/944/conversions/Cake-%26-Pastry-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/944/Cake-%26-Pastry.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/944/conversions/Cake-%26-Pastry-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13435,8 +13435,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13482,8 +13482,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 945,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/945/Cookies.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/945/conversions/Cookies-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/945/Cookies.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/945/conversions/Cookies-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13497,8 +13497,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13544,8 +13544,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 946,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/946/Croissant.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/946/conversions/Croissant-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/946/Croissant.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/946/conversions/Croissant-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13559,8 +13559,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13606,8 +13606,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 947,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/947/Danish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/947/conversions/Danish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/947/Danish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/947/conversions/Danish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13621,8 +13621,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13668,8 +13668,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 948,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/948/Feteer-%26-Pies.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/948/conversions/Feteer-%26-Pies-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/948/Feteer-%26-Pies.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/948/conversions/Feteer-%26-Pies-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13683,8 +13683,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13730,8 +13730,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 949,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/949/Muffin.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/949/conversions/Muffin-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/949/Muffin.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/949/conversions/Muffin-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13745,8 +13745,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13792,8 +13792,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 950,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/950/Pita-Bread.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/950/conversions/Pita-Bread-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/950/Pita-Bread.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/950/conversions/Pita-Bread-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13807,8 +13807,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 942,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/bakery.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/942/conversions/bakery-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/942/bakery.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/942/conversions/bakery-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13854,8 +13854,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 951,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/951/Farmed-Fish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/951/conversions/Farmed-Fish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/951/Farmed-Fish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/951/conversions/Farmed-Fish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13869,8 +13869,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 940,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13916,8 +13916,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 952,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/952/Fresh-water-fish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/952/conversions/Fresh-water-fish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/952/Fresh-water-fish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/952/conversions/Fresh-water-fish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13931,8 +13931,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 940,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -13978,8 +13978,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 953,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/953/Sea-Fish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/953/conversions/Sea-Fish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/953/Sea-Fish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/953/conversions/Sea-Fish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -13993,8 +13993,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 940,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14040,8 +14040,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 954,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/954/Shellfish.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/954/conversions/Shellfish-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/954/Shellfish.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/954/conversions/Shellfish-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14055,8 +14055,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 940,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/Fish.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/940/conversions/Fish-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/940/Fish.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/940/conversions/Fish-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14102,8 +14102,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 955,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/955/Apple-%26-Pears.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/955/conversions/Apple-%26-Pears-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/955/Apple-%26-Pears.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/955/conversions/Apple-%26-Pears-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14117,8 +14117,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14164,8 +14164,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 956,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/956/Berries.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/956/conversions/Berries-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/956/Berries.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/956/conversions/Berries-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14179,8 +14179,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14226,8 +14226,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 957,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/957/Citrus.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/957/conversions/Citrus-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/957/Citrus.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/957/conversions/Citrus-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14241,8 +14241,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14288,8 +14288,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 958,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/958/Melons.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/958/conversions/Melons-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/958/Melons.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/958/conversions/Melons-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14303,8 +14303,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14350,8 +14350,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 959,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/959/Stone-Fruit.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/959/conversions/Stone-Fruit-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/959/Stone-Fruit.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/959/conversions/Stone-Fruit-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14365,8 +14365,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14412,8 +14412,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 960,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/960/Tropical-and-exotic.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/960/conversions/Tropical-and-exotic-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/960/Tropical-and-exotic.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/960/conversions/Tropical-and-exotic-thumbnail.jpg"
             },
             "details": null,
             "language": "en",
@@ -14427,8 +14427,8 @@ export const CTEGORIES = JSON.stringify(
                 "icon": null,
                 "image": {
                     "id": 939,
-                    "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/Fruits.jpg",
-                    "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/939/conversions/Fruits-thumbnail.jpg"
+                    "original": "https://livellu-app.webqube.de/939/Fruits.jpg",
+                    "thumbnail": "https://livellu-app.webqube.de/939/conversions/Fruits-thumbnail.jpg"
                 },
                 "details": null,
                 "language": "en",
@@ -14474,8 +14474,8 @@ export const CTEGORIES = JSON.stringify(
             "icon": null,
             "image": {
                 "id": 961,
-                "original": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/961/Beef.jpg",
-                "thumbnail": "https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/961/conversions/Beef-thumbnail.jpg"
+                "original": "https://livellu-app.webqube.de/961/Beef.jpg",
+                "thumbnail": "https://livellu-app.webqube.de/961/conversions/Beef-thumbnail.jpg"
             },
             "details": null,
             "language": "en",

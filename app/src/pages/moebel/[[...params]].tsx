@@ -184,8 +184,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
 
     let sortedProducts = data;
-    let total = meta.total;
-    let pageCount = meta.totalPages;
+    let total = meta?.total ?? 0;
+    let pageCount = meta?.totalPages ?? 0;
 
     return {
         props: {

@@ -1,4 +1,3 @@
-import PromotionSliders from '@/components/promotions/promotions';
 import Categories from '@/components/categories/categories';
 import {Element} from 'react-scroll';
 import FilterBar from './filter-bar';
@@ -7,7 +6,6 @@ import type {HomePageProps} from '@/types';
 export default function ClassicLayout({ variables }: HomePageProps) {
   return (
     <>
-      <PromotionSliders variables={variables.types} />
       <FilterBar variables={variables.categories} />
       <Element
         name="grid"

@@ -39,8 +39,14 @@ const ProductCard = (props: { product: Product }) => {
             <CardContent className="flex items-center justify-center p-0">
                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300">
                     {/* Product Image */}
-                    <Image className="w-full h-48 object-contain p-3" src={variant?.altImageUrl} alt={variant.productName}/>
-
+                    {/*<Image className="w-full h-48 object-contain p-3" src={variant?.altImageUrl} alt={variant.productName}/>*/}
+                    <Image
+                        src={variant?.altImageUrl}
+                        alt={variant?.productName}
+                        width={300}
+                        height={400}
+                        className="w-full h-48 object-contain p-3"
+                    />
                     {/* Product Details */}
                     <div className="p-4">
                         <h4 className="scroll-m-20 text-base font-semibold tracking-tight truncate">

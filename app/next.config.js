@@ -18,7 +18,8 @@ module.exports = withPWA({
             '127.0.0.1:1337',
             'res.cloudinary.com',
             'livellu-app.webqube.de',
-            'livellu-api.webqube.de'
+            'livellu-api.webqube.de',
+            'i.otto.de'
         ],
     },
     ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {

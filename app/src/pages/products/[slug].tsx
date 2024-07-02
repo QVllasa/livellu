@@ -1,15 +1,11 @@
 import type {NextPageWithLayout} from '@/types';
-import type {InferGetStaticPropsType} from 'next';
 import {getLayout} from '@/components/layouts/layout';
-import {getStaticProps} from '@/framework/product.ssr';
 
 // export {getStaticPaths, getStaticProps};
 
 
 
-const ProductPage: NextPageWithLayout<
-    InferGetStaticPropsType<typeof getStaticProps>
-> = () => {
+const ProductPage: NextPageWithLayout = () => {
 
     return (<> </>);
         // <>

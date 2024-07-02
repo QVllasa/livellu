@@ -8,7 +8,6 @@ import {couponAtom} from '@/store/checkout';
 import {toast} from 'react-toastify';
 
 import {useRouter} from 'next/router';
-import {SETTINGS} from "@/db/settings";
 
 export function useSettings() {
   const { locale } = useRouter();
@@ -23,7 +22,7 @@ export function useSettings() {
   //     client.settings.all(Object.assign({}, queryKey[1], pageParam))
   // );
   //
-  const data = JSON.parse(SETTINGS)
+  const data: any = []
   const isLoading = false;
   const error = null;
   const isFetching = false;
