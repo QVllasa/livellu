@@ -19,6 +19,7 @@ module.exports = withPWA({
             'res.cloudinary.com',
             'livellu-app.webqube.de',
             'livellu-api.webqube.de',
+            'otto.de',
             'i.otto.de'
         ],
     },
