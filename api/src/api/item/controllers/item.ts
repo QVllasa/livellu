@@ -15,9 +15,9 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       page = '1',
       pageSize = '48',
       searchTerms = '',
-     // sort = '',
-     // minPrice ='',
-     // maxPrice =''
+      sort = '',
+      minPrice ='',
+      maxPrice =''
     } = filters;
 
 
@@ -30,10 +30,10 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       if (Object.prototype.hasOwnProperty.call(filters, key)
         && key !== 'page'
         && key !== 'pageSize'
-     //   && key !== 'minPrice'
-     //   && key !== 'maxPrice'
+        && key !== 'minPrice'
+        && key !== 'maxPrice'
         && key !== 'searchTerms'
-     //   && key !== 'sort'
+        && key !== 'sort'
         && key !== 'variants.averageRating'
         && key !== 'variants.originalColor'
       ) {
