@@ -23,7 +23,8 @@ module.exports = withPWA({
             'cdn.pixabay.com',
             'livellu-app-c5418d59d2e7.herokuapp.com',
             'livellu-api-d133f68c647d.herokuapp.com',
-            'res.cloudinary.com'
+            'res.cloudinary.com',
+            'livellu-app.webqube.de',
         ],
     },
     ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
