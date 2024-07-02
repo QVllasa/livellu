@@ -1,26 +1,62 @@
-/** @type {import('next').NextConfig} */
 const runtimeCaching = require('next-pwa/cache');
-// const {i18n} = require('./next-i18next.config');
 const withPWA = require('next-pwa')({
     disable: process.env.NODE_ENV === 'development',
     dest: 'public',
     runtimeCaching,
 });
 
-module.exports = withPWA({
+/** @type {import('next').NextConfig} */
+const nextConfig = withPWA({
     reactStrictMode: true,
-    // i18n,
     images: {
-        domains: [
-            'localhost:1337',
-            'localhost',
-            '127.0.0.1',
-            '127.0.0.1:1337',
-            'res.cloudinary.com',
-            'livellu-app.webqube.de',
-            'livellu-api.webqube.de',
-            'otto.de',
-            'i.otto.de'
+        remotePatterns: [
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                port: '1337',
+                pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: 'localhost',
+                pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: '127.0.0.1',
+                pathname: '/**',
+            },
+            {
+                protocol: 'http',
+                hostname: '127.0.0.1',
+                port: '1337',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'res.cloudinary.com',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'livellu-app.webqube.de',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'livellu-api.webqube.de',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'otto.de',
+                pathname: '/**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'i.otto.de',
+                pathname: '/**',
+            }
         ],
     },
     ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {
@@ -28,7 +64,7 @@ module.exports = withPWA({
             config.module.rules.push({
                 test: /\.graphql$/,
                 exclude: /node_modules/,
-                use: [options.defaultLoaders.babel, {loader: 'graphql-let/loader'}],
+                use: [options.defaultLoaders.babel, { loader: 'graphql-let/loader' }],
             });
 
             config.module.rules.push({
@@ -62,3 +98,5 @@ module.exports = withPWA({
         NEXT_PUBLIC_AVAILABLE_LANGUAGES: process.env.NEXT_PUBLIC_AVAILABLE_LANGUAGES,
     },
 });
+
+module.exports = nextConfig;
