@@ -2,12 +2,7 @@
 import {factories} from '@strapi/strapi';
 import {MeiliSearch} from 'meilisearch';
 import qs from 'qs';
-// import client from "../../../utils/meilisearch-client";
-
-const client = new MeiliSearch({
-  host: 'http://localhost:7700',
-  apiKey: 'd4de84ae2d98e4fca9be480e3996743c4553b82c78f71bf7d7bfa0ce8c3f3efb',
-});
+import client from "../../../utils/meilisearch-client";
 
 export default factories.createCoreController('api::item.item', ({strapi}) => ({
 
