@@ -12,11 +12,11 @@
         <property name="adaptiveFetchMaximum" value="10000" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="postgres@caprover" uuid="4593228e-9a64-4c57-912e-561f5152d0a1">
+    <data-source source="LOCAL" name="postgres@supabase" uuid="e4bd365a-edb3-4b27-bc4b-89554ad7cb28">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
-      <jdbc-url>jdbc:postgresql://65.108.149.184:5555/postgres</jdbc-url>
+      <jdbc-url>jdbc:postgresql://188.34.190.177:5432/postgres</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

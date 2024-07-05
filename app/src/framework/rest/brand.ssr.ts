@@ -14,10 +14,13 @@ export async function fetchBrandBySlug(slug: string): Promise<Brand | null> {
 }
 
 export async function fetchBrands(params: any) {
-    const response = await Client.brands.get(params);
-    // sort brands by label albahetically
-    return response.data.sort((a: Brand, b: Brand) => a.label.localeCompare(b.label));
-    // return []
+    try {
+        const response = await Client.brands.get(params);
+        // sort brands by label albahetically
+        return response.data.sort((a: Brand, b: Brand) => a.label.localeCompare(b.label));
+    } catch (error) {
+        return []
+    }
 }
 
 export async function fetchBrand(params: any) {

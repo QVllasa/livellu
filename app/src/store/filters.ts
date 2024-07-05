@@ -21,6 +21,7 @@ export const allMaterialsAtom =
     atomWithDefault<null | any | Material[]>(async () => fetchAllMaterials());
 
 
+
 // Atom for the current category
 export const currentCategoryAtom = atom<null | any | Category>(null);
 export const currentColorAtom = atom<null | any | Color>(null);

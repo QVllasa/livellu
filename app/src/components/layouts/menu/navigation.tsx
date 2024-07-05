@@ -2,13 +2,13 @@ import useNavigation from "@/lib/hooks/use-navigation";
 import React, {useState} from "react";
 import {cn} from "@/shadcn/lib/utils";
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu";
-import {ArticleCategory, Entity, Navigation} from "@/types";
+import {ArticleCategory, Entity, Navigation as NavigationType} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ChevronRight} from "@/components/icons/chevron-right";
 import {ChevronDown} from "lucide-react";
 import {Collapsible, CollapsibleContent, CollapsibleTrigger} from "@/shadcn/components/ui/collapsible";
 
-const Navigation = () => {
+export const Navigation = () => {
     const filter = {
         populate: {
             category: {
@@ -34,12 +34,12 @@ const Navigation = () => {
         return <div>Error: {error.message}</div>;
     }
 
-    let home = navigationData.find((item: Navigation) => item?.url === '/');
+    let home = navigationData.find((item: NavigationType) => item?.url === '/');
 
 
     return (
-        <NavigationMenu>
-            <NavigationMenuList>
+        <NavigationMenu className="w-full">
+            <NavigationMenuList className="flex flex-col w-full">
                 <NavigationMenuItem>
                     <NavigationMenuLink href={home?.url ?? '/'} className={navigationMenuTriggerStyle()}>
                         Home
@@ -52,7 +52,7 @@ const Navigation = () => {
                             <>
                                 <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid w-[200px] gap-3 p-4 md:w-[300px] grid-cols-1 lg:w-[400px]">
+                                    <ul className="grid w-full gap-3 p-4">
                                         {category?.data?.attributes.child_categories?.map((item) => (
                                             <ListItem
                                                 key={item.name}
@@ -78,8 +78,6 @@ const Navigation = () => {
     );
 };
 
-export default Navigation;
-
 interface ListItemProps {
     title: string;
     children: React.ReactNode;
@@ -91,7 +89,6 @@ interface ListItemProps {
 
 const ListItem: React.FC<ListItemProps> = ({title, children, category, href, ...props}) => {
     const [isOpen, setIsOpen] = useState(false);
-
 
     return (
         <li>
@@ -131,17 +128,14 @@ const ListItem: React.FC<ListItemProps> = ({title, children, category, href, ...
                     </CollapsibleTrigger>
                 </div>
                 <CollapsibleContent className="rounded-xl flex cursor-pointer items-center px-5 text-sm capitalize text-heading transition duration-200">
-                    <ul className="grid w-[200px] gap-3 md:w-[300px] grid-cols-1 lg:w-[400px] py-4">
-                        {category?.article_categories?.data?.map(({ attributes }: Entity<ArticleCategory>) => {
-
-                            return (
-                                <li className={'hover:text-accent'} key={attributes.title}>
-                                    <a href={'/article-category/' + (attributes.slug ?? '/')}>
-                                        <span>{attributes.title}</span>
-                                    </a>
-                                </li>
-                            );
-                        })}
+                    <ul className="grid w-full gap-3 py-4">
+                        {category?.article_categories?.data?.map(({ attributes }: Entity<ArticleCategory>) => (
+                            <li className={'hover:text-accent'} key={attributes.title}>
+                                <a href={'/article-category/' + (attributes.slug ?? '/')}>
+                                    <span>{attributes.title}</span>
+                                </a>
+                            </li>
+                        ))}
                     </ul>
                 </CollapsibleContent>
             </Collapsible>

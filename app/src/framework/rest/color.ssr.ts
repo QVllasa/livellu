@@ -14,6 +14,10 @@ export async function fetchAllColors() {
 }
 
 export async function fetchColors(params: any) {
-    const response = await Client.colors.get(params);
-    return response.data;
+    try {
+        const response = await Client.colors.get(params);
+        return response.data;
+    } catch (error) {
+        return []
+    }
 }

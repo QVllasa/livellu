@@ -1,29 +1,17 @@
-import useLayout from '@/lib/hooks/use-layout';
 import Header from './header';
-import HeaderMinimal from './header-minimal';
 import Footer from './footer';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
-import dynamic from 'next/dynamic';
-
-const MobileNavigation = dynamic(() => import('./mobile-navigation'), {
-  ssr: false,
-});
 
 export default function SiteLayout({ children }: React.PropsWithChildren<{}>) {
-  const { layout } = useLayout();
+
   const router = useRouter();
   return (
     <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
-
-      {['minimal', 'compact'].includes(layout) ? (
-        <HeaderMinimal layout={layout} />
-      ) : (
-        <Header layout={layout} />
-      )}
+        <Header  />
       {children}
-      {['compact'].includes(layout) && <Footer />}
-      <MobileNavigation />
+      {<Footer />}
+      {/*<MobileNavigation />*/}
     </div>
   );
 }

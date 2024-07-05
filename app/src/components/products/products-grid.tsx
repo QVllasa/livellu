@@ -2,22 +2,18 @@ import {useRouter} from "next/router";
 import ProductCard from "@/components/products/cards/product-card";
 import {Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from "@/shadcn/components/ui/pagination";
 import {Product} from "@/types";
+import {Button} from "@/shadcn/components/ui/button";
 
 interface ProductsGridProps {
     products: Product[];
     page: number;
     pageCount: number;
+    loadMoreProducts: () => void;
+    loading: boolean;
 }
 
-export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) => {
+export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loading}: ProductsGridProps) => {
     const router = useRouter();
-
-    const handlePageChange = (newPage: number) => {
-        router.push({
-            pathname: router.pathname,
-            query: { ...router.query, page: newPage },
-        });
-    };
 
     const renderPageLinks = () => {
         const maxPagesToShow = 5;
@@ -32,7 +28,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
                             isActive={page === i}
                             onClick={(e) => {
                                 e.preventDefault();
-                                handlePageChange(i);
+                                loadMoreProducts();
                             }}
                         >
                             {i}
@@ -52,7 +48,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
                             isActive={page === 1}
                             onClick={(e) => {
                                 e.preventDefault();
-                                handlePageChange(1);
+                                loadMoreProducts();
                             }}
                         >
                             1
@@ -61,7 +57,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
                 );
 
                 if (startPage > 2) {
-                    pages.push(<PaginationEllipsis key="start-ellipsis" />);
+                    pages.push(<PaginationEllipsis key="start-ellipsis"/>);
                 }
             }
 
@@ -73,7 +69,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
                             isActive={page === i}
                             onClick={(e) => {
                                 e.preventDefault();
-                                handlePageChange(i);
+                                loadMoreProducts();
                             }}
                         >
                             {i}
@@ -84,7 +80,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
 
             if (endPage < pageCount) {
                 if (endPage < pageCount - 1) {
-                    pages.push(<PaginationEllipsis key="end-ellipsis" />);
+                    pages.push(<PaginationEllipsis key="end-ellipsis"/>);
                 }
 
                 pages.push(
@@ -94,7 +90,7 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
                             isActive={page === pageCount}
                             onClick={(e) => {
                                 e.preventDefault();
-                                handlePageChange(pageCount);
+                                loadMoreProducts();
                             }}
                         >
                             {pageCount}
@@ -109,36 +105,45 @@ export const ProductsGrid = ({ products, page, pageCount }: ProductsGridProps) =
 
     return (
         <div className="w-full flex flex-col items-center">
-            <div className="w-full max-w-full ">
-                <div className="grid grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-4">
+            <div className="w-full max-w-7xl mx-auto p-0 lg:p-6">
+                <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4">
                     {products.map((product, index) => (
-                        <ProductCard key={index} product={product}  />
+                        <ProductCard key={index} product={product}/>
                     ))}
                 </div>
             </div>
-            <Pagination>
-                <PaginationContent>
-                    <PaginationItem>
-                        <PaginationPrevious
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                if (page > 1) handlePageChange(page - 1);
-                            }}
-                        />
-                    </PaginationItem>
-                    {renderPageLinks()}
-                    <PaginationItem>
-                        <PaginationNext
-                            href="#"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                if (page < pageCount) handlePageChange(page + 1);
-                            }}
-                        />
-                    </PaginationItem>
-                </PaginationContent>
-            </Pagination>
+
+            <div className="w-full max-w-7xl mx-auto mt-4 px-2 overflow-hidden hidden sm:block">
+                <Pagination>
+                    <PaginationContent className="flex justify-center items-center">
+                        <PaginationItem>
+                            <PaginationPrevious
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (page > 1) loadMoreProducts();
+                                }}
+                            />
+                        </PaginationItem>
+                        {renderPageLinks()}
+                        <PaginationItem>
+                            <PaginationNext
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    if (page < pageCount) loadMoreProducts();
+                                }}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+            </div>
+
+            <div className="block sm:hidden mt-4">
+                <Button onClick={loadMoreProducts} disabled={page >= pageCount || loading}>
+                    {loading ? "Loading..." : page < pageCount ? "Load More" : "No More Products"}
+                </Button>
+            </div>
         </div>
     );
 };

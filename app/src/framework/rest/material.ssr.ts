@@ -16,8 +16,12 @@ export async function fetchAllMaterials() {
 
 
 export async function fetchMaterials(params: any) {
-    const response = await Client.materials.get(params);
-    return response.data;
+    try {
+        const response = await Client.materials.get(params);
+        return response.data;
+    } catch (error) {
+        return []
+    }
 }
 
 

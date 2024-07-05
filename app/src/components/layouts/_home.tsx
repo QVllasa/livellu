@@ -20,11 +20,10 @@ export default function HomeLayout({
     );
 
 
-    const layout = 'modern';
     return (
         <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
 
-            <Header layout={layout}/>
+            <Header />
 
             <div className="min-h-screen">
                 <>
@@ -39,7 +38,7 @@ export default function HomeLayout({
                     </div>
                 </>
             </div>
-            {['compact'].includes(layout) && <Footer/>}
+             <Footer/>
             <MobileNavigation>
                 <motion.button
                     whileTap={{scale: 0.88}}

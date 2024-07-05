@@ -23,21 +23,22 @@ import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 import {GetServerSidePropsContext} from "next";
 
 interface MoebelPageProps {
-    sortedProducts: Product[];
+    initialProducts: Product[];
     page: number;
     pageCount: number;
     total: number;
     initialCategory: Category | null;
-
+    filters: any;
 }
 
-function MoebelPage({sortedProducts, page, pageCount, total, initialCategory}: MoebelPageProps) {
+function MoebelPage({initialProducts, page, pageCount, total, initialCategory, filters}: MoebelPageProps) {
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
-
+    const [products, setProducts] = useState<Product[]>(initialProducts);
+    const [currentPage, setCurrentPage] = useState<number>(page);
 
     const category = capitalize(currentCategory?.name) ?? 'Moebel';
     const brand = currentBrand && (' von der Marke ' + capitalize(currentBrand?.label));
@@ -46,12 +47,29 @@ function MoebelPage({sortedProducts, page, pageCount, total, initialCategory}: M
 
     const title = category + (brand ?? '') + (color ?? '') + (material ?? '');
 
+    const loadMoreProducts = async () => {
+        if (currentPage >= pageCount || loading) return;
+
+        setLoading(true);
+        try {
+            filters['page'] = currentPage + 1;
+            const {data, meta} = await fetchProducts(filters);
+
+            setProducts((prevProducts) => [...prevProducts, ...data]);
+            setCurrentPage((prevPage) => prevPage + 1);
+        } catch (error) {
+            console.error("Failed to load more products:", error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <>
             <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
                 <div className="hidden border-r bg-muted/40 md:block">
                     <div className="flex h-full max-h-screen flex-col gap-2">
-                        <div className="flex h-auto items-center border-b p-6  lg:px-4">
+                        <div className="flex h-auto items-center border-b p-6 lg:px-4">
                             <Link href="/" className="flex items-center gap-2 font-semibold">
                                 <Package2 className="h-6 w-6"/>
                                 <span className="">{capitalize(currentCategory?.name ?? 'Moebel')}</span>
@@ -60,20 +78,20 @@ function MoebelPage({sortedProducts, page, pageCount, total, initialCategory}: M
                         <div className="flex-1 h-full">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <CategoryFilter current={initialCategory}/>
+                                <PriceRangeFilter/>
                                 <BrandFilter/>
                                 <ColorFilter/>
-                                <PriceRangeFilter/>
                                 <MaterialFilter/>
                             </Suspense>
                         </div>
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <header className="flex h-auto items-center gap-4 border-b bg-muted/40 p-4  lg:px-6">
+                    <header className="flex h-auto items-center gap-4 border-b bg-muted/40 p-4 lg:px-6 hidden lg:block">
                         <SearchFilter/>
                     </header>
                     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-                        <div className="flex items-center justify-between">
+                        <div className="flex items-center justify-between hidden lg:block">
                             <div>
                                 <h1 className="text-lg font-semibold md:text-2xl">{title}</h1>
                                 <span className={'font-light text-xs text-gray-500'}>
@@ -85,21 +103,16 @@ function MoebelPage({sortedProducts, page, pageCount, total, initialCategory}: M
                                     <PageSizeSelector/>
                                     <PageSortSelector/>
                                 </Suspense>
-
                             </div>
-
                         </div>
-
                         <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                             <Breadcrumbs/>
                         </Suspense>
-
-                        {sortedProducts.length === 0 ? (
+                        {products.length === 0 ? (
                             <NoProductsFound/>
                         ) : (
-                            <ProductsGrid products={sortedProducts} page={page} pageCount={pageCount}/>
+                            <ProductsGrid products={products} page={currentPage} pageCount={pageCount} loadMoreProducts={loadMoreProducts} loading={loading}/>
                         )}
-
                     </main>
                 </div>
             </div>
@@ -127,7 +140,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (categoryParam) {
         const data = await fetchCategories({slug: categoryParam});
         initialCategory = data[0];
-
     }
 
     if (materialParam) {
@@ -137,9 +149,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         initialColor = await fetchColorBySlug(colorParam as string);
     }
 
-
-    // const categoryIds = getOriginalCategoryIds(initialCategory);
-
     const categoryName = getLabel(categoryParam, 'category-');
     const materialName = getLabel(materialParam, 'material-');
     const colorName = getLabel(colorParam, 'color-');
@@ -147,10 +156,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const searchTerms = [categoryName, brandName, colorName, materialName, query?.search].filter(Boolean);
 
-    console.log("searchTerms: ", searchTerms)
-
-
-    //merge search terms to single string and set it as search term
     filters['searchTerms'] = searchTerms.join(' ');
 
     const colorIds = [];
@@ -164,8 +169,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     filters['variants.originalColor'] = colorIds;
 
     if (query.minPrice || query.maxPrice) {
-        filters['minPrice'] = query.minPrice ? parseInt(query.minPrice as string) : 0
-        filters['maxPrice'] = query.maxPrice ? parseInt(query.maxPrice as string) : 10000
+        filters['minPrice'] = query.minPrice ? parseInt(query.minPrice as string) : 0;
+        filters['maxPrice'] = query.maxPrice ? parseInt(query.maxPrice as string) : 10000;
     }
 
     let sort = sorts.find(el => el.id === query.sort) ?? null;
@@ -179,9 +184,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     filters['page'] = page;
     filters['pageSize'] = pageSize;
 
-
     const {data, meta} = await fetchProducts(filters);
-
 
     let sortedProducts = data;
     let total = meta?.total ?? 0;
@@ -189,17 +192,18 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     return {
         props: {
-            sortedProducts,
+            initialProducts: sortedProducts,
             page,
             pageCount,
             total,
-            initialCategory
+            initialCategory,
+            filters,
         },
     };
 }
 
 const getLabel = (str: string | undefined, prefix: string) => {
-    return str?.split(prefix,)[1] ?? null;    // remove the prefix
+    return str?.split(prefix,)[1] ?? null;
 }
 
 const NoProductsFound = () => (

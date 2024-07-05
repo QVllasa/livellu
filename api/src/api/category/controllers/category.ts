@@ -1,4 +1,3 @@
-// path: src/api/category/controllers/category.ts
 import {factories} from '@strapi/strapi';
 import qs from 'qs';
 import client from '../../../utils/meilisearch-client';

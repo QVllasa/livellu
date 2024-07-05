@@ -15,12 +15,22 @@ export const PriceRangeFilter = () => {
 
     useEffect(() => {
         const getMinMaxPrice = async () => {
-            const {min, max} = await Client.products.getMinMaxPrice();
-            // round min and max to full integers set
-            setDefaultMin(Math.floor(min));
+            try {
+                const {min, max} = await Client.products.getMinMaxPrice();
+                // round min and max to full integers set
+                setDefaultMin(Math.floor(min));
 
-            // if max is higher than 20000 than set it to 20000
-            setDefaultMax(Math.ceil(max > 20000 ? 20000 : max));
+                // if max is higher than 20000 than set it to 20000
+                setDefaultMax(Math.ceil(max > 20000 ? 20000 : max));
+            } catch (error) {
+                // round min and max to full integers set
+                setDefaultMin(0);
+
+                // if max is higher than 20000 than set it to 20000
+                setDefaultMax(20000);
+            }
+
+
         };
         getMinMaxPrice();
     }, []);
