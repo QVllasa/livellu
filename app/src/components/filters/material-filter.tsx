@@ -79,7 +79,7 @@ export const MaterialFilter = () => {
 
 
     return (
-        <div className="w-64 p-4 relative">
+        <div className="w-auto">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>

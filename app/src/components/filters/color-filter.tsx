@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import { ScrollArea } from "@/shadcn/components/ui/scroll-area";
-import { Button } from "@/shadcn/components/ui/button";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/shadcn/components/ui/accordion";
-import { capitalize } from "lodash";
-import { useAtom } from "jotai";
-import { Color } from "@/types";
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
+import {Button} from "@/shadcn/components/ui/button";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {capitalize} from "lodash";
+import {useAtom} from "jotai";
+import {Color} from "@/types";
 import {allColorsAtom, currentColorAtom} from "@/store/filters";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@/shadcn/components/ui/tooltip";
-import { findColorBySlug } from "@/framework/utils/find-by-slug";
+import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
+import {findColorBySlug} from "@/framework/utils/find-by-slug";
 import {fetchAllColors} from "@/framework/color.ssr";
 import {arrangePathSegments} from "@/lib/utils";
 
@@ -88,7 +88,7 @@ export const ColorFilter = () => {
 
 
     return (
-        <div className="w-64 p-4 relative">
+        <div className="w-auto">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>

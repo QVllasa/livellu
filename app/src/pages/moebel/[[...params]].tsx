@@ -21,6 +21,9 @@ import {MaterialFilter} from "@/components/filters/material-filter";
 import {fetchCategories} from "@/framework/category.ssr";
 import {PriceRangeFilter} from "@/components/filters/price-range-filter";
 import {GetServerSidePropsContext} from "next";
+import {Button} from "@/shadcn/components/ui/button";
+import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
+
 
 interface MoebelPageProps {
     initialProducts: Product[];
@@ -28,10 +31,9 @@ interface MoebelPageProps {
     pageCount: number;
     total: number;
     initialCategory: Category | null;
-    filters: any;
 }
 
-function MoebelPage({initialProducts, page, pageCount, total, initialCategory, filters}: MoebelPageProps) {
+function MoebelPage({initialProducts, page, pageCount, total, initialCategory}: MoebelPageProps) {
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
@@ -39,6 +41,7 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [currentPage, setCurrentPage] = useState<number>(page);
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
     const category = capitalize(currentCategory?.name) ?? 'Moebel';
     const brand = currentBrand && (' von der Marke ' + capitalize(currentBrand?.label));
@@ -52,10 +55,10 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
 
         setLoading(true);
         try {
-            filters['page'] = currentPage + 1;
-            const {data, meta} = await fetchProducts(filters);
+            const response = await fetch(`/api/products?page=${currentPage + 1}`);
+            const data = await response.json();
 
-            setProducts((prevProducts) => [...prevProducts, ...data]);
+            setProducts((prevProducts) => [...prevProducts, ...data.products]);
             setCurrentPage((prevPage) => prevPage + 1);
         } catch (error) {
             console.error("Failed to load more products:", error);
@@ -75,13 +78,15 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                                 <span className="">{capitalize(currentCategory?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
-                        <div className="flex-1 h-full">
+                        <div className="flex-1">
                             <Suspense fallback={<div>Loading...</div>}>
-                                <CategoryFilter current={initialCategory}/>
-                                <PriceRangeFilter/>
-                                <BrandFilter/>
-                                <ColorFilter/>
-                                <MaterialFilter/>
+                                <div className={'w-64 p-4'}>
+                                    <CategoryFilter current={initialCategory}/>
+                                    <PriceRangeFilter/>
+                                    <BrandFilter/>
+                                    <ColorFilter/>
+                                    <MaterialFilter/>
+                                </div>
                             </Suspense>
                         </div>
                     </div>
@@ -105,6 +110,36 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                                 </Suspense>
                             </div>
                         </div>
+                        {/* Mobile Filters Button */}
+                        <div className="lg:hidden relative">
+                            <Drawer >
+                                <DrawerTrigger asChild>
+                                    <Button variant="primary" onClick={() => setIsDrawerOpen(true)}>
+                                        Open Filters
+                                    </Button>
+                                </DrawerTrigger>
+                                <DrawerContent className={'h-2/3 '}>
+                                    <div className={'h-full relative flex flex-col py-3'}>
+                                        <DrawerHeader>
+                                            <DrawerTitle>Filter einstellen</DrawerTitle>
+                                            {/*<DrawerDescription>Set your daily activity goal.</DrawerDescription>*/}
+                                        </DrawerHeader>
+                                        <div className={'h-full overflow-auto p-4'}>
+                                            <CategoryFilter current={initialCategory}/>
+                                            <PriceRangeFilter/>
+                                            <BrandFilter/>
+                                            <ColorFilter/>
+                                            <MaterialFilter/>
+                                        </div>
+                                        <DrawerFooter className={''}>
+                                            <DrawerClose asChild>
+                                                <Button variant="outline">Schließen</Button>
+                                            </DrawerClose>
+                                        </DrawerFooter>
+                                    </div>
+                                </DrawerContent>
+                            </Drawer>
+                        </div>
                         <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                             <Breadcrumbs/>
                         </Suspense>
@@ -113,8 +148,10 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                         ) : (
                             <ProductsGrid products={products} page={currentPage} pageCount={pageCount} loadMoreProducts={loadMoreProducts} loading={loading}/>
                         )}
+                        {loading && <div>Loading...</div>}
                     </main>
                 </div>
+
             </div>
         </>
     );
@@ -196,8 +233,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             page,
             pageCount,
             total,
-            initialCategory,
-            filters,
+            initialCategory
         },
     };
 }
