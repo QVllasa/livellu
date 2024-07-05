@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {Suspense, useState} from "react";
 import {Package2} from "lucide-react";
-import {getLayout} from "@/components/layouts/layout";
+import {getLayout} from "@/components/layouts/moebel-page-layout";
 import {capitalize} from "lodash";
 import {fetchMaterialBySlug} from "@/framework/material.ssr";
 import {fetchColorBySlug} from "@/framework/color.ssr";

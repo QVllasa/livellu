@@ -1,19 +1,14 @@
 import type {Category, NextPageWithLayout} from '@/types';
-import {Suspense, useEffect} from 'react';
+import {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {scroller} from 'react-scroll';
 import HomeLayout from '@/components/layouts/_home';
-import {useWindowSize} from '@/lib/use-window-size';
-import {useType} from '@/framework/type';
-import {BackgroundDiagonalLines} from "@/components/backgrounds/background-diagonal-lines";
 import {Merchants} from "@/components/merchants/merchants";
 import BannerShort from "@/components/banners/banner-short";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 
 const Home: NextPageWithLayout = () => {
     const {query} = useRouter();
-    const {width} = useWindowSize();
-    const {type} = useType();
 
     useEffect(() => {
         if (query.text || query.category) {
@@ -26,14 +21,9 @@ const Home: NextPageWithLayout = () => {
 
     return (
         <>
-            <div className="mx-auto border border-border-200 max-w-7xl justify-center mt-20">
+            <div className="mx-auto border border-border-200 max-w-7xl justify-center mt-20 relative">
                 <BannerShort/>
             </div>
-
-            <BackgroundDiagonalLines/>
-
-            <Suspense fallback={<div>Loading...</div>}>
-            </Suspense>
 
             <Merchants/>
         </>

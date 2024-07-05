@@ -36,10 +36,9 @@ export const Navigation = () => {
 
     let home = navigationData.find((item: NavigationType) => item?.url === '/');
 
-
     return (
-        <NavigationMenu className="w-full">
-            <NavigationMenuList className="flex flex-col w-full">
+        <NavigationMenu className="w-full lg:flex lg:space-x-4 lg:items-center">
+            <NavigationMenuList className="flex flex-col w-full lg:flex-row lg:w-auto">
                 <NavigationMenuItem>
                     <NavigationMenuLink href={home?.url ?? '/'} className={navigationMenuTriggerStyle()}>
                         Home
@@ -52,7 +51,7 @@ export const Navigation = () => {
                             <>
                                 <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
                                 <NavigationMenuContent>
-                                    <ul className="grid w-full gap-3 p-4">
+                                    <ul className="grid w-full gap-3 p-4 md:w-[300px] lg:w-[400px]">
                                         {category?.data?.attributes.child_categories?.map((item) => (
                                             <ListItem
                                                 key={item.name}
