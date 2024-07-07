@@ -1,5 +1,5 @@
 import {termsAndServices} from '@/framework/static/terms';
-import {getLayout} from '@/components/layouts/layout';
+
 
 function makeTitleToDOMId(title: string) {
   return title.toLowerCase().split(' ').join('_');
@@ -69,7 +69,7 @@ export default function TermsPage() {
   );
 }
 
-TermsPage.getLayout = getLayout;
+
 
 // export const getStaticProps: GetStaticProps = async ({ locale }) => {
 //   return {

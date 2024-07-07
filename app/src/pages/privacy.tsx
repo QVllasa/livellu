@@ -1,7 +1,6 @@
 import {privacyPolicy} from '@/framework/static/privacy';
 
 // import { GetStaticProps } from 'next';
-import {getLayout} from '@/components/layouts/layout';
 
 function makeTitleToDOMId(title: string) {
   return title.toLowerCase().split(' ').join('_');
@@ -70,7 +69,6 @@ export default function PrivacyPage() {
   );
 }
 
-PrivacyPage.getLayout = getLayout;
 //
 // export const getStaticProps: GetStaticProps = async ({ locale }) => {
 //   return {

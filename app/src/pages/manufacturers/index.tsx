@@ -1,4 +1,3 @@
-import {getLayout as getSiteLayout} from '@/components/layouts/layout';
 // export { getStaticProps } from '@/framework/manufacturers-page.ssr';
 
 export default function ManufacturersPage() {
@@ -26,13 +25,3 @@ export default function ManufacturersPage() {
   );
 }
 
-const getLayout = (page: React.ReactElement) =>
-  getSiteLayout(
-    <div className="w-full bg-light">
-      <div className="mx-auto min-h-screen max-w-1920 px-5 py-10 xl:py-14 xl:px-16">
-        {page}
-      </div>
-    </div>
-  );
-
-ManufacturersPage.getLayout = getLayout;

@@ -252,7 +252,7 @@ const NoProductsFound = () => (
     </div>
 );
 
-const FilterDrawer = ({setIsDrawerOpen, initialCategory}) => {
+const FilterDrawer = ({setIsDrawerOpen, initialCategory}: {setIsDrawerOpen: any, initialCategory: Category | null}) => {
     return (
         <Drawer>
         <DrawerTrigger asChild>

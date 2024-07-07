@@ -3,7 +3,6 @@ import Footer from './footer';
 import Header from './header';
 // import HeaderMinimal from './header-minimal';
 // import MobileNavigation from './mobile-navigation';
-
 import dynamic from 'next/dynamic';
 
 const MobileNavigation = dynamic(() => import('./mobile-navigation'), {
@@ -17,7 +16,7 @@ const SiteLayoutWithFooter = ({ children }: { children?: React.ReactNode }) => {
       {/*{layout === 'minimal' ? (*/}
       {/*  <HeaderMinimal layout={layout} />*/}
       {/*) : (*/}
-        <Header layout={layout} />
+        <Header  />
       {/*)}*/}
       {children}
       <MobileNavigation />

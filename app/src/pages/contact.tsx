@@ -1,4 +1,4 @@
-import {getLayout} from '@/components/layouts/layout';
+
 // export { getStaticProps } from '@/framework/general.ssr';
 
 export const ContactPage = () => {
@@ -101,5 +101,4 @@ export const ContactPage = () => {
     </>
   );
 };
-ContactPage.getLayout = getLayout;
 export default ContactPage;

@@ -38,6 +38,7 @@ const DrawerContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <DrawerPortal>
     <DrawerOverlay />
+    {/*@ts-ignore*/}
     <DrawerPrimitive.Content
       ref={ref}
       className={cn(

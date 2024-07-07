@@ -1,5 +1,4 @@
 import type {NextPageWithLayout} from '@/types';
-import {getLayout} from '@/components/layouts/layout';
 
 // export {getStaticPaths, getStaticProps};
 
@@ -29,5 +28,4 @@ const ProductPage: NextPageWithLayout = () => {
         // </>
     // );
 };
-ProductPage.getLayout = getLayout;
 export default ProductPage;

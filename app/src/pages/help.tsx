@@ -1,7 +1,5 @@
 import Accordion from '@/components/ui/accordion';
-import { faq } from '@/framework/static/faq';
-import { GetStaticProps } from 'next';
-import { getLayout } from '@/components/layouts/layout';
+import {faq} from '@/framework/static/faq';
 import Seo from '@/components/seo/seo';
 
 export default function HelpPage() {
@@ -22,4 +20,3 @@ export default function HelpPage() {
   );
 }
 
-HelpPage.getLayout = getLayout;
