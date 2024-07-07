@@ -3,6 +3,7 @@ import ProductCard from "@/components/products/cards/product-card";
 import {Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from "@/shadcn/components/ui/pagination";
 import {Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
+import {ReloadIcon} from "@radix-ui/react-icons";
 
 interface ProductsGridProps {
     products: Product[];
@@ -142,7 +143,11 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
 
             <div className="block sm:hidden mt-4">
                 <Button onClick={loadMoreProducts} disabled={page >= pageCount || loading}>
-                    {loading ? "Loading..." : page < pageCount ? "Load More" : "No More Products"}
+                    {loading ? <>
+                            <ReloadIcon className="mr-2 h-4 w-4 animate-spin"/>
+                            Laden...
+                        </>
+                        : page < pageCount ? "Mehr laden" : "Keine weiteren Produkte"}
                 </Button>
             </div>
         </div>

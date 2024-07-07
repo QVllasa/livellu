@@ -24,7 +24,6 @@ import {GetServerSidePropsContext} from "next";
 import {Button} from "@/shadcn/components/ui/button";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
 
-
 interface MoebelPageProps {
     initialProducts: Product[];
     page: number;
@@ -43,6 +42,7 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [currentPage, setCurrentPage] = useState<number>(page);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+    const [showStickyFilterButton, setShowStickyFilterButton] = useState(false);
 
     const category = capitalize(currentCategory?.name) ?? 'Moebel';
     const brand = currentBrand && (' von der Marke ' + capitalize(currentBrand?.label));
@@ -72,6 +72,20 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
         }
     };
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const topBarHeight = document.querySelector('header')?.offsetHeight || 0;
+            if (window.scrollY > topBarHeight) {
+                setShowStickyFilterButton(true);
+            } else {
+                setShowStickyFilterButton(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
     return (
         <>
             <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
@@ -100,34 +114,7 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                     <header className="flex h-auto items-center gap-4 border-b bg-muted/40 p-4 lg:px-6 ">
                         <SearchFilter/>
                         <div className="lg:hidden relative">
-                            <Drawer>
-                                <DrawerTrigger asChild>
-                                    <Button onClick={() => setIsDrawerOpen(true)}>
-                                        Filter
-                                    </Button>
-                                </DrawerTrigger>
-                                <DrawerContent className={'h-2/3 '}>
-                                    <div className={'h-full relative flex flex-col py-3'}>
-                                        <DrawerHeader>
-                                            <DrawerTitle>Filter einstellen</DrawerTitle>
-                                            {/*<DrawerDescription>Set your daily activity goal.</DrawerDescription>*/}
-                                        </DrawerHeader>
-                                        <div className={'h-full overflow-auto p-4'}>
-                                            <CategoryFilter current={initialCategory}/>
-                                            <PriceRangeFilter/>
-                                            {/*TODO too much brands loaded */}
-                                            {/*<BrandFilter/>*/}
-                                            <ColorFilter/>
-                                            <MaterialFilter/>
-                                        </div>
-                                        <DrawerFooter className={''}>
-                                            <DrawerClose asChild>
-                                                <Button variant="outline">Schließen</Button>
-                                            </DrawerClose>
-                                        </DrawerFooter>
-                                    </div>
-                                </DrawerContent>
-                            </Drawer>
+                           <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
                         </div>
                     </header>
                     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
@@ -145,8 +132,6 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                                 </Suspense>
                             </div>
                         </div>
-                        {/* Mobile Filters Button */}
-
                         <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                             <Breadcrumbs/>
                         </Suspense>
@@ -155,10 +140,15 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory, f
                         ) : (
                             <ProductsGrid products={products} page={currentPage} pageCount={pageCount} loadMoreProducts={loadMoreProducts} loading={loading}/>
                         )}
-                        {loading && <div>Loading...</div>}
                     </main>
                 </div>
 
+                {/* Sticky Filter Button */}
+                <div className={` rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full ${showStickyFilterButton ? 'block' : 'hidden'}`}>
+                    <div className={'relative flex justify-center items-center h-full px-4'}>
+                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
+                    </div>
+                </div>
             </div>
         </>
     );
@@ -261,6 +251,36 @@ const NoProductsFound = () => (
         </Link>
     </div>
 );
+
+const FilterDrawer = ({setIsDrawerOpen, initialCategory}) => {
+    return (
+        <Drawer>
+        <DrawerTrigger asChild>
+            <Button className={'w-full'} onClick={() => setIsDrawerOpen(true)}>
+                Filter
+            </Button>
+        </DrawerTrigger>
+        <DrawerContent className={'h-2/3'}>
+            <div className={'h-full relative flex flex-col py-3'}>
+                <DrawerHeader>
+                    <DrawerTitle>Filter einstellen</DrawerTitle>
+                </DrawerHeader>
+                <div className={'h-full overflow-auto p-4'}>
+                    <CategoryFilter current={initialCategory}/>
+                    <PriceRangeFilter/>
+                    <ColorFilter/>
+                    <MaterialFilter/>
+                </div>
+                <DrawerFooter className={''}>
+                    <DrawerClose asChild>
+                        <Button variant="outline">Schließen</Button>
+                    </DrawerClose>
+                </DrawerFooter>
+            </div>
+        </DrawerContent>
+    </Drawer>
+    )
+};
 
 MoebelPage.getLayout = getLayout;
 export default MoebelPage;
