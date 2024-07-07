@@ -15,6 +15,7 @@ interface ProductsGridProps {
 export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loading}: ProductsGridProps) => {
     const router = useRouter();
 
+
     const renderPageLinks = () => {
         const maxPagesToShow = 5;
         const pages = [];

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import {Suspense, useState} from "react";
+import {Suspense, useEffect, useState} from "react";
 import {Package2} from "lucide-react";
 import {getLayout} from "@/components/layouts/moebel-page-layout";
 import {capitalize} from "lodash";
@@ -31,9 +31,10 @@ interface MoebelPageProps {
     pageCount: number;
     total: number;
     initialCategory: Category | null;
+    filters: any;
 }
 
-function MoebelPage({initialProducts, page, pageCount, total, initialCategory}: MoebelPageProps) {
+function MoebelPage({initialProducts, page, pageCount, total, initialCategory, filters}: MoebelPageProps) {
     const [loading, setLoading] = useState(false);
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
@@ -50,15 +51,19 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory}: 
 
     const title = category + (brand ?? '') + (color ?? '') + (material ?? '');
 
+    useEffect(() => {
+        setProducts(initialProducts);
+    }, [initialProducts]);
+
     const loadMoreProducts = async () => {
         if (currentPage >= pageCount || loading) return;
 
         setLoading(true);
         try {
-            const response = await fetch(`/api/products?page=${currentPage + 1}`);
-            const data = await response.json();
+            filters['page'] = currentPage + 1;
+            const {data, meta} = await fetchProducts(filters);
 
-            setProducts((prevProducts) => [...prevProducts, ...data.products]);
+            setProducts((prevProducts) => [...prevProducts, ...data]);
             setCurrentPage((prevPage) => prevPage + 1);
         } catch (error) {
             console.error("Failed to load more products:", error);
@@ -92,8 +97,38 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory}: 
                     </div>
                 </div>
                 <div className="flex flex-col">
-                    <header className="flex h-auto items-center gap-4 border-b bg-muted/40 p-4 lg:px-6 hidden lg:block">
+                    <header className="flex h-auto items-center gap-4 border-b bg-muted/40 p-4 lg:px-6 ">
                         <SearchFilter/>
+                        <div className="lg:hidden relative">
+                            <Drawer>
+                                <DrawerTrigger asChild>
+                                    <Button onClick={() => setIsDrawerOpen(true)}>
+                                        Filter
+                                    </Button>
+                                </DrawerTrigger>
+                                <DrawerContent className={'h-2/3 '}>
+                                    <div className={'h-full relative flex flex-col py-3'}>
+                                        <DrawerHeader>
+                                            <DrawerTitle>Filter einstellen</DrawerTitle>
+                                            {/*<DrawerDescription>Set your daily activity goal.</DrawerDescription>*/}
+                                        </DrawerHeader>
+                                        <div className={'h-full overflow-auto p-4'}>
+                                            <CategoryFilter current={initialCategory}/>
+                                            <PriceRangeFilter/>
+                                            {/*TODO too much brands loaded */}
+                                            {/*<BrandFilter/>*/}
+                                            <ColorFilter/>
+                                            <MaterialFilter/>
+                                        </div>
+                                        <DrawerFooter className={''}>
+                                            <DrawerClose asChild>
+                                                <Button variant="outline">Schließen</Button>
+                                            </DrawerClose>
+                                        </DrawerFooter>
+                                    </div>
+                                </DrawerContent>
+                            </Drawer>
+                        </div>
                     </header>
                     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
                         <div className="flex items-center justify-between hidden lg:block">
@@ -111,35 +146,7 @@ function MoebelPage({initialProducts, page, pageCount, total, initialCategory}: 
                             </div>
                         </div>
                         {/* Mobile Filters Button */}
-                        <div className="lg:hidden relative">
-                            <Drawer >
-                                <DrawerTrigger asChild>
-                                    <Button variant="primary" onClick={() => setIsDrawerOpen(true)}>
-                                        Open Filters
-                                    </Button>
-                                </DrawerTrigger>
-                                <DrawerContent className={'h-2/3 '}>
-                                    <div className={'h-full relative flex flex-col py-3'}>
-                                        <DrawerHeader>
-                                            <DrawerTitle>Filter einstellen</DrawerTitle>
-                                            {/*<DrawerDescription>Set your daily activity goal.</DrawerDescription>*/}
-                                        </DrawerHeader>
-                                        <div className={'h-full overflow-auto p-4'}>
-                                            <CategoryFilter current={initialCategory}/>
-                                            <PriceRangeFilter/>
-                                            <BrandFilter/>
-                                            <ColorFilter/>
-                                            <MaterialFilter/>
-                                        </div>
-                                        <DrawerFooter className={''}>
-                                            <DrawerClose asChild>
-                                                <Button variant="outline">Schließen</Button>
-                                            </DrawerClose>
-                                        </DrawerFooter>
-                                    </div>
-                                </DrawerContent>
-                            </Drawer>
-                        </div>
+
                         <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                             <Breadcrumbs/>
                         </Suspense>
@@ -233,7 +240,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             page,
             pageCount,
             total,
-            initialCategory
+            initialCategory,
+            filters
         },
     };
 }
