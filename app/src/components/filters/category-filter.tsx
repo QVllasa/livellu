@@ -1,152 +1,158 @@
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
-import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Input} from "@/shadcn/components/ui/input";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
 import {Category} from "@/types";
-import {arrangePathSegments} from "@/lib/utils";
+import {ChevronDownIcon, ChevronRightIcon, EnvelopeOpenIcon} from "@radix-ui/react-icons";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {fetchCategories} from "@/framework/category.ssr";
-import {useAtom} from "jotai";
-import {allCategoriesAtom, currentCategoryAtom} from "@/store/filters";
 
-interface CategoryFilterProps {
-    current: Category | null;
-}
 
-export const CategoryFilter: React.FC<CategoryFilterProps> = ({ current }) => {
-    const [categoriesToDisplay, setCategoriesToDisplay] = useState<Category[] | undefined>([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [openItem, setOpenItem] = useState("item-1");
-    const [loading, setLoading] = useState(false);
-    const [currentCategory, setCurrentCategory] = useState<Category | null>(current);
-    const [allCategories, setAllCategories] = useAtom(allCategoriesAtom);
-    const [categoryAtom, setCategoryAtom] = useAtom(currentCategoryAtom)
-
+export const CategoryFilter = () => {
     const router = useRouter();
+    const {params} = router.query;
+
+    const [categoryLevel0, setCategoryLevel0] = useState<Category | null>(null);
+    const [categoryLevel1, setCategoryLevel1] = useState<Category | null>(null);
+    const [categoryLevel2, setCategoryLevel2] = useState<Category | null>(null);
+
+    const [openItem, setOpenItem] = useState("item" as string);
+    const [openItem0, setOpenItem0] = useState("item-0");
+    const [openItem1, setOpenItem1] = useState("item-1");
+    const [openItem2, setOpenItem2] = useState("item-2");
 
 
     useEffect(() => {
-        setCurrentCategory(current)
-        setCategoryAtom(current)
-    }, [current]);
 
-
-    useEffect(() => {
-        if (!currentCategory) {
-            setCategoriesToDisplay(allCategories);
-            setSearchTerm('');
-        }
-    }, [currentCategory, allCategories]);
-
-    useEffect(() => {
-        if (currentCategory) {
-            setLoading(true);
-            getCategoriesToDisplay(currentCategory).then(categories => {
-                setCategoriesToDisplay(categories);
-                setSearchTerm('');
-                setLoading(false);
-            })
-        }
-    }, [currentCategory, router.asPath, router.query]);
-
-    const getParentCategory = async (category: any) => {
-        return await fetchCategories({slug: category?.parent_categories[0]?.slug});
-    };
-
-    const getCategoriesToDisplay = async (category: Category | null): Promise<Category[] | undefined> => {
-        if (category?.child_categories?.length !== 0) {
-            return category?.child_categories;
-        } else {
-            const parent = await getParentCategory(category);
-            return parent[0].child_categories;
-        }
-    };
-
-    const getPath = (): [string[], string | undefined] => {
-        const [path, queryString] = router.asPath.split('?');
-        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
-        return [pathSegments, queryString];
-    };
-
-
-    const handleCategoryClick = async (category: Category) => {
-        setLoading(true);
-        const [pathSegments, queryString] = getPath();
-        const categoryIndex = pathSegments?.findIndex(el => el?.startsWith('category-'));
-
-        if (category?.slug === currentCategory?.slug) {
-            // Fetch parent category if the same category is clicked again
-            const fetchedCategory = await fetchCategories({slug: category.slug});
-            const parentCategory = await getParentCategory(fetchedCategory[0]);
-            setCurrentCategory(parentCategory[0]);
-            const parentSlug = parentCategory[0].slug;
-            if (categoryIndex !== -1) {
-                pathSegments[categoryIndex] = parentSlug.toLowerCase();
+        const setCategories = async () => {
+            if (params && params.length > 0 && params[0] && !categoryLevel0) {
+                const data = await fetchCategories({identifier: params[0]})
+                setCategoryLevel0(data[0]);
             }
+        }
+        setCategories();
+
+    }, [router.query, router.asPath]);
+
+    useEffect(() => {
+        if (params && params.length > 1 && params[1] && categoryLevel0) {
+            const level1Category = categoryLevel0.child_categories.find(el => el.slug === params[1]);
+            setCategoryLevel1(level1Category || null);
         } else {
-            if (categoryIndex !== -1) {
-                pathSegments[categoryIndex] = category.slug.toLowerCase();
+            setCategoryLevel1(null);
+        }
+    }, [params, categoryLevel0]);
+
+    useEffect(() => {
+        if (params && params.length > 2 && params[2] && categoryLevel1) {
+            const level2Category = categoryLevel1.child_categories.find(el => el.slug === params[2]);
+            setCategoryLevel2(level2Category || null);
+        } else {
+            setCategoryLevel2(null);
+        }
+    }, [params, categoryLevel1]);
+
+    const handleCategoryClick = (category: Category) => {
+        let pathSegments = [categoryLevel0?.slug];
+
+        if (category.level === 1) {
+            if (categoryLevel1?.slug === category.slug) {
+                pathSegments = [categoryLevel0?.slug];
+                setCategoryLevel1(null);
             } else {
-                pathSegments.unshift(category.slug.toLowerCase());
+                pathSegments.push(category.slug);
+                setCategoryLevel1(category);
             }
-            setCurrentCategory(category);
+            setCategoryLevel2(null);
+        } else if (category.level === 2) {
+            if (categoryLevel2?.slug === category.slug) {
+                pathSegments = [categoryLevel0?.slug, categoryLevel1?.slug];
+                setCategoryLevel2(null);
+            } else {
+                pathSegments.push(categoryLevel1?.slug, category.slug);
+                setCategoryLevel2(category);
+            }
         }
 
-        const sortedPathSegments = arrangePathSegments(pathSegments);
-        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
-
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
-    };
-
-    const handleSearchSelect = async (event: any) => {
-        const value = event.target.value;
-        setSearchTerm(value);
-        let categories = await getCategoriesToDisplay(currentCategory);
-        if (value === '') {
-            setCategoriesToDisplay(categories);
-            return;
-        }
-        const filteredCategories = categories?.filter((item: Category) => item.name.toLowerCase().includes(value.toLowerCase()));
-        setCategoriesToDisplay(filteredCategories);
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`;
+        router.push(updatedPath);
     };
 
     return (
         <div className="w-auto">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
-                <AccordionItem value="item-1">
+                <AccordionItem value="item">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Kategorie:
-                            <span className={'font-semibold'}> {currentCategory && capitalize(currentCategory?.name)}</span>
-                        </h4>
+                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">Kategorie</h4>
                     </AccordionTrigger>
                     <AccordionContent>
-                        <div className="w-full mb-4">
-                            <Input
-                                type="text"
-                                placeholder="Search categories..."
-                                value={searchTerm}
-                                onChange={handleSearchSelect}
-                            />
-                        </div>
-                        <ScrollArea className="h-64 max-h-64 overflow-auto">
-                                <ul>
-                                    {categoriesToDisplay && categoriesToDisplay?.length > 0 && categoriesToDisplay.map((item) => (
-                                        <li key={item.id} className="mb-1">
-                                            <Button
-                                                size={'sm'}
-                                                variant={currentCategory?.slug === item.slug ? null : 'outline'}
-                                                onClick={() => handleCategoryClick(item)}
-                                                className={`w-full ${currentCategory?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                                disabled={loading}
-                                            >
-                                                {capitalize(item.name)}
-                                            </Button>
-                                        </li>
-                                    ))}
-                                </ul>
+                        <ScrollArea className={'h-72'}>
+                            <Accordion type="single" collapsible className="w-full" value={openItem0} onValueChange={setOpenItem0}>
+                                {categoryLevel0 && (
+                                    <AccordionItem value="item-0">
+                                        <Button
+                                            size={'sm'}
+                                            onClick={() => handleCategoryClick(categoryLevel0)}
+                                            variant={'outline'}
+                                            className={`flex justify-between w-full mb-1 transition-all`}
+                                        >
+                                            <div className={'flex justify-start'}>
+                                                <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+                                                {capitalize(categoryLevel0.name)}
+                                            </div>
+                                        </Button>
+                                        <AccordionContent>
+                                            {categoryLevel0?.child_categories && categoryLevel0?.child_categories.length > 0 && (
+                                                <ul>
+                                                    {categoryLevel0?.child_categories.map((item) => (
+                                                        <li key={item.id} className="mb-1 pl-6">
+                                                            <Button
+                                                                size={'sm'}
+                                                                onClick={() => handleCategoryClick(item)}
+                                                                variant={'outline'}
+                                                                className={`flex justify-start w-full ${categoryLevel1?.slug === item.slug ? 'font-bold bg-gray-100' : ''}`}
+                                                            >
+                                                                <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+                                                                {capitalize(item.name)}
+                                                                {item.child_categories?.length > 0 && item === categoryLevel1 ? (
+                                                                    <ChevronDownIcon className="ml-auto h-4 w-4"/>
+                                                                ) : (
+                                                                    <ChevronRightIcon className="ml-auto h-4 w-4"/>
+                                                                )}
+                                                            </Button>
+                                                            {categoryLevel1?.slug === item.slug && categoryLevel1.child_categories?.length > 0 && (
+                                                                <Accordion type="single" collapsible className="w-full" value={openItem1} onValueChange={setOpenItem1}>
+                                                                    <AccordionItem value="item-1">
+
+                                                                        <AccordionContent>
+                                                                            <ul>
+                                                                                {categoryLevel1?.child_categories.map((child) => (
+                                                                                    <li key={child.id} className="mb-1 pl-6">
+                                                                                        <Button
+                                                                                            size={'sm'}
+                                                                                            onClick={() => handleCategoryClick(child)}
+                                                                                            variant={'outline'}
+                                                                                            className={`flex justify-start w-full ${categoryLevel2?.slug === child.slug ? 'font-bold bg-gray-100' : ''}`}
+                                                                                        >
+                                                                                            <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+                                                                                            {capitalize(child.name)}
+                                                                                        </Button>
+                                                                                    </li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        </AccordionContent>
+                                                                    </AccordionItem>
+                                                                </Accordion>
+                                                            )}
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                )}
+                            </Accordion>
                         </ScrollArea>
                     </AccordionContent>
                 </AccordionItem>

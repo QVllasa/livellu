@@ -4,101 +4,110 @@ import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
-import {useAtom} from "jotai";
-import {Material} from "@/types";
-import {allMaterialsAtom, currentMaterialAtom} from "@/store/filters";
-import {findMaterialBySlug} from "@/framework/utils/find-by-slug";
-import {arrangePathSegments} from "@/lib/utils";
 
-export const MaterialFilter = () => {
-    const [filteredMaterials, setFilteredMaterials] = useState<Material[]>([]);
-    const [searchTerm, setSearchTerm] = useState('');
-    const [openItem, setOpenItem] = useState("item-1");
+// Define the structure of the filter items
+interface MaterialItem {
+    label: string;
+    count: number;
+}
 
+// Utility function to unslugify values
+const unslugify = (text: string): string => {
+    return text
+        .split('-')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+};
+
+interface MaterialFilterProps {
+    meta: {
+        facetDistribution: {
+            'variants.materials'?: Record<string, number>;
+        };
+    };
+}
+
+export const MaterialFilter = ({ meta }: MaterialFilterProps) => {
+    const [currentMaterials, setCurrentMaterials] = useState<MaterialItem[]>([]);
     const router = useRouter();
-    const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
-    const [allMaterials] = useAtom(allMaterialsAtom);
 
-
-    useEffect(() => {
-        if (!searchTerm) {
-            setFilteredMaterials(allMaterials);
-        }
-    }, [allMaterials, searchTerm]);
-
+    // Initialize current materials based on URL
     useEffect(() => {
         const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
-        const materialSlug = pathSegments.find(segment => segment.startsWith('material-'));
+        const materialSegment = pathSegments.find(segment => segment.startsWith('material:'));
 
-        if (!materialSlug) {
-            setFilteredMaterials(allMaterials);
-            setCurrentMaterial(null);
-            setSearchTerm(''); // Clear the input
+        if (!materialSegment) {
+            setCurrentMaterials([]);
             return;
         }
 
-        const foundMaterial = findMaterialBySlug(allMaterials, materialSlug);
+        const materialSlugs = materialSegment.replace('material:', '').split('.');
+        const selectedMaterials = materialSlugs.map(slug => ({ label: slug }));
+        setCurrentMaterials(selectedMaterials);
+    }, [router.asPath]);
 
-        if (!foundMaterial) {
-            setFilteredMaterials(allMaterials);
-            setCurrentMaterial(null);
-            setSearchTerm(''); // Clear the input
-            return;
-        }
+    const materials: MaterialItem[] = Object.keys(meta?.facetDistribution?.['variants.materials'] || {}).map(key => ({
+        label: key,
+        count: meta.facetDistribution['variants.materials']![key],
+    }));
 
-        setCurrentMaterial(foundMaterial);
-    }, [router.asPath, router.query, allMaterials]);
-
-    const handleMaterialClick = (material: Material) => {
+    const handleMaterialClick = (material: MaterialItem) => {
         const [path, queryString] = router.asPath.split('?');
-        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
+        const pathSegments = path.split('/').filter(seg => seg !== '');
 
-        const materialIndex = pathSegments.findIndex(el => el?.startsWith('material-'));
+        const materialSegmentIndex = pathSegments.findIndex(el => el.startsWith('material:'));
+        let newMaterialSegment = '';
 
-        if (materialIndex !== -1) {
-            if (currentMaterial?.slug === material.slug) {
-                pathSegments.splice(materialIndex, 1); // Remove the material if it is clicked again
-                setCurrentMaterial(null);
+        if (materialSegmentIndex !== -1) {
+            const currentMaterialSlugs = pathSegments[materialSegmentIndex].replace('material:', '').split('.');
+            const isMaterialSelected = currentMaterialSlugs.includes(material.label);
+
+            if (isMaterialSelected) {
+                newMaterialSegment = currentMaterialSlugs.filter(slug => slug !== material.label).join('.');
             } else {
-                pathSegments[materialIndex] = `${material.slug.toLowerCase()}`;
-                setCurrentMaterial(material);
+                newMaterialSegment = [...currentMaterialSlugs, material.label].join('.');
+            }
+
+            if (newMaterialSegment) {
+                pathSegments[materialSegmentIndex] = `material:${newMaterialSegment}`;
+            } else {
+                pathSegments.splice(materialSegmentIndex, 1);
             }
         } else {
-            pathSegments.push(`${material.slug.toLowerCase()}`);
-            setCurrentMaterial(material);
+            newMaterialSegment = material.label;
+            pathSegments.push(`material:${newMaterialSegment}`);
         }
 
-        // Sort segments after
-        const sortedPathSegments = arrangePathSegments(pathSegments);
-
-        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
-
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
-                <AccordionItem value="item-1">
+            <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="material">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Material:
-                            {/*<span className={'font-bold'}>*/}
-                            {/*    {capitalize(currentMaterial?.label ?? "")}*/}
-                            {/*</span>*/}
+                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
+                            Material <span className={'text-xs font-light'}>({materials.length})</span>
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
-                        <ScrollArea className="max-h-64 overflow-y-scroll w-full">
+                        <ScrollArea className="h-72 w-full">
                             <ul>
-                                {filteredMaterials.map((item) => (
-                                    <MaterialItem
-                                        key={item.id}
-                                        item={item}
-                                        currentMaterial={currentMaterial}
-                                        handleMaterialClick={handleMaterialClick}
-                                    />
+                                {materials.map((item) => (
+                                    <li key={item.label} className="mb-1 relative w-56">
+                                        <Button
+                                            size={'sm'}
+                                            variant={currentMaterials.some(m => m.label === item.label) ? null : 'outline'}
+                                            onClick={() => handleMaterialClick(item)}
+                                            className={`relative w-full ${currentMaterials.some(m => m.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                        >
+                                            <span className={'truncate'}>{capitalize(item.label)}</span>
+                                            <span className={(currentMaterials.some(m => m.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
+                                        </Button>
+                                    </li>
                                 ))}
                             </ul>
                         </ScrollArea>
@@ -106,34 +115,5 @@ export const MaterialFilter = () => {
                 </AccordionItem>
             </Accordion>
         </div>
-    );
-};
-
-const MaterialItem = ({item, currentMaterial, handleMaterialClick}: {item: Material, currentMaterial: Material, handleMaterialClick: (material: Material) => void}) => {
-    return (
-        <>
-            <li key={item.id} className="mb-1 relative w-56">
-                <Button
-                    size={'sm'}
-                    variant={currentMaterial?.slug === item.slug ? null : 'outline'}
-                    onClick={() => handleMaterialClick(item)}
-                    className={`relative w-full font-bold ${currentMaterial?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                >
-                    <span className={'truncate'}>{capitalize(item.label)}</span>
-                </Button>
-            </li>
-            {item?.child_materials && item?.child_materials?.length > 0 && (
-                <ul className="pl-4">
-                    {item?.child_materials?.map((child) => (
-                            <MaterialItem
-                                key={child.id}
-                                item={child}
-                                currentMaterial={currentMaterial}
-                                handleMaterialClick={handleMaterialClick}
-                            />
-                    ))}
-                </ul>
-            )}
-        </>
     );
 };

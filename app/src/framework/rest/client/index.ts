@@ -338,6 +338,9 @@ class Clients {
         get: (params: any) => {
             return HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}`, params)
         },
+        post: (params: any) => {
+            return HttpClient.post<Product>(`${API_ENDPOINTS.PRODUCTS}`, params)
+        },
         getMinMaxPrice: () => {
             return HttpClient.get<{min: number, max: number}>(`${API_ENDPOINTS.PRODUCTS}/min-max-price`)
         }

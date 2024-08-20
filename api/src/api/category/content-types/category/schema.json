@@ -59,6 +59,9 @@
     },
     "level": {
       "type": "integer"
+    },
+    "excluded_filters": {
+      "type": "json"
     }
   }
 }

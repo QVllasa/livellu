@@ -6,7 +6,7 @@ export async function fetchProducts(filters: any) {
         ...filters
     };
     try {
-        const response = await Client.products.get(params);
+        const response = await Client.products.post(params);
         if (!response) {
             return {data: [], meta: {}}
         }

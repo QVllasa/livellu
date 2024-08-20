@@ -9,20 +9,54 @@ import {useAtom} from "jotai";
 import {allBrandsAtom, currentBrandAtom} from "@/store/filters";
 import {findBrandBySlug} from "@/framework/utils/find-by-slug";
 import {Brand} from "@/types";
-import {arrangePathSegments} from "@/lib/utils";
+import {fetchProducts} from "@/framework/product";
 
 export const BrandFilter = () => {
     const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
     const [allBrands] = useAtom(allBrandsAtom);
     const [searchTerm, setSearchTerm] = useState('');
-    const [openItem, setOpenItem] = useState("item-1");
+    const [openItem, setOpenItem] = useState("item");
 
     const router = useRouter();
-    const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
+    const [currentBrands, setCurrentBrands] = useAtom(currentBrandAtom);
+
 
     useEffect(() => {
-        setFilteredBrands(allBrands);
-    }, [allBrands]);
+        // Ensure categorySegments is correctly parsed
+        const categorySegments = router.query?.params ? (router.query.params as string[]) : [];
+        console.log("Category Segments:", categorySegments);
+
+        let q = '';
+        // Find the last segment before any segment containing a colon
+        for (let i = categorySegments.length - 1; i >= 0; i--) {
+            if (!categorySegments[i].includes(':')) {
+                q = categorySegments[i];
+                break;
+            }
+        }
+
+        if (!q) {
+            console.error("Search term (q) is empty. Check URL parameters.");
+            return;
+        }
+
+        const filter = {
+            "searchTerms": q,
+            "facets": ["brandName"],
+        };
+
+        fetchProducts(filter).then((response) => {
+            const includedBrands = response.meta.facetDistribution['brandName'];
+            const filtered = allBrands
+                .filter((brand: Brand) => includedBrands.hasOwnProperty(brand.label))
+                .map((brand: Brand) => ({
+                    ...brand,
+                    count: includedBrands[brand.label]
+                }));
+            setFilteredBrands(filtered);
+        });
+
+    }, [router.query, allBrands]);
 
     useEffect(() => {
         if (!searchTerm) {
@@ -34,57 +68,56 @@ export const BrandFilter = () => {
 
     useEffect(() => {
         const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
-        const brandSlug = pathSegments.find(segment => segment.startsWith('brand-'));
+        const brandSegment = pathSegments.find(segment => segment.startsWith('marke:'));
 
-        if (!brandSlug) {
+        if (!brandSegment) {
             setFilteredBrands(allBrands);
-            setCurrentBrand(null);
+            setCurrentBrands([]);
             setSearchTerm('');
             return;
         }
 
-        const currentBrand = findBrandBySlug(allBrands, brandSlug);
+        const brandSlugs = brandSegment.replace('marke:', '').split('.');
+        const selectedBrands = brandSlugs.map(slug => findBrandBySlug(allBrands, slug)).filter(Boolean);
 
-        if (!currentBrand) {
-            setFilteredBrands(allBrands);
-            setCurrentBrand(null);
-            setSearchTerm('');
-            return;
-        }
-
-        setCurrentBrand(currentBrand);
+        setCurrentBrands(selectedBrands);
     }, [router.asPath, router.query, allBrands]);
+
 
     const handleBrandClick = (brand: Brand) => {
         const [path, queryString] = router.asPath.split('?');
-        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
+        const pathSegments = path.split('/').filter(seg => seg !== '');
 
-        const brandIndex = pathSegments.findIndex(el => el?.startsWith('brand-'));
+        const brandSegmentIndex = pathSegments.findIndex(el => el.startsWith('marke:'));
+        let newBrandSegment = '';
 
-        if (brandIndex !== -1) {
-            if (currentBrand?.slug === brand.slug) {
-                pathSegments.splice(brandIndex, 1); // Remove the brand if it is clicked again
-                setCurrentBrand(null);
+        if (brandSegmentIndex !== -1) {
+            const currentBrandSlugs = pathSegments[brandSegmentIndex].replace('marke:', '').split('.');
+            const isBrandSelected = currentBrandSlugs.includes(brand.slug);
+
+            if (isBrandSelected) {
+                newBrandSegment = currentBrandSlugs.filter(slug => slug !== brand.slug).join('.');
             } else {
-                pathSegments[brandIndex] = `${brand.slug.toLowerCase()}`;
-                setCurrentBrand(brand);
+                newBrandSegment = [...currentBrandSlugs, brand.slug].join('.');
+            }
+
+            if (newBrandSegment) {
+                pathSegments[brandSegmentIndex] = `marke:${newBrandSegment}`;
+            } else {
+                pathSegments.splice(brandSegmentIndex, 1);
             }
         } else {
-            pathSegments.push(`${brand.slug.toLowerCase()}`);
-            setCurrentBrand(brand);
+            newBrandSegment = brand.slug;
+            pathSegments.push(`marke:${newBrandSegment}`);
         }
 
-        // Sort segments after
-        const sortedPathSegments = arrangePathSegments(pathSegments);
-
-        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
     };
 
-
-    const handleSearchSelect = (event: { target: { value: string } }) => {
+    const handleSearchSelect = (event) => {
         const value = event.target.value;
         setSearchTerm(value);
         if (value === '') {
@@ -97,11 +130,9 @@ export const BrandFilter = () => {
     return (
         <div className="w-auto">
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
-                <AccordionItem value="item-1">
+                <AccordionItem value="item">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Marke:
-                           <span className={'font-semibold'}> {currentBrand && currentBrand?.label}</span>
-                        </h4>
+                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">Marken <span className={'text-xs font-light'}>({filteredBrands.length})</span> </h4>
                     </AccordionTrigger>
                     <AccordionContent>
                         <div className="w-full mb-4">
@@ -112,17 +143,19 @@ export const BrandFilter = () => {
                                 onChange={handleSearchSelect}
                             />
                         </div>
-                        <ScrollArea className="max-h-64 overflow-y-scroll w-full">
+
+                        <ScrollArea className="h-72 w-full">
                             <ul>
                                 {filteredBrands.map((item: Brand) => (
                                     <li key={item.id} className="mb-1 relative w-56">
                                         <Button
                                             size={'sm'}
-                                            variant={currentBrand?.slug === item.slug ? null : 'outline'}
+                                            variant={currentBrands.some(b => b.slug === item.slug) ? null : 'outline'}
                                             onClick={() => handleBrandClick(item)}
-                                            className={`relative w-full ${currentBrand?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                            className={`relative w-full ${currentBrands.some(b => b.slug === item.slug) ? 'bg-blue-500 text-white' : ''}`}
                                         >
                                             <span className={'truncate'}> {capitalize(item.label)}</span>
+                                            <span className={(currentBrands.some(b => b.slug === item.slug) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
                                         </Button>
                                     </li>
                                 ))}

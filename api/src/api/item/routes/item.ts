@@ -20,6 +20,15 @@ export default {
       },
     },
     {
+      method: 'POST',
+      path: '/items',
+      handler: 'item.post',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
       method: 'GET',
       path: '/items/min-max-price',
       handler: 'item.getMinMaxPrice',

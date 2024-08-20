@@ -24,6 +24,7 @@ export interface MetaData {
     hitsPerPage: number,
     processingTimeMs: number,
     query: string,
+    facetDistribution: any,
 }
 
 export interface PaginationData {
@@ -130,6 +131,7 @@ export interface Category {
     original_categories?: OriginalCategory[] ;
     identifier: string;
     summary?: string;
+    level: number;
 }
 
 export interface Sort {

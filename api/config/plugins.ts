@@ -26,16 +26,34 @@ export default ({env}) => ({
         apiKey: env('MEILISEARCH_API_KEY'),
         item: {
           settings: {
-            filterableAttributes: ['categoryIdentifier', 'variants.price','variants.averageRating', 'variants.description', 'brandName', 'variants.originalColor', 'variants.originalMaterial', 'variants.productName'],
+            filterableAttributes: ['categoryIdentifier',
+              'variants.price',
+              'variants.averageRating',
+              'variants.description',
+              'brandName',
+              'variants.originalColor',
+              'variants.originalMaterial',
+              'variants.productName',
+              'variants.style',
+              'variants.height',
+              'variants.width',
+              'variants.depth',
+              'variants.colors',
+              'variants.materials',
+              'variants.deliveryTimes',
+              'variants.shape'],
             sortableAttributes: ['variants.price', 'variants.averageRating'],
             pagination: {
-              maxTotalHits: 1000
+              maxTotalHits: 10000
             },
+            faceting: {
+              maxValuesPerFacet: 5000
+            }
           }
         },
         category: {
           settings: {
-            filterableAttributes: ['identifier', 'slug', 'level'],
+            filterableAttributes: ['identifier', 'slug', 'level', 'child_categories.identifier', 'parent_categories.identifier'],
             pagination: {
               maxTotalHits: 1000
             },

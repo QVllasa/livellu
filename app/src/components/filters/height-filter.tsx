@@ -1,0 +1,115 @@
+import {useEffect, useState} from "react";
+import {useRouter} from "next/router";
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
+import {Button} from "@/shadcn/components/ui/button";
+import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {formatHeightLabel, sortHeights} from "@/lib/utils";
+
+// Define the structure of the filter items
+interface HeightItem {
+    label: string;
+    count: number;
+}
+
+
+interface HeightFilterProps {
+    meta: {
+        facetDistribution: {
+            'variants.height'?: Record<string, number>;
+        };
+    };
+}
+
+export const HeightFilter = ({ meta }: HeightFilterProps) => {
+    const [currentHeights, setCurrentHeights] = useState<HeightItem[]>([]);
+    const router = useRouter();
+
+    // Initialize current heights based on URL
+    useEffect(() => {
+        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
+        const heightSegment = pathSegments.find(segment => segment.startsWith('hoehe:'));
+
+        if (!heightSegment) {
+            setCurrentHeights([]);
+            return;
+        }
+
+        const heightSlugs = heightSegment.replace('hoehe:', '').split('.');
+        const selectedHeights = heightSlugs.map(slug => ({ label: slug }));
+        setCurrentHeights(selectedHeights);
+    }, [router.asPath]);
+
+    let heights: HeightItem[] = Object.keys(meta?.facetDistribution?.['variants.height'] || {}).map(key => ({
+        label: key,
+        count: meta.facetDistribution['variants.height']![key],
+    }));
+
+    // Sort the heights using our custom function
+    heights = sortHeights(heights);
+
+    const handleHeightClick = (height: HeightItem) => {
+        const [path, queryString] = router.asPath.split('?');
+        const pathSegments = path.split('/').filter(seg => seg !== '');
+
+        const heightSegmentIndex = pathSegments.findIndex(el => el.startsWith('hoehe:'));
+        let newHeightSegment = '';
+
+        if (heightSegmentIndex !== -1) {
+            const currentHeightSlugs = pathSegments[heightSegmentIndex].replace('hoehe:', '').split('.');
+            const isHeightSelected = currentHeightSlugs.includes(height.label);
+
+            if (isHeightSelected) {
+                newHeightSegment = currentHeightSlugs.filter(slug => slug !== height.label).join('.');
+            } else {
+                newHeightSegment = [...currentHeightSlugs, height.label].join('.');
+            }
+
+            if (newHeightSegment) {
+                pathSegments[heightSegmentIndex] = `hoehe:${newHeightSegment}`;
+            } else {
+                pathSegments.splice(heightSegmentIndex, 1);
+            }
+        } else {
+            newHeightSegment = height.label;
+            pathSegments.push(`hoehe:${newHeightSegment}`);
+        }
+
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const queryParams = queryString ? `?${queryString}` : '';
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+    };
+
+    return (
+        <div className="w-auto">
+            <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="height">
+                    <AccordionTrigger>
+                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
+                            Höhe <span className={'text-xs font-light'}>({heights.length})</span>
+                        </h4>
+                    </AccordionTrigger>
+                    <AccordionContent>
+                        <ScrollArea className="h-72 w-full">
+                            <ul>
+                                {heights.map((item) => (
+                                    <li key={item.label} className="mb-1 relative w-56">
+                                        <Button
+                                            size={'sm'}
+                                            variant={currentHeights.some(h => h.label === item.label) ? null : 'outline'}
+                                            onClick={() => handleHeightClick(item)}
+                                            className={`relative w-full ${currentHeights.some(h => h.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                        >
+                                            <span className={'truncate'}>{formatHeightLabel(item.label)}</span>
+                                            <span className={(currentHeights.some(h => h.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
+                                        </Button>
+                                    </li>
+                                ))}
+                            </ul>
+                        </ScrollArea>
+                    </AccordionContent>
+                </AccordionItem>
+            </Accordion>
+        </div>
+    );
+};

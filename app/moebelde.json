@@ -1,0 +1,135 @@
+{
+  "category": "669e5f06c8fd223c",
+  "clickoutUrl": "https://www.pick-up-moebel.de/konsole-landhausstil-massivholz-glendale-180-cm",
+  "clickable": true,
+  "display": {
+    "desktop": true,
+    "mobile": true
+  },
+  "features": {
+    "totalWidth": [
+      180
+    ],
+    "colour": [
+      "Braun",
+      "Grau",
+      "Weiß"
+    ],
+    "totalHeight": [
+      77
+    ],
+    "typeOfWood": [
+      "Kastanie"
+    ],
+    "deliveryOptions": [
+      "Bis-Bordsteinkante",
+      "Paketversand"
+    ],
+    "brand": [
+      "pickupmoebel"
+    ],
+    "material": [
+      "Holz",
+      "Massivholz"
+    ],
+    "materialTables": [
+      "Holz",
+      "Massivholz"
+    ],
+    "price": 1635,
+    "sale": false,
+    "services": [
+      "Aufbauservice",
+      "Musterversand",
+      "persönliche-Beratung"
+    ],
+    "shop": "pickupmoebel",
+    "style": [
+      "Landhaus"
+    ],
+    "totalDepth": [
+      42
+    ],
+    "tableWidth": [
+      "161-200-cm"
+    ],
+    "paymentMethod": [
+      "PayPal",
+      "Ratenzahlung",
+      "Rechnungskauf",
+      "Vorkasse",
+      "Amazon-Payments",
+      "Lastschrift"
+    ],
+    "deliveryTime": [
+      "mehr-als-8-Wochen"
+    ],
+    "voucher": false,
+    "new": false
+  },
+  "flags": [
+    "bestPrice"
+  ],
+  "images": [
+    "1ecf9bb.jpg"
+  ],
+  "objectID": "68aabb333c86b8f922635fa2c939dbf5",
+  "partner": {
+    "alias": "partner_0060",
+    "id": "0556a7c0-84ec-42b8-b196-d4a01fc6aaa0",
+    "name": "pickupmoebel",
+    "paymentMethods": [
+      "Rechnungskauf",
+      "Ratenkauf",
+      "Lastschrift",
+      "AmazonPay",
+      "PayPal",
+      "Vorkasse"
+    ],
+    "type": "CPC"
+  },
+  "partnerProductKey": "Glendale Console",
+  "price": {
+    "currency": "EUR",
+    "value": 1635,
+    "valueRealPrice": 1635,
+    "salePercentageRealPrice": 0
+  },
+  "productId": "b390d1a05e6e13a4ebfe22cac461586a",
+  "shipping": {
+    "currency": "EUR",
+    "originalDeliveryTime": "80 - 100 Tage",
+    "price": 0
+  },
+  "title": "Konsole Landhausstil Massivholz Glendale 180 cm",
+  "cluster": {
+    "id": "9bec214e58d6252cc5cd0b023218e577"
+  },
+  "clusterProductsCount": 1,
+  "maxClusterPriceDiff": {
+    "absolute": 0,
+    "relative": 0,
+    "currency": "EUR"
+  },
+  "description": "Die Konsole Glendale in 180 cm Breite mit Säulenfüßen. Die perfekte Ergänzung zu alles Glendale Esst",
+  "eans": [],
+  "realDeal": {
+    "score": 5,
+    "savingsPercentageAvg": 0,
+    "hasSavingsPercentageAvg": false,
+    "isRealDeal": false,
+    "scale": {
+      "points": [
+        0,
+        3,
+        7,
+        10
+      ],
+      "pointValues": {
+        "3": 1549.07,
+        "7": 1708.7
+      }
+    }
+  },
+  "categories": []
+}

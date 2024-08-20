@@ -26,7 +26,6 @@ export const SearchFilter = () => {
 
     const handleSearchSubmit = (e: any) => {
         e.preventDefault();
-        console.log("submitted: ", e)
         if (searchTerm.trim()) {
             const newSearchTerms = [...searchQuery, searchTerm.trim()];
             setSearchQuery(newSearchTerms);

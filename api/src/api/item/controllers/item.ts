@@ -1,10 +1,80 @@
 // path: src/api/item/controllers/item-search.ts
 import {factories} from '@strapi/strapi';
-import {MeiliSearch} from 'meilisearch';
 import qs from 'qs';
 import client from "../../../utils/meilisearch-client";
 
+interface SearchRequestBody {
+  page?: number;
+  pageSize?: number;
+  searchTerms?: string;
+  filter?: string;
+  facets?: string[];
+  sort?: string[];
+  attributesToRetrieve?: string[];
+  attributesToCrop?: string[];
+  attributesToHighlight?: string[];
+  [key: string]: any;
+}
+
 export default factories.createCoreController('api::item.item', ({strapi}) => ({
+
+  async post(ctx) {
+    const { body } = ctx.request as { body: SearchRequestBody };
+
+    const {
+      page = 1,
+      pageSize = 48,
+      searchTerms = '',
+      filter = '',
+      ...restParams
+    } = body;
+
+    const searchParams = {
+      filter: filter || undefined,
+      limit: pageSize,
+      offset: (page - 1) * pageSize,
+      facets: [
+        'brandName',
+        'variants.style',
+        'variants.height',
+        'variants.width',
+        'variants.depth',
+        'variants.colors',
+        'variants.materials',
+        'variants.deliveryTimes',
+        'variants.shape',
+      ],
+      sort: restParams.sort || undefined,
+      attributesToRetrieve: restParams.attributesToRetrieve || undefined,
+      attributesToCrop: restParams.attributesToCrop || undefined,
+      attributesToHighlight: restParams.attributesToHighlight || undefined,
+    };
+
+    try {
+      // Perform the search using Meilisearch
+      const index = client.index('item');
+      const searchResults = await index.search(searchTerms as string, searchParams);
+
+      const response = {
+        data: searchResults.hits,
+        meta: {
+          page,
+          pageSize,
+          total: searchResults.estimatedTotalHits,
+          totalPages: Math.ceil(searchResults.estimatedTotalHits / pageSize),
+          processingTimeMs: searchResults.processingTimeMs,
+          query: searchResults.query,
+          facetDistribution: searchResults.facetDistribution,
+          facetStats: searchResults.facetStats,
+        },
+      };
+
+      return ctx.send(response);
+    } catch (error) {
+      console.log('error: ', error);
+      return ctx.throw(500, error.message);
+    }
+  },
 
   async get(ctx) {
 
@@ -19,7 +89,6 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       minPrice ='',
       maxPrice =''
     } = filters;
-
 
 
     // Convert filters to Meilisearch filter format
@@ -70,6 +139,15 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       limit: parseInt(pageSize as string, 10),
       offset: (parseInt(page as string, 10) - 1) * parseInt(pageSize as string, 10),
+      facets: [ 'brandName',
+        'variants.style',
+        'variants.height',
+        'variants.width',
+        'variants.depth',
+        'variants.colors',
+        'variants.materials',
+        'variants.deliveryTimes',
+        'variants.shape']
     };
 
 
@@ -87,6 +165,8 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
           totalPages: Math.ceil(searchResults.estimatedTotalHits / parseInt(pageSize as string, 10)),
           processingTimeMs: searchResults.processingTimeMs,
           query: searchResults.query,
+          facetDistribution: searchResults.facetDistribution,
+          facetStats: searchResults.facetStats,
           // Add any additional meta information you need here
         },
       };

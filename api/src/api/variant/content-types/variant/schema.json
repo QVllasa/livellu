@@ -101,6 +101,33 @@
     },
     "variantId": {
       "type": "string"
+    },
+    "originalColorId": {
+      "type": "string"
+    },
+    "colors": {
+      "type": "json"
+    },
+    "materials": {
+      "type": "json"
+    },
+    "width": {
+      "type": "json"
+    },
+    "height": {
+      "type": "json"
+    },
+    "depth": {
+      "type": "json"
+    },
+    "style": {
+      "type": "json"
+    },
+    "deliveryTimes": {
+      "type": "json"
+    },
+    "shape": {
+      "type": "json"
     }
   }
 }

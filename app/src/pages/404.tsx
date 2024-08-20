@@ -2,8 +2,9 @@ import {Image} from '@/components/ui/image';
 import Link from '@/components/ui/link';
 
 import noResult from '@/assets/no-result.svg';
+import {getLayoutWithFooter} from "@/components/layouts/layout-with-footer";
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
 
   return (
     <div className="grid min-h-screen place-items-center p-4 sm:p-8">
@@ -27,6 +28,11 @@ export default function NotFoundPage() {
     </div>
   );
 }
+
+NotFoundPage.getLayout = getLayoutWithFooter;
+
+export default NotFoundPage;
+
 
 // export const getStaticProps: GetStaticProps = async ({ locale }) => {
 //   return {

@@ -947,6 +947,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::original-category.original-category'
     >;
     level: Attribute.Integer;
+    excluded_filters: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1000,6 +1001,71 @@ export interface ApiColorColor extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::color.color',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDeliveryTimeDeliveryTime extends Schema.CollectionType {
+  collectionName: 'delivery_times';
+  info: {
+    singularName: 'delivery-time';
+    pluralName: 'delivery-times';
+    displayName: 'DeliveryTime';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    input: Attribute.String;
+    value: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery-time.delivery-time',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::delivery-time.delivery-time',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDimensionDimension extends Schema.CollectionType {
+  collectionName: 'dimensions';
+  info: {
+    singularName: 'dimension';
+    pluralName: 'dimensions';
+    displayName: 'dimension';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    input: Attribute.Text;
+    width: Attribute.JSON;
+    height: Attribute.JSON;
+    depth: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::dimension.dimension',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::dimension.dimension',
       'oneToOne',
       'admin::user'
     > &
@@ -1363,6 +1429,37 @@ export interface ApiRouteRoute extends Schema.CollectionType {
   };
 }
 
+export interface ApiShapeShape extends Schema.CollectionType {
+  collectionName: 'shapes';
+  info: {
+    singularName: 'shape';
+    pluralName: 'shapes';
+    displayName: 'Shape';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    ean: Attribute.String;
+    values: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shape.shape',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shape.shape',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiStyleStyle extends Schema.CollectionType {
   collectionName: 'styles';
   info: {
@@ -1375,8 +1472,8 @@ export interface ApiStyleStyle extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    label: Attribute.String & Attribute.Required & Attribute.Unique;
-    slug: Attribute.String;
+    values: Attribute.JSON;
+    ean: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1439,6 +1536,15 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     >;
     groupId: Attribute.Text;
     variantId: Attribute.String;
+    originalColorId: Attribute.String;
+    colors: Attribute.JSON;
+    materials: Attribute.JSON;
+    width: Attribute.JSON;
+    height: Attribute.JSON;
+    depth: Attribute.JSON;
+    style: Attribute.JSON;
+    deliveryTimes: Attribute.JSON;
+    shape: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1479,6 +1585,8 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
+      'api::delivery-time.delivery-time': ApiDeliveryTimeDeliveryTime;
+      'api::dimension.dimension': ApiDimensionDimension;
       'api::feed.feed': ApiFeedFeed;
       'api::item.item': ApiItemItem;
       'api::material.material': ApiMaterialMaterial;
@@ -1489,6 +1597,7 @@ declare module '@strapi/types' {
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
       'api::route.route': ApiRouteRoute;
+      'api::shape.shape': ApiShapeShape;
       'api::style.style': ApiStyleStyle;
       'api::variant.variant': ApiVariantVariant;
     }

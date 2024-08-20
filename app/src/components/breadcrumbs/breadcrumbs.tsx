@@ -5,81 +5,63 @@ import {capitalize} from "lodash";
 import {useRouter} from "next/router";
 import {Category} from "@/types";
 import {useEffect, useState} from "react";
-
-// Helper function to extract path directly from current category
-function extractParentPath(category: Category | null): Category[] {
-    const path: Category[] = [];
-
-    while (category) {
-        path.unshift(category);
-        if (category.parent_categories && category.parent_categories && category.parent_categories.length > 0) {
-            category = category.parent_categories[0];
-        } else {
-            category = null;
-        }
-    }
-
-    return path;
-}
-
+import {fetchCategories} from "@/framework/category.ssr";
 
 
 export const Breadcrumbs = () => {
-    const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [categoryPath, setCategoryPath] = useState<Category[]>([]);
-
+    const [initialCategory, setInitialCategory] = useAtom(currentCategoryAtom);
     const router = useRouter();
+
+    const {params}  = router.query;
+
+    useEffect(() => {
+        const setCategories = async () => {
+            if (params && params.length > 0 && params[0]) {
+                const data = await fetchCategories({identifier: params[0]})
+                setInitialCategory(data[0]);
+            }
+        }
+        setCategories();
+
+    }, [router.query, router.asPath]);
 
     // Find the path to the current category
     useEffect(() => {
-        if (currentCategory) {
-            const path = extractParentPath(currentCategory);
-            setCategoryPath(path);
+        if (params) {
+            // const path = extractParentPath(currentCategory);
+            const level0 = initialCategory;
+            const level1 = level0?.child_categories.find(el => el.slug === params[1]);
+            const level2 = level1?.child_categories.find(el => el.slug === params[2]);
+            setCategoryPath([level0, level1, level2].filter(Boolean) as Category[]);
         }else {
             setCategoryPath([]);
         }
-    }, [currentCategory]);
+    }, [initialCategory,params]);
 
 
     const handleBreadcrumbClick = (category: Category) => {
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
-
-
-        if (categorySlug) {
-            const updatedPathSegments = pathSegments.map(segment =>
-                segment === categorySlug ? category.slug.toLowerCase() : segment
-            );
-            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
-            setCurrentCategory(category);
-            router.push(updatedPath);
+        let pathSegments = [initialCategory?.slug];
+        if (category.level === 0) {
+            pathSegments = [category.slug];
+        } else if (category.level === 1) {
+            pathSegments = [initialCategory?.slug, category.slug];
+        } else if (category.level === 2) {
+            const level1Category = categoryPath.find(cat => cat.level === 1);
+            pathSegments = [initialCategory?.slug, level1Category?.slug, category.slug];
         }
+
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`;
+        router.push(updatedPath);
     };
 
-    const handleMoebelClick = () => {
-        const pathSegments = router.asPath.split('/').filter(segment => segment);
-        const categorySlug = pathSegments.find(segment => segment.startsWith('category-'));
 
-        if (categorySlug) {
-            const updatedPathSegments = pathSegments.filter(segment => segment !== categorySlug);
-            const updatedPath = `/${updatedPathSegments.join('/')}`.replace(/\/+/g, '/');
-            setCurrentCategory(null);
-            router.push(updatedPath);
-        }
-    };
 
     return (
         <Breadcrumb>
             <BreadcrumbList>
                 <BreadcrumbItem>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator />
-                <BreadcrumbItem>
-                    <BreadcrumbLink href="/moebel" onClick={(e) => {
-                        e.preventDefault();
-                        handleMoebelClick();
-                    }}>Möbel</BreadcrumbLink>
                 </BreadcrumbItem>
                 {categoryPath.map((category, index) => {
                     const isLast = index === categoryPath.length - 1;

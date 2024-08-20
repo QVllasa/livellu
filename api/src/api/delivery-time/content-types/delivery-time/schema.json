@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "delivery_times",
+  "info": {
+    "singularName": "delivery-time",
+    "pluralName": "delivery-times",
+    "displayName": "DeliveryTime"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "input": {
+      "type": "string"
+    },
+    "value": {
+      "type": "json"
+    }
+  }
+}

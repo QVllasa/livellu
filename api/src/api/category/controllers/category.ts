@@ -2,10 +2,10 @@ import {factories} from '@strapi/strapi';
 import qs from 'qs';
 import client from '../../../utils/meilisearch-client';
 
-export default factories.createCoreController('api::category.category', ({strapi}) => ({
+export default factories.createCoreController('api::category.category', ({ strapi }) => ({
 
   async get(ctx) {
-    const {query} = ctx.request;
+    const { query } = ctx.request;
     const queryString = qs.stringify(query);
     const filters = qs.parse(queryString);
 
@@ -16,7 +16,7 @@ export default factories.createCoreController('api::category.category', ({strapi
         const value = filters[key];
         if (Array.isArray(value)) {
           filterConditions.push(`${key} IN [${value.map(val => `"${val}"`).join(', ')}]`);
-        }  else {
+        } else {
           filterConditions.push(`${key} = "${value}"`);
         }
       }
@@ -24,7 +24,7 @@ export default factories.createCoreController('api::category.category', ({strapi
 
     const searchParams = {
       filter: filterConditions.join(' AND '),
-      limit: 1000 // Fetch all categories
+      limit: 1000, // Fetch all categories
     };
 
     try {
@@ -32,8 +32,16 @@ export default factories.createCoreController('api::category.category', ({strapi
       const index = client.index('category'); // Ensure your Meilisearch index is named 'category'
       const searchResults = await index.search('', searchParams);
 
+      // Fetch categories with nested children
+      const categoriesWithChildren = await Promise.all(
+        searchResults.hits.map(async (category) => {
+          const categoryWithChildren = await fetchCategoryWithChildren(category.identifier);
+          return categoryWithChildren;
+        })
+      );
+
       const response = {
-        data: searchResults.hits,
+        data: categoriesWithChildren,
         meta: {
           hits: searchResults.hits.length,
           limit: searchResults.limit,
@@ -50,3 +58,39 @@ export default factories.createCoreController('api::category.category', ({strapi
     }
   },
 }));
+
+// Helper function to fetch category with nested children using Meilisearch
+async function fetchCategoryWithChildren(identifier) {
+  const index = client.index('category');
+
+  // Fetch the category
+  const categoryResult = await index.search('', {
+    filter: `identifier = "${identifier}"`,
+    limit: 1,
+  });
+
+  if (categoryResult.hits.length === 0) {
+    throw new Error(`Category with identifier ${identifier} not found`);
+  }
+
+  const category = categoryResult.hits[0];
+
+  // Fetch the child categories
+  const childCategoriesResult = await index.search('', {
+    filter: `parent_categories.identifier = "${identifier}"`,
+    limit: 1000,
+  });
+
+  if (childCategoriesResult.hits.length > 0) {
+    category.child_categories = await Promise.all(
+      childCategoriesResult.hits.map(async (child) => {
+        const childWithChildren = await fetchCategoryWithChildren(child.identifier);
+        return childWithChildren;
+      })
+    );
+  } else {
+    category.child_categories = [];
+  }
+
+  return category;
+}

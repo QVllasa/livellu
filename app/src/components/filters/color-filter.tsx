@@ -10,7 +10,6 @@ import {allColorsAtom, currentColorAtom} from "@/store/filters";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {findColorBySlug} from "@/framework/utils/find-by-slug";
 import {fetchAllColors} from "@/framework/color.ssr";
-import {arrangePathSegments} from "@/lib/utils";
 
 
 export const ColorFilter = () => {
@@ -38,52 +37,51 @@ export const ColorFilter = () => {
 
     useEffect(() => {
         const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
-        const colorSlug = pathSegments.find(segment => segment.startsWith('color-'));
+        const colorSegment = pathSegments.find(segment => segment.startsWith('farbe:'));
 
-        if (!colorSlug) {
+        if (!colorSegment) {
             setFilteredColors(allColors);
-            setCurrentColor(null);
+            setCurrentColor([]);
             return;
         }
 
-        const currentColor = findColorBySlug(allColors, colorSlug.toLowerCase());
+        const colorSlugs = colorSegment.replace('farbe:', '').split('.');
+        const selectedColors = colorSlugs.map(slug => findColorBySlug(allColors, slug)).filter(Boolean);
 
-        if (!currentColor) {
-            setFilteredColors(allColors);
-            setCurrentColor(null);
-            return;
-        }
-
-        setCurrentColor(currentColor);
+        setCurrentColor(selectedColors);
     }, [router.asPath, router.query, allColors]);
 
     const handleColorClick = (color: Color) => {
         const [path, queryString] = router.asPath.split('?');
-        const pathSegments = path.split('/').filter(seg => seg !== '' && seg !== 'moebel');
+        const pathSegments = path.split('/').filter(seg => seg !== '');
 
+        const colorSegmentIndex = pathSegments.findIndex(el => el.startsWith('farbe:'));
+        let newColorSegment = '';
 
-        const colorIndex = pathSegments.findIndex(el => el?.startsWith('color-'))
+        if (colorSegmentIndex !== -1) {
+            const currentColorSlugs = pathSegments[colorSegmentIndex].replace('farbe:', '').split('.');
+            const isColorSelected = currentColorSlugs.includes(color.slug);
 
-        if (colorIndex !== -1) {
-            if (currentColor?.slug === color.slug) {
-                pathSegments.splice(colorIndex, 1); // Remove the color if it is clicked again
-                setCurrentColor(null);
+            if (isColorSelected) {
+                newColorSegment = currentColorSlugs.filter(slug => slug !== color.slug).join('.');
             } else {
-                pathSegments[colorIndex] = `${color.slug.toLowerCase()}`;
-                setCurrentColor(color);
+                newColorSegment = [...currentColorSlugs, color.slug].join('.');
+            }
+
+            if (newColorSegment) {
+                pathSegments[colorSegmentIndex] = `farbe:${newColorSegment}`;
+            } else {
+                pathSegments.splice(colorSegmentIndex, 1);
             }
         } else {
-            pathSegments.push(`${color.slug.toLowerCase()}`);
-            setCurrentColor(color);
+            newColorSegment = color.slug;
+            pathSegments.push(`farbe:${newColorSegment}`);
         }
-        //sort segments after
-        const sortedPathSegments = arrangePathSegments(pathSegments)
 
-
-        const updatedPath = `/moebel/${sortedPathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
+        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
 
@@ -92,8 +90,7 @@ export const ColorFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item-1">
                     <AccordionTrigger>
-                        <h4 className="text-sm font-medium">Farbe:
-                            <span className={'font-semibold'}> {capitalize(currentColor?.label ?? "")}</span>
+                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">Farbe
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>
