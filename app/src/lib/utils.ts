@@ -81,6 +81,10 @@ export const sortDepths = (depths: DepthItem[]): DepthItem[] => {
   });
 };
 
+// Function to sort color labels alphabetically
+export const sortColors = (colors: ColorItem[]): ColorItem[] => {
+  return colors.sort((a, b) => a.label.localeCompare(b.label));
+};
 
 // Utility function to format width values
 export const formatWidthLabel = (label: string): string => {

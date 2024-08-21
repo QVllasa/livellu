@@ -81,7 +81,7 @@ function ResultsPageLayout(page) {
                                         <HeightFilter meta={meta} />
                                         <DepthFilter meta={meta} />
                                         <WidthFilter meta={meta} />
-
+                                        <ColorFilter meta={meta} />
 
 
                                         {/* Other filters like ColorFilter */}

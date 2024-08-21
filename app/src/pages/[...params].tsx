@@ -140,6 +140,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         overallFilter = overallFilter ? `${overallFilter} AND ${widthFilter}` : widthFilter;
     }
 
+    if (colorParam) {
+        const colors = colorParam.replace('farbe:', '').split('.');
+        const colorFilter = `variants.colors IN [${colors.map(color => `"${color.toUpperCase()}"`).join(', ')}]`;
+        overallFilter = overallFilter ? `${overallFilter} AND ${colorFilter}` : colorFilter;
+    }
+
     filters['searchTerms'] = searchTerm;
 
     if (overallFilter) {

@@ -1,24 +1,28 @@
 import {Button} from "@/shadcn/components/ui/button";
 import {Card, CardContent} from "@/shadcn/components/ui/card";
-import {Color, Product, Variant} from "@/types";
+import {Product, Variant} from "@/types";
 import Link from "next/link";
-import {currentBrandAtom, currentColorAtom, currentMaterialAtom} from "@/store/filters";
-import {useAtom} from "jotai";
 import {LandingRating} from "../../../../components/landing/rating/LandingRating";
 import Image from "next/image";
+import {useRouter} from "next/router";
 
 const ProductCard = (props: { product: Product }) => {
-    const {product} = props;
-    const [currentMaterial] = useAtom(currentMaterialAtom);
-    const [currentBrand] = useAtom(currentBrandAtom);
-    const [currentColor] = useAtom(currentColorAtom);
+    const { product } = props;
+    const router = useRouter();
 
-    const colorIds = [(currentColor && currentColor.id), ...(currentColor?.child_colors?.data ? currentColor?.child_colors?.data.map((color: Color) => color.id) : [])];
+    // Extract the color filter from the URL
+    const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
+    const colorSegment = pathSegments.find(segment => segment.startsWith('farbe:'));
 
+    // Get the selected colors from the URL
+    const selectedColors = colorSegment ? colorSegment.replace('farbe:', '').split('.') : [];
+
+    // Find the variant that matches the selected color(s)
     const matchingVariant = product?.variants.find(
-        (variant) => colorIds.includes(Number(variant.originalColor))
+        (variant) => selectedColors.some(color => variant.colors.includes(color.toUpperCase()))
     );
 
+    // Default to the first variant if no matching variant is found
     const variant: Variant = matchingVariant || product.variants[0];
 
     if (!variant) {
@@ -41,7 +45,7 @@ const ProductCard = (props: { product: Product }) => {
                             {variant.productName}
                         </h4>
                         <div className="flex items-center mt-1 sm:mt-2 text-yellow-400">
-                            <LandingRating className={'fill-yellow-400'} rating={parseFloat(variant.averageRating ?? 0)}/>
+                            <LandingRating className={'fill-yellow-400'} rating={parseFloat(variant.averageRating ?? 0)} />
                             <span className="ml-2 text-gray-400 font-semibold text-xs sm:text-sm">{variant.averageRating ? parseFloat(variant?.averageRating).toFixed(1) : 0}</span>
                         </div>
                         <div className="flex justify-between items-center mt-4 sm:mt-6">

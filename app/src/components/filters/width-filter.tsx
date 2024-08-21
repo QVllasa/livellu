@@ -11,7 +11,6 @@ export interface WidthItem {
     count: number;
 }
 
-
 interface WidthFilterProps {
     meta: {
         facetDistribution: {
@@ -34,7 +33,8 @@ export const WidthFilter = ({ meta }: WidthFilterProps) => {
             return;
         }
 
-        const widthSlugs = widthSegment.replace('breite:', '').split('.');
+        const decodedWidthSegment = decodeURIComponent(widthSegment);
+        const widthSlugs = decodedWidthSegment.replace('breite:', '').split('.');
         const selectedWidths = widthSlugs.map(slug => ({ label: slug }));
         setCurrentWidths(selectedWidths);
     }, [router.asPath]);
@@ -55,23 +55,23 @@ export const WidthFilter = ({ meta }: WidthFilterProps) => {
         let newWidthSegment = '';
 
         if (widthSegmentIndex !== -1) {
-            const currentWidthSlugs = pathSegments[widthSegmentIndex].replace('breite:', '').split('.');
-            const isWidthSelected = currentWidthSlugs.includes(width.label);
+            const currentWidthSlugs = decodeURIComponent(pathSegments[widthSegmentIndex].replace('breite:', '')).split('.');
+            const isWidthSelected = currentWidthSlugs.includes(width.label.toLowerCase());
 
             if (isWidthSelected) {
-                newWidthSegment = currentWidthSlugs.filter(slug => slug !== width.label).join('.');
+                newWidthSegment = currentWidthSlugs.filter(slug => slug !== width.label.toLowerCase()).join('.');
             } else {
-                newWidthSegment = [...currentWidthSlugs, width.label].join('.');
+                newWidthSegment = [...currentWidthSlugs, width.label.toLowerCase()].join('.');
             }
 
             if (newWidthSegment) {
-                pathSegments[widthSegmentIndex] = `breite:${newWidthSegment}`;
+                pathSegments[widthSegmentIndex] = `breite:${encodeURIComponent(newWidthSegment)}`;
             } else {
                 pathSegments.splice(widthSegmentIndex, 1);
             }
         } else {
             newWidthSegment = width.label;
-            pathSegments.push(`breite:${newWidthSegment}`);
+            pathSegments.push(`breite:${encodeURIComponent(newWidthSegment.toLowerCase())}`);
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
