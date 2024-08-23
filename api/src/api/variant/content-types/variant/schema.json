@@ -102,9 +102,6 @@
     "variantId": {
       "type": "string"
     },
-    "originalColorId": {
-      "type": "string"
-    },
     "colors": {
       "type": "json"
     },

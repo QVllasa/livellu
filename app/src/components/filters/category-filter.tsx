@@ -111,7 +111,7 @@ export const CategoryFilter = () => {
                                                                 size={'sm'}
                                                                 onClick={() => handleCategoryClick(item)}
                                                                 variant={'outline'}
-                                                                className={`flex justify-start w-full ${categoryLevel1?.slug === item.slug ? 'font-bold bg-gray-100' : ''}`}
+                                                                className={`flex justify-start w-full ${categoryLevel1?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
                                                             >
                                                                 <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
                                                                 {capitalize(item.name)}
@@ -133,7 +133,7 @@ export const CategoryFilter = () => {
                                                                                             size={'sm'}
                                                                                             onClick={() => handleCategoryClick(child)}
                                                                                             variant={'outline'}
-                                                                                            className={`flex justify-start w-full ${categoryLevel2?.slug === child.slug ? 'font-bold bg-gray-100' : ''}`}
+                                                                                            className={`flex justify-start w-full ${categoryLevel2?.slug === child.slug ? 'bg-blue-500 text-white' : ''}`}
                                                                                         >
                                                                                             <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
                                                                                             {capitalize(child.name)}

@@ -97,7 +97,7 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
                 <AccordionItem value="colors">
                     <AccordionTrigger>
                         <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Colors <span className={'text-xs font-light'}>({colors.length})</span>
+                            Farbe <span className={'text-xs font-light'}>({colors.length})</span>
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>

@@ -90,7 +90,7 @@ export const StyleFilter = ({ meta }: StyleFilterProps) => {
                 <AccordionItem value="style">
                     <AccordionTrigger>
                         <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Styles <span className={'text-xs font-light'}>({styles.length})</span>
+                            Stil <span className={'text-xs font-light'}>({styles.length})</span>
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>

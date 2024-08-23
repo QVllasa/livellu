@@ -40,7 +40,7 @@ services:
       MEILI_MASTER_KEY: ${MEILI_MASTER_KEY} # Set your new master key
       MEILI_LOG_LEVEL: debug
       MEILI_NO_ANALYTICS: 'true'
-      MEILI_HTTP_PAYLOAD_SIZE_LIMIT: 10Mb
+      MEILI_HTTP_PAYLOAD_SIZE_LIMIT: 15Mb
       MEILI_MAX_INDEXING_MEMORY: '2GB' # Set the maximum memory for indexing operations
       MEILI_MAX_MDB_SIZE: '30GB'       # Set the maximum size for the memory-mapped database
     restart: unless-stopped

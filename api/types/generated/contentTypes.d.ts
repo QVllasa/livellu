@@ -1536,7 +1536,6 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     >;
     groupId: Attribute.Text;
     variantId: Attribute.String;
-    originalColorId: Attribute.String;
     colors: Attribute.JSON;
     materials: Attribute.JSON;
     width: Attribute.JSON;

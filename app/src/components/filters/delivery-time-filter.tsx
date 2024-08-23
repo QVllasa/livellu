@@ -68,7 +68,7 @@ export const DeliveryTimeFilter = ({ meta }) => {
                 <AccordionItem value="delivery-time">
                     <AccordionTrigger>
                         <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Delivery Times <span className={'text-xs font-light'}>({deliveryTimes.length})</span>
+                            Lieferzeiten <span className={'text-xs font-light'}>({deliveryTimes.length})</span>
                         </h4>
                     </AccordionTrigger>
                     <AccordionContent>

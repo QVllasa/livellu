@@ -5,10 +5,12 @@ import Link from "next/link";
 import {LandingRating} from "../../../../components/landing/rating/LandingRating";
 import Image from "next/image";
 import {useRouter} from "next/router";
+import {useState} from "react";
 
 const ProductCard = (props: { product: Product }) => {
     const { product } = props;
     const router = useRouter();
+    const [imageSrc, setImageSrc] = useState<string | null>(null);
 
     // Extract the color filter from the URL
     const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
@@ -19,11 +21,16 @@ const ProductCard = (props: { product: Product }) => {
 
     // Find the variant that matches the selected color(s)
     const matchingVariant = product?.variants.find(
-        (variant) => selectedColors.some(color => variant.colors.includes(color.toUpperCase()))
+        (variant) => selectedColors.some(color => variant?.colors?.includes(color.toUpperCase()))
     );
 
     // Default to the first variant if no matching variant is found
     const variant: Variant = matchingVariant || product.variants[0];
+
+    // Handle image error by setting a fallback image
+    const handleImageError = () => {
+        setImageSrc('/img/fallbackimage.webp'); // Using the fallback image from the public folder
+    };
 
     if (!variant) {
         return null;
@@ -34,11 +41,12 @@ const ProductCard = (props: { product: Product }) => {
             <CardContent className="flex items-center justify-center p-0">
                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300">
                     <Image
-                        src={variant?.altImageUrl}
+                        src={imageSrc || variant?.altImageUrl}
                         alt={variant?.productName}
                         width={300}
                         height={400}
                         className="w-full h-36 sm:h-48 object-contain p-3"
+                        onError={handleImageError} // Set the fallback image if there's an error
                     />
                     <div className="p-2 sm:p-4">
                         <h4 className="scroll-m-20 text-sm sm:text-base font-semibold tracking-tight truncate">
