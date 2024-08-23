@@ -2,11 +2,12 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 import {unslugify} from "@/lib/utils";
 
 export const DeliveryTimeFilter = ({ meta }) => {
     const [currentDeliveryTimes, setCurrentDeliveryTimes] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     // Initialize current delivery times based on URL
@@ -64,34 +65,45 @@ export const DeliveryTimeFilter = ({ meta }) => {
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="delivery-time">
-                    <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Lieferzeiten <span className={'text-xs font-light'}>({deliveryTimes.length})</span>
-                        </h4>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className="h-72 w-full">
-                            <ul>
-                                {deliveryTimes.map((item) => (
-                                    <li key={item.label} className="mb-1 relative w-56">
-                                        <Button
-                                            size={'sm'}
-                                            variant={currentDeliveryTimes.some(d => d.label === item.label) ? null : 'outline'}
-                                            onClick={() => handleDeliveryTimeClick(item)}
-                                            className={`relative w-full ${currentDeliveryTimes.some(d => d.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
-                                        >
-                                            <span className={'truncate'}>{unslugify(item.label)}</span>
-                                            <span className={(currentDeliveryTimes.some(d => d.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
-                                        </Button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </ScrollArea>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <Popover
+                className="w-full"
+                open={isOpen}
+                onOpenChange={(open) => setIsOpen(open)}
+            >
+                <PopoverTrigger asChild>
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className={`flex justify-between w-full ${isOpen || currentDeliveryTimes.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                    >
+                        <span>Lieferzeiten</span>
+                        {currentDeliveryTimes.length > 0 && (
+                            <span className="ml-2 text-xs font-thin">({currentDeliveryTimes.length})</span>
+                        )}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <ScrollArea className="h-auto w-full">
+                        <ul>
+                            {deliveryTimes.map((item) => (
+                                <li key={item.label} className="mb-1 relative w-56">
+                                    <Button
+                                        size={'sm'}
+                                        variant={currentDeliveryTimes.some(d => d.label === item.label) ? null : 'outline'}
+                                        onClick={() => handleDeliveryTimeClick(item)}
+                                        className={`relative w-full ${currentDeliveryTimes.some(d => d.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                    >
+                                        <span className={'truncate'}>{unslugify(item.label)}</span>
+                                        <span className={(currentDeliveryTimes.some(d => d.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>
+                                            {item.count}
+                                        </span>
+                                    </Button>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollArea>
+                </PopoverContent>
+            </Popover>
         </div>
     );
 };

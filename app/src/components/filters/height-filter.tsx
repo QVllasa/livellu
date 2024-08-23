@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 import {formatHeightLabel, sortHeights} from "@/lib/utils";
 
 // Define the structure of the filter items
@@ -10,7 +10,6 @@ interface HeightItem {
     label: string;
     count: number;
 }
-
 
 interface HeightFilterProps {
     meta: {
@@ -22,6 +21,7 @@ interface HeightFilterProps {
 
 export const HeightFilter = ({ meta }: HeightFilterProps) => {
     const [currentHeights, setCurrentHeights] = useState<HeightItem[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     // Initialize current heights based on URL
@@ -71,7 +71,7 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
             }
         } else {
             newHeightSegment = height.label;
-            pathSegments.push(`hoehe:${newHeightSegment}`);
+            pathSegments.push(`hoehe:${encodeURIComponent(newHeightSegment.toLowerCase())}`);
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
@@ -82,34 +82,45 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="height">
-                    <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Höhe <span className={'text-xs font-light'}>({heights.length})</span>
-                        </h4>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className="h-72 w-full">
-                            <ul>
-                                {heights.map((item) => (
-                                    <li key={item.label} className="mb-1 relative w-56">
-                                        <Button
-                                            size={'sm'}
-                                            variant={currentHeights.some(h => h.label === item.label) ? null : 'outline'}
-                                            onClick={() => handleHeightClick(item)}
-                                            className={`relative w-full ${currentHeights.some(h => h.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
-                                        >
-                                            <span className={'truncate'}>{formatHeightLabel(item.label)}</span>
-                                            <span className={(currentHeights.some(h => h.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
-                                        </Button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </ScrollArea>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <Popover
+                className="w-full"
+                open={isOpen}
+                onOpenChange={(open) => setIsOpen(open)}
+            >
+                <PopoverTrigger asChild>
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className={`flex justify-between w-full ${isOpen || currentHeights.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                    >
+                        <span>Höhe</span>
+                        {currentHeights.length > 0 && (
+                            <span className="ml-2 text-xs font-thin">({currentHeights.length})</span>
+                        )}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <ScrollArea className="h-72 w-full">
+                        <ul>
+                            {heights.map((item) => (
+                                <li key={item.label} className="mb-1 relative w-56">
+                                    <Button
+                                        size="sm"
+                                        variant={currentHeights.some(h => h.label === item.label) ? null : 'outline'}
+                                        onClick={() => handleHeightClick(item)}
+                                        className={`relative w-full ${currentHeights.some(h => h.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                    >
+                                        <span className="truncate">{formatHeightLabel(item.label)}</span>
+                                        <span className={`${currentHeights.some(h => h.label === item.label) ? 'text-white' : 'text-gray-700'} ml-2 font-light text-xs`}>
+                                            {item.count}
+                                        </span>
+                                    </Button>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollArea>
+                </PopoverContent>
+            </Popover>
         </div>
     );
 };

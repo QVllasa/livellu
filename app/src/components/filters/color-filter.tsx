@@ -2,10 +2,10 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {Tooltip, TooltipContent, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {sortColors} from "@/lib/utils";
 import {capitalize} from "lodash";
+import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 
 // Define the structure of the filter items
 export interface ColorItem {
@@ -17,19 +17,20 @@ export interface ColorItem {
 interface ColorFilterProps {
     meta: {
         facetDistribution: {
-            'variants.colors'?: Record<string, number>;
+            "variants.colors"?: Record<string, number>;
         };
     };
 }
 
 export const ColorFilter = ({ meta }: ColorFilterProps) => {
     const [currentColors, setCurrentColors] = useState<ColorItem[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     // Initialize current colors based on URL
     useEffect(() => {
-        const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
-        const colorSegment = pathSegments.find(segment => segment.startsWith('farbe:'));
+        const pathSegments = router.asPath.split(/[/?]/).filter((segment) => segment);
+        const colorSegment = pathSegments.find((segment) => segment.startsWith("farbe:"));
 
         if (!colorSegment) {
             setCurrentColors([]);
@@ -38,38 +39,41 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
 
         const decodedColorSegment = decodeURIComponent(colorSegment);
 
-        const colorSlugs = decodedColorSegment.replace('farbe:', '').split('.');
-        console.log('colorSlugs', colorSlugs);
-
-        const selectedColors = colorSlugs.map(slug => ({ label: slug, code: colorMap[slug.toLowerCase()] || 'transparent' }));
+        const colorSlugs = decodedColorSegment.replace("farbe:", "").split(".");
+        const selectedColors = colorSlugs.map((slug) => ({
+            label: slug,
+            code: colorMap[slug.toLowerCase()] || "transparent",
+        }));
         setCurrentColors(selectedColors);
     }, [router.asPath]);
 
     // Extract and sort colors from metadata
-    let colors: ColorItem[] = Object.keys(meta?.facetDistribution?.['variants.colors'] || {}).map(key => ({
+    let colors: ColorItem[] = Object.keys(meta?.facetDistribution?.["variants.colors"] || {}).map((key) => ({
         label: key,
-        count: meta.facetDistribution['variants.colors']![key],
-        code: colorMap[key.toLowerCase()] || 'transparent', // Use the colorMap to get the color code
+        count: meta.facetDistribution["variants.colors"]![key],
+        code: colorMap[key.toLowerCase()] || "transparent", // Use the colorMap to get the color code
     }));
 
     // Sort the colors alphabetically
     colors = sortColors(colors);
 
     const handleColorClick = (color: ColorItem) => {
-        const [path, queryString] = router.asPath.split('?');
-        const pathSegments = path.split('/').filter(seg => seg !== '');
+        const [path, queryString] = router.asPath.split("?");
+        const pathSegments = path.split("/").filter((seg) => seg !== "");
 
-        const colorSegmentIndex = pathSegments.findIndex(el => el.startsWith('farbe:'));
-        let newColorSegment = '';
+        const colorSegmentIndex = pathSegments.findIndex((el) => el.startsWith("farbe:"));
+        let newColorSegment = "";
 
         if (colorSegmentIndex !== -1) {
-            const currentColorSlugs = decodeURIComponent(pathSegments[colorSegmentIndex].replace('farbe:', '')).split('.');
+            const currentColorSlugs = decodeURIComponent(
+                pathSegments[colorSegmentIndex].replace("farbe:", "")
+            ).split(".");
             const isColorSelected = currentColorSlugs.includes(color.label.toLowerCase());
 
             if (isColorSelected) {
-                newColorSegment = currentColorSlugs.filter(slug => slug !== color.label.toLowerCase()).join('.');
+                newColorSegment = currentColorSlugs.filter((slug) => slug !== color.label.toLowerCase()).join(".");
             } else {
-                newColorSegment = [...currentColorSlugs, color.label.toLowerCase()].join('.');
+                newColorSegment = [...currentColorSlugs, color.label.toLowerCase()].join(".");
             }
 
             if (newColorSegment) {
@@ -82,47 +86,55 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
             pathSegments.push(`farbe:${encodeURIComponent(newColorSegment.toLowerCase())}`);
         }
 
-        const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+        const updatedPath = `/${pathSegments.filter(Boolean).join("/")}`.replace(/\/+/g, "/");
+        const queryParams = queryString ? `?${queryString}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
-    useEffect(() => {
-        console.log('currentColors', currentColors);
-    }, [currentColors]);
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="colors">
-                    <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Farbe <span className={'text-xs font-light'}>({colors.length})</span>
-                        </h4>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className="h-72 w-full">
-                            <ul className="grid grid-cols-5 gap-1">
-                                {colors.map((item) => (
-                                    <li key={item.label} className="relative">
+            <Popover
+                className="w-full"
+                open={isOpen}
+                onOpenChange={(open) => setIsOpen(open)}
+            >
+                <PopoverTrigger asChild>
+                    <Button
+                        size="sm"
+                        variant={'outline'}
+                        className={`flex justify-between w-full  ${isOpen || currentColors.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                    >
+                        <span>Farbe</span>
+                        {currentColors.length > 0 && (
+                            <span className="ml-2 text-xs font-thin">({currentColors.length})</span>
+                        )}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <ScrollArea className="h-auto w-full">
+                        <ul className="grid grid-cols-4 gap-1">
+                            {colors.map((item) => {
+                                console.log("colors: ", item)
+                                    return <li key={item.label} className="relative">
                                         <Tooltip>
                                             <TooltipTrigger asChild>
                                                 <Button
-                                                    size={'icon'}
+                                                    size={"icon"}
                                                     variant="ghost"
                                                     style={{
                                                         backgroundColor: item.code,
-                                                        width: '32px',
-                                                        height: '32px',
-                                                        border: item.code ? 'none' : '1px solid #ccc',
-                                                        backdropFilter: item.code ? 'none' : 'blur(10px)',
-                                                        WebkitBackdropFilter: item.code ? 'none' : 'blur(10px)',
-                                                        backgroundClip: 'padding-box',
-                                                        borderRadius: '50%',
-                                                        opacity: item.code ? '1' : '0.7'
+                                                        width: "32px",
+                                                        height: "32px",
+                                                        border:  "1px solid #ccc",
+                                                        backdropFilter: item.code ? "none" : "blur(10px)",
+                                                        WebkitBackdropFilter: item.code ? "none" : "blur(10px)",
+                                                        backgroundClip: "padding-box",
+                                                        borderRadius: "50%",
+                                                        opacity: item.code ? "1" : "0.7",
                                                     }}
                                                     onClick={() => handleColorClick(item)}
-                                                    className={`relative ${currentColors.some(c => c.label === item.label.toLowerCase()) ? 'ring-2 ring-offset-2 ring-blue-500' : ''}`}
+                                                    className={`relative ${currentColors.some((c) => c.label === item.label.toLowerCase()) ? "ring-2 ring-offset-2 ring-blue-500" : ""}`}
                                                 >
                                                     <span className="sr-only">{item.label}</span>
                                                 </Button>
@@ -132,17 +144,15 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
                                             </TooltipContent>
                                         </Tooltip>
                                     </li>
-                                ))}
-                            </ul>
-                        </ScrollArea>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+                                }
+                            )}
+                        </ul>
+                    </ScrollArea>
+                </PopoverContent>
+            </Popover>
         </div>
     );
 };
-
-
 
 const colorMap: Record<string, string> = {
     "bunt": "#000000",
@@ -163,6 +173,5 @@ const colorMap: Record<string, string> = {
     "transparent": "transparent", // Set to 'transparent' as there's no color code
     "braun": "#5b3a29",
     "beige": "#d9b99b",
-    "no-color": "transparent" // Set to 'transparent' as there's no color code
+    "no-color": "transparent", // Set to 'transparent' as there's no color code
 };
-

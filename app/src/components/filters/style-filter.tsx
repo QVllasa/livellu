@@ -2,22 +2,14 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
+import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 
 // Define the structure of the filter items
 interface StyleItem {
     label: string;
     count: number;
 }
-
-// Utility function to unslugify values
-const unslugify = (text: string): string => {
-    return text
-        .split('-')
-        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-};
 
 interface StyleFilterProps {
     meta: {
@@ -29,6 +21,7 @@ interface StyleFilterProps {
 
 export const StyleFilter = ({ meta }: StyleFilterProps) => {
     const [currentStyles, setCurrentStyles] = useState<StyleItem[]>([]);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     // Initialize current styles based on URL
@@ -86,34 +79,45 @@ export const StyleFilter = ({ meta }: StyleFilterProps) => {
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="style">
-                    <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Stil <span className={'text-xs font-light'}>({styles.length})</span>
-                        </h4>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className="h-72 w-full">
-                            <ul>
-                                {styles.map((item) => (
-                                    <li key={item.label} className="mb-1 relative w-56">
-                                        <Button
-                                            size={'sm'}
-                                            variant={currentStyles.some(s => s.label === item.label) ? null : 'outline'}
-                                            onClick={() => handleStyleClick(item)}
-                                            className={`relative w-full ${currentStyles.some(s => s.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
-                                        >
-                                            <span className={'truncate'}>{capitalize(item.label)}</span>
-                                            <span className={(currentStyles.some(s => s.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
-                                        </Button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </ScrollArea>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <Popover
+                className="w-full"
+                open={isOpen}
+                onOpenChange={(open) => setIsOpen(open)}
+            >
+                <PopoverTrigger asChild>
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className={`flex justify-between w-full ${isOpen || currentStyles.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                    >
+                        <span>Stil</span>
+                        {currentStyles.length > 0 && (
+                            <span className="ml-2 text-xs font-thin">({currentStyles.length})</span>
+                        )}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <ScrollArea className="h-72 w-full">
+                        <ul>
+                            {styles.map((item) => (
+                                <li key={item.label} className="mb-1 relative w-56">
+                                    <Button
+                                        size="sm"
+                                        variant={currentStyles.some(s => s.label === item.label) ? null : 'outline'}
+                                        onClick={() => handleStyleClick(item)}
+                                        className={`relative w-full ${currentStyles.some(s => s.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                    >
+                                        <span className="truncate">{capitalize(item.label)}</span>
+                                        <span className={`${currentStyles.some(s => s.label === item.label) ? 'text-white' : 'text-gray-700'} ml-2 font-light text-xs`}>
+                                            {item.count}
+                                        </span>
+                                    </Button>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollArea>
+                </PopoverContent>
+            </Popover>
         </div>
     );
 };

@@ -20,7 +20,6 @@ export const CategoryFilter = () => {
     const [openItem, setOpenItem] = useState("item" as string);
     const [openItem0, setOpenItem0] = useState("item-0");
     const [openItem1, setOpenItem1] = useState("item-1");
-    const [openItem2, setOpenItem2] = useState("item-2");
 
 
     useEffect(() => {
@@ -84,11 +83,11 @@ export const CategoryFilter = () => {
             <Accordion type="single" collapsible className="w-full" value={openItem} onValueChange={setOpenItem}>
                 <AccordionItem value="item">
                     <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">Kategorie</h4>
+                        <h4 className="mb-3 text-sm font-semibold text-lg">Kategorie</h4>
                     </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className={'h-72'}>
-                            <Accordion type="single" collapsible className="w-full" value={openItem0} onValueChange={setOpenItem0}>
+                    <AccordionContent className={''}>
+                        <ScrollArea className={'h-[65vh]'}>
+                            <Accordion type="single" collapsible className="w-full mb-6" value={openItem0} onValueChange={setOpenItem0}>
                                 {categoryLevel0 && (
                                     <AccordionItem value="item-0">
                                         <Button
@@ -105,55 +104,59 @@ export const CategoryFilter = () => {
                                         <AccordionContent>
                                             {categoryLevel0?.child_categories && categoryLevel0?.child_categories.length > 0 && (
                                                 <ul>
-                                                    {categoryLevel0?.child_categories.map((item) => (
-                                                        <li key={item.id} className="mb-1 pl-6">
-                                                            <Button
-                                                                size={'sm'}
-                                                                onClick={() => handleCategoryClick(item)}
-                                                                variant={'outline'}
-                                                                className={`flex justify-start w-full ${categoryLevel1?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
-                                                            >
-                                                                <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
-                                                                {capitalize(item.name)}
-                                                                {item.child_categories?.length > 0 && item === categoryLevel1 ? (
-                                                                    <ChevronDownIcon className="ml-auto h-4 w-4"/>
-                                                                ) : (
-                                                                    <ChevronRightIcon className="ml-auto h-4 w-4"/>
-                                                                )}
-                                                            </Button>
-                                                            {categoryLevel1?.slug === item.slug && categoryLevel1.child_categories?.length > 0 && (
-                                                                <Accordion type="single" collapsible className="w-full" value={openItem1} onValueChange={setOpenItem1}>
-                                                                    <AccordionItem value="item-1">
+                                                    {categoryLevel0?.child_categories.map((item) => {
+                                                            if (categoryLevel1?.slug && categoryLevel1?.slug !== item.slug) return;
+                                                            return <li key={item.id} className="mb-1 pl-6">
+                                                                <Button
+                                                                    size={'sm'}
+                                                                    onClick={() => handleCategoryClick(item)}
+                                                                    variant={'outline'}
+                                                                    className={`flex justify-start w-full ${categoryLevel1?.slug === item.slug ? 'bg-blue-500 text-white' : ''}`}
+                                                                >
+                                                                    <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+                                                                    {capitalize(item.name)}
+                                                                    {item.child_categories?.length > 0 && item === categoryLevel1 ? (
+                                                                        <ChevronDownIcon className="ml-auto h-4 w-4"/>
+                                                                    ) : (
+                                                                        <ChevronRightIcon className="ml-auto h-4 w-4"/>
+                                                                    )}
+                                                                </Button>
+                                                                {categoryLevel1?.slug === item.slug && categoryLevel1.child_categories?.length > 0 && (
+                                                                    <Accordion type="single" collapsible className="w-full" value={openItem1} onValueChange={setOpenItem1}>
+                                                                        <AccordionItem value="item-1">
 
-                                                                        <AccordionContent>
-                                                                            <ul>
-                                                                                {categoryLevel1?.child_categories.map((child) => (
-                                                                                    <li key={child.id} className="mb-1 pl-6">
-                                                                                        <Button
-                                                                                            size={'sm'}
-                                                                                            onClick={() => handleCategoryClick(child)}
-                                                                                            variant={'outline'}
-                                                                                            className={`flex justify-start w-full ${categoryLevel2?.slug === child.slug ? 'bg-blue-500 text-white' : ''}`}
-                                                                                        >
-                                                                                            <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
-                                                                                            {capitalize(child.name)}
-                                                                                        </Button>
-                                                                                    </li>
-                                                                                ))}
-                                                                            </ul>
-                                                                        </AccordionContent>
-                                                                    </AccordionItem>
-                                                                </Accordion>
-                                                            )}
-                                                        </li>
-                                                    ))}
+                                                                            <AccordionContent>
+                                                                                <ul>
+                                                                                    {categoryLevel1?.child_categories.map((child) => (
+                                                                                        <li key={child.id} className="mb-1 pl-6">
+                                                                                            <Button
+                                                                                                size={'sm'}
+                                                                                                onClick={() => handleCategoryClick(child)}
+                                                                                                variant={'outline'}
+                                                                                                className={`flex justify-start w-full ${categoryLevel2?.slug === child.slug ? 'bg-blue-500 text-white' : ''}`}
+                                                                                            >
+                                                                                                <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+                                                                                                {capitalize(child.name)}
+                                                                                            </Button>
+                                                                                        </li>
+                                                                                    ))}
+                                                                                </ul>
+                                                                            </AccordionContent>
+                                                                        </AccordionItem>
+                                                                    </Accordion>
+                                                                )}
+                                                            </li>
+                                                        }
+                                                    )}
                                                 </ul>
                                             )}
                                         </AccordionContent>
                                     </AccordionItem>
                                 )}
                             </Accordion>
+                            <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-b from-transparent to-gray-100 pointer-events-none"></div>
                         </ScrollArea>
+
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>

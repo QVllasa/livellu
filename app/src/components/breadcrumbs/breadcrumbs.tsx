@@ -58,9 +58,9 @@ export const Breadcrumbs = () => {
 
 
     return (
-        <Breadcrumb>
+        <Breadcrumb >
             <BreadcrumbList>
-                <BreadcrumbItem>
+                <BreadcrumbItem className={'text-xs'}>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 {categoryPath.map((category, index) => {
@@ -68,7 +68,7 @@ export const Breadcrumbs = () => {
                     return (
                         <div className={'flex gap-2'} key={category.id}>
                             <BreadcrumbSeparator />
-                            <BreadcrumbItem>
+                            <BreadcrumbItem className={'text-xs'}>
                                 {isLast ? (
                                     <BreadcrumbPage>{capitalize(category.name)}</BreadcrumbPage>
                                 ) : (

@@ -34,8 +34,8 @@ const Header = () => {
   return (
       <header
           className={cn('flex flex-col top-0 z-50 w-full lg:h-22', {
-              'sticky lg:fixed': isHomePage,
-              'sticky border-b border-border-200 shadow-sm': !isHomePage,
+              '': isHomePage,
+              ' border-b border-border-200 shadow-sm': !isHomePage,
           })}
       >
           <div

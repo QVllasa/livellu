@@ -10,13 +10,19 @@ interface ProductsGridProps {
     products: Product[];
     page: number;
     pageCount: number;
-    loadMoreProducts: () => void;
     loading: boolean;
 }
 
-export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loading}: ProductsGridProps) => {
+export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGridProps) => {
     const router = useRouter();
 
+    const loadMoreProducts = (selectedPage: number) => {
+        const query = { ...router.query, page: selectedPage };
+        router.push({
+            pathname: router.pathname,
+            query,
+        });
+    };
 
     const renderPageLinks = () => {
         const maxPagesToShow = 5;
@@ -31,7 +37,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                             isActive={page === i}
                             onClick={(e) => {
                                 e.preventDefault();
-                                loadMoreProducts();
+                                loadMoreProducts(i);
                             }}
                         >
                             {i}
@@ -51,7 +57,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                             isActive={page === 1}
                             onClick={(e) => {
                                 e.preventDefault();
-                                loadMoreProducts();
+                                loadMoreProducts(1);
                             }}
                         >
                             1
@@ -60,7 +66,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                 );
 
                 if (startPage > 2) {
-                    pages.push(<PaginationEllipsis key="start-ellipsis"/>);
+                    pages.push(<PaginationEllipsis key="start-ellipsis" />);
                 }
             }
 
@@ -72,7 +78,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                             isActive={page === i}
                             onClick={(e) => {
                                 e.preventDefault();
-                                loadMoreProducts();
+                                loadMoreProducts(i);
                             }}
                         >
                             {i}
@@ -83,7 +89,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
 
             if (endPage < pageCount) {
                 if (endPage < pageCount - 1) {
-                    pages.push(<PaginationEllipsis key="end-ellipsis"/>);
+                    pages.push(<PaginationEllipsis key="end-ellipsis" />);
                 }
 
                 pages.push(
@@ -93,7 +99,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                             isActive={page === pageCount}
                             onClick={(e) => {
                                 e.preventDefault();
-                                loadMoreProducts();
+                                loadMoreProducts(pageCount);
                             }}
                         >
                             {pageCount}
@@ -109,13 +115,13 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
     return (
         <>
             {products.length === 0 ? (
-                <NoProductsFound/>
+                <NoProductsFound />
             ) : (
                 <div className="w-full flex flex-col items-center">
                     <div className="w-full max-w-7xl mx-auto p-0 lg:p-6">
                         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4">
                             {products.map((product, index) => (
-                                <ProductCard key={index} product={product}/>
+                                <ProductCard key={index} product={product} />
                             ))}
                         </div>
                     </div>
@@ -128,7 +134,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                                         href="#"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            if (page > 1) loadMoreProducts();
+                                            if (page > 1) loadMoreProducts(page - 1);
                                         }}
                                     />
                                 </PaginationItem>
@@ -138,7 +144,7 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                                         href="#"
                                         onClick={(e) => {
                                             e.preventDefault();
-                                            if (page < pageCount) loadMoreProducts();
+                                            if (page < pageCount) loadMoreProducts(page + 1);
                                         }}
                                     />
                                 </PaginationItem>
@@ -147,20 +153,20 @@ export const ProductsGrid = ({products, page, pageCount, loadMoreProducts, loadi
                     </div>
 
                     <div className="block sm:hidden mt-4">
-                        <Button onClick={loadMoreProducts} disabled={page >= pageCount || loading}>
-                            {loading ? <>
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin"/>
+                        <Button onClick={() => loadMoreProducts(page + 1)} disabled={page >= pageCount || loading}>
+                            {loading ? (
+                                <>
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                                     Laden...
                                 </>
-                                : page < pageCount ? "Mehr laden" : "Keine weiteren Produkte"}
+                            ) : page < pageCount ? "Mehr laden" : "Keine weiteren Produkte"}
                         </Button>
                     </div>
-                </div>)}
+                </div>
+            )}
         </>
-
     );
 };
-
 
 const NoProductsFound = () => (
     <div className="flex flex-col items-center justify-center h-full text-center p-6">

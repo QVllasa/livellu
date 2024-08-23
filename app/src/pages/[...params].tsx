@@ -19,43 +19,22 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageP
     const {initialProducts, page, meta, initialCategory, filters} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
-    const [currentPage, setCurrentPage] = useState<number>(page);
-
-
-    console.log("filters: ", filters);
 
 
     useEffect(() => {
         setProducts(initialProducts);
     }, [initialProducts]);
 
-    const loadMoreProducts = async () => {
-        if (currentPage >= meta.totalPages || loading) return;
-
-        setLoading(true);
-        try {
-            filters['page'] = currentPage + 1;
-            const {data, meta} = await fetchProducts(filters);
-
-            setProducts((prevProducts) => [...prevProducts, ...data]);
-            setCurrentPage((prevPage) => prevPage + 1);
-        } catch (error) {
-            console.error("Failed to load more products:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-
 
     return (
         <>
-            <ProductsGrid products={products} page={currentPage} pageCount={meta?.totalPages ?? 0} loadMoreProducts={loadMoreProducts} loading={loading}/>
+            <ProductsGrid products={products} page={meta?.page} pageCount={meta?.totalPages ?? 0}  loading={loading}/>
         </>
     );
 }
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
-    const { params, query, resolvedUrl } = context;
+    const { params, query } = context;
     const filters: any = {};
 
     const categorySegments = params?.params as string[];
@@ -144,6 +123,20 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         const colors = colorParam.replace('farbe:', '').split('.');
         const colorFilter = `variants.colors IN [${colors.map(color => `"${color.toUpperCase()}"`).join(', ')}]`;
         overallFilter = overallFilter ? `${overallFilter} AND ${colorFilter}` : colorFilter;
+    }
+
+    // Extract minPrice and maxPrice from query and add to overallFilter
+    const minPrice = query.minPrice ? parseFloat(query.minPrice as string) : undefined;
+    const maxPrice = query.maxPrice ? parseFloat(query.maxPrice as string) : undefined;
+
+    if (minPrice !== undefined) {
+        const minPriceFilter = `variants.price >= ${minPrice}`;
+        overallFilter = overallFilter ? `${overallFilter} AND ${minPriceFilter}` : minPriceFilter;
+    }
+
+    if (maxPrice !== undefined) {
+        const maxPriceFilter = `variants.price <= ${maxPrice}`;
+        overallFilter = overallFilter ? `${overallFilter} AND ${maxPriceFilter}` : maxPriceFilter;
     }
 
     filters['searchTerms'] = searchTerm;

@@ -2,11 +2,12 @@ import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {capitalize} from "lodash";
+import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 
 export const ShapeFilter = ({ meta }) => {
     const [currentShapes, setCurrentShapes] = useState([]);
+    const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
     // Initialize current shapes based on URL
@@ -59,40 +60,50 @@ export const ShapeFilter = ({ meta }) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
-
 
     return (
         <div className="w-auto">
-            <Accordion type="single" collapsible className="w-full">
-                <AccordionItem value="shape">
-                    <AccordionTrigger>
-                        <h4 className="pl-4 mb-3 text-sm font-semibold text-lg">
-                            Form <span className={'text-xs font-light'}>({shapes.length})</span>
-                        </h4>
-                    </AccordionTrigger>
-                    <AccordionContent>
-                        <ScrollArea className="h-72 w-full">
-                            <ul>
-                                {shapes.map((item) => (
-                                    <li key={item.label} className="mb-1 relative w-56">
-                                        <Button
-                                            size={'sm'}
-                                            variant={currentShapes.some(s => s.label === item.label) ? null : 'outline'}
-                                            onClick={() => handleShapeClick(item)}
-                                            className={`relative w-full ${currentShapes.some(s => s.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
-                                        >
-                                            <span className={'truncate'}>{capitalize(item.label)}</span>
-                                            <span className={(currentShapes.some(s => s.label === item.label) && 'text-white') + ' ml-2 font-light text-gray-700 text-xs'}>{item.count}</span>
-                                        </Button>
-                                    </li>
-                                ))}
-                            </ul>
-                        </ScrollArea>
-                    </AccordionContent>
-                </AccordionItem>
-            </Accordion>
+            <Popover
+                className="w-full"
+                open={isOpen}
+                onOpenChange={(open) => setIsOpen(open)}
+            >
+                <PopoverTrigger asChild>
+                    <Button
+                        size="sm"
+                        variant="outline"
+                        className={`flex justify-between w-full ${isOpen || currentShapes.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                    >
+                        <span>Form</span>
+                        {currentShapes.length > 0 && (
+                            <span className="ml-2 text-xs font-thin">({currentShapes.length})</span>
+                        )}
+                    </Button>
+                </PopoverTrigger>
+                <PopoverContent>
+                    <ScrollArea className="h-72 w-full">
+                        <ul>
+                            {shapes.map((item) => (
+                                <li key={item.label} className="mb-1 relative w-56">
+                                    <Button
+                                        size="sm"
+                                        variant={currentShapes.some(s => s.label === item.label) ? null : 'outline'}
+                                        onClick={() => handleShapeClick(item)}
+                                        className={`relative w-full ${currentShapes.some(s => s.label === item.label) ? 'bg-blue-500 text-white' : ''}`}
+                                    >
+                                        <span className="truncate">{capitalize(item.label)}</span>
+                                        <span className={`${currentShapes.some(s => s.label === item.label) ? 'text-white' : 'text-gray-700'} ml-2 font-light text-xs`}>
+                                            {item.count}
+                                        </span>
+                                    </Button>
+                                </li>
+                            ))}
+                        </ul>
+                    </ScrollArea>
+                </PopoverContent>
+            </Popover>
         </div>
     );
 };

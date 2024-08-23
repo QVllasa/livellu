@@ -13,6 +13,8 @@ interface SearchRequestBody {
   attributesToRetrieve?: string[];
   attributesToCrop?: string[];
   attributesToHighlight?: string[];
+  minPrice?: number;  // Add minPrice
+  maxPrice?: number;  // Add maxPrice
   [key: string]: any;
 }
 
@@ -26,11 +28,29 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       pageSize = 48,
       searchTerms = '',
       filter = '',
+      minPrice,  // Destructure minPrice from body
+      maxPrice,  // Destructure maxPrice from body
       ...restParams
     } = body;
 
+    const filterConditions: string[] = [];
+
+    if (filter) {
+      filterConditions.push(filter);
+    }
+
+    // Add minPrice and maxPrice to filter conditions
+    if (minPrice !== undefined) {
+      filterConditions.push(`variants.price >= ${minPrice}`);
+    }
+    if (maxPrice !== undefined) {
+      filterConditions.push(`variants.price <= ${maxPrice}`);
+    }
+
+
+
     const searchParams = {
-      filter: filter || undefined,
+      filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       limit: pageSize,
       offset: (page - 1) * pageSize,
       facets: [
@@ -43,12 +63,14 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
         'variants.materials',
         'variants.deliveryTimes',
         'variants.shape',
+        'variants.price'  // Ensure 'variants.price' is included in facets
       ],
       sort: restParams.sort || undefined,
       attributesToRetrieve: restParams.attributesToRetrieve || undefined,
       attributesToCrop: restParams.attributesToCrop || undefined,
       attributesToHighlight: restParams.attributesToHighlight || undefined,
     };
+
 
     try {
       // Perform the search using Meilisearch
