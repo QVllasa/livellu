@@ -20,7 +20,6 @@ export const SearchFilter = () => {
     };
 
     const handleSearchChange = (e: any) => {
-        console.log(e.target.value)
         setSearchTerm(e.target.value);
     };
 
@@ -45,15 +44,18 @@ export const SearchFilter = () => {
     useEffect(() => {
         if (router.query.search) {
             setSearchQuery((router.query.search as string)?.split(' '));
+        } else {
+            setSearchQuery([]); // Clear the state when there's no search query in the URL
         }
     }, [router.query.search]);
 
+
     return <div className="w-full flex-1">
-        <form onSubmit={handleSearchSubmit} className="relative">
-            <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground"/>
+        <form onSubmit={handleSearchSubmit} className="relative flex items-center justify-start">
+            <Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground"/>
             <Input
-                type="search"
-                placeholder="Suchebegriffe eingeben"
+                type="text"
+                placeholder="Durchsuche alle Produkte, Marken und Shops"
                 className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
                 value={searchTerm}
                 onChange={handleSearchChange}

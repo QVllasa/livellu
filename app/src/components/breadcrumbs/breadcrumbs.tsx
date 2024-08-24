@@ -1,30 +1,15 @@
 import {Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator} from "@/shadcn/components/ui/breadcrumb";
-import {useAtom} from "jotai";
-import {currentCategoryAtom} from "@/store/filters";
 import {capitalize} from "lodash";
 import {useRouter} from "next/router";
 import {Category} from "@/types";
 import {useEffect, useState} from "react";
-import {fetchCategories} from "@/framework/category.ssr";
 
 
-export const Breadcrumbs = () => {
+export const Breadcrumbs = ({initialCategory}) => {
     const [categoryPath, setCategoryPath] = useState<Category[]>([]);
-    const [initialCategory, setInitialCategory] = useAtom(currentCategoryAtom);
     const router = useRouter();
 
     const {params}  = router.query;
-
-    useEffect(() => {
-        const setCategories = async () => {
-            if (params && params.length > 0 && params[0]) {
-                const data = await fetchCategories({identifier: params[0]})
-                setInitialCategory(data[0]);
-            }
-        }
-        setCategories();
-
-    }, [router.query, router.asPath]);
 
     // Find the path to the current category
     useEffect(() => {

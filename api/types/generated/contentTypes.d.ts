@@ -1460,37 +1460,6 @@ export interface ApiShapeShape extends Schema.CollectionType {
   };
 }
 
-export interface ApiStyleStyle extends Schema.CollectionType {
-  collectionName: 'styles';
-  info: {
-    singularName: 'style';
-    pluralName: 'styles';
-    displayName: 'Style';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    values: Attribute.JSON;
-    ean: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::style.style',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::style.style',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiVariantVariant extends Schema.CollectionType {
   collectionName: 'variants';
   info: {
@@ -1597,7 +1566,6 @@ declare module '@strapi/types' {
       'api::post.post': ApiPostPost;
       'api::route.route': ApiRouteRoute;
       'api::shape.shape': ApiShapeShape;
-      'api::style.style': ApiStyleStyle;
       'api::variant.variant': ApiVariantVariant;
     }
   }

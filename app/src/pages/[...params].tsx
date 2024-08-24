@@ -39,33 +39,49 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const categorySegments = params?.params as string[];
 
+    // Fetch initial category based on the identifier (assumed to be the first segment)
     const initialCategory = await fetchCategories({ identifier: categorySegments[0] });
 
-    if (initialCategory.length === 0) {
+    if (!initialCategory.length) {
         return {
             notFound: true,
         };
     }
 
-    let searchTerm = '';
+    let searchTerms: string[] = [];
+    let searchTermFromPath = '';
+
+
 
     for (let i = categorySegments.length - 1; i >= 0; i--) {
         if (!categorySegments[i].includes(':')) {
-            searchTerm = categorySegments[i];
+            searchTermFromPath = categorySegments[i];
             break;
         }
     }
 
-    const [materialParam, colorParam, brandParam, shapeParam, deliveryParam, styleParam, heightParam, depthParam, widthParam] = [
-        categorySegments?.find((p: string) => p.startsWith('material:')),
-        categorySegments?.find((p: string) => p.startsWith('farbe:')),
-        categorySegments?.find((p: string) => p.startsWith('marke:')),
-        categorySegments?.find((p: string) => p.startsWith('form:')),
-        categorySegments?.find((p: string) => p.startsWith('lieferzeit:')),
-        categorySegments?.find((p: string) => p.startsWith('stil:')),
-        categorySegments?.find((p: string) => p.startsWith('hoehe:')),
-        categorySegments?.find((p: string) => p.startsWith('tiefe:')),
-        categorySegments?.find((p: string) => p.startsWith('breite:')),
+    if (searchTermFromPath) {
+        searchTerms.push(searchTermFromPath);
+    }
+
+    // Extract search terms from both the URL path and the query string
+    if (query.search) {
+        searchTerms = [...searchTerms, ...(query.search as string).split(' ')];
+    }
+
+    const [
+        materialParam, colorParam, brandParam, shapeParam, deliveryParam,
+        styleParam, heightParam, depthParam, widthParam
+    ] = [
+        categorySegments.find((p: string) => p.startsWith('material:')),
+        categorySegments.find((p: string) => p.startsWith('farbe:')),
+        categorySegments.find((p: string) => p.startsWith('marke:')),
+        categorySegments.find((p: string) => p.startsWith('form:')),
+        categorySegments.find((p: string) => p.startsWith('lieferzeit:')),
+        categorySegments.find((p: string) => p.startsWith('stil:')),
+        categorySegments.find((p: string) => p.startsWith('hoehe:')),
+        categorySegments.find((p: string) => p.startsWith('tiefe:')),
+        categorySegments.find((p: string) => p.startsWith('breite:')),
     ];
 
     let overallFilter = '';
@@ -139,7 +155,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         overallFilter = overallFilter ? `${overallFilter} AND ${maxPriceFilter}` : maxPriceFilter;
     }
 
-    filters['searchTerms'] = searchTerm;
+    // Concatenate search terms into a single string
+    filters['searchTerms'] = searchTerms.join(' ');
 
     if (overallFilter) {
         filters['filter'] = overallFilter;

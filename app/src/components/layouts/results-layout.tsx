@@ -24,6 +24,7 @@ import {HeightFilter} from "@/components/filters/height-filter";
 import {DepthFilter} from "@/components/filters/depth-filter";
 import {WidthFilter} from "@/components/filters/width-filter";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
+import {useRouter} from "next/router";
 
 
 function ResultsPageLayout(page) {
@@ -34,14 +35,31 @@ function ResultsPageLayout(page) {
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [showStickyFilterButton, setShowStickyFilterButton] = useState(false);
+    const router = useRouter();
+    const [title, setTitle] = useState('TITLE');
 
-    console.log("filters ResultsPageLayout: ", filters, meta);
+    const {params}  = router.query;
+
+    useEffect(() => {
+        if (params) {
+            const level0 = initialCategory[0];
+            const level1 = level0?.child_categories.find(el => el.slug === params[1]);
+            const level2 = level1?.child_categories.find(el => el.slug === params[2]);
+            const path = [level0, level1, level2].filter(Boolean);
+            setTitle(path.at(-1)?.name)
+        }
+    }, [initialCategory,params]);
+
+
+    console.log("filters ResultsPageLayout: ", filters, meta, currentCategory);
 
 
     const category = capitalize(currentCategory?.name) ?? 'Moebel';
     const brand = currentBrand && (' von der Marke ' + capitalize(currentBrand?.label));
     const color = currentColor && (' in der Farbe ' + capitalize(currentColor?.label));
     const material = currentMaterial && (' aus ' + capitalize(currentMaterial?.label));
+
+    console.log("initialCategory ResultsPageLayout: ", initialCategory);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -63,10 +81,10 @@ function ResultsPageLayout(page) {
             <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
                 <div className="hidden border-r bg-muted/40 md:block">
                     <div className="flex h-auto flex-col gap-2 sticky top-0 ">
-                        <div className="flex flex-col h-auto items-center border-b p-6 lg:px-4">
+                        <div className="flex flex-col h-auto justify-center items-start border-b p-6 lg:px-4">
                             <Link href="/" className="flex items-center gap-2 font-semibold">
                                 <Package2 className="h-6 w-6"/>
-                                <span className="">{capitalize(currentCategory?.name ?? 'Moebel')}</span>
+                                <span className="">{capitalize(initialCategory[0]?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
                         <div className="flex-1 max-h-full overflow-scroll">
@@ -81,39 +99,39 @@ function ResultsPageLayout(page) {
                     </div>
                 </div>
                 <div className="flex flex-col ">
-                    <div className="flex flex-col h-auto items-center gap-4 border-b bg-gray-100 p-4 lg:px-6 h-auto sticky top-0 z-10">
+                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 p-4 lg:px-6 ">
                         <SearchFilter/>
                         <div className="flex items-center justify-between hidden lg:block w-full">
                             <div>
-                                {/*<h1 className="text-lg font-semibold md:text-2xl">{title}</h1>*/}
+                                <h1 className="text-lg font-semibold md:text-2xl">{capitalize(title)}</h1>
                                 <span className={'font-light text-xs text-gray-500'}>
-                                    {total >= 1000 ? 'mehr als 1000 Produkte gefunden' : `${total} Produkte gefunden`}
+                                    {total >= 1000 ? 'mehr als 1000 Produkte gefunden' : `${meta?.total} Produkte gefunden`}
                                 </span>
                             </div>
 
-                            <div className={'flex gap-2'}>
-                                <Suspense fallback={<div>Loading...</div>}>
-                                    <BrandFilter filters={filters}/>
-                                    <ColorFilter meta={meta}/>
-                                    <DeliveryTimeFilter meta={meta}/>
-                                    <PriceRangeFilter meta={meta}/>
-                                    <ShapeFilter meta={meta}/>
-                                    <StyleFilter meta={meta}/>
-                                    <WidthFilter meta={meta}/>
-                                    <DepthFilter meta={meta}/>
-                                    <HeightFilter meta={meta}/>
-                                    <MaterialFilter meta={meta}/>
-                                </Suspense>
-                            </div>
                         </div>
                         <div className="lg:hidden relative">
                             <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
                         </div>
                     </div>
-                    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6 ">
+                    <div className={'flex gap-2 h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <BrandFilter filters={filters}/>
+                            <ColorFilter meta={meta}/>
+                            <DeliveryTimeFilter meta={meta}/>
+                            <PriceRangeFilter meta={meta}/>
+                            <ShapeFilter meta={meta}/>
+                            <StyleFilter meta={meta}/>
+                            <WidthFilter meta={meta}/>
+                            <DepthFilter meta={meta}/>
+                            <HeightFilter meta={meta}/>
+                            <MaterialFilter meta={meta}/>
+                        </Suspense>
+                    </div>
+                    <main className="flex flex-1 flex-col p-4 px-6">
                         <div className={'w-full flex justify-between items-center'}>
                             <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
-                                <Breadcrumbs initialCategory={initialCategory}/>
+                                <Breadcrumbs initialCategory={initialCategory[0]}/>
                                 <div className={'flex gap-4'}>
                                     <PageSizeSelector/>
                                     <PageSortSelector/>

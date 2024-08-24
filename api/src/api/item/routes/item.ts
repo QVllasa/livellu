@@ -10,15 +10,15 @@
 // path: src/api/item/routes/items.ts
 export default {
   routes: [
-    {
-      method: 'GET',
-      path: '/items',
-      handler: 'item.get',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
-    },
+    // {
+    //   method: 'GET',
+    //   path: '/items',
+    //   handler: 'item.get',
+    //   config: {
+    //     policies: [],
+    //     middlewares: [],
+    //   },
+    // },
     {
       method: 'POST',
       path: '/items',
@@ -28,14 +28,14 @@ export default {
         middlewares: [],
       },
     },
-    {
-      method: 'GET',
-      path: '/items/min-max-price',
-      handler: 'item.getMinMaxPrice',
-      config: {
-        policies: [],
-        middlewares: [],
-      },
-    },
+    // {
+    //   method: 'GET',
+    //   path: '/items/min-max-price',
+    //   handler: 'item.getMinMaxPrice',
+    //   config: {
+    //     policies: [],
+    //     middlewares: [],
+    //   },
+    // },
   ],
 };
