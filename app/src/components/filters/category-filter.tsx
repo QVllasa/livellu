@@ -6,10 +6,9 @@ import {Category} from "@/types";
 import {ChevronDownIcon, ChevronRightIcon, EnvelopeOpenIcon} from "@radix-ui/react-icons";
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
-import {fetchCategories} from "@/framework/category.ssr";
 
 
-export const CategoryFilter = () => {
+export const CategoryFilter = ({initialCategory}) => {
     const router = useRouter();
     const {params} = router.query;
 
@@ -23,16 +22,8 @@ export const CategoryFilter = () => {
 
 
     useEffect(() => {
-
-        const setCategories = async () => {
-            if (params && params.length > 0 && params[0] && !categoryLevel0) {
-                const data = await fetchCategories({identifier: params[0]})
-                setCategoryLevel0(data[0]);
-            }
-        }
-        setCategories();
-
-    }, [router.query, router.asPath]);
+        setCategoryLevel0(initialCategory);
+    }, [initialCategory, router.query, router.asPath]);
 
     useEffect(() => {
         if (params && params.length > 1 && params[1] && categoryLevel0) {

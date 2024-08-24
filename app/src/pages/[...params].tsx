@@ -42,6 +42,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     // Fetch initial category based on the identifier (assumed to be the first segment)
     const initialCategory = await fetchCategories({ identifier: categorySegments[0] });
 
+    console.log("initialCategory getServerSideProps: ", initialCategory);
+
     if (!initialCategory.length) {
         return {
             notFound: true,

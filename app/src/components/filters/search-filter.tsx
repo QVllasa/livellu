@@ -1,82 +1,78 @@
-import {Search} from "lucide-react";
+import {Search, X} from "lucide-react"; // Import the 'X' icon for clear button
 import {Input} from "@/shadcn/components/ui/input";
+import {Button} from "@/shadcn/components/ui/button";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
 export const SearchFilter = () => {
     const [searchTerm, setSearchTerm] = useState<string>('');
-    const [searchQuery, setSearchQuery] = useState<string[]>([]);
     const router = useRouter();
 
-    const handleSearch = (terms: string[]) => {
-        const query = {
-            ...router.query,
-            search: terms.join(' '),
-        };
-        router.replace({
-            pathname: router.pathname,
-            query,
-        });
+    const handleSearch = (term: string) => {
+        const pathSegments = router.query.params ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params]) : [];
+        const basePath = `/${pathSegments.join('/')}`;
+
+        // Build the updated query
+        const updatedQuery = { ...router.query };
+        delete updatedQuery.params; // Remove 'params' to keep it in the path
+
+        if (term.trim()) {
+            updatedQuery.search = term.trim();
+        } else {
+            delete updatedQuery.search; // Remove search if term is empty
+        }
+
+        // Construct the new URL path with query
+        const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+
+        router.replace(newUrl);
     };
 
-    const handleSearchChange = (e: any) => {
+    const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
     };
 
-    const handleSearchSubmit = (e: any) => {
+    const handleSearchSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (searchTerm.trim()) {
-            const newSearchTerms = [...searchQuery, searchTerm.trim()];
-            setSearchQuery(newSearchTerms);
-            setSearchTerm('');
-            handleSearch(newSearchTerms);
-        }
+        handleSearch(searchTerm);
     };
 
-    const handleChipRemove = (term: string) => {
-        const newSearchTerms = searchQuery.filter((t) => t !== term);
-        setSearchQuery(newSearchTerms);
-        handleSearch(newSearchTerms);
+    const handleClearSearch = () => {
+        setSearchTerm('');
+        handleSearch('');
     };
-
-
 
     useEffect(() => {
+        // Initialize searchTerm from URL query on first render
         if (router.query.search) {
-            setSearchQuery((router.query.search as string)?.split(' '));
+            setSearchTerm(router.query.search as string);
         } else {
-            setSearchQuery([]); // Clear the state when there's no search query in the URL
+            setSearchTerm(''); // Clear the input if there's no search query in the URL
         }
     }, [router.query.search]);
 
-
-    return <div className="w-full flex-1">
-        <form onSubmit={handleSearchSubmit} className="relative flex items-center justify-start">
-            <Search className="absolute left-2.5 top-3 h-4 w-4 text-muted-foreground"/>
+    return (
+        <form onSubmit={handleSearchSubmit} className="flex w-full items-center space-x-2 relative">
+            <Search className="absolute left-4 top-3 h-4 w-4 text-muted-foreground" />
             <Input
                 type="text"
                 placeholder="Durchsuche alle Produkte, Marken und Shops"
-                className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
+                className="w-full appearance-none bg-background pl-8 pr-12 shadow-none"
                 value={searchTerm}
                 onChange={handleSearchChange}
             />
-        </form>
-        <div className="flex gap-2 flex-wrap">
-            {searchQuery.map((term) => (
-                <div
-                    key={term}
-                    className="flex mt-2 items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700"
+            {searchTerm && (
+                <button
+                    type="button"
+                    onClick={handleClearSearch}
+                    className="absolute right-12 top-2.5 h-5 w-5 text-muted-foreground hover:text-black transition"
                 >
-                    {term}
-                    <button
-                        type="button"
-                        className="ml-2 text-gray-500 hover:text-gray-700"
-                        onClick={() => handleChipRemove(term)}
-                    >
-                        &times;
-                    </button>
-                </div>
-            ))}
-        </div>
-    </div>
-}
+                    <X className="h-4 w-4" />
+                </button>
+            )}
+            <Button size={'icon'} type="submit" variant={'outline'}>
+                <Search className="h-4 w-4 text-muted-foreground" />
+            </Button>
+        </form>
+    );
+};

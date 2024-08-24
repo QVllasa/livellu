@@ -31,24 +31,29 @@ export const PriceRangeFilter = ({ meta }: PriceRangeFilterProps) => {
 
     const handlePriceChange = (values: number[]) => {
         setPriceRange(values);
-        const query = { ...router.query };
+
+        const pathSegments = router.query.params ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params]) : [];
+        const basePath = `/${pathSegments.join('/')}`;
+
+        const updatedQuery = { ...router.query };
+        delete updatedQuery.params; // Remove 'params' to keep it in the path
 
         if (values[0] === defaultMin) {
-            delete query.minPrice;
+            delete updatedQuery.minPrice;
         } else {
-            query.minPrice = '' + values[0];
+            updatedQuery.minPrice = values[0].toString();
         }
 
         if (values[1] === defaultMax) {
-            delete query.maxPrice;
+            delete updatedQuery.maxPrice;
         } else {
-            query.maxPrice = '' + values[1];
+            updatedQuery.maxPrice = values[1].toString();
         }
 
-        router.replace({
-            pathname: router.pathname,
-            query,
-        }, undefined, { scroll: false });
+        // Construct the new URL path with query
+        const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+
+        router.replace(newUrl, undefined, { scroll: false });
     };
 
     return (

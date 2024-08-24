@@ -16,6 +16,10 @@ interface ProductsGridProps {
 export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGridProps) => {
     const router = useRouter();
 
+    // Check for search terms in the query
+    const searchTerms = router.query.search ? router.query.search.split(' ') : [];
+
+
     const loadMoreProducts = (selectedPage: number) => {
         const query = { ...router.query, page: selectedPage };
         router.push({
@@ -112,6 +116,8 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
         return pages;
     };
 
+
+
     return (
         <>
             {products.length === 0 ? (
@@ -119,6 +125,14 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
             ) : (
                 <div className="w-full flex flex-col items-center">
                     <div className="w-full max-w-7xl mx-auto p-0 lg:p-6">
+                        {/* Display search terms if they exist */}
+                        {searchTerms.length > 0 && (
+                            <div className="w-full max-w-7xl mx-auto p-4">
+                                <h2 className="text-lg font-semibold">
+                                    Suchergebnisse für: "{searchTerms.join(' ')}"
+                                </h2>
+                            </div>
+                        )}
                         <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4">
                             {products.map((product, index) => (
                                 <ProductCard key={index} product={product} />
