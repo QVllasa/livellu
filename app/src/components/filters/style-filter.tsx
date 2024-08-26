@@ -77,6 +77,10 @@ export const StyleFilter = ({ meta }: StyleFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (styles.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

@@ -92,6 +92,10 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (colors.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

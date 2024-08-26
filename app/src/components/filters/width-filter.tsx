@@ -81,6 +81,10 @@ export const WidthFilter = ({ meta }: WidthFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (widths.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

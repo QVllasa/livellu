@@ -1513,6 +1513,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     style: Attribute.JSON;
     deliveryTimes: Attribute.JSON;
     shape: Attribute.JSON;
+    discount: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

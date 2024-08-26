@@ -1,16 +1,20 @@
-import {Button} from "@/shadcn/components/ui/button";
 import {Card, CardContent} from "@/shadcn/components/ui/card";
 import {Product, Variant} from "@/types";
-import Link from "next/link";
 import {LandingRating} from "../../../../components/landing/rating/LandingRating";
 import Image from "next/image";
 import {useRouter} from "next/router";
 import {useState} from "react";
+import Link from "next/link";
+import {Badge} from "@/shadcn/components/ui/badge";
+import {Button} from "@/shadcn/components/ui/button";
+import {NotepadText} from "lucide-react";
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 
 const ProductCard = (props: { product: Product }) => {
     const { product } = props;
     const router = useRouter();
     const [imageSrc, setImageSrc] = useState<string | null>(null);
+    const [isLoaded, setLoaded] = useState(true);
 
     // Extract the color filter from the URL
     const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
@@ -32,40 +36,110 @@ const ProductCard = (props: { product: Product }) => {
         setImageSrc('/img/fallbackimage.webp'); // Using the fallback image from the public folder
     };
 
+    // Calculate discount percentage if the product is on sale
+    const isOnSale = variant?.priceOld && parseFloat(variant.priceOld) > variant.price;
+    const discountPercentage = isOnSale
+        ? Math.round(((parseFloat(variant.priceOld) - variant.price) / parseFloat(variant.priceOld)) * 100)
+        : null;
+
     if (!variant) {
         return null;
     }
 
+
     return (
-        <Card className="transition-transform transform hover:scale-105 max-w-full overflow-hidden">
-            <CardContent className="flex items-center justify-center p-0">
-                <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300">
-                    <Image
-                        src={imageSrc || variant?.altImageUrl}
-                        alt={variant?.productName}
-                        width={300}
-                        height={400}
-                        className="w-full h-36 sm:h-48 object-contain p-3"
-                        onError={handleImageError} // Set the fallback image if there's an error
-                    />
-                    <div className="p-2 sm:p-4">
-                        <h4 className="scroll-m-20 text-sm sm:text-base font-semibold tracking-tight truncate">
-                            {variant.productName}
-                        </h4>
-                        <div className="flex items-center mt-1 sm:mt-2 text-yellow-400">
-                            <LandingRating className={'fill-yellow-400'} rating={parseFloat(variant.averageRating ?? 0)} />
-                            <span className="ml-2 text-gray-400 font-semibold text-xs sm:text-sm">{variant.averageRating ? parseFloat(variant?.averageRating).toFixed(1) : 0}</span>
-                        </div>
-                        <div className="flex justify-between items-center mt-4 sm:mt-6">
-                            <span className="text-gray-900 font-bold text-sm sm:text-xl" suppressHydrationWarning>{variant?.price?.toLocaleString() + ' ' + product?.currency}</span>
-                            <Button size="sm">
-                                <Link href={variant.merchantLink ?? ''}>Zum Shop</Link>
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </CardContent>
-        </Card>
+
+        <TooltipProvider delayDuration={500}>
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Link href={variant.merchantLink ?? ''}  target={'_blank'} rel={'noopener norefererrer'} >
+                        <Card className="transition-transform transform hover:scale-105 max-w-full overflow-hidden">
+                            <CardContent className="flex items-center justify-center p-0">
+                                <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
+                                    {isOnSale && discountPercentage && (
+                                        <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
+                                            {`-${discountPercentage}% `}
+                                        </Badge>
+                                    )}
+                                    <Image
+                                        src={imageSrc || variant?.altImageUrl}
+                                        alt={variant?.productName}
+                                        width={300}
+                                        height={400}
+                                        onLoad={() => setLoaded(true)}
+                                        className={`w-full h-36 sm:h-48 object-contain p-3 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                        onError={handleImageError} // Set the fallback image if there's an error
+                                    />
+                                    {!isLoaded && (
+                                        <div className="  rounded-md p-4 max-w-sm w-full mx-auto mt-4">
+                                            <div className="animate-pulse flex space-x-4">
+                                                <div className="rounded bg-gray-300 h-48 w-full"></div>
+                                                <div className="flex-1 space-y-6 py-1">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    <div className="p-2 sm:p-4 relative">
+                                        {variant?.averageRating > 0 && (
+                                            <div className="absolute top-0 flex items-center mt-1 sm:mt-2 text-yellow-400">
+                                                <LandingRating size="small" className="fill-yellow-400" rating={parseFloat(variant?.averageRating ?? 0)}/>
+                                                <span className="ml-2 text-gray-400 font-semibold text-xs">
+                                                    {variant.averageRating ? parseFloat(variant?.averageRating).toFixed(1) : 0}
+                                                </span>
+                                            </div>
+                                        )}
+                                        <div className="flex justify-start items-center mt-4 sm:mt-4 mb-2">
+                                            {isOnSale ? (
+                                                <>
+                                                    <span className="text-red-600 font-semibold text-sm sm:text-base" suppressHydrationWarning>
+                                                    {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                                    </span>
+                                                    <span className="ml-2 text-gray-400 font-semibold text-xs line-through" suppressHydrationWarning>
+                                                        {variant?.priceOld?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                                    </span>
+                                                </>
+                                            ) : (
+                                                <span className="text-gray-900 font-semibold text-sm sm:text-base" suppressHydrationWarning>
+                                                    {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                                </span>
+                                            )}
+                                        </div>
+
+                                        <h4 className="scroll-m-20 text-xs sm:text-sm font-semibold tracking-tight truncate">
+                                            {variant.productName}
+                                        </h4>
+                                        <div className={'flex justify-between items-center mt-2 gap-2'}>
+                                            <Button
+                                                size="sm"
+                                                variant="outline"
+                                                className={` w-full `}
+                                            >
+                                                <span>Zum Shop</span>
+                                            </Button>
+                                            <Button
+                                                size="sm"
+                                                variant="outline"
+                                                onClick={(e) => {
+                                                    e.preventDefault();
+                                                    router.push(`/products/${product.id}`);
+                                                }}
+                                            >
+                                                <NotepadText className="h-4 w-4"/>
+                                            </Button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </Link>
+                </TooltipTrigger>
+                <TooltipContent className={'bg-blue-500 text-white'} key={variant.productId} sticky={'always'}>
+                    <p className={'text-xs font-light max-w-sm '}>{variant.productName}</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
+
     );
 };
 

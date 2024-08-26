@@ -80,6 +80,10 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (heights.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

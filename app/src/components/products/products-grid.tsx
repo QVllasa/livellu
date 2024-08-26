@@ -21,11 +21,26 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
 
 
     const loadMoreProducts = (selectedPage: number) => {
-        const query = { ...router.query, page: selectedPage };
-        router.push({
-            pathname: router.pathname,
-            query,
-        });
+        // Get the base path without query parameters
+        const basePath = router.pathname;
+
+        // Get current params from the URL
+        const pathSegments = router.query.params
+            ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params])
+            : [];
+
+        // Build the base path with current segments
+        const cleanedBasePath = `/${pathSegments.join('/')}`;
+
+        // Create a new query object excluding 'params' if it's present
+        const updatedQuery = { ...router.query, page: selectedPage };
+        delete updatedQuery.params;
+
+        // Manually construct the new URL path with query
+        const newUrl = `${cleanedBasePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+
+        // Use router.push to navigate to the constructed URL
+        router.push(newUrl);
     };
 
     const renderPageLinks = () => {
@@ -124,16 +139,16 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
                 <NoProductsFound />
             ) : (
                 <div className="w-full flex flex-col items-center">
-                    <div className="w-full max-w-7xl mx-auto p-0 lg:p-6">
+                    <div className="w-full mx-auto p-0 ">
                         {/* Display search terms if they exist */}
                         {searchTerms.length > 0 && (
-                            <div className="w-full max-w-7xl mx-auto p-4">
+                            <div className="w-full  mx-auto py-4">
                                 <h2 className="text-lg font-semibold">
                                     Suchergebnisse für: "{searchTerms.join(' ')}"
                                 </h2>
                             </div>
                         )}
-                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4">
+                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
                             {products.map((product, index) => (
                                 <ProductCard key={index} product={product} />
                             ))}

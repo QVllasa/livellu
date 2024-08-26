@@ -63,6 +63,10 @@ export const ShapeFilter = ({ meta }) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (shapes.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

@@ -85,6 +85,10 @@ export const MaterialFilter = ({ meta }: MaterialFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (materials.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover

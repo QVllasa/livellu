@@ -80,6 +80,10 @@ export const DepthFilter = ({ meta }: DepthFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    if (depths.length === 0) {
+        return null;
+    }
+
     return (
         <div className="w-auto">
             <Popover
