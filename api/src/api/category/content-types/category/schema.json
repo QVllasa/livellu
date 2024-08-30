@@ -51,12 +51,6 @@
     "slug": {
       "type": "text"
     },
-    "original_categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::original-category.original-category",
-      "mappedBy": "parent_category"
-    },
     "level": {
       "type": "integer"
     },

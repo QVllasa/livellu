@@ -941,11 +941,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     content: Attribute.RichText;
     summary: Attribute.Text;
     slug: Attribute.Text;
-    original_categories: Attribute.Relation<
-      'api::category.category',
-      'oneToMany',
-      'api::original-category.original-category'
-    >;
     level: Attribute.Integer;
     excluded_filters: Attribute.JSON;
     createdAt: Attribute.DateTime;
@@ -958,49 +953,6 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::category.category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiColorColor extends Schema.CollectionType {
-  collectionName: 'colors';
-  info: {
-    singularName: 'color';
-    pluralName: 'colors';
-    displayName: 'Color';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    label: Attribute.String & Attribute.Unique;
-    isColor: Attribute.Boolean & Attribute.DefaultTo<false>;
-    code: Attribute.String;
-    slug: Attribute.Text;
-    child_colors: Attribute.Relation<
-      'api::color.color',
-      'manyToMany',
-      'api::color.color'
-    >;
-    parent_colors: Attribute.Relation<
-      'api::color.color',
-      'manyToMany',
-      'api::color.color'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::color.color',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::color.color',
       'oneToOne',
       'admin::user'
     > &
@@ -1073,48 +1025,6 @@ export interface ApiItemItem extends Schema.CollectionType {
     createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
-export interface ApiMaterialMaterial extends Schema.CollectionType {
-  collectionName: 'materials';
-  info: {
-    singularName: 'material';
-    pluralName: 'materials';
-    displayName: 'Material';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    label: Attribute.Text & Attribute.Unique;
-    isMaterial: Attribute.Boolean & Attribute.DefaultTo<false>;
-    parent_materials: Attribute.Relation<
-      'api::material.material',
-      'manyToMany',
-      'api::material.material'
-    >;
-    child_materials: Attribute.Relation<
-      'api::material.material',
-      'manyToMany',
-      'api::material.material'
-    >;
-    slug: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::material.material',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::material.material',
-      'oneToOne',
-      'admin::user'
-    > &
       Attribute.Private;
   };
 }
@@ -1196,47 +1106,6 @@ export interface ApiNavigationNavigation extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::navigation.navigation',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiOriginalCategoryOriginalCategory
-  extends Schema.CollectionType {
-  collectionName: 'original_categories';
-  info: {
-    singularName: 'original-category';
-    pluralName: 'original-categories';
-    displayName: 'Original Category';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    name: Attribute.String & Attribute.Required & Attribute.Unique;
-    cat1: Attribute.Text;
-    cat2: Attribute.Text;
-    identifier: Attribute.Text;
-    cat3: Attribute.Text;
-    slug: Attribute.Text & Attribute.Unique;
-    parent_category: Attribute.Relation<
-      'api::original-category.original-category',
-      'manyToOne',
-      'api::category.category'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::original-category.original-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::original-category.original-category',
       'oneToOne',
       'admin::user'
     > &
@@ -1458,13 +1327,10 @@ declare module '@strapi/types' {
       'api::article-tag.article-tag': ApiArticleTagArticleTag;
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
-      'api::color.color': ApiColorColor;
       'api::feed.feed': ApiFeedFeed;
       'api::item.item': ApiItemItem;
-      'api::material.material': ApiMaterialMaterial;
       'api::merchant.merchant': ApiMerchantMerchant;
       'api::navigation.navigation': ApiNavigationNavigation;
-      'api::original-category.original-category': ApiOriginalCategoryOriginalCategory;
       'api::page.page': ApiPagePage;
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
