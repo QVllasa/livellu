@@ -1008,71 +1008,6 @@ export interface ApiColorColor extends Schema.CollectionType {
   };
 }
 
-export interface ApiDeliveryTimeDeliveryTime extends Schema.CollectionType {
-  collectionName: 'delivery_times';
-  info: {
-    singularName: 'delivery-time';
-    pluralName: 'delivery-times';
-    displayName: 'DeliveryTime';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    input: Attribute.String;
-    value: Attribute.JSON;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::delivery-time.delivery-time',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::delivery-time.delivery-time',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiDimensionDimension extends Schema.CollectionType {
-  collectionName: 'dimensions';
-  info: {
-    singularName: 'dimension';
-    pluralName: 'dimensions';
-    displayName: 'dimension';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    input: Attribute.Text;
-    width: Attribute.JSON;
-    height: Attribute.JSON;
-    depth: Attribute.JSON;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::dimension.dimension',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::dimension.dimension',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiFeedFeed extends Schema.CollectionType {
   collectionName: 'feeds';
   info: {
@@ -1429,37 +1364,6 @@ export interface ApiRouteRoute extends Schema.CollectionType {
   };
 }
 
-export interface ApiShapeShape extends Schema.CollectionType {
-  collectionName: 'shapes';
-  info: {
-    singularName: 'shape';
-    pluralName: 'shapes';
-    displayName: 'Shape';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    ean: Attribute.String;
-    values: Attribute.JSON;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::shape.shape',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::shape.shape',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiVariantVariant extends Schema.CollectionType {
   collectionName: 'variants';
   info: {
@@ -1514,6 +1418,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     deliveryTimes: Attribute.JSON;
     shape: Attribute.JSON;
     discount: Attribute.Float;
+    images: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1554,8 +1459,6 @@ declare module '@strapi/types' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::color.color': ApiColorColor;
-      'api::delivery-time.delivery-time': ApiDeliveryTimeDeliveryTime;
-      'api::dimension.dimension': ApiDimensionDimension;
       'api::feed.feed': ApiFeedFeed;
       'api::item.item': ApiItemItem;
       'api::material.material': ApiMaterialMaterial;
@@ -1566,7 +1469,6 @@ declare module '@strapi/types' {
       'api::path.path': ApiPathPath;
       'api::post.post': ApiPostPost;
       'api::route.route': ApiRouteRoute;
-      'api::shape.shape': ApiShapeShape;
       'api::variant.variant': ApiVariantVariant;
     }
   }

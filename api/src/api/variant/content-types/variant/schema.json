@@ -128,6 +128,9 @@
     },
     "discount": {
       "type": "float"
+    },
+    "images": {
+      "type": "json"
     }
   }
 }

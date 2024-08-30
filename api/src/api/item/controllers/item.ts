@@ -29,6 +29,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       filter = '',
       minPrice,  // Destructure minPrice from body
       maxPrice,  // Destructure maxPrice from body
+      productId,
       ...restParams
     } = body;
 

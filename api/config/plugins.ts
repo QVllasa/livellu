@@ -27,6 +27,7 @@ export default ({env}) => ({
         item: {
           settings: {
             filterableAttributes: ['categoryIdentifier',
+              'id',
               'variants.price',
               'variants.discount',
               'variants.averageRating',
