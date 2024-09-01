@@ -138,6 +138,15 @@ function ResultsPageLayout(page) {
                     <div className={'flex lg:hidden p-4 lg:p-6 max-w-sm'}>
                         <div className={'flex overflow-scroll gap-2 '}>
                             <MobileColorFilter meta={meta}/>
+                            <DeliveryTimeFilter meta={meta}/>
+                            <PriceRangeFilter meta={meta}/>
+                            <ShapeFilter meta={meta}/>
+                            <StyleFilter meta={meta}/>
+                            <WidthFilter meta={meta}/>
+                            <DepthFilter meta={meta}/>
+                            <HeightFilter meta={meta}/>
+                            <MaterialFilter meta={meta}/>
+                            <PromotionFilter/>
                         </div>
                     </div>
 
