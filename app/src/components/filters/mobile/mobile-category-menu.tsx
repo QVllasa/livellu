@@ -7,7 +7,7 @@ import Link from 'next/link'; // Import Link component for navigation
 import {Category} from '@/types';
 import {capitalize} from "lodash";
 import {allCategoriesAtom} from "@/store/filters";
-import {useAtom} from "jotai"; // Assuming you have a Category type defined
+import {useAtom} from "jotai";
 
 // Adjusted slide variants for a more subtle transition
 const slideVariants = {
@@ -25,7 +25,7 @@ const slideVariants = {
     }),
 };
 
-const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
+const MobileCategoryMenu = ({closeDrawer}: { closeDrawer: () => void }) => {
     const [allCategories] = useAtom(allCategoriesAtom);
     const [currentLevel, setCurrentLevel] = useState<number>(0);
     const [categoryPath, setCategoryPath] = useState<Category[][]>([allCategories]); // Array of arrays to store categories at each level
@@ -35,7 +35,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
     const [currentCategoryName, setCurrentCategoryName] = useState<string>(''); // To store the current category name
 
     useEffect(() => {
-            setCategoryPath([allCategories]);
+        setCategoryPath([allCategories]);
     }, [allCategories]);
 
     const handleCategoryClick = async (category: Category) => {
@@ -65,7 +65,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
     const categoriesToShow = categoryPath[currentLevel];
 
     return (
-        <div className="w-full relative">
+        <div className="w-full relative divide-y">
             {currentLevel !== 0 && (
                 <Button variant={'link'} className={'text-lg font-semibold w-full justify-between'} onClick={handleBackClick}>
                     Zurück
@@ -81,28 +81,31 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
                     animate="center"
                     exit="exit"
                     transition={{
-                        x: { type: 'spring', stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 },
+                        x: {type: 'spring', stiffness: 300, damping: 30},
+                        opacity: {duration: 0.2},
                     }}
                 >
-                    <div className="">
+                    <div className="divide-y">
                         {!loading ? (
                             <>
                                 {currentLevel > 0 && (
-                                    <Link href={urlPath} passHref>
-                                        <Button
-                                            onClick={closeDrawer}
-                                            variant={'link'}
-                                            className="text-lg font-semibold w-full justify-between"
-                                        >
-                                            Alles unter {capitalize(currentCategoryName)}
-                                        </Button>
-                                    </Link>
+
+                                        <Link href={urlPath} passHref>
+                                            <Button
+                                                onClick={closeDrawer}
+                                                variant={'link'}
+                                                className="text-lg font-semibold w-full justify-between"
+                                            >
+                                                Alles unter {capitalize(currentCategoryName)}
+                                            </Button>
+                                        </Link>
+
+
                                 )}
                                 {categoriesToShow.map((category) => (
                                     <CardContent
                                         key={category.id}
-                                        className="flex items-center justify-between cursor-pointer w-full p-0 my-2"
+                                        className="flex items-center justify-between cursor-pointer w-full p-0"
                                     >
                                         {category.child_categories?.length > 0 ? (
                                             // If category has subcategories, handle click to show them
@@ -112,12 +115,12 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
                                                 onClick={() => handleCategoryClick(category)}
                                             >
                                                 <span>{capitalize(category.name)}</span>
-                                                <ChevronRight className="w-4 h-4 ml-2" />
+                                                <ChevronRight className="w-4 h-4 ml-2"/>
                                             </Button>
                                         ) : (
                                             // If it's the deepest level, make it a link
                                             <Link href={`${urlPath}/${category.slug}`} passHref>
-                                                <Button   onClick={closeDrawer} variant={'link'} className="text-lg font-semibold w-full justify-between">
+                                                <Button onClick={closeDrawer} variant={'link'} className="text-lg font-semibold w-full justify-between">
                                                     <span>{capitalize(category.name)}</span>
                                                 </Button>
                                             </Link>
