@@ -25,7 +25,7 @@ const slideVariants = {
     }),
 };
 
-const CategoryStepper = ({ closeDrawer }: { closeDrawer: () => void })  => {
+const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void })  => {
     const [allCategories] = useAtom(allCategoriesAtom);
     const [currentLevel, setCurrentLevel] = useState<number>(0);
     const [categoryPath, setCategoryPath] = useState<Category[][]>([allCategories]); // Array of arrays to store categories at each level
@@ -135,4 +135,4 @@ const CategoryStepper = ({ closeDrawer }: { closeDrawer: () => void })  => {
     );
 };
 
-export default CategoryStepper;
+export default MobileCategoryMenu;

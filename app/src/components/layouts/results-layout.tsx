@@ -4,27 +4,27 @@ import Link from "next/link";
 import {Package2} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
-import {CategoryFilter} from "@/components/filters/category-filter";
-import PageSizeSelector from "@/components/filters/page-size-selector";
-import PageSortSelector from "@/components/filters/page-sort-selector";
-import {Category} from "@/types";
+import {CategoryFilter} from "@/components/filters/desktop/category-filter";
+import PageSizeSelector from "@/components/filters/desktop/page-size-selector";
+import PageSortSelector from "@/components/filters/desktop/page-sort-selector";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger,} from "@/shadcn/components/ui/drawer";
 import {Button} from "@/shadcn/components/ui/button";
-import {PriceRangeFilter} from "@/components/filters/price-range-filter";
-import {ColorFilter} from "@/components/filters/color-filter";
-import {MaterialFilter} from "@/components/filters/material-filter";
+import {PriceRangeFilter} from "@/components/filters/desktop/price-range-filter";
+import {ColorFilter} from "@/components/filters/desktop/color-filter";
+import {MaterialFilter} from "@/components/filters/desktop/material-filter";
 import {useAtom} from "jotai";
 import {currentBrandAtom, currentCategoryAtom, currentColorAtom, currentMaterialAtom,} from "@/store/filters";
-import {ShapeFilter} from "@/components/filters/shape-filter";
-import {DeliveryTimeFilter} from "@/components/filters/delivery-time-filter";
-import {StyleFilter} from "@/components/filters/style-filter";
-import {HeightFilter} from "@/components/filters/height-filter";
-import {DepthFilter} from "@/components/filters/depth-filter";
-import {WidthFilter} from "@/components/filters/width-filter";
+import {ShapeFilter} from "@/components/filters/desktop/shape-filter";
+import {DeliveryTimeFilter} from "@/components/filters/desktop/delivery-time-filter";
+import {StyleFilter} from "@/components/filters/desktop/style-filter";
+import {HeightFilter} from "@/components/filters/desktop/height-filter";
+import {DepthFilter} from "@/components/filters/desktop/depth-filter";
+import {WidthFilter} from "@/components/filters/desktop/width-filter";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {useRouter} from "next/router";
-import PromotionFilter from "@/components/filters/promotion-filter";
+import PromotionFilter from "@/components/filters/desktop/promotion-filter";
 import {SearchFilter} from "@/components/filters/search-filter";
+import {MobileColorFilter} from "@/components/filters/mobile/mobile-color-filter";
 
 function ResultsPageLayout(page) {
     const {initialCategory, total, meta, filters} = page.children.props;
@@ -95,33 +95,6 @@ function ResultsPageLayout(page) {
                 <Header initialCategory={initialCategory[0]}/>
             </div>
 
-            {/*<div className={'lg:hidden p-4 lg:p-6'}>*/}
-
-                {/*<div className={'flex overflow-x-scroll gap-2 p-1'}>*/}
-                    {/*<Suspense fallback={<div>Loading...</div>}>*/}
-
-                    {/*    <BrandFilter filters={filters}/>*/}
-                    {/*    <ColorFilter meta={meta}/>*/}
-                    {/*    <DeliveryTimeFilter meta={meta}/>*/}
-                    {/*    <PriceRangeFilter meta={meta}/>*/}
-                    {/*    <ShapeFilter meta={meta}/>*/}
-                    {/*    <StyleFilter meta={meta}/>*/}
-                    {/*    {showMoreFilters && (*/}
-                    {/*        <>*/}
-                    {/*            <WidthFilter meta={meta}/>*/}
-                    {/*            <DepthFilter meta={meta}/>*/}
-                    {/*            <HeightFilter meta={meta}/>*/}
-                    {/*            <MaterialFilter meta={meta}/>*/}
-                    {/*            <PromotionFilter/>*/}
-                    {/*        </>*/}
-                    {/*    )}*/}
-
-
-                    {/*</Suspense>*/}
-                {/*</div>*/}
-            {/*</div>*/}
-
-
             <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative ">
                 <div className="hidden border-r bg-muted/40 lg:block">
                     <div className="flex h-auto flex-col gap-2 sticky top-0 ">
@@ -148,9 +121,6 @@ function ResultsPageLayout(page) {
                             <SearchFilter/>
                         </div>
 
-                        <div className={'p-2 px-4'}>
-                            <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
-                        </div>
 
                     </div>
                     <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 px-4 lg:px-6  ">
@@ -163,6 +133,15 @@ function ResultsPageLayout(page) {
                             </div>
                         </div>
                     </div>
+
+                    {/*Mobile */}
+                    <div className={'flex lg:hidden p-4 lg:p-6 max-w-sm'}>
+                        <div className={'flex overflow-scroll gap-2 '}>
+                            <MobileColorFilter meta={meta}/>
+                        </div>
+                    </div>
+
+                    {/*Desktop*/}
                     <div className={'hidden lg:flex h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
                         <div className={'flex'}>
                             <div className={'grid grid-cols-6 gap-2'}>
@@ -218,7 +197,7 @@ function ResultsPageLayout(page) {
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                    <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
+                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
                     </div>
                 </div>
             </div>
@@ -229,7 +208,7 @@ function ResultsPageLayout(page) {
 
 export const getResultsLayout = (page: React.ReactElement, layoutProps: any) => <ResultsPageLayout {...layoutProps}>{page}</ResultsPageLayout>;
 
-const FilterDrawer = ({setIsDrawerOpen, initialCategory}: { setIsDrawerOpen: any, initialCategory: Category | null }) => {
+const FilterDrawer = ({setIsDrawerOpen}: { setIsDrawerOpen: any }) => {
     return (
         <Drawer>
             <DrawerTrigger asChild>

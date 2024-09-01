@@ -13,7 +13,7 @@ import {Menu} from "lucide-react";
 import {CategoryMenu} from "@/components/layouts/menu/category-menu";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
-import CategoryStepper from "@/components/filters/category-stepper";
+import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
@@ -71,7 +71,7 @@ const Header = ({initialCategory}) => {
                                         </TabsList>
                                         <TabsContent  value="allcategories">
                                             <Suspense fallback={<div>Loading...</div>}>
-                                                <CategoryStepper closeDrawer={() =>  setIsSheetOpen(false)}/>
+                                                <MobileCategoryMenu closeDrawer={() =>  setIsSheetOpen(false)}/>
                                             </Suspense>
 
                                         </TabsContent>
