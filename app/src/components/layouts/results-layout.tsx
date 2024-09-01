@@ -15,7 +15,6 @@ import {ColorFilter} from "@/components/filters/color-filter";
 import {MaterialFilter} from "@/components/filters/material-filter";
 import {useAtom} from "jotai";
 import {currentBrandAtom, currentCategoryAtom, currentColorAtom, currentMaterialAtom,} from "@/store/filters";
-import {BrandFilter} from "@/components/filters/brand-filter";
 import {ShapeFilter} from "@/components/filters/shape-filter";
 import {DeliveryTimeFilter} from "@/components/filters/delivery-time-filter";
 import {StyleFilter} from "@/components/filters/style-filter";
@@ -27,7 +26,7 @@ import {useRouter} from "next/router";
 import PromotionFilter from "@/components/filters/promotion-filter";
 
 function ResultsPageLayout(page) {
-    const { initialCategory, total, meta, filters } = page.children.props;
+    const {initialCategory, total, meta, filters} = page.children.props;
     const [currentCategory, setCurrentCategory] = useAtom(currentCategoryAtom);
     const [currentColor, setCurrentColor] = useAtom(currentColorAtom);
     const [currentMaterial, setCurrentMaterial] = useAtom(currentMaterialAtom);
@@ -38,7 +37,7 @@ function ResultsPageLayout(page) {
     const router = useRouter();
     const [title, setTitle] = useState('TITLE');
 
-    const { params } = router.query;
+    const {params} = router.query;
 
     useEffect(() => {
         if (params) {
@@ -97,31 +96,31 @@ function ResultsPageLayout(page) {
 
             <div className={'lg:hidden p-4'}>
                 <div className={'w-full  flex justify-between items-center p-2 '}>
-                    <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
-                        <Breadcrumbs initialCategory={initialCategory[0]}/>
-                    </Suspense>
+                    {/*<Suspense fallback={<div>Loading Breadcrumbs...</div>}>*/}
+                    {/*    <Breadcrumbs initialCategory={initialCategory[0]}/>*/}
+                    {/*</Suspense>*/}
                 </div>
                 <div className={'flex overflow-x-scroll gap-2 p-1'}>
-                    <Suspense fallback={<div>Loading...</div>}>
+                    {/*<Suspense fallback={<div>Loading...</div>}>*/}
 
-                        <BrandFilter filters={filters}/>
-                        <ColorFilter meta={meta}/>
-                        <DeliveryTimeFilter meta={meta}/>
-                        <PriceRangeFilter meta={meta}/>
-                        <ShapeFilter meta={meta}/>
-                        <StyleFilter meta={meta}/>
-                        {showMoreFilters && (
-                            <>
-                                <WidthFilter meta={meta}/>
-                                <DepthFilter meta={meta}/>
-                                <HeightFilter meta={meta}/>
-                                <MaterialFilter meta={meta}/>
-                                <PromotionFilter/>
-                            </>
-                        )}
+                    {/*    <BrandFilter filters={filters}/>*/}
+                    {/*    <ColorFilter meta={meta}/>*/}
+                    {/*    <DeliveryTimeFilter meta={meta}/>*/}
+                    {/*    <PriceRangeFilter meta={meta}/>*/}
+                    {/*    <ShapeFilter meta={meta}/>*/}
+                    {/*    <StyleFilter meta={meta}/>*/}
+                    {/*    {showMoreFilters && (*/}
+                    {/*        <>*/}
+                    {/*            <WidthFilter meta={meta}/>*/}
+                    {/*            <DepthFilter meta={meta}/>*/}
+                    {/*            <HeightFilter meta={meta}/>*/}
+                    {/*            <MaterialFilter meta={meta}/>*/}
+                    {/*            <PromotionFilter/>*/}
+                    {/*        </>*/}
+                    {/*    )}*/}
 
 
-                    </Suspense>
+                    {/*</Suspense>*/}
                 </div>
             </div>
 
@@ -159,26 +158,30 @@ function ResultsPageLayout(page) {
                     </div>
                     <div className={'hidden lg:flex h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
                         <div className={'flex'}>
-                            <Suspense fallback={<div>Loading...</div>}>
-                                <div className={'grid grid-cols-6 gap-2'}>
-                                    <BrandFilter filters={filters}/>
-                                    <ColorFilter meta={meta}/>
-                                    <DeliveryTimeFilter meta={meta}/>
-                                    <PriceRangeFilter meta={meta}/>
-                                    <ShapeFilter meta={meta}/>
-                                    <StyleFilter meta={meta}/>
-                                    {showMoreFilters && (
-                                        <>
-                                            <WidthFilter meta={meta}/>
-                                            <DepthFilter meta={meta}/>
-                                            <HeightFilter meta={meta}/>
-                                            <MaterialFilter meta={meta}/>
-                                            <PromotionFilter/>
-                                        </>
-                                    )}
-                                </div>
 
-                            </Suspense>
+                            <div className={'grid grid-cols-6 gap-2'}>
+
+                                {/*TODO SUSPENSE ERROR */}
+                                {/*<Suspense fallback={<div>Loading...</div>}>*/}
+                                {/*    <BrandFilter filters={filters}/>*/}
+                                {/*</Suspense>*/}
+                                <ColorFilter meta={meta}/>
+                                <DeliveryTimeFilter meta={meta}/>
+                                <PriceRangeFilter meta={meta}/>
+                                <ShapeFilter meta={meta}/>
+                                <StyleFilter meta={meta}/>
+                                {showMoreFilters && (
+                                    <>
+                                        <WidthFilter meta={meta}/>
+                                        <DepthFilter meta={meta}/>
+                                        <HeightFilter meta={meta}/>
+                                        <MaterialFilter meta={meta}/>
+                                        <PromotionFilter/>
+                                    </>
+                                )}
+                            </div>
+
+
                             <Button size={'sm'} onClick={toggleMoreFilters} variant="link" className="ml-auto">
                                 {showMoreFilters ? 'Weniger Filter' : 'Weitere Filter'}
                             </Button>
@@ -230,7 +233,7 @@ const FilterDrawer = ({setIsDrawerOpen, initialCategory}: { setIsDrawerOpen: any
                         <DrawerTitle>Filter einstellen</DrawerTitle>
                     </DrawerHeader>
                     <div className={'h-full overflow-auto p-4'}>
-                        <CategoryFilter />
+                        <CategoryFilter/>
                     </div>
                     <DrawerFooter className={''}>
                         <DrawerClose asChild>
