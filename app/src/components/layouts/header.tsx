@@ -80,6 +80,7 @@ const Header = ({initialCategory}) => {
                             </Sheet>
                         </div>
 
+
                     </div>
                     <div className={'hidden xl:flex w-[48rem]'}>
                         <SearchFilter/>
