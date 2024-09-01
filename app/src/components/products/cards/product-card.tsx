@@ -54,7 +54,7 @@ const ProductCard = (props: { product: Product }) => {
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Link href={variant.merchantLink ?? ''}  target={'_blank'} rel={'noopener norefererrer'} >
-                        <Card className="transition-transform transform hover:scale-105 max-w-full overflow-hidden">
+                        <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden">
                             <CardContent className="flex items-center justify-center p-0 relative">
                                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
                                     <div className={'relative w-full h-0 pt-[75%]'}>

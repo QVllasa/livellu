@@ -24,6 +24,7 @@ import {WidthFilter} from "@/components/filters/width-filter";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {useRouter} from "next/router";
 import PromotionFilter from "@/components/filters/promotion-filter";
+import {SearchFilter} from "@/components/filters/search-filter";
 
 function ResultsPageLayout(page) {
     const {initialCategory, total, meta, filters} = page.children.props;
@@ -94,13 +95,9 @@ function ResultsPageLayout(page) {
                 <Header initialCategory={initialCategory[0]}/>
             </div>
 
-            <div className={'lg:hidden p-4'}>
-                <div className={'w-full  flex justify-between items-center p-2 '}>
-                    {/*<Suspense fallback={<div>Loading Breadcrumbs...</div>}>*/}
-                    {/*    <Breadcrumbs initialCategory={initialCategory[0]}/>*/}
-                    {/*</Suspense>*/}
-                </div>
-                <div className={'flex overflow-x-scroll gap-2 p-1'}>
+            {/*<div className={'lg:hidden p-4 lg:p-6'}>*/}
+
+                {/*<div className={'flex overflow-x-scroll gap-2 p-1'}>*/}
                     {/*<Suspense fallback={<div>Loading...</div>}>*/}
 
                     {/*    <BrandFilter filters={filters}/>*/}
@@ -121,22 +118,22 @@ function ResultsPageLayout(page) {
 
 
                     {/*</Suspense>*/}
-                </div>
-            </div>
+                {/*</div>*/}
+            {/*</div>*/}
 
 
-            <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
+            <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative ">
                 <div className="hidden border-r bg-muted/40 lg:block">
                     <div className="flex h-auto flex-col gap-2 sticky top-0 ">
-                        <div className="flex flex-col h-auto justify-center items-start border-b p-6 lg:px-4">
-                            <Link href="/" className="flex items-center gap-2 font-semibold">
+                        <div className="flex flex-col h-auto justify-center items-start border-b ">
+                            <Link href="/" className="flex items-center gap-2 font-semibold p-0">
                                 <Package2 className="h-6 w-6"/>
                                 <span className="">{capitalize(initialCategory[0]?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
                         <div className="flex-1 max-h-full overflow-scroll">
                             <Suspense fallback={<div>Loading...</div>}>
-                                <div className={'w-64 pl-4'}>
+                                <div className={'w-64 '}>
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <CategoryFilter initialCategory={initialCategory[0]}/>
                                     </Suspense>
@@ -146,8 +143,18 @@ function ResultsPageLayout(page) {
                     </div>
                 </div>
                 <div className="flex flex-col ">
-                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 px-4  ">
-                        <div className="flex items-center justify-between w-full px-2">
+                    <div className={'flex flex-col w-full relative '}>
+                        <div className={'p-2'}>
+                            <SearchFilter/>
+                        </div>
+
+                        <div className={'p-2 px-4'}>
+                            <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
+                        </div>
+
+                    </div>
+                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 px-4 lg:px-6  ">
+                        <div className="flex items-center justify-between w-full ">
                             <div>
                                 <h1 className="text-lg font-semibold md:text-2xl">{capitalize(title)}</h1>
                                 <span className={'font-light text-xs text-gray-500'}>
@@ -158,9 +165,7 @@ function ResultsPageLayout(page) {
                     </div>
                     <div className={'hidden lg:flex h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
                         <div className={'flex'}>
-
                             <div className={'grid grid-cols-6 gap-2'}>
-
                                 {/*TODO SUSPENSE ERROR */}
                                 {/*<Suspense fallback={<div>Loading...</div>}>*/}
                                 {/*    <BrandFilter filters={filters}/>*/}
@@ -193,7 +198,7 @@ function ResultsPageLayout(page) {
                             </Button>
                         )}
                     </div>
-                    <main className="flex flex-1 flex-col p-4 px-6">
+                    <main className="flex flex-1 flex-col p-4 lg:px-6">
                         <div className={'w-full hidden lg:flex justify-between items-center'}>
                             <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                                 <Breadcrumbs initialCategory={initialCategory[0]}/>
@@ -203,12 +208,17 @@ function ResultsPageLayout(page) {
                                 </div>
                             </Suspense>
                         </div>
+                        <div className={'w-full  flex justify-between items-center p-0 '}>
+                            <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
+                                <Breadcrumbs initialCategory={initialCategory[0]}/>
+                            </Suspense>
+                        </div>
                         {page.children}
                     </main>
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
+                    <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
                     </div>
                 </div>
             </div>
@@ -223,7 +233,7 @@ const FilterDrawer = ({setIsDrawerOpen, initialCategory}: { setIsDrawerOpen: any
     return (
         <Drawer>
             <DrawerTrigger asChild>
-                <Button className={'w-full'} onClick={() => setIsDrawerOpen(true)}>
+                <Button variant={'outline'} className={'w-full bg-blue-500 text-white'} onClick={() => setIsDrawerOpen(true)}>
                     Filter
                 </Button>
             </DrawerTrigger>
