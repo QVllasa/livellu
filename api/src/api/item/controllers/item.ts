@@ -75,7 +75,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       const searchResults = await index.search(searchTerms as string, searchParams);
 
       // Exclude unwanted facets from the facetDistribution
-      const unwantedFacets = ['variants.price']; // Example unwanted facets
+      const unwantedFacets = ['variants.price', 'variants.slug']; // Example unwanted facets
       const filteredFacetDistribution = Object.keys(searchResults.facetDistribution)
         .filter(key => !unwantedFacets.includes(key))
         .reduce((obj, key) => {

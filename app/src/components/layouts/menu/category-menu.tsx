@@ -1,19 +1,3 @@
-//
-// export const CategoryMenu = () => {
-
-//
-//     return (
-//         <NavigationMenu className="w-full lg:flex lg:space-x-4 lg:items-center">
-
-//         </NavigationMenu>
-//     );
-// };
-//
-//
-//
-// "use client"
-
-
 import React, {useEffect, useState} from "react";
 import {Category} from "@/types";
 import {fetchCategories} from "@/framework/category.ssr";

@@ -45,7 +45,7 @@
     "content": {
       "type": "richtext"
     },
-    "summary": {
+    "description": {
       "type": "text"
     },
     "slug": {

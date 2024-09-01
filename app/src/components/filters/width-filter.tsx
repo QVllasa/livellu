@@ -96,7 +96,7 @@ export const WidthFilter = ({ meta }: WidthFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || currentWidths.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex w-full ${isOpen || currentWidths.length > 0 ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Breite</span>
                         {currentWidths.length > 0 && (

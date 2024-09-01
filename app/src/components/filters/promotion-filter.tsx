@@ -48,7 +48,7 @@ const PromotionFilter = () => {
             <Button
                 size="sm"
                 variant={isPromotionActive ? null : "outline"} // Change variant based on active state
-                className={`flex justify-between  ${isPromotionActive ? "bg-blue-500 text-white" : ""}`}
+                className={`flex  ${isPromotionActive ? "bg-blue-500 text-white" : ""}`}
                 onClick={handlePromotionToggle}
             >
                 Im Sale %

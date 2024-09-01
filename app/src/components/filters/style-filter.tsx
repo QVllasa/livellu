@@ -92,7 +92,7 @@ export const StyleFilter = ({ meta }: StyleFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || currentStyles.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex  w-full ${isOpen || currentStyles.length > 0 ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Stil</span>
                         {currentStyles.length > 0 && (

@@ -95,7 +95,7 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || currentHeights.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex  w-full ${isOpen || currentHeights.length > 0 ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Höhe</span>
                         {currentHeights.length > 0 && (

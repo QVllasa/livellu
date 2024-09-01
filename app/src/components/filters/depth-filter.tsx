@@ -95,7 +95,7 @@ export const DepthFilter = ({ meta }: DepthFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || currentDepths.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex w-full ${isOpen || currentDepths.length > 0 ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Tiefe</span>
                         {currentDepths.length > 0 && (

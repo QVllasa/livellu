@@ -43,14 +43,14 @@ const ProductPage: NextPageWithLayout<ProductPageProps> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps<ProductPageProps> = async (
     context: GetServerSidePropsContext
 ) => {
-    const { productId } = context.query;
+    const { slug } = context.query;
 
 
     const filters = {}
 
-    if (productId !== undefined) {
+    if (slug !== undefined) {
         // @ts-ignore
-        filters['filter'] = `id = ${productId}`
+        filters['filter'] = `variants.slug = ${slug}`
     }
 
     try {

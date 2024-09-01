@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-08-30T08:36:52.519Z"
+    "x-generation-date": "2024-08-31T17:15:18.799Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1743,7 +1743,7 @@
                                             "content": {
                                               "type": "string"
                                             },
-                                            "summary": {
+                                            "description": {
                                               "type": "string"
                                             },
                                             "slug": {
@@ -3639,7 +3639,7 @@
                                             "content": {
                                               "type": "string"
                                             },
-                                            "summary": {
+                                            "description": {
                                               "type": "string"
                                             },
                                             "slug": {
@@ -5001,7 +5001,7 @@
                         "content": {
                           "type": "string"
                         },
-                        "summary": {
+                        "description": {
                           "type": "string"
                         },
                         "slug": {
@@ -5225,7 +5225,7 @@
           "content": {
             "type": "string"
           },
-          "summary": {
+          "description": {
             "type": "string"
           },
           "slug": {
@@ -10223,7 +10223,7 @@
                                                           "content": {
                                                             "type": "string"
                                                           },
-                                                          "summary": {
+                                                          "description": {
                                                             "type": "string"
                                                           },
                                                           "slug": {

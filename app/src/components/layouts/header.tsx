@@ -13,10 +13,12 @@ import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Menu} from "lucide-react";
 import {CategoryMenu} from "@/components/layouts/menu/category-menu";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
+import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
+import CategoryStepper from "@/components/filters/category-stepper";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
-const Header = () => {
+const Header = ({initialCategory}) => {
   const { show, hideHeaderSearch } = useHeaderSearch();
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const [isAuthorize] = useAtom(authorizationAtom);
@@ -30,6 +32,8 @@ const Header = () => {
 
 
   const closeLocation = () => setOpenDropdown(false);
+
+
 
 
   return (
@@ -65,20 +69,35 @@ const Header = () => {
                                   </Button>
                               </SheetTrigger>
                               <SheetContent side="right" className="p-4">
-                                  <Navigation/>
+
+                                  <Tabs defaultValue="account" className="">
+                                  <TabsList className="grid w-full grid-cols-2">
+                                  <TabsTrigger value="navigation">navigation</TabsTrigger>
+                                  <TabsTrigger value="categories">categories</TabsTrigger>
+                                  </TabsList>
+                                  <TabsContent value="navigation">
+                                      <Navigation/>
+
+                                  </TabsContent>
+                                  <TabsContent className={''} value="categories">
+                                      <CategoryStepper closeDrawer={() =>  setIsSheetOpen(false)}/>
+
+
+                                  </TabsContent>
+                                  </Tabs>
                               </SheetContent>
                           </Sheet>
                       </div>
 
                   </div>
-                  <div className={'w-[48rem]'}>
+                  <div className={'hidden xl:flex w-[48rem]'}>
                       <SearchFilter/>
                   </div>
-                  <ul className="">
+                  <ul className="hidden lg:flex">
                       <Navigation/>
                   </ul>
               </div>
-              <div className={'flex w-full justify-center items-center'}>
+              <div className={'hidden lg:flex w-full justify-center items-center'}>
                   <CategoryMenu/>
               </div>
 

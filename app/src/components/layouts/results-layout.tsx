@@ -34,6 +34,7 @@ function ResultsPageLayout(page) {
     const [currentBrand, setCurrentBrand] = useAtom(currentBrandAtom);
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
     const [showStickyFilterButton, setShowStickyFilterButton] = useState(false);
+    const [showMoreFilters, setShowMoreFilters] = useState(false);
     const router = useRouter();
     const [title, setTitle] = useState('TITLE');
 
@@ -84,18 +85,53 @@ function ResultsPageLayout(page) {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    const toggleMoreFilters = () => {
+        setShowMoreFilters(prevState => !prevState);
+    };
+
     return (
         <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150 relative">
             <div className={'relative bg-white h-full w-full z-30'}>
-                <Header />
+                <Header initialCategory={initialCategory[0]}/>
             </div>
 
-            <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
-                <div className="hidden border-r bg-muted/40 md:block">
+            <div className={'lg:hidden p-4'}>
+                <div className={'w-full  flex justify-between items-center p-2 '}>
+                    <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
+                        <Breadcrumbs initialCategory={initialCategory[0]}/>
+                    </Suspense>
+                </div>
+                <div className={'flex overflow-x-scroll gap-2 p-1'}>
+                    <Suspense fallback={<div>Loading...</div>}>
+
+                        <BrandFilter filters={filters}/>
+                        <ColorFilter meta={meta}/>
+                        <DeliveryTimeFilter meta={meta}/>
+                        <PriceRangeFilter meta={meta}/>
+                        <ShapeFilter meta={meta}/>
+                        <StyleFilter meta={meta}/>
+                        {showMoreFilters && (
+                            <>
+                                <WidthFilter meta={meta}/>
+                                <DepthFilter meta={meta}/>
+                                <HeightFilter meta={meta}/>
+                                <MaterialFilter meta={meta}/>
+                                <PromotionFilter/>
+                            </>
+                        )}
+
+
+                    </Suspense>
+                </div>
+            </div>
+
+
+            <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative">
+                <div className="hidden border-r bg-muted/40 lg:block">
                     <div className="flex h-auto flex-col gap-2 sticky top-0 ">
                         <div className="flex flex-col h-auto justify-center items-start border-b p-6 lg:px-4">
                             <Link href="/" className="flex items-center gap-2 font-semibold">
-                                <Package2 className="h-6 w-6" />
+                                <Package2 className="h-6 w-6"/>
                                 <span className="">{capitalize(initialCategory[0]?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
@@ -103,7 +139,7 @@ function ResultsPageLayout(page) {
                             <Suspense fallback={<div>Loading...</div>}>
                                 <div className={'w-64 pl-4'}>
                                     <Suspense fallback={<div>Loading...</div>}>
-                                        <CategoryFilter initialCategory={initialCategory[0]} />
+                                        <CategoryFilter initialCategory={initialCategory[0]}/>
                                     </Suspense>
                                 </div>
                             </Suspense>
@@ -111,8 +147,8 @@ function ResultsPageLayout(page) {
                     </div>
                 </div>
                 <div className="flex flex-col ">
-                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 p-4 lg:px-6 ">
-                        <div className="flex items-center justify-between hidden lg:block w-full">
+                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 px-4  ">
+                        <div className="flex items-center justify-between w-full px-2">
                             <div>
                                 <h1 className="text-lg font-semibold md:text-2xl">{capitalize(title)}</h1>
                                 <span className={'font-light text-xs text-gray-500'}>
@@ -120,24 +156,34 @@ function ResultsPageLayout(page) {
                                 </span>
                             </div>
                         </div>
-                        <div className="lg:hidden relative">
-                            <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen} />
-                        </div>
                     </div>
-                    <div className={'flex gap-2 h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <BrandFilter filters={filters} />
-                            <ColorFilter meta={meta} />
-                            <DeliveryTimeFilter meta={meta} />
-                            <PriceRangeFilter meta={meta} />
-                            <ShapeFilter meta={meta} />
-                            <StyleFilter meta={meta} />
-                            <WidthFilter meta={meta} />
-                            <DepthFilter meta={meta} />
-                            <HeightFilter meta={meta} />
-                            <MaterialFilter meta={meta} />
-                            <PromotionFilter/>
-                        </Suspense>
+                    <div className={'hidden lg:flex h-auto sticky top-0 z-10 border-b bg-gray-100 p-4 lg:px-6'}>
+                        <div className={'flex'}>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <div className={'grid grid-cols-6 gap-2'}>
+                                    <BrandFilter filters={filters}/>
+                                    <ColorFilter meta={meta}/>
+                                    <DeliveryTimeFilter meta={meta}/>
+                                    <PriceRangeFilter meta={meta}/>
+                                    <ShapeFilter meta={meta}/>
+                                    <StyleFilter meta={meta}/>
+                                    {showMoreFilters && (
+                                        <>
+                                            <WidthFilter meta={meta}/>
+                                            <DepthFilter meta={meta}/>
+                                            <HeightFilter meta={meta}/>
+                                            <MaterialFilter meta={meta}/>
+                                            <PromotionFilter/>
+                                        </>
+                                    )}
+                                </div>
+
+                            </Suspense>
+                            <Button size={'sm'} onClick={toggleMoreFilters} variant="link" className="ml-auto">
+                                {showMoreFilters ? 'Weniger Filter' : 'Weitere Filter'}
+                            </Button>
+                        </div>
+
                         {hasFilters && (
                             <Button size={'sm'} onClick={handleResetFilters} variant="link" className="ml-auto">
                                 Auswahl zurücksetzen
@@ -145,12 +191,12 @@ function ResultsPageLayout(page) {
                         )}
                     </div>
                     <main className="flex flex-1 flex-col p-4 px-6">
-                        <div className={'w-full flex justify-between items-center'}>
+                        <div className={'w-full hidden lg:flex justify-between items-center'}>
                             <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
-                                <Breadcrumbs initialCategory={initialCategory[0]} />
+                                <Breadcrumbs initialCategory={initialCategory[0]}/>
                                 <div className={'flex gap-4'}>
-                                    <PageSizeSelector />
-                                    <PageSortSelector />
+                                    <PageSizeSelector/>
+                                    <PageSortSelector/>
                                 </div>
                             </Suspense>
                         </div>
@@ -159,18 +205,18 @@ function ResultsPageLayout(page) {
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen} />
+                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
                     </div>
                 </div>
             </div>
-            <Footer />
+            <Footer/>
         </div>
     );
 }
 
 export const getResultsLayout = (page: React.ReactElement, layoutProps: any) => <ResultsPageLayout {...layoutProps}>{page}</ResultsPageLayout>;
 
-const FilterDrawer = ({ setIsDrawerOpen, initialCategory }: { setIsDrawerOpen: any, initialCategory: Category | null }) => {
+const FilterDrawer = ({setIsDrawerOpen, initialCategory}: { setIsDrawerOpen: any, initialCategory: Category | null }) => {
     return (
         <Drawer>
             <DrawerTrigger asChild>

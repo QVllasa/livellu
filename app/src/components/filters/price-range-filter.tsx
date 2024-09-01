@@ -67,7 +67,7 @@ export const PriceRangeFilter = ({ meta }: PriceRangeFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || (priceRange[0] > defaultMin || priceRange[1] < defaultMax) ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex  w-full ${isOpen || (priceRange[0] > defaultMin || priceRange[1] < defaultMax) ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Preis</span>
                         {(priceRange[0] > defaultMin || priceRange[1] < defaultMax) && (

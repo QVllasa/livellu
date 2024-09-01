@@ -78,7 +78,7 @@ export const ShapeFilter = ({ meta }) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex justify-between w-full ${isOpen || currentShapes.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        className={`flex  w-full ${isOpen || currentShapes.length > 0 ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Form</span>
                         {currentShapes.length > 0 && (

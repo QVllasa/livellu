@@ -131,16 +131,17 @@ const ProductCard = (props: { product: Product }) => {
                                             <Button
                                                 size="sm"
                                                 variant="outline"
-                                                className={` w-full `}
+                                                className={`hidden lg:flex w-full `}
                                             >
                                                 <span>Zum Shop</span>
                                             </Button>
                                             <Button
                                                 size="sm"
+                                                className={'w-full lg:w-auto'}
                                                 variant="outline"
                                                 onClick={(e) => {
                                                     e.preventDefault();
-                                                    router.push(`/products/${product.id}`);
+                                                    router.push(`/products/${variant?.slug}`);
                                                 }}
                                             >
                                                 <NotepadText className="h-4 w-4"/>

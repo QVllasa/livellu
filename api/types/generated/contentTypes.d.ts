@@ -939,7 +939,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     identifier: Attribute.String;
     image: Attribute.Media<'images'>;
     content: Attribute.RichText;
-    summary: Attribute.Text;
+    description: Attribute.Text;
     slug: Attribute.Text;
     level: Attribute.Integer;
     excluded_filters: Attribute.JSON;
