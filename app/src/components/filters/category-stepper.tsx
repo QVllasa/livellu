@@ -4,9 +4,10 @@ import {Button} from '@/shadcn/components/ui/button';
 import {CardContent} from '@/shadcn/components/ui/card';
 import {ChevronRight} from 'lucide-react'; // Chevron icon for indicating deeper levels
 import Link from 'next/link'; // Import Link component for navigation
-import {fetchCategories} from "@/framework/category.ssr";
 import {Category} from '@/types';
-import {capitalize} from "lodash"; // Assuming you have a Category type defined
+import {capitalize} from "lodash";
+import {allCategoriesAtom} from "@/store/filters";
+import {useAtom} from "jotai"; // Assuming you have a Category type defined
 
 // Adjusted slide variants for a more subtle transition
 const slideVariants = {
@@ -25,23 +26,17 @@ const slideVariants = {
 };
 
 const CategoryStepper = ({ closeDrawer }: { closeDrawer: () => void })  => {
+    const [allCategories] = useAtom(allCategoriesAtom);
     const [currentLevel, setCurrentLevel] = useState<number>(0);
-    const [categoryPath, setCategoryPath] = useState<Category[][]>([]); // Array of arrays to store categories at each level
+    const [categoryPath, setCategoryPath] = useState<Category[][]>([allCategories]); // Array of arrays to store categories at each level
     const [direction, setDirection] = useState<number>(0);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [urlPath, setUrlPath] = useState<string>(''); // To store the URL path
     const [currentCategoryName, setCurrentCategoryName] = useState<string>(''); // To store the current category name
 
     useEffect(() => {
-        const fetchInitialCategories = async () => {
-            setLoading(true);
-            const initialCategories = await fetchCategories({ level: 0 });
-            setCategoryPath([initialCategories]);
-            setLoading(false);
-        };
-
-        fetchInitialCategories();
-    }, []);
+            setCategoryPath([allCategories]);
+    }, [allCategories]);
 
     const handleCategoryClick = async (category: Category) => {
         if (category.child_categories?.length) {

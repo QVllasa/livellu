@@ -5,7 +5,7 @@ import {displayMobileHeaderSearchAtom} from '@/store/display-mobile-header-searc
 import dynamic from 'next/dynamic';
 import {authorizationAtom} from '@/store/authorization-atom';
 import {useIsHomePage} from '@/lib/use-is-homepage';
-import React, {useState} from 'react';
+import React, {Suspense, useState} from 'react';
 import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
 import {Navigation} from "@/components/layouts/menu/navigation";
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
@@ -70,7 +70,10 @@ const Header = ({initialCategory}) => {
                                             <TabsTrigger  value="navigation">Magazin</TabsTrigger>
                                         </TabsList>
                                         <TabsContent  value="allcategories">
-                                            <CategoryStepper closeDrawer={() =>  setIsSheetOpen(false)}/>
+                                            <Suspense fallback={<div>Loading...</div>}>
+                                                <CategoryStepper closeDrawer={() =>  setIsSheetOpen(false)}/>
+                                            </Suspense>
+
                                         </TabsContent>
                                         <TabsContent value="navigation">
                                             <Navigation/>
@@ -79,9 +82,6 @@ const Header = ({initialCategory}) => {
                                 </SheetContent>
                             </Sheet>
                         </div>
-
-
-
                     </div>
                     <div className={'hidden xl:flex w-[48rem]'}>
                         <SearchFilter/>
@@ -91,7 +91,9 @@ const Header = ({initialCategory}) => {
                     </ul>
                 </div>
                 <div className={'hidden lg:flex w-full justify-center items-center'}>
+                    <Suspense fallback={<div>Loading...</div>}>
                     <CategoryMenu/>
+                    </Suspense>
                 </div>
 
             </div>

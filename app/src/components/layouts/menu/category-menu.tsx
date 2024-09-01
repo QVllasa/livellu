@@ -1,20 +1,20 @@
 import React, {useEffect, useState} from "react";
 import {Category} from "@/types";
-import {fetchCategories} from "@/framework/category.ssr";
 import {capitalize} from "lodash";
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger,} from "@/shadcn/components/ui/navigation-menu"
 import Link from "next/link";
+import {useAtom} from "jotai/index";
+import {allCategoriesAtom} from "@/store/filters";
 
 
 export function CategoryMenu() {
+    const [allCategories] = useAtom(allCategoriesAtom);
     const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
-        const getCategories = async () => {
-            const data = await fetchCategories({level: 0});
-            setCategories(data);
-        };
-        getCategories();
-    }, []);
+
+            setCategories(allCategories);
+
+    }, [allCategories]);
 
     return (
         <NavigationMenu>
