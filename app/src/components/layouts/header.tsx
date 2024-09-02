@@ -10,7 +10,6 @@ import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
 import {Navigation} from "@/components/layouts/menu/navigation";
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Menu} from "lucide-react";
-import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
@@ -94,13 +93,16 @@ const Header = ({initialCategory}) => {
                         <SearchFilter/>
                     </div>
                     <ul className="hidden lg:flex">
-                        <Navigation/>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <Navigation/>
+                        </Suspense>
+
                     </ul>
                 </div>
                 <div className={'hidden lg:flex w-full justify-center items-center'}>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <CategoryMegaMenu/>
-                    </Suspense>
+                    {/*<Suspense fallback={<div>Loading...</div>}>*/}
+                    {/*    <CategoryMegaMenu/>*/}
+                    {/*</Suspense>*/}
                 </div>
 
             </div>
