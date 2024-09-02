@@ -4,7 +4,7 @@ import Link from "next/link";
 import {Package2} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
-import {CategoryFilter} from "@/components/filters/desktop/category-filter";
+
 import PageSizeSelector from "@/components/filters/desktop/page-size-selector";
 import PageSortSelector from "@/components/filters/desktop/page-sort-selector";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger,} from "@/shadcn/components/ui/drawer";
@@ -25,6 +25,8 @@ import {useRouter} from "next/router";
 import PromotionFilter from "@/components/filters/desktop/promotion-filter";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {MobileColorFilter} from "@/components/filters/mobile/mobile-color-filter";
+import {CategorySideMenu} from "@/components/layouts/menu/category-side-menu";
+
 
 function ResultsPageLayout(page) {
     const {initialCategory, total, meta, filters} = page.children.props;
@@ -108,7 +110,7 @@ function ResultsPageLayout(page) {
                             <Suspense fallback={<div>Loading...</div>}>
                                 <div className={'w-64 '}>
                                     <Suspense fallback={<div>Loading...</div>}>
-                                        <CategoryFilter initialCategory={initialCategory[0]}/>
+                                        <CategorySideMenu initialCategory={initialCategory[0]}/>
                                     </Suspense>
                                 </div>
                             </Suspense>
@@ -238,7 +240,7 @@ const FilterDrawer = ({setIsDrawerOpen}: { setIsDrawerOpen: any }) => {
                         <DrawerTitle>Filter einstellen</DrawerTitle>
                     </DrawerHeader>
                     <div className={'h-full overflow-auto p-4'}>
-                        <CategoryFilter/>
+                        <CategorySideMenu/>
                     </div>
                     <DrawerFooter className={''}>
                         <DrawerClose asChild>

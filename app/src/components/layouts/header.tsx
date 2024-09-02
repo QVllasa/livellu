@@ -12,9 +12,9 @@ import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Menu} from "lucide-react";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
-import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
 import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
+import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category-menu";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 

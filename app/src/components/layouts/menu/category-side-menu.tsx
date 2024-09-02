@@ -8,7 +8,7 @@ import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/sh
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 
 
-export const CategoryFilter = ({initialCategory}) => {
+export const CategorySideMenu = ({initialCategory}) => {
     const router = useRouter();
     const {params} = router.query;
 
