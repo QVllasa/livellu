@@ -76,6 +76,7 @@ const Header = ({initialCategory}) => {
                                                 <Armchair className="w-4 h-4 mr-2"/>
                                                 Alle Möbel
                                             </TabsTrigger>
+
                                             <TabsTrigger value="navigation">
                                                 <Newspaper className={'w-4 h-4 mr-2'}/>
                                                 Magazin
