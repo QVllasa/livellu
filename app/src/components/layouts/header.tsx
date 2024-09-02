@@ -13,6 +13,8 @@ import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category-menu";
+import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
+import {Navigation} from "@/components/layouts/menu/navigation";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
@@ -90,7 +92,7 @@ const Header = ({initialCategory}) => {
                                         </TabsContent>
                                         <TabsContent value="navigation">
                                             <Suspense fallback={<div>Loading...</div>}>
-                                                {/*<MobileNavigation/>*/}
+                                                <MobileNavigation/>
                                             </Suspense>
                                         </TabsContent>
                                     </Tabs>
@@ -105,7 +107,7 @@ const Header = ({initialCategory}) => {
                     </div>
                     <ul className="hidden lg:flex">
                         <Suspense fallback={<div>Loading...</div>}>
-                            {/*<Navigation/>*/}
+                            <Navigation/>
                         </Suspense>
 
                     </ul>
