@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
@@ -92,6 +92,21 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
     };
 
+    const resetColors = () => {
+        const [path, queryString] = router.asPath.split("?");
+        const pathSegments = path.split("/").filter((seg) => seg !== "");
+
+        // Remove the color segment from the path segments
+        const newPathSegments = pathSegments.filter((segment) => !segment.startsWith("farbe:"));
+
+        const updatedPath = `/${newPathSegments.join("/")}`.replace(/\/+/g, "/");
+        const queryParams = queryString ? `?${queryString}` : "";
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        setCurrentColors([]); // Clear the current colors state
+        setIsOpen(false); // Close the drawer
+    };
+
     if (colors.length === 0) {
         return null;
     }
@@ -152,6 +167,10 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
                             )}
                         </ul>
                     </ScrollArea>
+                    <div className={'w-full flex justify-center'}>
+                        <Button variant="link" onClick={resetColors}>Zurücksetzen</Button>
+                    </div>
+
                 </PopoverContent>
             </Popover>
         </div>

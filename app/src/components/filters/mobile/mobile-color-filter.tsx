@@ -5,6 +5,7 @@ import {Button} from "@/shadcn/components/ui/button";
 import {sortColors} from "@/lib/utils";
 import {capitalize} from "lodash";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
+import {ChevronRight} from "lucide-react";
 
 // Define the structure of the filter items
 export interface ColorItem {
@@ -19,9 +20,10 @@ interface ColorFilterProps {
             "variants.colors"?: Record<string, number>;
         };
     };
+    type: 'single' | 'multi';
 }
 
-export const MobileColorFilter = ({ meta }: ColorFilterProps) => {
+export const MobileColorFilter = ({meta, type}: ColorFilterProps) => {
     const [currentColors, setCurrentColors] = useState<ColorItem[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
@@ -88,9 +90,25 @@ export const MobileColorFilter = ({ meta }: ColorFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join("/")}`.replace(/\/+/g, "/");
         const queryParams = queryString ? `?${queryString}` : "";
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
         setIsOpen(false)
     };
+
+    const resetColors = () => {
+        const [path, queryString] = router.asPath.split("?");
+        const pathSegments = path.split("/").filter((seg) => seg !== "");
+
+        // Remove the color segment from the path segments
+        const newPathSegments = pathSegments.filter((segment) => !segment.startsWith("farbe:"));
+
+        const updatedPath = `/${newPathSegments.join("/")}`.replace(/\/+/g, "/");
+        const queryParams = queryString ? `?${queryString}` : "";
+
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        setCurrentColors([]); // Clear the current colors state
+        setIsOpen(false); // Close the drawer
+    };
+
 
     if (colors.length === 0) {
         return null;
@@ -100,46 +118,64 @@ export const MobileColorFilter = ({ meta }: ColorFilterProps) => {
         <div className="w-auto">
             <Drawer open={isOpen} onOpenChange={setIsOpen}>
                 <DrawerTrigger asChild>
-                    <Button
-                        size="sm"
-                        variant={'outline'}
-                        className={`flex  w-full  ${isOpen || currentColors.length > 0 ? "bg-blue-500 text-white" : ""}`}
-                    >
-                        <span>Farbe</span>
-                        {currentColors.length > 0 && (
-                            <span className="ml-2 text-xs font-thin">({currentColors.length})</span>
-                        )}
-                    </Button>
+                    {type === 'single' ?
+                        <Button
+                            size="sm"
+                            variant={'outline'}
+                            className={`flex  w-full  ${isOpen || currentColors.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        >
+                            <span>Farbe</span>
+                            {currentColors.length > 0 && (
+                                <span className="ml-2 text-xs font-thin">({currentColors.length})</span>
+                            )}
+                        </Button>
+                        :
+                        <Button
+                            size="sm"
+                            variant={'outline'}
+                            className={` flex justify-between w-full   ${isOpen || currentColors.length > 0 ? "bg-blue-500 text-white" : ""}`}
+                        >
+                            <div className={'flex justify-start'}>
+                                <span>Farbe</span>
+                                {currentColors.length > 0 && (
+                                    <span className="ml-2 text-sm font-thin">({currentColors.length})</span>
+                                )}
+                            </div>
+                            <ChevronRight className={'w-4 h-4 ml-auto'}/>
+
+                        </Button>
+                    }
+
                 </DrawerTrigger>
-                <DrawerContent className={'h-2/3'}>
+                <DrawerContent className={'h-3/4'}>
                     <div className={'h-full relative flex flex-col py-1'}>
                         <DrawerHeader>
-                            <DrawerTitle>Filter einstellen</DrawerTitle>
+                            <DrawerTitle>Farbe: {currentColors.map(el => capitalize(el.label)).join(', ')}</DrawerTitle>
                         </DrawerHeader>
                         <ScrollArea className="h-auto w-full flex justify-center p-4">
                             <ul className="grid grid-cols-4 gap-4">
                                 {colors.map((item) => {
                                         console.log("colors: ", item)
                                         return <li key={item.label} className="relative flex justify-center p-2 pb-6">
-                                                    <Button
-                                                        size={"icon"}
-                                                        variant="ghost"
-                                                        style={{
-                                                            backgroundColor: item.code,
-                                                            width: "32px",
-                                                            height: "32px",
-                                                            border:  "1px solid #ccc",
-                                                            backdropFilter: item.code ? "none" : "blur(10px)",
-                                                            WebkitBackdropFilter: item.code ? "none" : "blur(10px)",
-                                                            backgroundClip: "padding-box",
-                                                            borderRadius: "50%",
-                                                            opacity: item.code ? "1" : "0.7",
-                                                        }}
-                                                        onClick={() => handleColorClick(item)}
-                                                        className={`relative  ${currentColors.some((c) => c.label === item.label.toLowerCase()) ? "ring-2 ring-blue-500" : ""}`}
-                                                    >
-                                                        <span className="text-xs absolute top-8">{capitalize(item.label)}</span>
-                                                    </Button>
+                                            <Button
+                                                size={"icon"}
+                                                variant="ghost"
+                                                style={{
+                                                    backgroundColor: item.code,
+                                                    width: "32px",
+                                                    height: "32px",
+                                                    border: "1px solid #ccc",
+                                                    backdropFilter: item.code ? "none" : "blur(10px)",
+                                                    WebkitBackdropFilter: item.code ? "none" : "blur(10px)",
+                                                    backgroundClip: "padding-box",
+                                                    borderRadius: "50%",
+                                                    opacity: item.code ? "1" : "0.7",
+                                                }}
+                                                onClick={() => handleColorClick(item)}
+                                                className={`relative  ${currentColors.some((c) => c.label === item.label.toLowerCase()) ? "ring-2 ring-blue-500" : ""}`}
+                                            >
+                                                <span className="text-xs absolute top-8">{capitalize(item.label)}</span>
+                                            </Button>
                                         </li>
                                     }
                                 )}
@@ -148,6 +184,9 @@ export const MobileColorFilter = ({ meta }: ColorFilterProps) => {
                         <DrawerFooter className={''}>
                             <DrawerClose asChild>
                                 <Button variant="outline">Schließen</Button>
+                            </DrawerClose>
+                            <DrawerClose asChild>
+                                <Button variant="link" onClick={resetColors}>Zurücksetzen</Button>
                             </DrawerClose>
                         </DrawerFooter>
                     </div>

@@ -1,7 +1,7 @@
 import Header from './header';
 import Footer from './footer';
 import Link from "next/link";
-import {Package2} from "lucide-react";
+import {ChevronRight, Package2} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
 
@@ -137,16 +137,15 @@ function ResultsPageLayout(page) {
                     </div>
 
                     {/*Mobile */}
-                    <div className={'flex lg:hidden p-4 lg:p-6 max-w-sm'}>
+                    <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
-                            <MobileColorFilter meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
                             {/*<DeliveryTimeFilter meta={meta}/>*/}
                             {/*<PriceRangeFilter meta={meta}/>*/}
                             {/*<ShapeFilter meta={meta}/>*/}
@@ -156,6 +155,10 @@ function ResultsPageLayout(page) {
                             {/*<HeightFilter meta={meta}/>*/}
                             {/*<MaterialFilter meta={meta}/>*/}
                             {/*<PromotionFilter/>*/}
+
+                        </div>
+                        <div className="absolute flex items-center justify-center bottom-0 right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-100 pointer-events-none">
+                            <ChevronRight className={'h-6 w-6 text-gray-500'} />
                         </div>
                     </div>
 
@@ -215,7 +218,7 @@ function ResultsPageLayout(page) {
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                        <FilterDrawer initialCategory={initialCategory} setIsDrawerOpen={setIsDrawerOpen}/>
+                        <FilterDrawer meta={meta}  setIsDrawerOpen={setIsDrawerOpen}/>
                     </div>
                 </div>
             </div>
@@ -226,7 +229,7 @@ function ResultsPageLayout(page) {
 
 export const getResultsLayout = (page: React.ReactElement, layoutProps: any) => <ResultsPageLayout {...layoutProps}>{page}</ResultsPageLayout>;
 
-const FilterDrawer = ({setIsDrawerOpen}: { setIsDrawerOpen: any }) => {
+const FilterDrawer = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any }) => {
     return (
         <Drawer>
             <DrawerTrigger asChild>
@@ -237,10 +240,10 @@ const FilterDrawer = ({setIsDrawerOpen}: { setIsDrawerOpen: any }) => {
             <DrawerContent className={'h-2/3'}>
                 <div className={'h-full relative flex flex-col py-3'}>
                     <DrawerHeader>
-                        <DrawerTitle>Filter einstellen</DrawerTitle>
+                        <DrawerTitle>Alle Filter</DrawerTitle>
                     </DrawerHeader>
                     <div className={'h-full overflow-auto p-4'}>
-                        <CategorySideMenu/>
+                        <MobileColorFilter type={'multi'} meta={meta}/>
                     </div>
                     <DrawerFooter className={''}>
                         <DrawerClose asChild>
