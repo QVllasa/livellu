@@ -140,6 +140,23 @@ function ResultsPageLayout(page) {
                     <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
                             <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
+
+                            {/*<DeliveryTimeFilter meta={meta}/>*/}
+                            {/*<PriceRangeFilter meta={meta}/>*/}
+                            {/*<ShapeFilter meta={meta}/>*/}
+                            {/*<StyleFilter meta={meta}/>*/}
+                            {/*<WidthFilter meta={meta}/>*/}
+                            {/*<DepthFilter meta={meta}/>*/}
+                            {/*<HeightFilter meta={meta}/>*/}
+                            {/*<MaterialFilter meta={meta}/>*/}
+                            {/*<PromotionFilter/>*/}
+
                         </div>
                         <div className="absolute flex items-center justify-center bottom-0 right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-100 pointer-events-none">
                             <ChevronRight className={'h-6 w-6 text-gray-500'} />
