@@ -332,7 +332,7 @@ class Clients {
         }
     }
     navigation = {
-        all: (params?: any) => HttpClient.get<Navigation>(API_ENDPOINTS.NAVIGATIONS, {...params})
+        get: (params?: any) => HttpClient.get<Navigation>(API_ENDPOINTS.NAVIGATIONS, {...params})
     }
     products = {
         get: (params: any) => {

@@ -1,37 +1,14 @@
-import useNavigation from "@/lib/hooks/use-navigation";
 import React from "react";
 import {NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu";
-import {Navigation as NavigationType} from "@/types";
+import {NavigationItem} from "@/types";
 import Link from "next/link";
+import {useAtom} from "jotai/index";
+import {allNavigation} from "@/store/navigation";
 
 export const Navigation = () => {
-    const filter = {
-        populate: {
-            category: {
-                populate: {
-                    article_categories: {
-                        populate: '*'
-                    },
-                    child_categories: {
-                        populate: '*'
-                    },
-                }
-            }
-        }
-    }
+    const [navigationData] = useAtom(allNavigation);
 
-    const {navigationData, loading, error} = useNavigation(filter);
-
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
-
-    let home = navigationData.find((item: NavigationType) => item?.url === '/');
+    let home = navigationData.find((item: NavigationItem) => item?.url === '/');
 
     return (
         <NavigationMenu className="flex w-auto lg:flex lg:space-x-4 lg:items-center">
@@ -43,7 +20,7 @@ export const Navigation = () => {
                         </Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
-                {navigationData.map(({url, title, icon, category}, index) =>
+                {navigationData.map(({url, title, icon}, index) =>
                     url !== '/' &&
                     <NavigationMenuItem key={index + (title ?? '')}>
                         <NavigationMenuLink className={navigationMenuTriggerStyle()}>

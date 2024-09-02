@@ -14,6 +14,7 @@ import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
+import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
@@ -60,7 +61,7 @@ const Header = ({initialCategory}) => {
                         {/* Mobile Navigation Trigger */}
                         <div className="flex items-center lg:hidden absolute left-4 top-4">
                             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
-                                <SheetTrigger >
+                                <SheetTrigger>
                                     <Menu className="h-6 w-6"/>
                                 </SheetTrigger>
                                 <SheetContent side="right" className="p-4">
@@ -68,19 +69,21 @@ const Header = ({initialCategory}) => {
                                         <Logo className={'pt-2 pb-3'}/>
                                     </div>
 
-                                    <Tabs  defaultValue="allcategories" className="">
+                                    <Tabs defaultValue="allcategories" className="">
                                         <TabsList className="grid w-full grid-cols-2">
-                                            <TabsTrigger  value="allcategories">Alle Möbel</TabsTrigger>
-                                            <TabsTrigger  value="navigation">Magazin</TabsTrigger>
+                                            <TabsTrigger value="allcategories">Alle Möbel</TabsTrigger>
+                                            <TabsTrigger value="navigation">Magazin</TabsTrigger>
                                         </TabsList>
-                                        <TabsContent  value="allcategories">
+                                        <TabsContent value="allcategories">
                                             <Suspense fallback={<div>Loading...</div>}>
-                                                <MobileCategoryMenu closeDrawer={() =>  setIsSheetOpen(false)}/>
+                                                <MobileCategoryMenu closeDrawer={() => setIsSheetOpen(false)}/>
                                             </Suspense>
 
                                         </TabsContent>
                                         <TabsContent value="navigation">
-                                            <Navigation/>
+                                            <Suspense fallback={<div>Loading...</div>}>
+                                                <MobileNavigation/>
+                                            </Suspense>
                                         </TabsContent>
                                     </Tabs>
                                 </SheetContent>
@@ -96,7 +99,7 @@ const Header = ({initialCategory}) => {
                 </div>
                 <div className={'hidden lg:flex w-full justify-center items-center'}>
                     <Suspense fallback={<div>Loading...</div>}>
-                    <CategoryMegaMenu/>
+                        <CategoryMegaMenu/>
                     </Suspense>
                 </div>
 

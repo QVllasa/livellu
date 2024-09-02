@@ -34,6 +34,22 @@ export interface PaginationData {
     total: number;
 }
 
+export interface NavigationItem {
+    id: number;
+    createdAt: string;
+    updatedAt: string;
+    title: string;
+    slug: string;
+    url: string;
+    subtitle: string | null;
+    icon: any | null;
+    order: number | null;
+    child_navigations: NavigationItem[];
+    parent_navigations: NavigationItem[];
+    _meilisearch_id: string;
+}
+
+
 export interface Navigation {
     id?: number;
     createdAt: Date;
@@ -42,8 +58,8 @@ export interface Navigation {
     title?: string;
     slug?: string;
     url?: string;
-    children: { data: Entity<Navigation>[] };
-    parent?: { data: Entity<Navigation> };
+    children: Navigation[] ;
+    parent?: Navigation[];
     icon?: any;
     order: number;
     subtitle?: string;
