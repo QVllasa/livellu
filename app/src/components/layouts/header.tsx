@@ -9,7 +9,7 @@ import React, {Suspense, useState} from 'react';
 import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
 import {Navigation} from "@/components/layouts/menu/navigation";
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
-import {Menu} from "lucide-react";
+import {Armchair, Menu, Newspaper} from "lucide-react";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
@@ -62,7 +62,10 @@ const Header = ({initialCategory}) => {
                         <div className="flex items-center lg:hidden absolute left-4 top-4">
                             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                                 <SheetTrigger>
-                                    <Menu className="h-6 w-6"/>
+                                    <div className={'flex flex-col items-center'}>
+                                        <Menu className="h-5 w-5"/>
+                                        <span className={'text-xs'}>Menu</span>
+                                    </div>
                                 </SheetTrigger>
                                 <SheetContent side="right" className="p-4">
                                     <div className={'w-full flex justify-center'}>
@@ -72,9 +75,11 @@ const Header = ({initialCategory}) => {
                                     <Tabs defaultValue="allcategories" className="">
                                         <TabsList className="grid w-full grid-cols-2">
                                             <TabsTrigger value="allcategories">
+                                                <Armchair className="w-4 h-4 mr-2"/>
                                                 Alle Möbel
                                             </TabsTrigger>
                                             <TabsTrigger value="navigation">
+                                                <Newspaper className={'w-4 h-4 mr-2'}/>
                                                 Magazin
                                             </TabsTrigger>
                                         </TabsList>
@@ -90,7 +95,9 @@ const Header = ({initialCategory}) => {
                                             </Suspense>
                                         </TabsContent>
                                     </Tabs>
+
                                 </SheetContent>
+
                             </Sheet>
                         </div>
                     </div>
