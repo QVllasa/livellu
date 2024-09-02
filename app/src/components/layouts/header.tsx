@@ -14,6 +14,7 @@ import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
 import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
+import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
@@ -70,8 +71,12 @@ const Header = ({initialCategory}) => {
 
                                     <Tabs defaultValue="allcategories" className="">
                                         <TabsList className="grid w-full grid-cols-2">
-                                            <TabsTrigger value="allcategories">Alle Möbel</TabsTrigger>
-                                            <TabsTrigger value="navigation">Magazin</TabsTrigger>
+                                            <TabsTrigger value="allcategories">
+                                                Alle Möbel
+                                            </TabsTrigger>
+                                            <TabsTrigger value="navigation">
+                                                Magazin
+                                            </TabsTrigger>
                                         </TabsList>
                                         <TabsContent value="allcategories">
                                             <Suspense fallback={<div>Loading...</div>}>
@@ -100,9 +105,9 @@ const Header = ({initialCategory}) => {
                     </ul>
                 </div>
                 <div className={'hidden lg:flex w-full justify-center items-center'}>
-                    {/*<Suspense fallback={<div>Loading...</div>}>*/}
-                    {/*    <CategoryMegaMenu/>*/}
-                    {/*</Suspense>*/}
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <CategoryMegaMenu/>
+                    </Suspense>
                 </div>
 
             </div>
