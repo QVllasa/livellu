@@ -144,7 +144,7 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
                         {searchTerms.length > 0 && (
                             <div className="w-full  mx-auto py-4">
                                 <h2 className="text-lg font-semibold">
-                                    Suchergebnisse für: "{searchTerms.join(' ')}"
+                                    Suchergebnisse für: &quot;{searchTerms.join(' ')}&quot;
                                 </h2>
                             </div>
                         )}

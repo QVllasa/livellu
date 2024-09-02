@@ -5,7 +5,7 @@ import {Category} from "@/types";
 import {useEffect, useState} from "react";
 
 
-export const Breadcrumbs = ({initialCategory}) => {
+export const Breadcrumbs = ({initialCategory}: {initialCategory: Category}) => {
     const [categoryPath, setCategoryPath] = useState<Category[]>([]);
     const router = useRouter();
 
@@ -16,7 +16,9 @@ export const Breadcrumbs = ({initialCategory}) => {
         if (params) {
             // const path = extractParentPath(currentCategory);
             const level0 = initialCategory;
+            // @ts-ignore
             const level1 = level0?.child_categories.find(el => el.slug === params[1]);
+            // @ts-ignore
             const level2 = level1?.child_categories.find(el => el.slug === params[2]);
             setCategoryPath([level0, level1, level2].filter(Boolean) as Category[]);
         }else {
