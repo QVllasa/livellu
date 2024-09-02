@@ -10,7 +10,7 @@ import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
 import {Navigation} from "@/components/layouts/menu/navigation";
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Menu} from "lucide-react";
-import {CategoryMenu} from "@/components/layouts/menu/category-menu";
+import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import MobileCategoryMenu from "@/components/filters/mobile/mobile-category-menu";
@@ -50,7 +50,7 @@ const Header = ({initialCategory}) => {
 
             <div className={'flex flex-col bg-white'}>
                 <div className={'flex w-full items-center justify-between lg:h-22 lg:px-4 xl:px-8'}>
-                    <div className="flex w-full  flex-col items-center lg:w-auto ">
+                    <div className="flex w-full  flex-col justify-center items-center lg:w-auto ">
                         <Logo
                             className={cn(
                                 'pt-2 pb-3',
@@ -58,12 +58,16 @@ const Header = ({initialCategory}) => {
                             )}
                         />
                         {/* Mobile Navigation Trigger */}
-                        <div className="flex items-center lg:hidden absolute left-4 top-2">
+                        <div className="flex items-center lg:hidden absolute left-4 top-4">
                             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                                 <SheetTrigger >
                                     <Menu className="h-6 w-6"/>
                                 </SheetTrigger>
                                 <SheetContent side="right" className="p-4">
+                                    <div className={'w-full flex justify-center'}>
+                                        <Logo className={'pt-2 pb-3'}/>
+                                    </div>
+
                                     <Tabs  defaultValue="allcategories" className="">
                                         <TabsList className="grid w-full grid-cols-2">
                                             <TabsTrigger  value="allcategories">Alle Möbel</TabsTrigger>
@@ -92,7 +96,7 @@ const Header = ({initialCategory}) => {
                 </div>
                 <div className={'hidden lg:flex w-full justify-center items-center'}>
                     <Suspense fallback={<div>Loading...</div>}>
-                    <CategoryMenu/>
+                    <CategoryMegaMenu/>
                     </Suspense>
                 </div>
 

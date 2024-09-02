@@ -7,7 +7,7 @@ import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
 
 
-export function CategoryMenu() {
+export function CategoryMegaMenu() {
     const [allCategories] = useAtom(allCategoriesAtom);
     const [categories, setCategories] = useState<Category[]>([]);
     useEffect(() => {
