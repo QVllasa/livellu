@@ -7,12 +7,10 @@ import {authorizationAtom} from '@/store/authorization-atom';
 import {useIsHomePage} from '@/lib/use-is-homepage';
 import React, {Suspense, useState} from 'react';
 import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
-import {Navigation} from "@/components/layouts/menu/navigation";
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Armchair, Menu, Newspaper} from "lucide-react";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
-import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
 import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category-menu";
 
@@ -91,7 +89,7 @@ const Header = ({initialCategory}) => {
                                         </TabsContent>
                                         <TabsContent value="navigation">
                                             <Suspense fallback={<div>Loading...</div>}>
-                                                <MobileNavigation/>
+                                                {/*<MobileNavigation/>*/}
                                             </Suspense>
                                         </TabsContent>
                                     </Tabs>
@@ -106,7 +104,7 @@ const Header = ({initialCategory}) => {
                     </div>
                     <ul className="hidden lg:flex">
                         <Suspense fallback={<div>Loading...</div>}>
-                            <Navigation/>
+                            {/*<Navigation/>*/}
                         </Suspense>
 
                     </ul>
