@@ -146,6 +146,7 @@ function ResultsPageLayout(page) {
                             <MobileColorFilter type={'single'} meta={meta}/>
                             <MobileColorFilter type={'single'} meta={meta}/>
                             <MobileColorFilter type={'single'} meta={meta}/>
+
                             {/*<DeliveryTimeFilter meta={meta}/>*/}
                             {/*<PriceRangeFilter meta={meta}/>*/}
                             {/*<ShapeFilter meta={meta}/>*/}
