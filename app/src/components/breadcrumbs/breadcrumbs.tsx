@@ -47,7 +47,7 @@ export const Breadcrumbs = ({initialCategory}: {initialCategory: Category}) => {
     return (
         <Breadcrumb >
             <BreadcrumbList>
-                <BreadcrumbItem className={'text-[0.6rem]'}>
+                <BreadcrumbItem className={'text-[0.6rem] md:text-xs'}>
                     <BreadcrumbLink href="/">Home</BreadcrumbLink>
                 </BreadcrumbItem>
                 {categoryPath.map((category, index) => {
@@ -55,7 +55,7 @@ export const Breadcrumbs = ({initialCategory}: {initialCategory: Category}) => {
                     return (
                         <div className={'flex gap-0.5 md:gap-2'} key={category.id}>
                             <BreadcrumbSeparator />
-                            <BreadcrumbItem className={'text-[0.6rem]'}>
+                            <BreadcrumbItem className={'text-[0.6rem] md:text-xs'}>
                                 {isLast ? (
                                     <BreadcrumbPage>{capitalize(category.name)}</BreadcrumbPage>
                                 ) : (

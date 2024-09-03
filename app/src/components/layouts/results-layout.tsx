@@ -26,6 +26,13 @@ import PromotionFilter from "@/components/filters/desktop/promotion-filter";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {MobileColorFilter} from "@/components/filters/mobile/mobile-color-filter";
 import {CategorySideMenu} from "@/components/layouts/menu/category-side-menu";
+import {MobileDeliveryTimeFilter} from "@/components/filters/mobile/mobile-delivery-time-filter";
+import {MobileDepthFilter} from "@/components/filters/mobile/mobile-depth-filter";
+import {MobileHeightFilter} from "@/components/filters/mobile/mobile-height-filter";
+import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-filter";
+import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
+import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
+import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
 
 
 function ResultsPageLayout(page) {
@@ -140,15 +147,16 @@ function ResultsPageLayout(page) {
                     <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
                             <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileDeliveryTimeFilter type={'single'} meta={meta}/>
+                            <MobileDepthFilter type={'single'} meta={meta}/>
+                            <MobileHeightFilter type={'single'} meta={meta}/>
+                            <MobileMaterialFilter type={'single'} meta={meta}/>
+                            <MobileShapeFilter type={'single'} meta={meta}/>
+                            <MobileStyleFilter type={'single'} meta={meta}/>
+                            <MobilePriceRangeFilter type={'single'} meta={meta}/>
                         </div>
                         <div className="absolute flex items-center justify-center bottom-0 right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-100 pointer-events-none">
-                            <ChevronRight className={'h-6 w-6 text-gray-500'} />
+                            <ChevronRight className={'h-6 w-6 text-gray-500'}/>
                         </div>
                     </div>
 
@@ -198,7 +206,7 @@ function ResultsPageLayout(page) {
                                 </div>
                             </Suspense>
                         </div>
-                        <div className={'w-full  flex justify-between items-center p-0 '}>
+                        <div className={'w-full  flex justify-between lg:hidden items-center p-0 '}>
                             <Suspense fallback={<div>Loading Breadcrumbs...</div>}>
                                 <Breadcrumbs initialCategory={initialCategory[0]}/>
                             </Suspense>
@@ -208,7 +216,7 @@ function ResultsPageLayout(page) {
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                        <FilterDrawer meta={meta}  setIsDrawerOpen={setIsDrawerOpen}/>
+                        <FilterDrawer meta={meta} setIsDrawerOpen={setIsDrawerOpen}/>
                     </div>
                 </div>
             </div>
@@ -232,8 +240,15 @@ const FilterDrawer = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any
                     <DrawerHeader>
                         <DrawerTitle>Alle Filter</DrawerTitle>
                     </DrawerHeader>
-                    <div className={'h-full overflow-auto p-4'}>
+                    <div className={'grid grid-cols-1 h-full overflow-auto p-4 gap-x-6 '}>
                         <MobileColorFilter type={'multi'} meta={meta}/>
+                        <MobileDeliveryTimeFilter type={'multi'} meta={meta}/>
+                        <MobileDepthFilter type={'multi'} meta={meta}/>
+                        <MobileHeightFilter type={'multi'} meta={meta}/>
+                        <MobileMaterialFilter type={'multi'} meta={meta}/>
+                        <MobileShapeFilter type={'multi'} meta={meta}/>
+                        <MobileStyleFilter type={'multi'} meta={meta}/>
+                        <MobilePriceRangeFilter type={'multi'} meta={meta}/>
                     </div>
                     <DrawerFooter className={''}>
                         <DrawerClose asChild>

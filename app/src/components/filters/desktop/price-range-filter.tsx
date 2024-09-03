@@ -67,14 +67,14 @@ export const PriceRangeFilter = ({ meta }: PriceRangeFilterProps) => {
                     <Button
                         size="sm"
                         variant="outline"
-                        className={`flex  w-full ${isOpen || (priceRange[0] > defaultMin || priceRange[1] < defaultMax) ? "bg-blue-500 text-white" : ""}`}
+                        className={`relative overflow-hidden flex  w-full ${isOpen || (priceRange[0] > defaultMin || priceRange[1] < defaultMax) ? "bg-blue-500 text-white" : ""}`}
                     >
                         <span>Preis</span>
-                        {(priceRange[0] > defaultMin || priceRange[1] < defaultMax) && (
-                            <span className="ml-2 text-xs font-bold" suppressHydrationWarning>
-                                {priceRange[0].toLocaleString()}€ - {priceRange[1].toLocaleString()}€
-                            </span>
-                        )}
+                        {/*{(priceRange[0] > defaultMin || priceRange[1] < defaultMax) && (*/}
+                        {/*    <span className="ml-2 text-xs font-thin" suppressHydrationWarning>*/}
+                        {/*        {priceRange[0].toLocaleString()}€ - {priceRange[1].toLocaleString()}€*/}
+                        {/*    </span>*/}
+                        {/*)}*/}
                     </Button>
                 </PopoverTrigger>
                 <PopoverContent>
