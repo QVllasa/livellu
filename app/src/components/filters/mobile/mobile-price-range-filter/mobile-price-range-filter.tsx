@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 import {Slider} from "./mobile-price-slider-component";
 import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
 import {Button} from "@/shadcn/components/ui/button";
+import {ChevronRight} from "lucide-react";
 
 interface PriceRangeFilterProps {
     meta: {
@@ -77,6 +78,7 @@ export const MobilePriceRangeFilter = ({meta, type}: PriceRangeFilterProps) => {
                         :
                         <Button size="sm" variant="outline" className={`flex w-full justify-between ${isOpen || (priceRange[0] > defaultMin || priceRange[1] < defaultMax) ? "bg-blue-500 text-white" : ""}`}>
                             <span>Preis</span>
+                            <ChevronRight className={'w-4 h-4 ml-auto'}/>
                         </Button>
                     }
                 </DrawerTrigger>

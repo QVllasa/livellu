@@ -28,7 +28,7 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageP
 
     return (
         <>
-            <ProductsGrid products={products} page={meta?.page} pageCount={meta?.totalPages ?? 0}  loading={loading}/>
+            <ProductsGrid initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
         </>
     );
 }

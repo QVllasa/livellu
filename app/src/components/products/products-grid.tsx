@@ -5,16 +5,31 @@ import {Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ReloadIcon} from "@radix-ui/react-icons";
 import Link from "next/link";
+import {useState} from "react";
+import {fetchProducts} from "@/framework/product";
 
 interface ProductsGridProps {
-    products: Product[];
-    page: number;
+    initialProducts: Product[];
+    initialPage: number;
     pageCount: number;
-    loading: boolean;
+    initialLoading: boolean;
+    filters: any; // Add filters to pass the filters object to fetchProducts dynamically
 }
 
-export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGridProps) => {
+export const ProductsGrid = ({
+                                  initialProducts,
+                                  initialPage,
+                                 pageCount,
+                                 initialLoading,
+                                 filters,
+                             }: ProductsGridProps) => {
+
     const router = useRouter();
+    const [products, setProducts] = useState<Product[]>(initialProducts);
+    const [page, setPage] = useState<number>(initialPage);
+    const [loading, setLoading] = useState<boolean>(initialLoading);
+    const [loadingMore, setLoadingMore] = useState<boolean>(false); // State for handling load more button loading state
+
 
     // Check for search terms in the query
     const searchTerms = router.query.search ? router.query.search.split(' ') : [];
@@ -23,6 +38,9 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
     const loadMoreProducts = (selectedPage: number) => {
         // Get the base path without query parameters
         const basePath = router.pathname;
+
+        // Update the page state immediately
+        setPage(selectedPage);
 
         // Get current params from the URL
         const pathSegments = router.query.params
@@ -41,6 +59,31 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
 
         // Use router.push to navigate to the constructed URL
         router.push(newUrl);
+    };
+
+    const loadMoreProductsMobile = async () => {
+        if (loadingMore || page >= pageCount) return; // Prevent multiple fetches
+
+        setLoadingMore(true);
+
+        try {
+            // Increment the page count
+            const nextPage = page + 1;
+
+            // Update filters with the new page number
+            const updatedFilters = { ...filters, page: nextPage };
+
+            // Fetch more products using the updated filters
+            const { data } = await fetchProducts(updatedFilters);
+
+            // Append the newly fetched products to the existing products state
+            setProducts((prevProducts) => [...prevProducts, ...data]);
+            setPage(nextPage); // Update the current page state
+        } catch (error) {
+            console.error("Error loading more products:", error);
+        } finally {
+            setLoadingMore(false);
+        }
     };
 
     const renderPageLinks = () => {
@@ -144,7 +187,7 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
                         {searchTerms.length > 0 && (
                             <div className="w-full  mx-auto py-4">
                                 <h2 className="text-lg font-semibold">
-                                    Suchergebnisse für: &quot;{searchTerms.join(' ')}&quot;
+                                    Suchergebnisse für: &quot;{searchTerms.join(' ')} &quot;
                                 </h2>
                             </div>
                         )}
@@ -181,14 +224,20 @@ export const ProductsGrid = ({ products, page, pageCount, loading }: ProductsGri
                         </Pagination>
                     </div>
 
+
+                    {/* Mobile "Load More" Button */}
                     <div className="block sm:hidden mt-4">
-                        <Button onClick={() => loadMoreProducts(page + 1)} disabled={page >= pageCount || loading}>
-                            {loading ? (
+                        <Button onClick={loadMoreProductsMobile} disabled={page >= pageCount || loadingMore}>
+                            {loadingMore ? (
                                 <>
                                     <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                                     Laden...
                                 </>
-                            ) : page < pageCount ? "Mehr laden" : "Keine weiteren Produkte"}
+                            ) : page < pageCount ? (
+                                "Mehr laden"
+                            ) : (
+                                "Keine weiteren Produkte"
+                            )}
                         </Button>
                     </div>
                 </div>
