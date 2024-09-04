@@ -79,7 +79,7 @@ export const MobileDepthFilter = ({meta, type}: DepthFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false); // Close the drawer after selecting a depth
     };
 
@@ -93,7 +93,7 @@ export const MobileDepthFilter = ({meta, type}: DepthFilterProps) => {
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentDepths([]); // Clear the current depths state
         setIsOpen(false); // Close the drawer
     };

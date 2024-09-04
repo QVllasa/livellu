@@ -90,7 +90,7 @@ export const MobileColorFilter = ({meta, type}: ColorFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join("/")}`.replace(/\/+/g, "/");
         const queryParams = queryString ? `?${queryString}` : "";
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false)
     };
 
@@ -104,7 +104,7 @@ export const MobileColorFilter = ({meta, type}: ColorFilterProps) => {
         const updatedPath = `/${newPathSegments.join("/")}`.replace(/\/+/g, "/");
         const queryParams = queryString ? `?${queryString}` : "";
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentColors([]); // Clear the current colors state
         setIsOpen(false); // Close the drawer
     };

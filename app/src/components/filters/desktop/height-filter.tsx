@@ -77,7 +77,7 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
     };
 
     if (heights.length === 0) {

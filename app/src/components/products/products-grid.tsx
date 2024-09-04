@@ -5,7 +5,7 @@ import {Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ReloadIcon} from "@radix-ui/react-icons";
 import Link from "next/link";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 
 interface ProductsGridProps {
@@ -29,6 +29,12 @@ export const ProductsGrid = ({
     const [page, setPage] = useState<number>(initialPage);
     const [loading, setLoading] = useState<boolean>(initialLoading);
     const [loadingMore, setLoadingMore] = useState<boolean>(false); // State for handling load more button loading state
+
+
+    useEffect(() => {
+        setProducts(initialProducts)
+    }, [initialProducts]);
+
 
 
     // Check for search terms in the query

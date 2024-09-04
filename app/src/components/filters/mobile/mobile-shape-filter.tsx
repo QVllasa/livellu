@@ -76,7 +76,7 @@ export const MobileShapeFilter = ({meta, type}: ShapeFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false); // Close the drawer after selection
     };
 
@@ -90,7 +90,7 @@ export const MobileShapeFilter = ({meta, type}: ShapeFilterProps) => {
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentShapes([]); // Clear the current shapes state
         setIsOpen(false); // Close the drawer
     };

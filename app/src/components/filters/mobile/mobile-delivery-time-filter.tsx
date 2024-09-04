@@ -77,7 +77,7 @@ export const MobileDeliveryTimeFilter = ({ meta, type }: DeliveryTimeFilterProps
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
         setIsOpen(false);
     };
 
@@ -91,7 +91,7 @@ export const MobileDeliveryTimeFilter = ({ meta, type }: DeliveryTimeFilterProps
         const updatedPath = `/${newPathSegments.join("/")}`.replace(/\/+/g, "/");
         const queryParams = queryString ? `?${queryString}` : "";
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentDeliveryTimes([]); // Clear the current delivery times state
         setIsOpen(false); // Close the drawer
     };

@@ -92,7 +92,7 @@ export const BrandFilter = ({ filters }) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: false });
+        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
     };
 
     const handleSearchSelect = (event) => {

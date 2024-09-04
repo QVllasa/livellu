@@ -53,7 +53,7 @@ export const PriceRangeFilter = ({ meta }: PriceRangeFilterProps) => {
         // Construct the new URL path with query
         const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
 
-        router.replace(newUrl, undefined, { scroll: false });
+        router.replace(newUrl, undefined, { scroll: true });
     };
 
     return (

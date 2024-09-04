@@ -79,7 +79,7 @@ export const MobileHeightFilter = ({meta, type}: HeightFilterProps) => {
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false); // Close the drawer after selecting a height
     };
 
@@ -93,7 +93,7 @@ export const MobileHeightFilter = ({meta, type}: HeightFilterProps) => {
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
         const queryParams = queryString ? `?${queryString}` : '';
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: false});
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentHeights([]); // Clear the current heights state
         setIsOpen(false); // Close the drawer
     };
