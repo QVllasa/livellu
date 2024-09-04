@@ -155,7 +155,6 @@ export const MobileColorFilter = ({meta, type}: ColorFilterProps) => {
                         <ScrollArea className="h-auto w-full flex justify-center p-4">
                             <ul className="grid grid-cols-4 gap-4">
                                 {colors.map((item) => {
-                                        console.log("colors: ", item)
                                         return <li key={item.label} className="relative flex justify-center p-2 pb-6">
                                             <Button
                                                 size={"icon"}

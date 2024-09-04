@@ -5,7 +5,7 @@ import {Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ReloadIcon} from "@radix-ui/react-icons";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 
 interface ProductsGridProps {
@@ -13,84 +13,132 @@ interface ProductsGridProps {
     initialPage: number;
     pageCount: number;
     initialLoading: boolean;
-    filters: any; // Add filters to pass the filters object to fetchProducts dynamically
+    filters: any;
 }
 
 export const ProductsGrid = ({
-                                  initialProducts,
-                                  initialPage,
+                                 initialProducts,
+                                 initialPage,
                                  pageCount,
                                  initialLoading,
                                  filters,
                              }: ProductsGridProps) => {
-
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [page, setPage] = useState<number>(initialPage);
-    const [loading, setLoading] = useState<boolean>(initialLoading);
-    const [loadingMore, setLoadingMore] = useState<boolean>(false); // State for handling load more button loading state
+    const [loadingMore, setLoadingMore] = useState<boolean>(false);
+    const [autoLoadCount, setAutoLoadCount] = useState<number>(0);
 
+    const gridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        setProducts(initialProducts)
+        setProducts(initialProducts);
     }, [initialProducts]);
 
+    const searchTerms = router.query.search ? router.query.search.split(" ") : [];
 
-
-    // Check for search terms in the query
-    const searchTerms = router.query.search ? router.query.search.split(' ') : [];
-
-
-    const loadMoreProducts = (selectedPage: number) => {
-        // Get the base path without query parameters
+    const updatePageQueryParameter = (newPage: number) => {
         const basePath = router.pathname;
-
-        // Update the page state immediately
-        setPage(selectedPage);
-
-        // Get current params from the URL
         const pathSegments = router.query.params
-            ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params])
+            ? Array.isArray(router.query.params)
+                ? router.query.params
+                : [router.query.params]
             : [];
-
-        // Build the base path with current segments
-        const cleanedBasePath = `/${pathSegments.join('/')}`;
-
-        // Create a new query object excluding 'params' if it's present
-        const updatedQuery = { ...router.query, page: selectedPage };
+        const cleanedBasePath = `/${pathSegments.join("/")}`;
+        const updatedQuery = { ...router.query, page: newPage };
         delete updatedQuery.params;
-
-        // Manually construct the new URL path with query
-        const newUrl = `${cleanedBasePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
-
-        // Use router.push to navigate to the constructed URL
-        router.push(newUrl);
+        const newUrl = `${cleanedBasePath}${
+            Object.keys(updatedQuery).length
+                ? `?${new URLSearchParams(updatedQuery).toString()}`
+                : ""
+        }`;
+        router.push(newUrl, undefined, { shallow: true }); // Use shallow routing to update the URL without refreshing
     };
 
     const loadMoreProductsMobile = async () => {
-        if (loadingMore || page >= pageCount) return; // Prevent multiple fetches
+        if (loadingMore || page >= pageCount) return;
 
         setLoadingMore(true);
 
         try {
-            // Increment the page count
             const nextPage = page + 1;
-
-            // Update filters with the new page number
             const updatedFilters = { ...filters, page: nextPage };
-
-            // Fetch more products using the updated filters
             const { data } = await fetchProducts(updatedFilters);
-
-            // Append the newly fetched products to the existing products state
             setProducts((prevProducts) => [...prevProducts, ...data]);
-            setPage(nextPage); // Update the current page state
+            setPage(nextPage);
+            setAutoLoadCount((count) => count + 1);
+
+            // Update the URL with the new page parameter
+            updatePageQueryParameter(nextPage);
         } catch (error) {
             console.error("Error loading more products:", error);
         } finally {
             setLoadingMore(false);
         }
     };
+
+    // Handle scroll events to load more products when the user scrolls past 30% of the viewport height
+    useEffect(() => {
+        const handleScroll = () => {
+            if (autoLoadCount >= 4 || loadingMore) return; // Exit if auto-load limit is reached or already loading
+
+            const scrollTop = window.scrollY || window.pageYOffset; // Get current scroll position
+            const windowHeight = window.innerHeight; // Get the height of the viewport
+            const documentHeight = document.body.scrollHeight; // Get the total height of the document
+
+            const triggerPoint = documentHeight * 0.3; // Calculate 30% of the total document height
+
+            // Check if scrolled past 30% of the viewport
+            if (scrollTop + windowHeight >= triggerPoint) {
+                loadMoreProductsMobile();
+            }
+        };
+
+        const isMobile = window.innerWidth < 768; // Check if the device is mobile
+
+        if (isMobile) {
+            window.addEventListener("scroll", handleScroll); // Attach the scroll event listener
+        }
+
+        return () => {
+            if (isMobile) {
+                window.removeEventListener("scroll", handleScroll); // Clean up the event listener on unmount
+            }
+        };
+    }, [autoLoadCount, loadingMore, page, pageCount]);
+
+    // Restore state on page load
+    useEffect(() => {
+        const isMobile = window.innerWidth < 768;
+        if (isMobile) {
+            const queryPage = parseInt(router.query.page as string) || 1; // Read page from query or default to 1
+            if (queryPage > 1) {
+                setLoadingMore(true);
+
+                const loadInitialProducts = async () => {
+                    try {
+                        // Load all pages up to the current query page for mobile
+                        let accumulatedProducts: Product[] = [...initialProducts];
+                        for (let p = initialPage + 1; p <= queryPage; p++) {
+                            const updatedFilters = { ...filters, page: p };
+                            const { data } = await fetchProducts(updatedFilters);
+                            accumulatedProducts = [...accumulatedProducts, ...data];
+                        }
+
+                        setProducts(accumulatedProducts);
+                        setPage(queryPage);
+                        setAutoLoadCount(queryPage - 1); // Auto-load count should match the number of loads
+                    } catch (error) {
+                        console.error("Error loading initial products:", error);
+                    } finally {
+                        setLoadingMore(false);
+                    }
+                };
+
+                loadInitialProducts();
+            }
+        }
+    }, [router.query.page, initialProducts, initialPage, filters, pageCount]);
 
     const renderPageLinks = () => {
         const maxPagesToShow = 5;
@@ -180,20 +228,18 @@ export const ProductsGrid = ({
         return pages;
     };
 
-
-
     return (
         <>
             {products.length === 0 ? (
                 <NoProductsFound />
             ) : (
-                <div className="w-full flex flex-col items-center">
-                    <div className="w-full mx-auto p-0 ">
+                <div className="w-full flex flex-col items-center" ref={gridRef}>
+                    <div className="w-full mx-auto p-0">
                         {/* Display search terms if they exist */}
                         {searchTerms.length > 0 && (
-                            <div className="w-full  mx-auto py-4">
+                            <div className="w-full mx-auto py-4">
                                 <h2 className="text-lg font-semibold">
-                                    Suchergebnisse für: &quot;{searchTerms.join(' ')} &quot;
+                                    Suchergebnisse für: &quot;{searchTerms.join(" ")}&quot;
                                 </h2>
                             </div>
                         )}
@@ -204,6 +250,7 @@ export const ProductsGrid = ({
                         </div>
                     </div>
 
+                    {/* Desktop Pagination */}
                     <div className="w-full max-w-7xl mx-auto mt-4 px-2 overflow-hidden hidden sm:block">
                         <Pagination>
                             <PaginationContent className="flex justify-center items-center">
@@ -230,32 +277,40 @@ export const ProductsGrid = ({
                         </Pagination>
                     </div>
 
-
                     {/* Mobile "Load More" Button */}
-                    <div className="block sm:hidden mt-4">
-                        <Button onClick={loadMoreProductsMobile} disabled={page >= pageCount || loadingMore}>
-                            {loadingMore ? (
-                                <>
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                                    Laden...
-                                </>
-                            ) : page < pageCount ? (
-                                "Mehr laden"
-                            ) : (
-                                "Keine weiteren Produkte"
-                            )}
-                        </Button>
-                    </div>
+                    {autoLoadCount >= 4 && (
+                        <div className="block sm:hidden mt-4">
+                            <Button
+                                onClick={loadMoreProductsMobile}
+                                disabled={page >= pageCount || loadingMore}
+                            >
+                                {loadingMore ? (
+                                    <>
+                                        <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                        Laden...
+                                    </>
+                                ) : page < pageCount ? (
+                                    "Mehr laden"
+                                ) : (
+                                    "Keine weiteren Produkte"
+                                )}
+                            </Button>
+                        </div>
+                    )}
                 </div>
             )}
         </>
     );
 };
 
+
 const NoProductsFound = () => (
     <div className="flex flex-col items-center justify-center h-full text-center p-6">
         <h1 className="text-2xl font-bold mt-6">Keine Produkte gefunden</h1>
-        <p className="mt-2 text-gray-600">Versuchen Sie, Ihre Filtereinstellungen anzupassen oder suchen Sie nach anderen Produkten.</p>
+        <p className="mt-2 text-gray-600">
+            Versuchen Sie, Ihre Filtereinstellungen anzupassen oder suchen Sie nach
+            anderen Produkten.
+        </p>
         <Link href="/">
             <span className="mt-4 inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">
                 Zur Startseite

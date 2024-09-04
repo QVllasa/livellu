@@ -134,7 +134,6 @@ export const ColorFilter = ({ meta }: ColorFilterProps) => {
                     <ScrollArea className="h-auto w-full">
                         <ul className="grid grid-cols-4 gap-1">
                             {colors.map((item) => {
-                                console.log("colors: ", item)
                                     return <li key={item.label} className="relative">
                                         <Tooltip>
                                             <TooltipTrigger asChild>
