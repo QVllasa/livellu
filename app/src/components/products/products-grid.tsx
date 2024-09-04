@@ -333,6 +333,7 @@ export const ProductsGrid = ({
                     {autoLoadCount >= 4 && (
                         <div className="block sm:hidden mt-4">
                             <Button
+                                className={'text-white bg-blue-500'}
                                 onClick={loadMoreProductsMobile}
                                 disabled={page >= pageCount || loadingMore}
                             >
