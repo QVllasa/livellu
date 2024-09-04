@@ -13,7 +13,7 @@ interface ProductsGridProps {
     initialPage: number;
     pageCount: number;
     initialLoading: boolean;
-    filters: any;
+    initialFilters: any;
 }
 
 export const ProductsGrid = ({
@@ -21,19 +21,34 @@ export const ProductsGrid = ({
                                  initialPage,
                                  pageCount,
                                  initialLoading,
-                                 filters,
+                                 initialFilters,
                              }: ProductsGridProps) => {
     const router = useRouter();
-    const [products, setProducts] = useState<Product[]>(initialProducts);
+    const [products, setProducts] = useState<Product[]>([]);
     const [page, setPage] = useState<number>(initialPage);
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
     const [autoLoadCount, setAutoLoadCount] = useState<number>(0);
+    const [filters, setFilters] = useState<any>(initialFilters);
+    const [isLoading, setIsLoading] = useState(false)
+
+    console.log("filters: ", filters)
+
+    const maxCount = 5;
 
     const gridRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setProducts(initialProducts);
     }, [initialProducts]);
+
+    useEffect(() => {
+        setFilters(initialFilters);
+    }, [filters]);
+
+    useEffect(() => {
+        console.log('Auto load count:', autoLoadCount)
+    }, [autoLoadCount]);
+
 
     const searchTerms = router.query.search ? router.query.search.split(" ") : [];
 
@@ -55,6 +70,26 @@ export const ProductsGrid = ({
         router.push(newUrl, undefined, { shallow: true }); // Use shallow routing to update the URL without refreshing
     };
 
+    const loadMoreProducts = (selectedPage: number) => {
+        setPage(selectedPage);
+
+        const basePath = router.pathname;
+        const pathSegments = router.query.params
+            ? Array.isArray(router.query.params)
+                ? router.query.params
+                : [router.query.params]
+            : [];
+        const cleanedBasePath = `/${pathSegments.join("/")}`;
+        const updatedQuery = { ...router.query, page: selectedPage };
+        delete updatedQuery.params;
+        const newUrl = `${cleanedBasePath}${
+            Object.keys(updatedQuery).length
+                ? `?${new URLSearchParams(updatedQuery).toString()}`
+                : ""
+        }`;
+        router.push(newUrl);
+    };
+
     const loadMoreProductsMobile = async () => {
         if (loadingMore || page >= pageCount) return;
 
@@ -66,7 +101,14 @@ export const ProductsGrid = ({
             const { data } = await fetchProducts(updatedFilters);
             setProducts((prevProducts) => [...prevProducts, ...data]);
             setPage(nextPage);
-            setAutoLoadCount((count) => count + 1);
+            updatePageQueryParameter(nextPage);
+
+            if (autoLoadCount >= maxCount) {
+                // Update the URL with the new page parameter
+                setAutoLoadCount(0);
+            }else {
+                setAutoLoadCount((count) => count + 1);
+            }
 
             // Update the URL with the new page parameter
             updatePageQueryParameter(nextPage);
@@ -80,7 +122,7 @@ export const ProductsGrid = ({
     // Handle scroll events to load more products when the user scrolls past 30% of the viewport height
     useEffect(() => {
         const handleScroll = () => {
-            if (autoLoadCount >= 4 || loadingMore) return; // Exit if auto-load limit is reached or already loading
+            if (autoLoadCount >= maxCount || loadingMore) return; // Exit if auto-load limit is reached or already loading
 
             const scrollTop = window.scrollY || window.pageYOffset; // Get current scroll position
             const windowHeight = window.innerHeight; // Get the height of the viewport
@@ -107,38 +149,46 @@ export const ProductsGrid = ({
         };
     }, [autoLoadCount, loadingMore, page, pageCount]);
 
-    // Restore state on page load
+
+    const hasFetchedInitialProducts = useRef(false); // Add this line
+
     useEffect(() => {
         const isMobile = window.innerWidth < 768;
-        if (isMobile) {
-            const queryPage = parseInt(router.query.page as string) || 1; // Read page from query or default to 1
-            if (queryPage > 1) {
-                setLoadingMore(true);
+        const queryPage = parseInt(router.query.page as string) || 1;
 
-                const loadInitialProducts = async () => {
-                    try {
-                        // Load all pages up to the current query page for mobile
-                        let accumulatedProducts: Product[] = [...initialProducts];
-                        for (let p = initialPage + 1; p <= queryPage; p++) {
-                            const updatedFilters = { ...filters, page: p };
-                            const { data } = await fetchProducts(updatedFilters);
-                            accumulatedProducts = [...accumulatedProducts, ...data];
-                        }
+        // Ensure this runs only on the initial load for mobile devices
+        if (isMobile && queryPage > 1 && !hasFetchedInitialProducts.current) {
+            hasFetchedInitialProducts.current = true; // Mark as fetched
+            setLoadingMore(true);
 
-                        setProducts(accumulatedProducts);
-                        setPage(queryPage);
-                        setAutoLoadCount(queryPage - 1); // Auto-load count should match the number of loads
-                    } catch (error) {
-                        console.error("Error loading initial products:", error);
-                    } finally {
-                        setLoadingMore(false);
-                    }
-                };
+            const loadInitialProducts = async () => {
+                setIsLoading(true)
+                try {
+                    // Calculate the total number of products to load
+                    const totalProducts = queryPage * filters.pageSize;
 
-                loadInitialProducts();
-            }
+                    // Update filters to fetch all products in one go
+                    const updatedFilters = {
+                        ...filters,
+                        page: 1, // Start from the first page
+                        pageSize: totalProducts, // Fetch all products up to the specified page
+                    };
+
+                    const { data } = await fetchProducts(updatedFilters);
+
+                    setProducts(data);
+                    setPage(queryPage);
+                    setAutoLoadCount(queryPage - 1);
+                } catch (error) {
+                    console.error("Error loading initial products:", error);
+                } finally {
+                    setLoadingMore(false);
+                }
+            };
+
+            loadInitialProducts();
         }
-    }, [router.query.page, initialProducts, initialPage, filters, pageCount]);
+    }, []); // Empty dependency array to ensure it runs only on initial load
 
     const renderPageLinks = () => {
         const maxPagesToShow = 5;
@@ -243,11 +293,12 @@ export const ProductsGrid = ({
                                 </h2>
                             </div>
                         )}
-                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
+                        {isLoading ? <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
                             {products.map((product, index) => (
-                                <ProductCard key={index} product={product} />
+                                <ProductCard key={index} product={product}/>
                             ))}
-                        </div>
+                        </div> : <div>Loading...</div>}
+
                     </div>
 
                     {/* Desktop Pagination */}
