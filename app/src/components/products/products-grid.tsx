@@ -183,6 +183,7 @@ export const ProductsGrid = ({
                     console.error("Error loading initial products:", error);
                 } finally {
                     setLoadingMore(false);
+                    setIsLoading(false)
                 }
             };
 
@@ -293,11 +294,11 @@ export const ProductsGrid = ({
                                 </h2>
                             </div>
                         )}
-                        {isLoading ? <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
+                        {isLoading ? <div>Loading...</div> : <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
                             {products.map((product, index) => (
                                 <ProductCard key={index} product={product}/>
                             ))}
-                        </div> : <div>Loading...</div>}
+                        </div> }
 
                     </div>
 
