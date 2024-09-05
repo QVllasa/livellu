@@ -101,7 +101,7 @@ function ResultsPageLayout(page) {
     return (
         <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150 relative">
             <div className={'relative bg-white h-full w-full z-30'}>
-                <Header initialCategory={initialCategory[0]}/>
+                <Header />
             </div>
 
             <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative ">

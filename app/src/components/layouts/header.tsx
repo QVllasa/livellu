@@ -18,7 +18,7 @@ import {Navigation} from "@/components/layouts/menu/navigation";
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 
-const Header = ({initialCategory}) => {
+const Header = () => {
     const {show, hideHeaderSearch} = useHeaderSearch();
     const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
     const [isAuthorize] = useAtom(authorizationAtom);
