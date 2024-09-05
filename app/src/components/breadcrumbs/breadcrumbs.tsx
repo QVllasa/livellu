@@ -2,7 +2,8 @@ import {Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPa
 import {capitalize} from "lodash";
 import {useRouter} from "next/router";
 import {Category} from "@/types";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
+import {Home} from "lucide-react";
 
 
 export const Breadcrumbs = ({initialCategory}: {initialCategory: Category}) => {
@@ -48,7 +49,7 @@ export const Breadcrumbs = ({initialCategory}: {initialCategory: Category}) => {
         <Breadcrumb >
             <BreadcrumbList>
                 <BreadcrumbItem className={'text-[0.6rem] md:text-xs'}>
-                    <BreadcrumbLink href="/">Home</BreadcrumbLink>
+                    <BreadcrumbLink href="/"><Home className={'h-3 lg:h-4 w-3 lg:w-4 '} /></BreadcrumbLink>
                 </BreadcrumbItem>
                 {categoryPath.map((category, index) => {
                     const isLast = index === categoryPath.length - 1;

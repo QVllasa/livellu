@@ -28,6 +28,7 @@ import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-
 import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
 import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
+import {SearchBreadcrumbs} from "@/components/breadcrumbs/search-breadcrumbs";
 
 
 function SearchResultsPageLayout(page) {
@@ -186,7 +187,7 @@ function SearchResultsPageLayout(page) {
                     </div>
                     <main className="flex flex-1 flex-col p-4 lg:px-6">
                         <div className={'w-full hidden lg:flex justify-between items-center'}>
-                            <div></div>
+                            <SearchBreadcrumbs/>
                             <div className={'flex gap-4'}>
                                 <PageSizeSelector/>
                                 <PageSortSelector/>
@@ -194,7 +195,7 @@ function SearchResultsPageLayout(page) {
 
                         </div>
                         <div className={'w-full  flex justify-between lg:hidden items-center p-0 '}>
-
+                            <SearchBreadcrumbs/>
                         </div>
                         {page.children}
                     </main>
