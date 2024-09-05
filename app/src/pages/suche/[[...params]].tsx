@@ -2,12 +2,11 @@ import {JSXElementConstructor, ReactElement, useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 import {Category, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
-import {getResultsLayout} from "@/components/layouts/results-layout";
 import {ProductsGrid} from "@/components/products/products-grid";
 import {fetchAllBrands} from "@/framework/brand.ssr";
-import {fetchCategories} from "@/framework/category.ssr";
+import {getSearchResultsLayout} from "@/components/layouts/search-results-layout";
 
-interface MoebelPageProps {
+interface SearchPageProps {
     initialProducts: Product[];
     page: number;
     meta: MetaData;
@@ -15,7 +14,7 @@ interface MoebelPageProps {
     filters: any;
 }
 
-const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageProps) => {
+const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageProps) => {
     const {initialProducts, page, meta, initialCategory, filters} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
@@ -37,28 +36,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const { params, query } = context;
     const filters: any = {};
 
-    const categorySegments = params?.params as string[];
+    const pathSegments = params?.params as string[];
 
-    // Fetch initial category based on the identifier (assumed to be the first segment)
-    const initialCategory = await fetchCategories({ identifier: categorySegments[0] });
+    console.log("params: ", params);
 
-    if (!initialCategory.length) {
-        return {
-            notFound: true,
-        };
-    }
 
     let searchTerms: string[] = [];
     let searchTermFromPath = '';
-
-
-
-    for (let i = categorySegments.length - 1; i >= 0; i--) {
-        if (!categorySegments[i].includes(':')) {
-            searchTermFromPath = categorySegments[i];
-            break;
-        }
-    }
 
     if (searchTermFromPath) {
         searchTerms.push(searchTermFromPath);
@@ -73,15 +57,15 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         materialParam, colorParam, brandParam, shapeParam, deliveryParam,
         styleParam, heightParam, depthParam, widthParam
     ] = [
-        categorySegments.find((p: string) => p.startsWith('material:')),
-        categorySegments.find((p: string) => p.startsWith('farbe:')),
-        categorySegments.find((p: string) => p.startsWith('marke:')),
-        categorySegments.find((p: string) => p.startsWith('form:')),
-        categorySegments.find((p: string) => p.startsWith('lieferzeit:')),
-        categorySegments.find((p: string) => p.startsWith('stil:')),
-        categorySegments.find((p: string) => p.startsWith('hoehe:')),
-        categorySegments.find((p: string) => p.startsWith('tiefe:')),
-        categorySegments.find((p: string) => p.startsWith('breite:')),
+        pathSegments?.find((p: string) => p.startsWith('material:')),
+        pathSegments?.find((p: string) => p.startsWith('farbe:')),
+        pathSegments?.find((p: string) => p.startsWith('marke:')),
+        pathSegments?.find((p: string) => p.startsWith('form:')),
+        pathSegments?.find((p: string) => p.startsWith('lieferzeit:')),
+        pathSegments?.find((p: string) => p.startsWith('stil:')),
+        pathSegments?.find((p: string) => p.startsWith('hoehe:')),
+        pathSegments?.find((p: string) => p.startsWith('tiefe:')),
+        pathSegments?.find((p: string) => p.startsWith('breite:')),
     ];
 
     let overallFilter = '';
@@ -174,13 +158,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         props: {
             initialProducts: data,
             meta,
-            initialCategory,
             filters,
         },
     };
 }
 
 
-Index.getLayout = (page: ReactElement<any, string | JSXElementConstructor<any>>, pageProps: any) => getResultsLayout(page, pageProps);
+Index.getLayout = (page: ReactElement<any, string | JSXElementConstructor<any>>, pageProps: any) => getSearchResultsLayout(page, pageProps);
 
 export default Index;

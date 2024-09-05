@@ -36,7 +36,7 @@ const Header = () => {
 
     return (
         <header
-            className={cn('flex flex-col top-0 z-50 w-full lg:h-36', {
+            className={cn('flex flex-col top-0 z-50 w-full lg:h-auto', {
                 '': isHomePage,
                 ' border-b border-border-200 shadow-sm': !isHomePage,
             })}
@@ -60,6 +60,7 @@ const Header = () => {
                         />
                         {/* Mobile Navigation Trigger */}
                         <div className="flex items-center lg:hidden absolute left-4 top-4">
+
                             <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
                                 <SheetTrigger>
                                     <div className={'flex flex-col items-center'}>
@@ -71,6 +72,10 @@ const Header = () => {
                                     <div className={'w-full flex justify-center'}>
                                         <Logo className={'pt-2 pb-3'}/>
                                     </div>
+                                    <div className={'my-3'}>
+                                        <SearchFilter/>
+                                    </div>
+
 
                                     <Tabs defaultValue="allcategories" className="">
                                         <TabsList className="grid w-full grid-cols-2">
@@ -102,8 +107,10 @@ const Header = () => {
                             </Sheet>
                         </div>
                     </div>
-                    <div className={'hidden xl:flex w-[48rem]'}>
-                        <SearchFilter/>
+                    <div className={'hidden lg:flex w-full justify-center items-center'}>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <CategoryMegaMenu/>
+                        </Suspense>
                     </div>
                     <ul className="hidden lg:flex">
                         <Suspense fallback={<div>Loading...</div>}>
@@ -112,11 +119,7 @@ const Header = () => {
 
                     </ul>
                 </div>
-                <div className={'hidden lg:flex w-full justify-center items-center'}>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <CategoryMegaMenu/>
-                    </Suspense>
-                </div>
+
 
             </div>
 

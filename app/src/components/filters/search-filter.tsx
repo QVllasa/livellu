@@ -9,23 +9,19 @@ export const SearchFilter = () => {
     const router = useRouter();
 
     const handleSearch = (term: string) => {
-        const pathSegments = router.query.params ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params]) : [];
-        const basePath = `/${pathSegments.join('/')}`;
-
-        // Build the updated query
-        const updatedQuery = { ...router.query };
-        delete updatedQuery.params; // Remove 'params' to keep it in the path
-
+        console.log('handleSearch');
+        // If there's a search term, redirect to the new path with the search term as a query parameter
         if (term.trim()) {
-            updatedQuery.search = term.trim();
+            router.push({
+                pathname: '/suche',
+                query: { search: term.trim() },
+            });
         } else {
-            delete updatedQuery.search; // Remove search if term is empty
+            // If the search term is cleared, just navigate to the base search path
+            router.push('/suche');
         }
 
-        // Construct the new URL path with query
-        const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
 
-        router.replace(newUrl);
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,12 +48,12 @@ export const SearchFilter = () => {
     }, [router.query.search]);
 
     return (
-        <form onSubmit={handleSearchSubmit} className="flex w-full items-center space-x-2 relative">
+        <form onSubmit={handleSearchSubmit} className="flex w-full items-center  relative">
             <Search className="absolute left-4 top-3 h-4 w-4 text-muted-foreground" />
             <Input
                 type="text"
                 placeholder="Durchsuche alle Produkte, Marken und Shops"
-                className="w-full appearance-none bg-background pl-8 pr-12 shadow-none"
+                className="w-full appearance-none bg-background pl-10 pr-12 shadow-none text-xs lg:text-sm"
                 value={searchTerm}
                 onChange={handleSearchChange}
             />
@@ -70,7 +66,7 @@ export const SearchFilter = () => {
                     <X className="h-4 w-4" />
                 </button>
             )}
-            <Button size={'icon'} type="submit" variant={'outline'}>
+            <Button className={'ml-2'} size={'icon'} type="submit" variant={'outline'}>
                 <Search className="h-4 w-4 text-muted-foreground" />
             </Button>
         </form>

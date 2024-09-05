@@ -15,6 +15,7 @@ const PromotionFilter = () => {
         setIsPromotionActive(!isPromotionActive);
     };
 
+    //TODO does not work as expected and brings us to wrong page
     useEffect(() => {
         const pathSegments = router.query.params
             ? Array.isArray(router.query.params)

@@ -31,8 +31,6 @@ export const ProductsGrid = ({
     const [filters, setFilters] = useState<any>(initialFilters);
     const [isLoading, setIsLoading] = useState(false)
 
-    console.log("filters: ", filters)
-
     const maxCount = 5;
 
     const gridRef = useRef<HTMLDivElement>(null);
@@ -50,9 +48,8 @@ export const ProductsGrid = ({
     }, [autoLoadCount]);
 
 
-    const searchTerms = router.query.search ? router.query.search.split(" ") : [];
-
     const updatePageQueryParameter = (newPage: number) => {
+        console.log("updatePageQueryParameter called ", router.pathname)
         const basePath = router.pathname;
         const pathSegments = router.query.params
             ? Array.isArray(router.query.params)
@@ -287,13 +284,6 @@ export const ProductsGrid = ({
                 <div className="w-full flex flex-col items-center" ref={gridRef}>
                     <div className="w-full mx-auto p-0">
                         {/* Display search terms if they exist */}
-                        {searchTerms.length > 0 && (
-                            <div className="w-full mx-auto py-4">
-                                <h2 className="text-lg font-semibold">
-                                    Suchergebnisse für: &quot;{searchTerms.join(" ")}&quot;
-                                </h2>
-                            </div>
-                        )}
                         {isLoading ? <div>Loading...</div> : <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
                             {products.map((product, index) => (
                                 <ProductCard key={index} product={product}/>
