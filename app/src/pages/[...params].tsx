@@ -40,7 +40,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const categorySegments = params?.params as string[];
 
     // Fetch initial category based on the identifier (assumed to be the first segment)
-    const initialCategory = await fetchCategories({ identifier: categorySegments[0] });
+    const initialCategory = await fetchCategories({ slug: categorySegments[0] });
 
     if (!initialCategory.length) {
         return {

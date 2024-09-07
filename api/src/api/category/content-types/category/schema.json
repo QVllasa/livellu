@@ -56,6 +56,9 @@
     },
     "excluded_filters": {
       "type": "json"
+    },
+    "lucide_icon": {
+      "type": "string"
     }
   }
 }

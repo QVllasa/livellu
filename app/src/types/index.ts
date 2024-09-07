@@ -148,6 +148,7 @@ export interface Category {
     identifier: string;
     summary?: string;
     level: number;
+    lucide_icon: string;
 }
 
 export interface Sort {

@@ -49,13 +49,13 @@ export const ProductsGrid = ({
 
 
     const updatePageQueryParameter = (newPage: number) => {
-        console.log("updatePageQueryParameter called ", router.pathname)
+        const [path, queryString] = router.asPath.split('?');
+        const segments = path.split('/').filter(seg => seg !== '');
+
         const basePath = router.pathname;
-        const pathSegments = router.query.params
-            ? Array.isArray(router.query.params)
-                ? router.query.params
-                : [router.query.params]
-            : [];
+        const pathSegments = router.query.params ? Array.isArray(router.query.params) ? router.query.params : [router.query.params]
+            : segments;
+
         const cleanedBasePath = `/${pathSegments.join("/")}`;
         const updatedQuery = { ...router.query, page: newPage };
         delete updatedQuery.params;

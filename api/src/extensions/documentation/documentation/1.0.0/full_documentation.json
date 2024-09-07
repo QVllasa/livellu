@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-02T19:02:11.337Z"
+    "x-generation-date": "2024-09-05T14:06:15.835Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1753,6 +1753,9 @@
                                               "type": "integer"
                                             },
                                             "excluded_filters": {},
+                                            "lucide_icon": {
+                                              "type": "string"
+                                            },
                                             "createdAt": {
                                               "type": "string",
                                               "format": "date-time"
@@ -3649,6 +3652,9 @@
                                               "type": "integer"
                                             },
                                             "excluded_filters": {},
+                                            "lucide_icon": {
+                                              "type": "string"
+                                            },
                                             "createdAt": {
                                               "type": "string",
                                               "format": "date-time"
@@ -5011,6 +5017,9 @@
                           "type": "integer"
                         },
                         "excluded_filters": {},
+                        "lucide_icon": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -5235,6 +5244,9 @@
             "type": "integer"
           },
           "excluded_filters": {},
+          "lucide_icon": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -10128,6 +10140,9 @@
                                                             "type": "integer"
                                                           },
                                                           "excluded_filters": {},
+                                                          "lucide_icon": {
+                                                            "type": "string"
+                                                          },
                                                           "createdAt": {
                                                             "type": "string",
                                                             "format": "date-time"

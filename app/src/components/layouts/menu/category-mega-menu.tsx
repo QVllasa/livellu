@@ -5,6 +5,7 @@ import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMen
 import Link from "next/link";
 import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
+import Icon from "@/components/ui/icon";
 
 
 export function CategoryMegaMenu() {
@@ -13,6 +14,7 @@ export function CategoryMegaMenu() {
     useEffect(() => {
 
             setCategories(allCategories);
+            console.log("allCategories", allCategories)
 
     }, [allCategories]);
 
@@ -22,7 +24,8 @@ export function CategoryMegaMenu() {
                 {categories.map((category, index) =>
                     <NavigationMenuItem key={index + (category?.name ?? '')}>
                         <NavigationMenuTrigger>
-                            <Link href={`/${category?.slug}`} >
+                            <Link href={`/${category?.slug}`} className={'flex items-center justify-center'}>
+                                <Icon name={category?.lucide_icon} className="w-4 h-4 mr-2" />
                                 {capitalize(category?.name)}
                             </Link>
                         </NavigationMenuTrigger>

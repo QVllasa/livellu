@@ -943,6 +943,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     slug: Attribute.Text;
     level: Attribute.Integer;
     excluded_filters: Attribute.JSON;
+    lucide_icon: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

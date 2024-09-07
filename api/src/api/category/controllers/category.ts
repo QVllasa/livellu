@@ -35,7 +35,7 @@ export default factories.createCoreController('api::category.category', ({ strap
       // Fetch categories with nested children
       const categoriesWithChildren = await Promise.all(
         searchResults.hits.map(async (category) => {
-          const categoryWithChildren = await fetchCategoryWithChildren(category.identifier);
+          const categoryWithChildren = await fetchCategoryWithChildren(category.slug);
           return categoryWithChildren;
         })
       );
@@ -60,31 +60,31 @@ export default factories.createCoreController('api::category.category', ({ strap
 }));
 
 // Helper function to fetch category with nested children using Meilisearch
-async function fetchCategoryWithChildren(identifier) {
+async function fetchCategoryWithChildren(slug) {
   const index = client.index('category');
 
   // Fetch the category
   const categoryResult = await index.search('', {
-    filter: `identifier = "${identifier}"`,
+    filter: `slug = "${slug}"`,
     limit: 1,
   });
 
   if (categoryResult.hits.length === 0) {
-    throw new Error(`Category with identifier ${identifier} not found`);
+    throw new Error(`Category with slug ${slug} not found`);
   }
 
   const category = categoryResult.hits[0];
 
   // Fetch the child categories
   const childCategoriesResult = await index.search('', {
-    filter: `parent_categories.identifier = "${identifier}"`,
+    filter: `parent_categories.slug = "${slug}"`,
     limit: 1000,
   });
 
   if (childCategoriesResult.hits.length > 0) {
     category.child_categories = await Promise.all(
       childCategoriesResult.hits.map(async (child) => {
-        const childWithChildren = await fetchCategoryWithChildren(child.identifier);
+        const childWithChildren = await fetchCategoryWithChildren(child.slug);
         return childWithChildren;
       })
     );
