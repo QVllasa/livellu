@@ -105,9 +105,6 @@
     "colors": {
       "type": "json"
     },
-    "materials": {
-      "type": "json"
-    },
     "width": {
       "type": "json"
     },
@@ -130,6 +127,9 @@
       "type": "float"
     },
     "images": {
+      "type": "json"
+    },
+    "materials": {
       "type": "json"
     }
   }

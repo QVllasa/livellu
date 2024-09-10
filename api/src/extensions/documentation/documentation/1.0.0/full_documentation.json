@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-05T14:06:15.835Z"
+    "x-generation-date": "2024-09-09T19:50:27.815Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6324,7 +6324,6 @@
                           "type": "string"
                         },
                         "colors": {},
-                        "materials": {},
                         "width": {},
                         "height": {},
                         "depth": {},
@@ -6336,6 +6335,7 @@
                           "format": "float"
                         },
                         "images": {},
+                        "materials": {},
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -11514,7 +11514,6 @@
                 "type": "string"
               },
               "colors": {},
-              "materials": {},
               "width": {},
               "height": {},
               "depth": {},
@@ -11525,7 +11524,8 @@
                 "type": "number",
                 "format": "float"
               },
-              "images": {}
+              "images": {},
+              "materials": {}
             }
           }
         }
@@ -11814,7 +11814,6 @@
                                       "type": "string"
                                     },
                                     "colors": {},
-                                    "materials": {},
                                     "width": {},
                                     "height": {},
                                     "depth": {},
@@ -11826,6 +11825,7 @@
                                       "format": "float"
                                     },
                                     "images": {},
+                                    "materials": {},
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -12182,7 +12182,6 @@
             "type": "string"
           },
           "colors": {},
-          "materials": {},
           "width": {},
           "height": {},
           "depth": {},
@@ -12194,6 +12193,7 @@
             "format": "float"
           },
           "images": {},
+          "materials": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"

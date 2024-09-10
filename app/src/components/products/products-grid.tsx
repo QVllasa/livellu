@@ -56,7 +56,7 @@ export const ProductsGrid = ({
         const pathSegments = router.query.params ? Array.isArray(router.query.params) ? router.query.params : [router.query.params]
             : segments;
 
-        const cleanedBasePath = `/${pathSegments.join("/")}`;
+        const cleanedBasePath = `${path.includes('suche') && "/suche"}/${pathSegments.join("/")}`;
         const updatedQuery = { ...router.query, page: newPage };
         delete updatedQuery.params;
         const newUrl = `${cleanedBasePath}${
@@ -70,13 +70,17 @@ export const ProductsGrid = ({
     const loadMoreProducts = (selectedPage: number) => {
         setPage(selectedPage);
 
+        const [path, queryString] = router.asPath.split('?');
+        const segments = path.split('/').filter(seg => seg !== '');
+
         const basePath = router.pathname;
         const pathSegments = router.query.params
             ? Array.isArray(router.query.params)
                 ? router.query.params
                 : [router.query.params]
-            : [];
-        const cleanedBasePath = `/${pathSegments.join("/")}`;
+            : segments;
+        const cleanedBasePath = `${path.includes('suche') && "/suche"}/${pathSegments.join("/")}`;
+
         const updatedQuery = { ...router.query, page: selectedPage };
         delete updatedQuery.params;
         const newUrl = `${cleanedBasePath}${

@@ -1,7 +1,7 @@
 import Header from './header';
 import Footer from './footer';
 import Link from "next/link";
-import {ChevronRight, Package2} from "lucide-react";
+import {ChevronRight, ChevronUp, Package2} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
 
@@ -45,6 +45,32 @@ function ResultsPageLayout(page) {
     const [showMoreFilters, setShowMoreFilters] = useState(false);
     const router = useRouter();
     const [title, setTitle] = useState('TITLE');
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const topBarHeight = document.querySelector('header')?.offsetHeight || 0;
+            if (window.scrollY > topBarHeight) {
+                setShowStickyFilterButton(true);
+            } else {
+                setShowStickyFilterButton(false);
+            }
+
+            // Show the Scroll to Top button after scrolling down 300px
+            if (window.scrollY > 300) {
+                setShowScrollToTop(true);
+            } else {
+                setShowScrollToTop(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
 
     const {params} = router.query;
 
@@ -217,6 +243,16 @@ function ResultsPageLayout(page) {
                 </div>
             </div>
             <Footer/>
+            {showScrollToTop && (
+                <Button
+                    onClick={scrollToTop}
+                    variant={'outline'}
+                    className="fixed bottom-[15%] right-4 shadow-lg"
+                    aria-label="Scroll to top"
+                >
+                    <ChevronUp className={'h-4 w-4'}/>
+                </Button>
+            )}
         </div>
     );
 }

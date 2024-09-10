@@ -1280,7 +1280,6 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     groupId: Attribute.Text;
     variantId: Attribute.String;
     colors: Attribute.JSON;
-    materials: Attribute.JSON;
     width: Attribute.JSON;
     height: Attribute.JSON;
     depth: Attribute.JSON;
@@ -1289,6 +1288,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     shape: Attribute.JSON;
     discount: Attribute.Float;
     images: Attribute.JSON;
+    materials: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -1,7 +1,7 @@
 import Header from './header';
 import Footer from './footer';
 import Link from "next/link";
-import {ChevronRight, Package2} from "lucide-react";
+import {ChevronRight, ChevronUp, Package2} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {useEffect, useState} from "react";
 
@@ -38,6 +38,34 @@ function SearchResultsPageLayout(page) {
     const [showMoreFilters, setShowMoreFilters] = useState(false);
     const router = useRouter();
     const [title, setTitle] = useState('TITLE');
+    const [showScrollToTop, setShowScrollToTop] = useState(false);
+
+    const scrollToTop = () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const topBarHeight = document.querySelector('header')?.offsetHeight || 0;
+            if (window.scrollY > topBarHeight) {
+                setShowStickyFilterButton(true);
+            } else {
+                setShowStickyFilterButton(false);
+            }
+
+            // Show the Scroll to Top button after scrolling down 300px
+            if (window.scrollY > 300) {
+                setShowScrollToTop(true);
+            } else {
+                setShowScrollToTop(false);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
 
 
     useEffect(() => {
@@ -46,6 +74,8 @@ function SearchResultsPageLayout(page) {
             const searchTerms = router.query.search.length > 0 ? router.query.search.split(" ") : [];
             const t = `Suchergebnisse für: "${searchTerms.join(" ")}"`
             setTitle(t)
+        }else{
+            setTitle('Deine Suche')
         }
     }, [router.query]);
 
@@ -199,6 +229,7 @@ function SearchResultsPageLayout(page) {
                         </div>
                         {page.children}
                     </main>
+
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
@@ -207,6 +238,18 @@ function SearchResultsPageLayout(page) {
                 </div>
             </div>
             <Footer/>
+            {showScrollToTop && (
+                <Button
+                    onClick={scrollToTop}
+                    size={'icon'}
+                    variant={'outline'}
+                    className="fixed bottom-[15%] right-4 shadow-lg bg-blue-500 text-white"
+                    aria-label="Scroll to top"
+                >
+                    <ChevronUp className={'h-4 w-4'}/>
+                </Button>
+            )}
+
         </div>
     );
 }
