@@ -1,6 +1,6 @@
-import type { Config } from 'tailwindcss';
-import { fontFamily } from 'tailwindcss/defaultTheme';
-import { colors } from './data/config/colors';
+import type {Config} from 'tailwindcss';
+import {fontFamily} from 'tailwindcss/defaultTheme';
+import {colors} from './data/config/colors';
 
 const config: Config = {
   content: [
@@ -13,6 +13,10 @@ const config: Config = {
       fontFamily: {
         sans: ['var(--font-space-default)', ...fontFamily.sans],
         display: ['var(--font-space-display)', ...fontFamily.sans],
+      },
+      gradientColorStopPositions: {
+        33: '33%',
+        50: '50%',
       },
 
       colors: {

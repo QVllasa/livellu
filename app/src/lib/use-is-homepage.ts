@@ -1,6 +1,6 @@
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 export function useIsHomePage() {
   const router = useRouter();
-  return router.pathname === '/[[...pages]]';
+  return router.pathname === '/';
 }

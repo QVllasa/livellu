@@ -1,11 +1,11 @@
-import type {Category, NextPageWithLayout} from '@/types';
+import type {NextPageWithLayout} from '@/types';
 import {useEffect} from 'react';
 import {useRouter} from 'next/router';
 import {scroller} from 'react-scroll';
 import HomeLayout from '@/components/layouts/_home';
-import {Merchants} from "@/components/merchants/merchants";
-import BannerShort from "@/components/banners/banner-short";
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/shadcn/components/ui/accordion";
+import Image from "next/image";
+import {SearchFilter} from "@/components/filters/search-filter";
+import {Button} from "@/shadcn/components/ui/button";
 
 const Home: NextPageWithLayout = () => {
     const {query} = useRouter();
@@ -21,11 +21,42 @@ const Home: NextPageWithLayout = () => {
 
     return (
         <>
-            <div className="mx-auto border border-border-200 max-w-7xl justify-center mt-20 relative">
-                <BannerShort/>
+            {/* Hero card */}
+                <div className="relative">
+                    <div className="absolute inset-x-0 top-0 h-1/2 bg-white"/>
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+                        <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
+                            <div className="absolute inset-0">
+                                <Image
+                                    alt="Moderne Möbel in einem stilvollen Wohnzimmer"
+                                    src="/img/background.webp"
+                                    width={1920}
+                                    height={1080}
+                                    className="h-full w-full object-cover opacity-80"
+                                />
+                                {/* Overlay */}
+                                <div className="absolute inset-0 bg-gradient-to-b from-white "/>
+                            </div>
+                            <div className="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32 z-10">
+                                <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                                    <span className="text-gray-800">Entdecken Sie Premium-Möbel</span>
+                                </h1>
+                                <div className={'w-full max-w-3xl my-12 mx-auto'}>
+                                    <SearchFilter/>
+                                </div>
+                                <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+                                    <div className="space-y-4 sm:mx-auto">
+                                        <Button variant={'default'} size={'lg'}  className={'bg-blue-700 text-white'}>
+                                            Jetzt einkaufen
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <div className="bg-gray-100 h-72">
             </div>
-
-            <Merchants/>
         </>
     );
 };
@@ -43,106 +74,8 @@ const Divider = ({title}: { title: string }) => {
                 <div className="w-full border-t border-gray-300"/>
             </div>
             <div className="relative flex justify-center">
-                <span className="bg-white px-2 text-xl text-gray-500">{title}</span>
+                <span className="bg-gray-100 px-2 text-xl text-gray-500">{title}</span>
             </div>
         </div>
     );
 };
-
-const CategoryTree = (categories: Category[]) => {
-    const renderCategory = (category: Category) => {
-        const level = parseInt(category.identifier.split('_')[0], 10);
-        const children = category.child_categories?.filter(child => child.identifier.startsWith(`${level + 1}_`));
-
-        return (
-            <AccordionItem key={category.identifier} value={category.identifier}>
-                <AccordionTrigger>
-                    <div style={{marginLeft: `${level * 20}px`}}>
-                        {category.name}
-                    </div>
-                </AccordionTrigger>
-                {children && children?.length > 0 && (
-                    <AccordionContent>
-                        <ul>
-                            {children.map((child) => renderCategory(child))}
-                        </ul>
-                    </AccordionContent>
-                )}
-            </AccordionItem>
-        );
-    };
-
-    const topLevelCategories = categories.filter(category => category.identifier.startsWith('0_'));
-
-    return (
-        <div>
-            <h2>Category Tree</h2>
-            <Accordion type="multiple">
-                {topLevelCategories.map((category) => renderCategory(category))}
-            </Accordion>
-        </div>
-    );
-};
-
-
-{/*<Divider title={'Magazin'}/>*/
-}
-{/*<Suspense>*/
-}
-{/*    {allCategories.map((category, index) => (*/
-}
-{/*        <>*/
-}
-{/*            <Element name="grid" className="grid  max-w-7xl mx-auto gap-8">*/
-}
-{/*                <div className="relative py-12">*/
-}
-{/*                    <div className="mx-auto  max-w-7xl ">*/
-}
-{/*                        <div className="relative mx-auto max-w-2xl lg:mx-0">*/
-}
-{/*                            <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-4xl">{category.name}</h2>*/
-}
-{/*                            <p className="mt-2 text-base leading-8 text-gray-600">*/
-}
-{/*                                {category.summary}*/
-}
-{/*                            </p>*/
-}
-{/*                        </div>*/
-}
-{/*                        /!*<div className="mx-auto mt-4 grid max-w-2xl auto-rows-fr grid-cols-1 gap-2 sm:mt-8 lg:mx-0 lg:max-w-none lg:grid-cols-4">*!/*/
-}
-{/*                        /!*    {category.child_categories?.data.map((category, index) => (*!/*/
-}
-{/*                        /!*        <CategoryCard key={category.id} category={category.attributes}/>*!/*/
-}
-{/*                        /!*    ))}*!/*/
-}
-
-{/*                        /!*</div>*!/*/
-}
-{/*                        <div className={'relative flex justify-start mt-12'}>*/
-}
-{/*                            <Button>Mehr</Button>*/
-}
-{/*                        </div>*/
-}
-{/*                    </div>*/
-}
-{/*                </div>*/
-}
-{/*            </Element>*/
-}
-{/*        </>*/
-}
-
-
-{/*    ))}*/
-}
-{/*</Suspense>*/
-}
-
-
-{/*<Divider title={'Unsere Partnershops'}/>*/
-}

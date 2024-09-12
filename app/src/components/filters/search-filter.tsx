@@ -33,9 +33,13 @@ export const SearchFilter = () => {
         handleSearch(searchTerm);
     };
 
-    const handleClearSearch = () => {
+    const handleClearSearch = (e) => {
+        e.preventDefault();
         setSearchTerm('');
-        handleSearch('');
+        if (router.pathname.includes('/suche')) {
+            handleSearch('');
+        }
+
     };
 
     useEffect(() => {
