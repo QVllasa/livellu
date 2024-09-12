@@ -37,6 +37,8 @@ const ProductCard = (props: { product: Product }) => {
         setImageSrc('/img/fallbackimage.webp'); // Using the fallback image from the public folder
     };
 
+    console.log('variant', variant)
+
     // Calculate discount percentage if the product is on sale
     const isOnSale = variant?.priceOld && parseFloat(variant.priceOld) > variant.price;
     const discountPercentage = isOnSale
@@ -62,6 +64,7 @@ const ProductCard = (props: { product: Product }) => {
                                             <AspectRatio ratio={4 / 3} className="bg-muted">
                                                 <Image
                                                     src={imageSrc || variant?.altImageUrl}
+                                                    srcSet={variant?.images}
                                                     alt={variant?.productName}
                                                     width={300}
                                                     height={400}

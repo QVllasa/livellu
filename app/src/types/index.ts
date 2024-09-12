@@ -248,6 +248,7 @@ export interface Variant {
     thumbnail: string;
     originalMaterial: string;
     ean: string;
+    images: string[];
     dimension: string;
     priceOld: string;
     price: number;

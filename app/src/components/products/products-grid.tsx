@@ -31,6 +31,8 @@ export const ProductsGrid = ({
     const [filters, setFilters] = useState<any>(initialFilters);
     const [isLoading, setIsLoading] = useState(false)
 
+    console.log('Initial products:', initialProducts)
+
     const maxCount = 5;
 
     const gridRef = useRef<HTMLDivElement>(null);
@@ -79,7 +81,7 @@ export const ProductsGrid = ({
                 ? router.query.params
                 : [router.query.params]
             : segments;
-        const cleanedBasePath = `${path.includes('suche') && "/suche"}/${pathSegments.join("/")}`;
+        const cleanedBasePath = `${path.includes('suche') ? "/suche" : ''}/${pathSegments.join("/")}`;
 
         const updatedQuery = { ...router.query, page: selectedPage };
         delete updatedQuery.params;
