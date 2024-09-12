@@ -18,7 +18,12 @@ const config: Config = {
         33: '33%',
         50: '50%',
       },
-
+      width: {
+        '7xl': '80rem',
+      },
+      spacing: {
+        '7xl': '80rem',
+      },
       colors: {
         primary: {
           100: colors.primary.lighter,

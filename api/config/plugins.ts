@@ -51,31 +51,31 @@ export default ({env}) => ({
             },
             faceting: {
               maxValuesPerFacet: 5000
-            },
-            embedders: {
-              default: {
-                source: "ollama",
-                url: "http://192.168.188.118:8001/api/embeddings",
-                apiKey: "OLLAMA_API_KEY",
-                model: "gemma2:27b",
-                documentTemplate: "Brand: {{ doc.brandName }}\n\
-                Category: {{ doc.categoryIdentifier }}\n\
-                Variants Information:\n\
-                {% for variant in doc.variants %}\n\
-                              Variant ID: {{ variant.variantId }}\n\
-                              Variant Description: {{ variant.description }}\n\
-                              Variant Price: {{ variant.price }} {{ doc.currency }}\n\
-                              Variant Material: {{ variant.originalMaterial }}\n\
-                              Variant Original Color: {{ variant.originalColor }}\n\
-                              Variant Dimensions: {{ variant.dimension }}\n\
-                              Variant Delivery Time: {{ variant.deliveryTime }}\n\
-                              Variant Delivery Cost: {{ variant.deliveryCost }} EUR\n\
-                              Variant EAN: {{ variant.ean }}\n\
-                              Variant Merchant Product ID: {{ variant.merchantProductId }}\n\
-                              Variant Tracking Link: {{ variant.tracking }}\n\
-                {% endfor %}"
-              }
             }
+            // embedders: {
+            //   default: {
+            //     source: "ollama",
+            //     url: "http://192.168.188.118:8001/api/embeddings",
+            //     apiKey: "OLLAMA_API_KEY",
+            //     model: "gemma2:27b",
+            //     documentTemplate: "Brand: {{ doc.brandName }}\n\
+            //     Category: {{ doc.categoryIdentifier }}\n\
+            //     Variants Information:\n\
+            //     {% for variant in doc.variants %}\n\
+            //                   Variant ID: {{ variant.variantId }}\n\
+            //                   Variant Description: {{ variant.description }}\n\
+            //                   Variant Price: {{ variant.price }} {{ doc.currency }}\n\
+            //                   Variant Material: {{ variant.originalMaterial }}\n\
+            //                   Variant Original Color: {{ variant.originalColor }}\n\
+            //                   Variant Dimensions: {{ variant.dimension }}\n\
+            //                   Variant Delivery Time: {{ variant.deliveryTime }}\n\
+            //                   Variant Delivery Cost: {{ variant.deliveryCost }} EUR\n\
+            //                   Variant EAN: {{ variant.ean }}\n\
+            //                   Variant Merchant Product ID: {{ variant.merchantProductId }}\n\
+            //                   Variant Tracking Link: {{ variant.tracking }}\n\
+            //     {% endfor %}"
+            //   }
+            // }
 
           }
         },

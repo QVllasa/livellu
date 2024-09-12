@@ -6,6 +6,7 @@ import Link from "next/link";
 import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
 import Icon from "@/components/ui/icon";
+import {cn} from "@/shadcn/lib/utils";
 
 
 export function CategoryMegaMenu() {
@@ -17,7 +18,7 @@ export function CategoryMegaMenu() {
 
     return (
         <NavigationMenu>
-            <NavigationMenuList className="flex flex-col w-full lg:flex-row lg:w-[980px] relative z-40">
+            <NavigationMenuList className="flex flex-col w-full lg:flex-row lg:w-7xl relative z-40">
                 {categories.map((category, index) =>
                     <NavigationMenuItem key={index + (category?.name ?? '')}>
                         <NavigationMenuTrigger>
@@ -26,13 +27,13 @@ export function CategoryMegaMenu() {
                                 {capitalize(category?.name)}
                             </Link>
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="w-full lg:w-auto">
-                            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[980px] lg:grid-cols-[.75fr_1fr] z-30">
+                        <NavigationMenuContent className="w-full lg:w-auto mx-auto">
+                            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[75rem] lg:grid-cols-[.75fr_1fr] z-30 items-stretch">
                                 {category?.child_categories?.map((childCategory) => (
-                                    <li key={childCategory?.name}>
+                                    <li key={childCategory?.name} className={'w-full'}>
                                         <Link  legacyBehavior passHref href={`/${category?.slug}/${childCategory?.slug ?? '/'}`}
-                                              className={"block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-gray-foreground focus:bg-gray focus:text-gray-foreground"}>
-                                            <NavigationMenuLink  className={navigationMenuTriggerStyle()}>{capitalize(childCategory?.name)}</NavigationMenuLink>
+                                              className={"min-w-full flex select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-gray-foreground focus:bg-gray focus:text-gray-foreground"}>
+                                            <NavigationMenuLink  className={cn(navigationMenuTriggerStyle(),"w-full justify-start")}>{capitalize(childCategory?.name)}</NavigationMenuLink>
                                         </Link>
                                     </li>
                                 ))}

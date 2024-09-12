@@ -40,22 +40,23 @@ services:
       MEILI_MASTER_KEY: ${MEILI_MASTER_KEY} # Set your new master key
       MEILI_LOG_LEVEL: debug
       MEILI_NO_ANALYTICS: 'true'
-      MEILI_HTTP_PAYLOAD_SIZE_LIMIT: 500MB
+      MEILI_HTTP_PAYLOAD_SIZE_LIMIT: 1000MB
       MEILI_MAX_INDEXING_MEMORY: '2GB' # Set the maximum memory for indexing operations
       MEILI_MAX_MDB_SIZE: '30GB'       # Set the maximum size for the memory-mapped database
+      MEILI_MAX_DOCUMENTS-PER-BATCH: 1000 # Set the maximum number of documents per batch
     restart: unless-stopped
     volumes:
       - ../meilisearch/data.ms:/data.ms
     ports:
       - "7700:7700"
-    deploy:
-      resources:
-        limits:
-          cpus: '2.0'       # Limit to 2 CPUs
-          memory: '4G'      # Limit to 4GB of memory
-        reservations:
-          cpus: '1.0'       # Reserve 1 CPU
-          memory: '2G'      # Reserve 2GB of memory
+#    deploy:
+#      resources:
+#        limits:
+#          cpus: '2.0'       # Limit to 2 CPUs
+#          memory: '4G'      # Limit to 4GB of memory
+#        reservations:
+#          cpus: '1.0'       # Reserve 1 CPU
+#          memory: '2G'      # Reserve 2GB of memory
 
     networks:
       - strapi
@@ -66,7 +67,7 @@ services:
     platform: linux/amd64
     restart: always
     image: postgres:16.3
-    shm_size: 1g
+#    shm_size: 1g
     env_file: .env
     environment:
       POSTGRES_USER: ${DATABASE_USERNAME}

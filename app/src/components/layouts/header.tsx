@@ -52,8 +52,8 @@ const Header = () => {
             ></div>
 
             <div className={'flex flex-col bg-white'}>
-                <div className={'flex w-full items-center justify-between lg:h-22 lg:px-4 xl:px-8'}>
-                    <div className="flex w-full  flex-col justify-center items-center lg:w-auto ">
+                <div className={'flex w-full items-center justify-evenly lg:h-22 lg:px-4 xl:px-8'}>
+                    <div className="flex w-full lg:w-1/3  flex-col justify-center items-start  ">
                         <Logo
                             className={cn(
                                 'pt-2 pb-3',
@@ -109,13 +109,20 @@ const Header = () => {
                             </Sheet>
                         </div>
                     </div>
-                    <div className={'hidden lg:flex w-full justify-center items-center'}>
+                    <div className={'hidden lg:w-1/3 lg:flex w-full justify-center items-center'}>
                         <Suspense fallback={<div>Loading...</div>}>
                             <CategoryMegaMenu/>
                         </Suspense>
                     </div>
-                    <ul className="hidden lg:flex">
+                    <ul className="hidden lg:w-1/3 lg:flex justify-end items-center">
                         <Suspense fallback={<div>Loading...</div>}>
+                            <Navigation/>
+                            <Navigation/>
+                            <Navigation/>
+                            <Navigation/>
+                            <Navigation/>
+                            <Navigation/>
+                            <Navigation/>
                             <Navigation/>
                         </Suspense>
 
