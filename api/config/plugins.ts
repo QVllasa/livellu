@@ -55,6 +55,34 @@ export default ({env}) => ({
           }
         },
         category: {
+          async transformEntry({entry}) {
+
+            const child = await strapi.db.query('api::category.category').findOne({
+              where: {slug: entry.slug},
+              populate: {
+                child_categories: {
+                  populate: {
+                    child_categories:
+                      {
+                        populate:
+                          {
+                            child_categories: {populate: {child_categories: '*', parent_categories: '*'}},
+                            parent_categories: '*'
+                          }
+                      },
+                    parent_categories: '*'
+                  }
+                },
+                parent_categories: '*'
+              }
+            });
+
+
+            return {
+              ...entry,
+              ...child,
+            }
+          },
           settings: {
             filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug'],
             pagination: {

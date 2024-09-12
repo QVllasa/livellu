@@ -2,6 +2,7 @@ import {factories} from '@strapi/strapi';
 import qs from 'qs';
 import client from '../../../utils/meilisearch-client';
 
+
 export default factories.createCoreController('api::category.category', ({ strapi }) => ({
 
   async get(ctx) {
@@ -32,16 +33,8 @@ export default factories.createCoreController('api::category.category', ({ strap
       const index = client.index('category'); // Ensure your Meilisearch index is named 'category'
       const searchResults = await index.search('', searchParams);
 
-      // Fetch categories with nested children
-      const categoriesWithChildren = await Promise.all(
-        searchResults.hits.map(async (category) => {
-          const categoryWithChildren = await fetchCategoryWithChildren(category.slug);
-          return categoryWithChildren;
-        })
-      );
-
       const response = {
-        data: categoriesWithChildren,
+        data: searchResults.hits,
         meta: {
           hits: searchResults.hits.length,
           limit: searchResults.limit,
@@ -59,38 +52,3 @@ export default factories.createCoreController('api::category.category', ({ strap
   },
 }));
 
-// Helper function to fetch category with nested children using Meilisearch
-async function fetchCategoryWithChildren(slug) {
-  const index = client.index('category');
-
-  // Fetch the category
-  const categoryResult = await index.search('', {
-    filter: `slug = "${slug}"`,
-    limit: 1,
-  });
-
-  if (categoryResult.hits.length === 0) {
-    throw new Error(`Category with slug ${slug} not found`);
-  }
-
-  const category = categoryResult.hits[0];
-
-  // Fetch the child categories
-  const childCategoriesResult = await index.search('', {
-    filter: `parent_categories.slug = "${slug}"`,
-    limit: 1000,
-  });
-
-  if (childCategoriesResult.hits.length > 0) {
-    category.child_categories = await Promise.all(
-      childCategoriesResult.hits.map(async (child) => {
-        const childWithChildren = await fetchCategoryWithChildren(child.slug);
-        return childWithChildren;
-      })
-    );
-  } else {
-    category.child_categories = [];
-  }
-
-  return category;
-}

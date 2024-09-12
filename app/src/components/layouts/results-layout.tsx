@@ -79,7 +79,8 @@ function ResultsPageLayout(page) {
             const level0 = initialCategory[0];
             const level1 = level0?.child_categories.find(el => el.slug === params[1]);
             const level2 = level1?.child_categories.find(el => el.slug === params[2]);
-            const path = [level0, level1, level2].filter(Boolean);
+            const level3 = level2?.child_categories.find(el => el.slug === params[3]);
+            const path = [level0, level1, level2, level3].filter(Boolean);
             setTitle(path.at(-1)?.name);
         }
     }, [initialCategory, params]);
@@ -126,18 +127,18 @@ function ResultsPageLayout(page) {
                 <Header />
             </div>
 
-            <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative ">
-                <div className="hidden border-r bg-muted/40 lg:block">
-                    <div className="flex h-auto flex-col gap-2 sticky top-0 ">
+            <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[auto_1fr] relative ">
+                <div className="hidden border-r bg-muted/40 lg:block w-max">
+                    <div className="flex h-auto flex-col gap-2 sticky top-0 p-6">
                         <div className="flex flex-col h-auto justify-center items-start border-b ">
                             <Link href="/" className="flex items-center gap-2 font-semibold p-0">
                                 <Package2 className="h-6 w-6"/>
                                 <span className="">{capitalize(initialCategory[0]?.name ?? 'Moebel')}</span>
                             </Link>
                         </div>
-                        <div className="flex-1 max-h-full overflow-scroll">
+                        <div className="flex-1 max-h-full overflow-scroll min-w-max w-64">
                             <Suspense fallback={<div>Loading...</div>}>
-                                <div className={'w-64 '}>
+                                <div className={'min-w-max'}>
                                     <Suspense fallback={<div>Loading...</div>}>
                                         <CategorySideMenu initialCategory={initialCategory[0]}/>
                                     </Suspense>
