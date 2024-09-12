@@ -117,13 +117,6 @@ const Header = () => {
                     <ul className="hidden lg:w-1/3 lg:flex justify-end items-center">
                         <Suspense fallback={<div>Loading...</div>}>
                             <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
-                            <Navigation/>
                         </Suspense>
 
                     </ul>

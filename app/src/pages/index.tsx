@@ -46,7 +46,7 @@ const Home: NextPageWithLayout = () => {
                                 </div>
                                 <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                                     <div className="space-y-4 sm:mx-auto">
-                                        <Button variant={'default'} size={'lg'}  className={'bg-blue-700 text-white'}>
+                                        <Button variant={'outline'} size={'lg'} className={'bg-blue-500 text-white border-none'} >
                                             Jetzt einkaufen
                                         </Button>
                                     </div>
