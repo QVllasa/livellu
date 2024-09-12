@@ -67,7 +67,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
     const currentCategoryName = currentLevel > 0 ? categoryNamePath[categoryNamePath.length - 1] : '';
 
     return (
-        <div className="w-full relative divide-y">
+        <div className="w-full relative divide-y ">
             {currentLevel !== 0 && (
                 <Button variant={'link'} className={'text-lg font-normal w-full justify-start'} onClick={handleBackClick}>
                     <ChevronLeft className="w-4 h-4 mr-2" /> <span>Zurück</span>
@@ -76,7 +76,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
             <AnimatePresence initial={false} custom={direction}>
                 <motion.div
                     key={currentLevel}
-                    className="absolute w-full"
+                    className="absolute w-full overflow-scroll h-[70vh]"
                     custom={direction}
                     variants={slideVariants}
                     initial="enter"
@@ -87,7 +87,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                         opacity: { duration: 0.2 },
                     }}
                 >
-                    <div className="divide-y">
+                    <div className="divide-y ">
                         {!loading ? (
                             <>
                                 {currentLevel > 0 && (
@@ -104,7 +104,7 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                                 {categoriesToShow.map((category) => (
                                     <CardContent
                                         key={category.id}
-                                        className="flex items-center justify-between cursor-pointer w-full p-0"
+                                        className="flex items-center justify-between cursor-pointer w-full p-0 "
                                     >
                                         {category.child_categories?.length > 0 ? (
                                             // If category has subcategories, handle click to show them
