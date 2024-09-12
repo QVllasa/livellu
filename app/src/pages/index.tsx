@@ -22,39 +22,40 @@ const Home: NextPageWithLayout = () => {
     return (
         <>
             {/* Hero card */}
-                <div className="relative">
-                    <div className="absolute inset-x-0 top-0 h-1/2 bg-white"/>
-                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                        <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
-                            <div className="absolute inset-0">
-                                <Image
-                                    alt="Moderne Möbel in einem stilvollen Wohnzimmer"
-                                    src="/img/background.webp"
-                                    width={1920}
-                                    height={1080}
-                                    className="h-full w-full object-cover opacity-80"
-                                />
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-b from-white "/>
+            <div className="relative">
+                <div className="absolute inset-x-0 top-0 h-1/2 bg-white"/>
+                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100 "/>
+                <div className=" mx-auto max-w-screen-3xl  sm:px-6 lg:px-8">
+                    <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
+                        <div className="absolute inset-0">
+                            <Image
+                                alt="Moderne Möbel in einem stilvollen Wohnzimmer"
+                                src="/img/background.webp"
+                                width={1920}
+                                height={1080}
+                                className="h-full w-full object-cover opacity-80"
+                            />
+                            {/* Overlay */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-white "/>
+                        </div>
+                        <div className="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32 z-10">
+                            <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+                                <span className="text-gray-800">Entdecken Sie Premium-Möbel</span>
+                            </h1>
+                            <div className={'w-full max-w-3xl my-12 mx-auto'}>
+                                <SearchFilter/>
                             </div>
-                            <div className="relative px-6 py-16 sm:py-24 lg:px-8 lg:py-32 z-10">
-                                <h1 className="text-center text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
-                                    <span className="text-gray-800">Entdecken Sie Premium-Möbel</span>
-                                </h1>
-                                <div className={'w-full max-w-3xl my-12 mx-auto'}>
-                                    <SearchFilter/>
-                                </div>
-                                <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
-                                    <div className="space-y-4 sm:mx-auto">
-                                        <Button variant={'outline'} size={'lg'} className={'bg-blue-500 text-white border-none'} >
-                                            Jetzt einkaufen
-                                        </Button>
-                                    </div>
+                            <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
+                                <div className="space-y-4 sm:mx-auto">
+                                    <Button variant={'outline'} size={'lg'} className={'bg-blue-500 text-white border-none'}>
+                                        Jetzt einkaufen
+                                    </Button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
             <div className="bg-gray-100 h-72">
             </div>
         </>

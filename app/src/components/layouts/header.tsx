@@ -38,7 +38,7 @@ const Header = () => {
 
     return (
         <header
-            className={cn('flex flex-col top-0 z-50 w-full lg:h-auto', {
+            className={cn('flex flex-col top-0 z-50 w-full lg:h-auto max-w-screen-3xl  mx-auto ', {
                 '': isHomePage,
                 ' border-b border-border-200 shadow-sm': !isHomePage,
             })}

@@ -5,7 +5,7 @@ import Footer from './footer';
 export default function HomeLayout({children}: React.PropsWithChildren<{}>) {
 
     return (
-        <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
+        <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150 bg-white">
             <Header />
 
             {/*<div className="min-h-screen">*/}
