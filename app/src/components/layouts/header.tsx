@@ -97,7 +97,7 @@ const Header = () => {
                             )}
                         />
                     </div>
-                    <div className={'sm:hidden lg:flex lg:flex-col w-full justify-center items-center   col-start-1 col-span-full row-start-2 row-end-2 2xl:row-start-1 2xl:row-end-1 2xl:col-start-2 2xl:col-end-3  '}>
+                    <div className={'hidden lg:flex lg:flex-col w-full justify-center items-center   col-start-1 col-span-full row-start-2 row-end-2 2xl:row-start-1 2xl:row-end-1 2xl:col-start-2 2xl:col-end-3  '}>
                         <Suspense fallback={<div>Loading...</div>}>
                             <CategoryMegaMenu/>
                         </Suspense>
