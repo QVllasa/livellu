@@ -10,6 +10,11 @@ import {CategorySection} from "@/components/page-components/home-index/CategoryS
 
 const Home: NextPageWithLayout = () => {
 
+    const imageArray = Array.from({ length: 10 }, (_, index) => ({
+        src: `https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80`,
+        alt: `Image ${index + 1}`,
+    }));
+
     return (
         <>
             <div className={'bg-gray-100 sm:px-6 lg:px-8'}>
@@ -51,12 +56,11 @@ const Home: NextPageWithLayout = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-100 h-full mx-auto">
+                <div className="bg-gray-100 h-full mx-auto relative">
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>
                     </Suspense>
-
                 </div>
             </div>
 
