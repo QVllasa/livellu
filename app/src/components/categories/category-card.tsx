@@ -6,6 +6,10 @@ export const CategoryCard = ({category}: { category: Category }) => {
 
     const imgObj = category?.image
 
+    console.log((category?.image ? process.env.NEXT_PUBLIC_STRAPI_HOST+category?.image?.url : '/img/background.webp'))
+    console.log(process.env.NEXT_PUBLIC_STRAPI_HOST+category?.image?.url)
+
+
     return <article
             key={category.id}
             className="relative isolate flex flex-col justify-end overflow-hidden rounded-xl bg-white px-8 pb-8 pt-20 sm:pt-28 md:pt-32  lg:pt-36 xl:pt-48 max-h-48"
