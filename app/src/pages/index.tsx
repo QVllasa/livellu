@@ -1,8 +1,6 @@
 import type {Category, NextPageWithLayout} from '@/types';
 import * as React from 'react';
-import {Suspense, useEffect} from 'react';
-import {useRouter} from 'next/router';
-import {scroller} from 'react-scroll';
+import {Suspense, useEffect, useState} from 'react';
 import HomeLayout from '@/components/layouts/_home';
 import Image from "next/image";
 import {SearchFilter} from "@/components/filters/search-filter";
@@ -14,18 +12,8 @@ import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,
 import Autoplay from "embla-carousel-autoplay";
 
 const Home: NextPageWithLayout = () => {
-    const {query} = useRouter();
-    const [allCategories] = useAtom(allCategoriesAtom);
-    const [categories, setCategories] = React.useState<Category[]>([]);
-
-    useEffect(() => {
-        if (query.text || query.category) {
-            scroller.scrollTo('grid', {
-                smooth: true,
-                offset: -110,
-            });
-        }
-    }, [query.text, query.category]);
+    const allCategories = useAtom(allCategoriesAtom);
+    const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
         console.log('allCategories', allCategories)
@@ -37,7 +25,7 @@ const Home: NextPageWithLayout = () => {
     )
 
 
-    if (allCategories.length === 0) {
+    if (categories.length === 0) {
         return <div>Loading...</div>;
     }
 
@@ -66,7 +54,8 @@ const Home: NextPageWithLayout = () => {
                                     <span className="text-gray-800">Entdecken Sie Premium-Möbel</span>
                                 </h1>
                                 <div className={'w-full max-w-3xl my-12 mx-auto'}>
-                                    <SearchFilter/>
+                                    <Suspense fallback={<div>Loading...</div>}> <SearchFilter/></Suspense>
+
                                 </div>
                                 <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
                                     <div className="space-y-4 sm:mx-auto">
