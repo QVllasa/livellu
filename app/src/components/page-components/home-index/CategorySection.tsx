@@ -17,7 +17,7 @@ export const CategorySection = () => {
             {allCategories.map((category) => <CategoryCard category={category} key={category.id}/>)}
         </div>
         <div className={'relative flex lg:hidden items-center justify-center px-4 mt-6'}>
-            <div className="relative flex  w-auto mx-auto overflow-x-auto snap-x snap-mandatory scroll-px-4 ">
+            <div className="relative flex  w-auto mx-auto overflow-x-auto snap-x snap-mandatory scroll-px-36 ">
                 {allCategories.map((category) => (
                     <div key={category.id} className={'scroll-ml-6 px-1 sm:px-2 md:px-3 snap-center w-36 sm:w-40 md:w-48 shrink-0'}>
                         <CategoryCard category={category}/>
