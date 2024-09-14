@@ -23,7 +23,7 @@ const Home: NextPageWithLayout = () => {
                                 <Suspense fallback={<div>Loading...</div>}>
                                     <Image
                                         alt="Moderne Möbel in einem stilvollen Wohnzimmer"
-                                        src="/img/background.webp"
+                                        src="/img/background.png"
                                         width={1920}
                                         height={1080}
                                         className="h-full w-full object-cover opacity-80"
