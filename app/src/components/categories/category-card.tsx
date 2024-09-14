@@ -4,10 +4,7 @@ import Image from "next/image";
 
 export const CategoryCard = ({category}: { category: Category }) => {
 
-
-    console.log('category', category)
     const imgObj = category?.image
-
 
     return <article
             key={category.id}
@@ -19,10 +16,6 @@ export const CategoryCard = ({category}: { category: Category }) => {
                 height={imgObj?.height ?? 500}
                 alt=""
                 className="absolute inset-0 -z-10 h-full w-full object-cover"/>
-            {/*<div className="absolute inset-0 -z-10 bg-gradient-to-tr from-gray-800 from-20% to-60%"/>*/}
-
-
-
             <h3 className="absolute left-0 top-0 right-0 flex text-xs sm:text-sm md:text-base  xl:text-xl font-bold leading-6 text-gray-800 justify-start bg-gradient-to-b from-white to-80%  bg-opacity-80  w-auto p-2 md:p-3 lg:p-4 pb-20 sm:pb-28 md:pb-32  lg:pb-36 xl:pb-48 ">
                 <Link href={'/' + category.slug}>
                     {category.name}
