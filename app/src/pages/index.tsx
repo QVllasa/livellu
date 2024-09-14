@@ -1,33 +1,18 @@
-import type {Category, NextPageWithLayout} from '@/types';
+import type {NextPageWithLayout} from '@/types';
 import * as React from 'react';
-import {Suspense, useEffect, useState} from 'react';
+import {Suspense} from 'react';
 import HomeLayout from '@/components/layouts/_home';
 import Image from "next/image";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {Button} from "@/shadcn/components/ui/button";
-import {useAtom} from "jotai/index";
-import {allCategoriesAtom} from "@/store/filters";
 import {CategoryCard} from "@/components/categories/category-card";
 import {Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious,} from "@/shadcn/components/ui/carousel"
-import Autoplay from "embla-carousel-autoplay";
+import {useAtom} from "jotai/index";
+import {allCategoriesAtom} from "@/store/filters";
 
 const Home: NextPageWithLayout = () => {
-    const allCategories = useAtom(allCategoriesAtom);
-    const [categories, setCategories] = useState<Category[]>([]);
+    const allCategories = []
 
-    useEffect(() => {
-        console.log('allCategories', allCategories)
-        setCategories(allCategories);
-    }, [allCategories]);
-
-    const plugin = React.useRef(
-        Autoplay({ delay: 1500 })
-    )
-
-
-    if (categories.length === 0) {
-        return <div>Loading...</div>;
-    }
 
     return (
         <>
@@ -39,13 +24,15 @@ const Home: NextPageWithLayout = () => {
                     <div className=" mx-auto max-w-screen-3xl ">
                         <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
                             <div className="absolute inset-0">
-                                <Image
-                                    alt="Moderne Möbel in einem stilvollen Wohnzimmer"
-                                    src="/img/background.webp"
-                                    width={1920}
-                                    height={1080}
-                                    className="h-full w-full object-cover opacity-80"
-                                />
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <Image
+                                        alt="Moderne Möbel in einem stilvollen Wohnzimmer"
+                                        src="/img/background.webp"
+                                        width={1920}
+                                        height={1080}
+                                        className="h-full w-full object-cover opacity-80"
+                                    />
+                                </Suspense>
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-b from-white "/>
                             </div>
@@ -71,25 +58,7 @@ const Home: NextPageWithLayout = () => {
                 <div className="bg-gray-100 h-full mx-auto">
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
-                        <div className="hidden px-4 sm:px-0 mx-auto max-w-screen-xl mt-16 lg:grid grid-cols-1 gap-8 sm:mt-20 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5">
-                            {categories.map((category) => <CategoryCard category={category} key={category.id}/>)}
-                        </div>
-                        <Carousel opts={{
-                            align: "start",
-                            loop: true,
-                        }} plugins={[plugin.current]} className="px-4 lg:hidden mx-auto max-w-screen-lg mt-12 relative">
-                            <CarouselContent>
-                                {categories.map((category) => (
-                                    <CarouselItem key={category.id} className={'basis-1/3 md:basis-1/4'}>
-                                        <div className="">
-                                            <CategoryCard category={category}/>
-                                        </div>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselPrevious className={'left-0'}/>
-                            <CarouselNext className={'right-0'}/>
-                        </Carousel>
+                        <CategorySection/>
                     </Suspense>
 
                 </div>
@@ -119,4 +88,24 @@ const Divider = ({title}: { title: string }) => {
     );
 };
 
-
+const CategorySection = () => {
+    const [allCategories] = useAtom(allCategoriesAtom)
+    return <>
+        <div className="hidden px-4 sm:px-0 mx-auto max-w-screen-xl mt-16 lg:grid grid-cols-1 gap-8 sm:mt-20 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5">
+            {allCategories.map((category) => <CategoryCard category={category} key={category.id}/>)}
+        </div>
+        <Carousel className="px-4 lg:hidden mx-auto max-w-screen-lg mt-12 relative">
+            <CarouselContent>
+                {allCategories.map((category) => (
+                    <CarouselItem key={category.id} className={'basis-1/3 md:basis-1/4'}>
+                        <div className="">
+                            <CategoryCard category={category}/>
+                        </div>
+                    </CarouselItem>
+                ))}
+            </CarouselContent>
+            <CarouselPrevious className={'left-0'}/>
+            <CarouselNext className={'right-0'}/>
+        </Carousel>
+    </>
+}
