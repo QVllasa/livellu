@@ -14,10 +14,6 @@ const config: Config = {
         sans: ['var(--font-space-default)', ...fontFamily.sans],
         display: ['var(--font-space-display)', ...fontFamily.sans],
       },
-      gradientColorStopPositions: {
-        33: '33%',
-        50: '50%',
-      },
       width: {
         '7xl': '80rem',
       },

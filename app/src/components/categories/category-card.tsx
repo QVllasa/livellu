@@ -1,34 +1,32 @@
 import Link from "next/link";
 import {Category} from "@/types";
-import {capitalizeFirstLetter} from "@/lib/format-string";
 import Image from "next/image";
-import {FALLBACK_IMG} from "@/lib/constants";
 
 export const CategoryCard = ({category}: { category: Category }) => {
 
 
-    const imgObj = category?.image?.data ? category?.image?.data.attributes : FALLBACK_IMG
-    const provider = category?.image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
+    console.log('category', category)
+    const imgObj = category?.image
+
 
     return <article
-        key={category.id}
-        className="relative isolate flex flex-col justify-end overflow-hidden rounded-xl bg-gray-900 px-8 pb-8  sm:pt-48 lg:pt-48 max-h-48"
-    >
-        <Image
-            src={(provider) + imgObj.url}
-            width={imgObj.width}
-            height={imgObj.height}
-            alt=""
-            className="absolute inset-0 -z-10 h-full w-full object-cover"/>
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-gray-900 via-gray-900/40"/>
-        <div className="absolute inset-0 -z-10 rounded-2xl ring-1 ring-inset ring-gray-900/10"/>
+            key={category.id}
+            className="relative isolate flex flex-col justify-end overflow-hidden rounded-xl bg-white px-8 pb-8 pt-20 sm:pt-28 md:pt-32  lg:pt-36 xl:pt-48 max-h-48"
+        >
+            <Image
+                src={(category?.image ? process.env.NEXT_PUBLIC_STRAPI_HOST+category?.image.url : '/img/background.webp')}
+                width={imgObj?.width ?? 500}
+                height={imgObj?.height ?? 500}
+                alt=""
+                className="absolute inset-0 -z-10 h-full w-full object-cover"/>
+            {/*<div className="absolute inset-0 -z-10 bg-gradient-to-tr from-gray-800 from-20% to-60%"/>*/}
 
 
-        <h3 className="mt-3 text-base font-semibold leading-6 text-white">
-            <Link href={'/category/' + category.identifier}>
-                <span className="absolute inset-0"/>
-                {capitalizeFirstLetter(category.name)}
-            </Link>
-        </h3>
-    </article>
+
+            <h3 className="absolute left-0 top-0 right-0 flex text-xs sm:text-sm md:text-base  xl:text-xl font-bold leading-6 text-gray-800 justify-start bg-gradient-to-b from-white to-80%  bg-opacity-80  w-auto p-2 md:p-3 lg:p-4 pb-20 sm:pb-28 md:pb-32  lg:pb-36 xl:pb-48 ">
+                <Link href={'/' + category.slug}>
+                    {category.name}
+                </Link>
+            </h3>
+        </article>
 }

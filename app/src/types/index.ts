@@ -136,7 +136,7 @@ export interface ArticleTag {
 
 export interface Category {
     id?: number;
-    image?: { data: Entity<Media> };
+    image?: Media ;
     content?: string;
     createdAt: Date;
     updatedAt: Date;
