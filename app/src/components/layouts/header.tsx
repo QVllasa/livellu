@@ -1,12 +1,7 @@
 import Logo from '@/components/ui/logo';
 import cn from 'classnames';
-import {useAtom} from 'jotai';
-import {displayMobileHeaderSearchAtom} from '@/store/display-mobile-header-search-atom';
-import dynamic from 'next/dynamic';
-import {authorizationAtom} from '@/store/authorization-atom';
 import {useIsHomePage} from '@/lib/use-is-homepage';
 import React, {Suspense, useState} from 'react';
-import {useHeaderSearch} from '@/layouts/headers/header-search-atom';
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Armchair, FolderHeart, Menu, Newspaper, SquareUserRound} from "lucide-react";
 import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
@@ -16,12 +11,7 @@ import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category
 import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 import {Button} from "@/shadcn/components/ui/button";
 
-const Search = dynamic(() => import('@/components/ui/search/search'));
-
 const Header = () => {
-    const {show, hideHeaderSearch} = useHeaderSearch();
-    const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
-    const [isAuthorize] = useAtom(authorizationAtom);
     const [openDropdown, setOpenDropdown] = useState(false);
     const isHomePage = useIsHomePage();
     const [isSheetOpen, setIsSheetOpen] = useState(false);
@@ -107,7 +97,7 @@ const Header = () => {
                             )}
                         />
                     </div>
-                    <div className={'hidden col-start-1 col-span-full row-start-2 row-end-2 2xl:row-start-1 2xl:row-end-1 2xl:col-start-2 2xl:col-end-3 xl:flex w-full justify-center items-center lg:flex-col'}>
+                    <div className={'sm:hidden lg:flex lg:flex-col w-full justify-center items-center   col-start-1 col-span-full row-start-2 row-end-2 2xl:row-start-1 2xl:row-end-1 2xl:col-start-2 2xl:col-end-3  '}>
                         <Suspense fallback={<div>Loading...</div>}>
                             <CategoryMegaMenu/>
                         </Suspense>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Category, NavigationItem} from "@/types";
+import {Category} from "@/types";
 import {capitalize} from "lodash";
 import {NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle,} from "@/shadcn/components/ui/navigation-menu"
 import Link from "next/link";
@@ -7,22 +7,17 @@ import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
 import Icon from "@/components/ui/icon";
 import {cn} from "@/shadcn/lib/utils";
-import {allNavigation} from "@/store/navigation";
 
 
 export function CategoryMegaMenu() {
     const [allCategories] = useAtom(allCategoriesAtom);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [navigationData] = useAtom(allNavigation);
-    const [navItems, setNavItems] = useState<NavigationItem[]>([]);
+
 
     useEffect(() => {
+        console.log('allCategories', allCategories)
         setCategories(allCategories);
     }, [allCategories]);
-
-    useEffect(() => {
-        setNavItems(navigationData);
-    }, [navigationData]);
 
     return (
         <NavigationMenu>
@@ -48,24 +43,8 @@ export function CategoryMegaMenu() {
 
                             </ul>
                         </NavigationMenuContent>
-
                     </NavigationMenuItem>
                 )}
-                {/*{navItems.map(({url, title, icon}, index) =>*/}
-                {/*        url !== '/' && (*/}
-                {/*            <NavigationMenuItem key={index + (title ?? '')}>*/}
-                {/*                <NavigationMenuTrigger>*/}
-                {/*                    <Link href={url} className={'flex items-center justify-center'}>*/}
-                {/*                        {icon && <Icon name={icon} className="w-4 h-4 mr-2"/>}*/}
-                {/*                        {title}*/}
-                {/*                    </Link>*/}
-                {/*                </NavigationMenuTrigger>*/}
-                {/*                <NavigationMenuContent className="w-full lg:w-[104rem] mx-auto">*/}
-                {/*                    some content coming soon..*/}
-                {/*                </NavigationMenuContent>*/}
-                {/*            </NavigationMenuItem>*/}
-                {/*        )*/}
-                {/*)}*/}
             </NavigationMenuList>
         </NavigationMenu>
     )
