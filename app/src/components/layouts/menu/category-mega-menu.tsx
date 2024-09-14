@@ -30,7 +30,7 @@ export function CategoryMegaMenu() {
                                 {capitalize(category?.name)}
                             </Link>
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="w-full  ">
+                        <NavigationMenuContent className="w-full ">
                             <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[75rem] lg:grid-cols-[.75fr_1fr] z-30 items-stretch">
                                 {category?.child_categories?.map((childCategory) => (
                                     <li key={childCategory?.name} className={'w-full'}>

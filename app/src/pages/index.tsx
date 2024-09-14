@@ -10,11 +10,6 @@ import {CategorySection} from "@/components/page-components/home-index/CategoryS
 
 const Home: NextPageWithLayout = () => {
 
-    const imageArray = Array.from({ length: 10 }, (_, index) => ({
-        src: `https://images.unsplash.com/photo-1604999565976-8913ad2ddb7c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=160&q=80`,
-        alt: `Image ${index + 1}`,
-    }));
-
     return (
         <>
             <div className={'bg-gray-100 sm:px-6 lg:px-8'}>
@@ -23,17 +18,15 @@ const Home: NextPageWithLayout = () => {
                     <div className="absolute inset-x-0 top-0 h-1/2 bg-white sm:-mx-6 lg:-mx-8"/>
                     <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100 sm:-mx-6 lg:-mx-8"/>
                     <div className=" mx-auto max-w-screen-3xl ">
-                        <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
+                        <div className="relative  sm:overflow-hidden sm:rounded-2xl">
                             <div className="absolute inset-0">
-                                <Suspense fallback={<div>Loading...</div>}>
-                                    <Image
-                                        alt="Moderne Möbel in einem stilvollen Wohnzimmer"
-                                        src="/img/background.png"
-                                        width={1920}
-                                        height={1080}
-                                        className="h-full w-full object-cover opacity-80"
-                                    />
-                                </Suspense>
+                                <Image
+                                    alt="Moderne Möbel in einem stilvollen Wohnzimmer"
+                                    src="/img/background.png"
+                                    width={1920}
+                                    height={1080}
+                                    className="h-full w-full object-cover opacity-80"
+                                />
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-b from-white "/>
                             </div>
