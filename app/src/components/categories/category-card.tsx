@@ -9,10 +9,6 @@ export const CategoryCard = ({category}: { category: Category }) => {
 
     const imgObj = category?.image
 
-    console.log((category?.image ? process.env.NEXT_PUBLIC_STRAPI_HOST+category?.image?.url : '/img/background.webp'))
-    console.log(process.env.NEXT_PUBLIC_STRAPI_HOST+category?.image?.url)
-
-
     return <Link href={`/${category?.slug}`} className={''}>
         <article
             key={category.id}

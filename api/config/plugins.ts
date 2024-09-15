@@ -100,14 +100,17 @@ export default ({env}) => ({
                       {
                         populate:
                           {
-                            child_categories: {populate: {child_categories: '*', parent_categories: '*'}},
-                            parent_categories: '*'
+                            child_categories: {populate: {child_categories: '*', parent_categories: '*',  image: '*'}},
+                            parent_categories: '*',
+                            image: '*'
                           }
                       },
-                    parent_categories: '*'
+                    parent_categories: '*',
+                    image: '*'
                   }
                 },
-                parent_categories: '*'
+                parent_categories: '*',
+                image: '*'
               }
             });
 
