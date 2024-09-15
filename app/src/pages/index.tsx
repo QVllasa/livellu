@@ -49,7 +49,7 @@ const Home: NextPageWithLayout = () => {
                         </div>
                     </div>
                 </div>
-                <div className="bg-gray-100 h-full mx-auto relative ">
+                <div className="bg-gray-100 h-full mx-auto relative max-w-screen-3xl">
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>

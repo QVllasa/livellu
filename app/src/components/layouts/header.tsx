@@ -42,7 +42,7 @@ const Header = () => {
             ></div>
 
             <div className={'flex flex-col bg-white text-gray-800'}>
-                <div className={'grid grid-cols-3 w-full items-center justify-evenly lg:h-22 lg:px-4 xl:px-8'}>
+                <div className={'grid grid-cols-3 w-full items-center justify-evenly lg:h-28 lg:px-4 xl:px-8'}>
                     {/* Mobile Navigation Trigger */}
                     <div className="flex items-center xl:col-start-1 xl:col-end-2 xl:hidden p-4">
                         <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>

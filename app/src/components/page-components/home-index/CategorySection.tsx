@@ -18,10 +18,10 @@ export const CategorySection = () => {
 
 
     return <>
-        <div className="hidden px-4 sm:px-0 mx-auto max-w-screen-xl mt-16 lg:grid  gap-8 sm:mt-20  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5">
+        <div className="hidden px-4 sm:px-0 mx-auto max-w-screen-3xl mt-16 lg:grid  gap-8 sm:mt-20  sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-5">
             {allCategories.map((category) => <CategoryCard category={category} key={category.id}/>)}
         </div>
-        <div className={'lg:hidden'}>
+        <div className={'lg:hidden '}>
             <Scrollable>
                 {allCategories.map((category) => (
                     <div key={category.id} className={'scroll-ml-6 px-1 sm:px-2 md:px-3 snap-center w-36 sm:w-40 md:w-48 shrink-0'}>
@@ -72,8 +72,8 @@ const Scrollable = ({children}) => {
     };
 
     return <>
-        <div className={'relative flex  items-center justify-center px-4 mt-6 lg:mt-12'}>
-            <div className="relative flex w-auto mx-auto overflow-x-auto scroll-pr-36 scroll-pl-36 pr-26 py-4 snap-x snap-mandatory" ref={scrollContainerRef}>
+        <div className={'relative flex  items-center justify-center mt-6 lg:mt-12 w-full px-12'}>
+            <div className="relative flex w-auto mx-auto overflow-x-auto scroll-pr-36 scroll-pl-36 pr-26 py-4 snap-x snap-mandatory " ref={scrollContainerRef}>
                 {children}
             </div>
             <Button size={'icon'} variant={'outline'} className={'absolute left-0 z-20 '} onClick={scrollLeft}>
