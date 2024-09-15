@@ -121,7 +121,7 @@ export default ({env}) => ({
             }
           },
           settings: {
-            filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug'],
+            filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'description'],
             pagination: {
               maxTotalHits: 1000
             },

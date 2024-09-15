@@ -30,7 +30,6 @@ export const CategorySection = () => {
                 ))}
             </Scrollable>
         </div>
-
         <Scrollable>
             {allCategories.map((category) => {
                     return category.child_categories.map((childCategory) => {
