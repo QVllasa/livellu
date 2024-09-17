@@ -1,4 +1,4 @@
-import type {NextPageWithLayout} from '@/types';
+import {MetaData, NextPageWithLayout, Product} from '@/types';
 import * as React from 'react';
 import {Suspense} from 'react';
 import HomeLayout from '@/components/layouts/_home';
@@ -6,9 +6,14 @@ import Image from "next/image";
 import {SearchFilter} from "@/components/filters/search-filter";
 import {Button} from "@/shadcn/components/ui/button";
 import {CategorySection} from "@/components/page-components/home-index/CategorySection";
+import {ProductSlider} from "@/components/products/products-slider";
+import {fetchProducts} from "@/framework/product";
+import {GetServerSidePropsContext} from "next";
 
 
-const Home: NextPageWithLayout = () => {
+const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta: MetaData }) => {
+
+    console.log('products meta', products, meta)
 
     return (
         <>
@@ -54,10 +59,11 @@ const Home: NextPageWithLayout = () => {
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>
                     </Suspense>
+                    <Divider title={'Unsere beliebtesten Produkte'}/>
+                    <ProductSlider products={products}/>
+                    <Divider title={'Alle Partnershops'}/>
                 </div>
             </div>
-
-
         </>
     );
 };
@@ -81,4 +87,24 @@ const Divider = ({title}: { title: string }) => {
     );
 };
 
+
+export async function getServerSideProps(context: GetServerSidePropsContext) {
+    const filters = {
+        minPrice: 200,
+        maxPrice: 2000,
+        minRating: 4.8,
+        pageSize: 24,
+        randomize: true,
+        searchTerms: '',  // Empty query to fetch all matching products
+    };
+
+    const {data: products, meta} = await fetchProducts(filters);
+
+    return {
+        props: {
+            products,
+            meta
+        },
+    };
+}
 

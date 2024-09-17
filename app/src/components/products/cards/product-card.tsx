@@ -37,7 +37,6 @@ const ProductCard = (props: { product: Product }) => {
         setImageSrc('/img/fallbackimage.webp'); // Using the fallback image from the public folder
     };
 
-    console.log('variant', variant)
 
     // Calculate discount percentage if the product is on sale
     const isOnSale = variant?.priceOld && parseFloat(variant.priceOld) > variant.price;
@@ -56,7 +55,7 @@ const ProductCard = (props: { product: Product }) => {
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Link href={variant.merchantLink ?? ''}  target={'_blank'} rel={'noopener norefererrer'} >
-                        <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden">
+                        <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-48">
                             <CardContent className="flex items-center justify-center p-0 relative">
                                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
                                     <div className={'relative w-full h-0 pt-[75%]'}>
@@ -100,8 +99,8 @@ const ProductCard = (props: { product: Product }) => {
                                     <div className="p-2 sm:p-4 relative">
                                         {variant?.averageRating > 0 && (
                                             <div className="absolute top-0 flex items-center mt-1 sm:mt-2 text-yellow-400">
-                                                <LandingRating size="small" className="fill-yellow-400" rating={parseFloat(variant?.averageRating ?? 0)}/>
-                                                <span className="ml-2 text-gray-400 font-semibold text-xs">
+                                                <LandingRating size="xs" className="fill-yellow-400" rating={parseFloat(variant?.averageRating ?? 0)}/>
+                                                <span className="ml-2 text-gray-400 font-semibold text-[0.5rem]">
                                                     {variant.averageRating ? parseFloat(variant?.averageRating).toFixed(1) : 0}
                                                 </span>
                                             </div>
@@ -127,7 +126,7 @@ const ProductCard = (props: { product: Product }) => {
                                         </div>
 
 
-                                        <h4 className="scroll-m-20 text-xs sm:text-sm font-semibold tracking-tight truncate">
+                                        <h4 className="scroll-m-20 text-xs sm:text-sm font-semibold tracking-tight truncate hidden md:flex">
                                         {variant.productName}
                                         </h4>
                                         <div className={'flex justify-between items-center mt-2 gap-2'}>
@@ -140,7 +139,7 @@ const ProductCard = (props: { product: Product }) => {
                                             </Button>
                                             <Button
                                                 size="sm"
-                                                className={'w-full lg:w-auto'}
+                                                className={'hidden md:flex w-full lg:w-auto'}
                                                 variant="outline"
                                                 onClick={(e) => {
                                                     e.preventDefault();

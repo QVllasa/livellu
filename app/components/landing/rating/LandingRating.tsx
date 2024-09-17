@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { StarHalfIcon, StarIcon } from 'lucide-react';
+import {StarHalfIcon, StarIcon} from 'lucide-react';
 
 /**
  * Shows a rating with stars.
@@ -13,7 +13,7 @@ export const LandingRating = ({
   className?: string;
   rating?: number;
   maxRating?: number;
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xs';
 }) => {
   return (
     <div
@@ -25,6 +25,7 @@ export const LandingRating = ({
           <div
             key={index}
             className={clsx(
+              size === 'xs' ? 'h-2.5 w-2.5' : '',
               size === 'small' ? 'h-3 w-3' : '',
               size === 'medium' ? 'h-4 w-4' : '',
               size === 'large' ? 'h-5 w-5' : '',

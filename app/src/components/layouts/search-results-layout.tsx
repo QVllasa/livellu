@@ -3,7 +3,7 @@ import Footer from './footer';
 import Link from "next/link";
 import {ChevronRight, ChevronUp, Package2} from "lucide-react";
 import {capitalize} from "lodash";
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 
 import PageSizeSelector from "@/components/filters/desktop/page-size-selector";
 import PageSortSelector from "@/components/filters/desktop/page-sort-selector";
@@ -29,6 +29,7 @@ import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter
 import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
 import {SearchBreadcrumbs} from "@/components/breadcrumbs/search-breadcrumbs";
+import {CategorySearchSideMenu} from "@/components/layouts/menu/category-search-side-menu";
 
 
 function SearchResultsPageLayout(page) {
@@ -41,7 +42,7 @@ function SearchResultsPageLayout(page) {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
 
@@ -67,14 +68,13 @@ function SearchResultsPageLayout(page) {
     }, []);
 
 
-
     useEffect(() => {
         if (router.query.search) {
             console.log("search: ", router.query.search)
             const searchTerms = router.query.search.length > 0 ? router.query.search.split(" ") : [];
             const t = `Suchergebnisse für: "${searchTerms.join(" ")}"`
             setTitle(t)
-        }else{
+        } else {
             setTitle('Deine Suche')
         }
     }, [router.query]);
@@ -137,7 +137,9 @@ function SearchResultsPageLayout(page) {
                         </div>
                         <div className="flex-1 max-h-full overflow-scroll">
                             <div className={'w-64 '}>
-                                Categories...
+                                <Suspense fallback={<div>Loading...</div>}>
+                                    <CategorySearchSideMenu/>
+                                </Suspense>
                             </div>
                         </div>
                     </div>

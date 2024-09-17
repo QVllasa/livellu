@@ -14,6 +14,7 @@ interface SearchRequestBody {
   attributesToHighlight?: string[];
   minPrice?: number;  // Add minPrice
   maxPrice?: number;  // Add maxPrice
+  minRating?: number;
   [key: string]: any;
 }
 
@@ -30,6 +31,8 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       minPrice,  // Destructure minPrice from body
       maxPrice,  // Destructure maxPrice from body
       productId,
+      minRating,
+      randomize,
       ...restParams
     } = body;
 
@@ -46,6 +49,9 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
     if (maxPrice !== undefined) {
       filterConditions.push(`variants.price <= ${maxPrice}`);
     }
+    if (minRating !== undefined) {
+      filterConditions.push(`variants.averageRating >= ${minRating}`);
+    }
 
     const searchParams = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
@@ -53,6 +59,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       offset: (page - 1) * pageSize,
       facets: [
         'brandName',
+        'variants.averageRating',
         'variants.style',
         'variants.height',
         'variants.width',
@@ -66,7 +73,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       sort: restParams.sort || undefined,
       attributesToRetrieve: restParams.attributesToRetrieve || undefined,
       attributesToCrop: restParams.attributesToCrop || undefined,
-      attributesToHighlight: restParams.attributesToHighlight || undefined,
+      attributesToHighlight: restParams.attributesToHighlight || undefined
     };
 
     try {
@@ -75,7 +82,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       const searchResults = await index.search(searchTerms as string, searchParams);
 
       // Exclude unwanted facets from the facetDistribution
-      const unwantedFacets = ['variants.price', 'variants.slug']; // Example unwanted facets
+      const unwantedFacets = ['variants.price', 'variants.slug', 'variants.averageRating']; // Example unwanted facets
       const filteredFacetDistribution = Object.keys(searchResults.facetDistribution)
         .filter(key => !unwantedFacets.includes(key))
         .reduce((obj, key) => {

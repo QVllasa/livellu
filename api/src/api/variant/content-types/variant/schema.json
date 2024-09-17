@@ -73,7 +73,8 @@
       "type": "text"
     },
     "averageRating": {
-      "type": "text"
+      "type": "decimal",
+      "default": 0
     },
     "keywords": {
       "type": "text"

@@ -121,10 +121,11 @@ export default ({env}) => ({
             }
           },
           settings: {
-            filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'description'],
+            filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'name'],
             pagination: {
               maxTotalHits: 1000
             },
+            // searchableAttributes: ['name', 'slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'description'],
           }
         },
         brand: {

@@ -2,7 +2,6 @@ import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
 import * as React from "react";
 import {useRef} from "react";
-import Autoplay from "embla-carousel-autoplay";
 import {CategoryCard} from "@/components/categories/category-card";
 import {Button} from "@/shadcn/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
@@ -11,10 +10,6 @@ import Link from "next/link";
 
 export const CategorySection = () => {
     const [allCategories] = useAtom(allCategoriesAtom)
-
-    const plugin = React.useRef(
-        Autoplay({delay: 1500})
-    )
 
 
     return <>

@@ -1266,7 +1266,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     imageUrl: Attribute.Text;
     deliveryCost: Attribute.Text;
     productName: Attribute.Text;
-    averageRating: Attribute.Text;
+    averageRating: Attribute.Decimal & Attribute.DefaultTo<0>;
     keywords: Attribute.Text;
     isForSale: Attribute.Boolean;
     largeImage: Attribute.Text;
