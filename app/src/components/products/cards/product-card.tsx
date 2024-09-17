@@ -12,10 +12,14 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn
 import {AspectRatio} from "@/shadcn/components/ui/aspect-ratio";
 
 const ProductCard = (props: { product: Product }) => {
-    const { product } = props;
+    const {product} = props;
     const router = useRouter();
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [isLoaded, setLoaded] = useState(true);
+
+    const sortedVariants = [...product.variants].sort(
+        (a, b) => (b.averageRating ?? 0) - (a.averageRating ?? 0)
+    );
 
     // Extract the color filter from the URL
     const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
@@ -25,12 +29,14 @@ const ProductCard = (props: { product: Product }) => {
     const selectedColors = colorSegment ? colorSegment.replace('farbe:', '').split('.') : [];
 
     // Find the variant that matches the selected color(s)
-    const matchingVariant = product?.variants.find(
+
+    const matchingVariant = sortedVariants.find(
         (variant) => selectedColors.some(color => variant?.colors?.includes(color.toUpperCase()))
     );
 
+
     // Default to the first variant if no matching variant is found
-    const variant: Variant = matchingVariant || product.variants[0];
+    const variant: Variant = matchingVariant || sortedVariants[0];
 
     // Handle image error by setting a fallback image
     const handleImageError = () => {
@@ -54,7 +60,7 @@ const ProductCard = (props: { product: Product }) => {
         <TooltipProvider delayDuration={500}>
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Link href={variant.merchantLink ?? ''}  target={'_blank'} rel={'noopener norefererrer'} >
+                    <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'}>
                         <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-48">
                             <CardContent className="flex items-center justify-center p-0 relative">
                                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
@@ -127,7 +133,7 @@ const ProductCard = (props: { product: Product }) => {
 
 
                                         <h4 className="scroll-m-20 text-xs sm:text-sm font-semibold tracking-tight truncate hidden md:flex">
-                                        {variant.productName}
+                                            {variant.productName}
                                         </h4>
                                         <div className={'flex justify-between items-center mt-2 gap-2'}>
                                             <Button

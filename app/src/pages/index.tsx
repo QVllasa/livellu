@@ -9,6 +9,7 @@ import {CategorySection} from "@/components/page-components/home-index/CategoryS
 import {ProductSlider} from "@/components/products/products-slider";
 import {fetchProducts} from "@/framework/product";
 import {GetServerSidePropsContext} from "next";
+import {Merchants} from "@/components/merchants/merchants";
 
 
 const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta: MetaData }) => {
@@ -62,6 +63,7 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                     <Divider title={'Unsere beliebtesten Produkte'}/>
                     <ProductSlider products={products}/>
                     <Divider title={'Alle Partnershops'}/>
+                    <Merchants />
                 </div>
             </div>
         </>
