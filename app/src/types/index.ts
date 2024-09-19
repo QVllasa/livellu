@@ -137,6 +137,7 @@ export interface ArticleTag {
 export interface Category {
     id?: number;
     image?: Media ;
+    hasImage: boolean;
     content?: string;
     createdAt: Date;
     updatedAt: Date;
