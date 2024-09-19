@@ -60,7 +60,7 @@ export default factories.createCoreController('api::category.category', ({strapi
       }
     }
 
-    const searchParams: CustomSearchParams = {
+    const searchParams: any = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       limit:  limit, // Adjust as needed
       matchingStrategy: "last",
