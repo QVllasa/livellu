@@ -66,7 +66,7 @@ const ProductCard = (props: { product: Product }) => {
                                 <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
                                     <div className={'relative w-full h-0 pt-[75%]'}>
                                         <div className={'absolute top-0 left-0 h-full w-full overflow-hidden'}>
-                                            <AspectRatio ratio={4 / 3} className="bg-muted">
+                                            <AspectRatio ratio={4 / 3} className="bg-muted pt-1">
                                                 <Image
                                                     src={imageSrc || variant?.altImageUrl}
                                                     srcSet={variant?.images}

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-17T15:04:24.769Z"
+    "x-generation-date": "2024-09-19T19:59:22.762Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1755,6 +1755,9 @@
                                             "excluded_filters": {},
                                             "lucide_icon": {
                                               "type": "string"
+                                            },
+                                            "hasImage": {
+                                              "type": "boolean"
                                             },
                                             "createdAt": {
                                               "type": "string",
@@ -3655,6 +3658,9 @@
                                             "lucide_icon": {
                                               "type": "string"
                                             },
+                                            "hasImage": {
+                                              "type": "boolean"
+                                            },
                                             "createdAt": {
                                               "type": "string",
                                               "format": "date-time"
@@ -5020,6 +5026,9 @@
                         "lucide_icon": {
                           "type": "string"
                         },
+                        "hasImage": {
+                          "type": "boolean"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -5246,6 +5255,9 @@
           "excluded_filters": {},
           "lucide_icon": {
             "type": "string"
+          },
+          "hasImage": {
+            "type": "boolean"
           },
           "createdAt": {
             "type": "string",
@@ -6337,6 +6349,7 @@
                         },
                         "images": {},
                         "materials": {},
+                        "summary": {},
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -10144,6 +10157,9 @@
                                                           "lucide_icon": {
                                                             "type": "string"
                                                           },
+                                                          "hasImage": {
+                                                            "type": "boolean"
+                                                          },
                                                           "createdAt": {
                                                             "type": "string",
                                                             "format": "date-time"
@@ -11527,7 +11543,8 @@
                 "format": "float"
               },
               "images": {},
-              "materials": {}
+              "materials": {},
+              "summary": {}
             }
           }
         }
@@ -11830,6 +11847,7 @@
                                     },
                                     "images": {},
                                     "materials": {},
+                                    "summary": {},
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -12198,6 +12216,7 @@
           },
           "images": {},
           "materials": {},
+          "summary": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"

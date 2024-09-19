@@ -944,6 +944,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     level: Attribute.Integer;
     excluded_filters: Attribute.JSON;
     lucide_icon: Attribute.String;
+    hasImage: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1289,6 +1290,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     discount: Attribute.Float;
     images: Attribute.JSON;
     materials: Attribute.JSON;
+    summary: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

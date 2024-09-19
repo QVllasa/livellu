@@ -132,6 +132,9 @@
     },
     "materials": {
       "type": "json"
+    },
+    "summary": {
+      "type": "json"
     }
   }
 }

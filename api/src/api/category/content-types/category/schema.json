@@ -59,6 +59,10 @@
     },
     "lucide_icon": {
       "type": "string"
+    },
+    "hasImage": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
