@@ -64,7 +64,6 @@ export default factories.createCoreController('api::category.category', ({strapi
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       limit:  limit, // Adjust as needed
       matchingStrategy: "last",
-      showRankingScore: true,
       rankingScoreThreshold: 0.5
       // Optionally, specify attributes to retrieve or other search parameters
       // attributesToRetrieve: ['id', 'name', 'description'], // Example
