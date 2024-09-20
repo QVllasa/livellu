@@ -23,8 +23,6 @@ export const BrandFilter = ({ filters }) => {
     useEffect(() => {
         if (!filters) return;
 
-        console.log("filters brands", filters);
-
         fetchProducts(filters).then((response) => {
             const includedBrands = response.meta.facetDistribution['brandName'];
             const filtered = allBrands

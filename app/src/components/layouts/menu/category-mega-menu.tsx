@@ -15,7 +15,6 @@ export function CategoryMegaMenu() {
 
 
     useEffect(() => {
-        console.log('allCategories', allCategories)
         setCategories(allCategories);
     }, [allCategories]);
 

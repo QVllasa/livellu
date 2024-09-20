@@ -14,8 +14,6 @@ import {Merchants} from "@/components/merchants/merchants";
 
 const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta: MetaData }) => {
 
-    console.log('products meta', products, meta)
-
     return (
         <>
             <div className={'bg-gray-100 sm:px-6 lg:px-8'}>

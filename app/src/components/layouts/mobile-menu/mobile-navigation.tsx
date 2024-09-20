@@ -32,7 +32,6 @@ export default function MobileNavigation() {
     const [navigationNamePath, setNavigationNamePath] = useState<string[]>([]);
     const [direction, setDirection] = useState<number>(0);
 
-    console.log("navigationData: ", navigationData);
 
     useEffect(() => {
         if (navigationData.length > 0) {

@@ -57,21 +57,21 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       filterConditions.push(`variants.price <= ${maxPrice}`);
     }
     if (minRating !== undefined) {
-      filterConditions.push(`variants.averageRating >= ${minRating}`);
+      filterConditions.push(`variants.average_rating >= ${minRating}`);
     }
 
     const baseSearchParams = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       facets: [
-        'brandName',
-        'variants.averageRating',
+        'brand_name',
+        'variants.average_rating',
         'variants.style',
         'variants.height',
         'variants.width',
         'variants.depth',
         'variants.colors',
         'variants.materials',
-        'variants.deliveryTimes',
+        'variants.delivery_times',
         'variants.shape',
         'variants.price'  // Ensure 'variants.price' is included in facets
       ],
@@ -133,7 +133,7 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       const searchResults = await index.search(searchTerms as string, finalSearchParams);
 
       // Exclude unwanted facets from the facetDistribution
-      const unwantedFacets = ['variants.price', 'variants.slug', 'variants.averageRating']; // Example unwanted facets
+      const unwantedFacets = ['variants.price', 'variants.slug', 'variants.average_rating']; // Example unwanted facets
       const filteredFacetDistribution = Object.keys(searchResults.facetDistribution || {})
         .filter(key => !unwantedFacets.includes(key))
         .reduce((obj, key) => {
@@ -157,7 +157,6 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
 
       return ctx.send(response);
     } catch (error) {
-      console.log('error: ', error);
       return ctx.throw(500, error.message);
     }
   },

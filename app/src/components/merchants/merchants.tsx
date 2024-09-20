@@ -7,7 +7,6 @@ export const Merchants = () => {
     }
     const {merchants} = useMerchants(filter)
 
-    console.log('merchants', merchants)
 
     return (
         <div className="py-12">

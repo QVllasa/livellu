@@ -45,7 +45,6 @@ export class HttpClient {
             encodeValuesOnly: true, // prettify URL
         });
         try {
-            console.log('URL: ', `${collection}?${queryString}`);
             const response = await Axios.get<ApiResponse<T>>(`${collection}?${queryString}`);
             return response.data;
         } catch (error) {

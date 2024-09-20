@@ -31,7 +31,6 @@ export const ProductsGrid = ({
     const [filters, setFilters] = useState<any>(initialFilters);
     const [isLoading, setIsLoading] = useState(false)
 
-    console.log('Initial products:', initialProducts)
 
     const maxCount = 5;
 
@@ -44,10 +43,6 @@ export const ProductsGrid = ({
     useEffect(() => {
         setFilters(initialFilters);
     }, [filters]);
-
-    useEffect(() => {
-        console.log('Auto load count:', autoLoadCount)
-    }, [autoLoadCount]);
 
 
     const updatePageQueryParameter = (newPage: number) => {

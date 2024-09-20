@@ -1,7 +1,7 @@
 import {useAtom} from "jotai/index";
 import {allCategoriesAtom} from "@/store/filters";
 import * as React from "react";
-import {useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import {CategoryCard} from "@/components/categories/category-card";
 import {Button} from "@/shadcn/components/ui/button";
 import {ChevronLeft, ChevronRight} from "lucide-react";
@@ -19,10 +19,14 @@ function shuffleCategories(categories: Category[]): Category[] {
 
 export const CategorySection = () => {
     const [allCategories] = useAtom<Category[]>(allCategoriesAtom)
+    const [shuffledCategories, setShuffledCategories] = useState<Category[]>([]);
 
     // shuffle by index in array
 
-    const shuffledCategories = shuffleCategories(allCategories);
+    useEffect(() => {
+        setShuffledCategories(shuffleCategories(allCategories))
+    }, [allCategories]);
+
 
 
 
@@ -41,7 +45,6 @@ export const CategorySection = () => {
         </div>
         <Scrollable>
             {shuffledCategories.map((category) => {
-                    if (!category) return;
                     return category?.child_categories.map((childCategory) => {
                             if (!childCategory?.hasImage) return;
                             return (<Link href={`/${category.slug}/${childCategory.slug}`} key={childCategory.id} className={'scroll-ml-6 px-1 sm:px-2 md:px-3 snap-center w-24 sm:w-36 md:w-48 shrink-0 flex justify-center items-center'}>

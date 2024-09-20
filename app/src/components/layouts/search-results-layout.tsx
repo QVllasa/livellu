@@ -70,7 +70,6 @@ function SearchResultsPageLayout(page) {
 
     useEffect(() => {
         if (router.query.search) {
-            console.log("search: ", router.query.search)
             const searchTerms = router.query.search.length > 0 ? router.query.search.split(" ") : [];
             const t = `Suchergebnisse für: "${searchTerms.join(" ")}"`
             setTitle(t)

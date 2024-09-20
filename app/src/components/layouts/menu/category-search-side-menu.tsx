@@ -19,12 +19,10 @@ export const CategorySearchSideMenu = () => {
     const fetchData = async () => {
         if (!router.isReady) return;
         try {
-            console.log("Fetching categories with search:", search);
             // Fetch categories with or without the search term
             const response = await fetchCategories(
                 search ? { search: search as string, level: [1, 2, 3], limit: 12 } : {level: [1, 2, 3], limit: 12}
             );
-            console.log("Fetched categories response:", response);
             setCategories(response ? response : []);
         } catch (error) {
             console.error("Error fetching categories:", error);
@@ -38,7 +36,6 @@ export const CategorySearchSideMenu = () => {
     }, [router.isReady, router.asPath]);
 
     useEffect(() => {
-        console.log("categories: ", categories)
     }, [categories]);
 
     return (

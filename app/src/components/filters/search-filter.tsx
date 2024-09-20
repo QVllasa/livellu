@@ -9,7 +9,6 @@ export const SearchFilter = () => {
     const router = useRouter();
 
     const handleSearch = (term: string) => {
-        console.log('handleSearch');
         // If there's a search term, redirect to the new path with the search term as a query parameter
         if (term.trim()) {
             router.push({

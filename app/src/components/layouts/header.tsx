@@ -16,7 +16,6 @@ const Header = () => {
     const isHomePage = useIsHomePage();
     const [isSheetOpen, setIsSheetOpen] = useState(false);
 
-    console.log('isHomePage', isHomePage);
 
     const isMultilangEnable =
         process.env.NEXT_PUBLIC_ENABLE_MULTI_LANG === 'true' &&

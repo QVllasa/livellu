@@ -8,7 +8,6 @@ export const ArticleCard = ({article}: { article: Article }) => {
     const imgObj = article?.featured_image?.data ? article?.featured_image?.data.attributes : FALLBACK_IMG
     const provider = article?.featured_image?.data.attributes.provider === "local" ? process.env.NEXT_PUBLIC_STRAPI_HOST : ''
 
-    console.log("img: ", imgObj)
 
     return <article
         key={article.id}

@@ -89,7 +89,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (brandParam) {
         const brandNames = brandParam.replace('marke:', '').split('.');
         const allBrands = await fetchAllBrands();
-        const brandFilter = brandNames.map(brand => `brandName = "${allBrands.find(el => el.slug === brand)?.label}"`).join(' OR ');
+        const brandFilter = brandNames.map(brand => `brand_name = "${allBrands.find(el => el.slug === brand)?.label}"`).join(' OR ');
         overallFilter = brandFilter;
     }
 
@@ -101,7 +101,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     if (deliveryParam) {
         const deliveries = deliveryParam.replace('lieferzeit:', '').split('.');
-        const deliveryFilter = `variants.deliveryTimes IN [${deliveries.map(time => `"${time}"`).join(', ')}]`;
+        const deliveryFilter = `variants.delivery_times IN [${deliveries.map(time => `"${time}"`).join(', ')}]`;
         overallFilter = overallFilter ? `${overallFilter} AND ${deliveryFilter}` : deliveryFilter;
     }
 

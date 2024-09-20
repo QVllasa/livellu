@@ -53,7 +53,6 @@ export const CategorySideMenu = ({initialCategory}) => {
     }, [params, categoryLevel2]);
 
     const handleCategoryClick = (category: Category) => {
-        console.log("category", category)
         let pathSegments = [categoryLevel0?.slug];
 
         if (category.level === 1) {
