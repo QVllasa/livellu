@@ -60,7 +60,7 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>
                     </Suspense>
-                    <Divider title={'Unsere beliebtesten Produkte'}/>
+                    <Divider title={'Die beliebtesten Produkte'}/>
                     <ProductSlider products={products}/>
                     <Divider title={'Alle Partnershops'}/>
                     <Merchants />
