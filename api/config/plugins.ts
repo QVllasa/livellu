@@ -48,6 +48,7 @@ export default ({env}) => ({
               'variants.productName',
               'variants.style',
               'variants.height',
+              'variants.merchantId',
               'variants.width',
               'variants.depth',
               'variants.colors',

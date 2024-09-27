@@ -1051,6 +1051,8 @@ export interface ApiMerchantMerchant extends Schema.CollectionType {
       'api::feed.feed'
     >;
     logo_image: Attribute.Media<'images'>;
+    content: Attribute.Blocks;
+    slug: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1291,6 +1293,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     images: Attribute.JSON;
     materials: Attribute.JSON;
     summary: Attribute.JSON;
+    merchantName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

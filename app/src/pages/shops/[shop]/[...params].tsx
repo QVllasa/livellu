@@ -1,9 +1,10 @@
-import {JSXElementConstructor, ReactElement, useEffect, useState} from "react";
+import {JSXElementConstructor, ReactElement, useState} from "react";
 import {fetchProducts} from "@/framework/product";
-import {Category, MetaData, NextPageWithLayout, Product} from "@/types";
+import {Category, Entity, Merchant, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
 import {ProductsGrid} from "@/components/products/products-grid";
-import {getSearchResultsLayout} from "@/components/layouts/search-results-layout";
+import {getShopResultsLayout} from "@/components/layouts/shops-results-layout";
+import Client from "@/framework/client";
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -19,11 +20,6 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageP
     const [products, setProducts] = useState<Product[]>(initialProducts);
 
 
-    useEffect(() => {
-        setProducts(initialProducts);
-    }, [initialProducts]);
-
-
     return (
         <>
             <ProductsGrid initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
@@ -37,11 +33,33 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const pathSegments = params?.params as string[];
 
-    console.log("params: ", params);
+    const filter = {
+        populate: 'logo_image',
+        filters: {
+            name: {
+                $eq: 'OTTO DE',
+            },
+        },
+    }
+
+    const merchant = await Client.merchants.all(filter)
+        .then(response => {
+            console.log("response: ", response);
+            const data: Merchant[] = response.data.map((entity: Entity<Merchant>) => {
+                const id = entity.id;
+                const modifiedItem: Merchant = {
+                    ...entity.attributes,
+                    id: id
+                };
+                return modifiedItem;
+            });
+            return data[0];
+        })
+
 
     const brandParam = params?.shop
 
-
+    const {shop} = query;
 
 
     let searchTerms: string[] = [];
@@ -157,11 +175,12 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             initialProducts: data,
             meta,
             filters,
+            merchant
         },
     };
 }
 
 
-Index.getLayout = (page: ReactElement<any, string | JSXElementConstructor<any>>, pageProps: any) => getSearchResultsLayout(page, pageProps);
+Index.getLayout = (page: ReactElement<any, string | JSXElementConstructor<any>>, pageProps: any) => getShopResultsLayout(page, pageProps);
 
 export default Index;

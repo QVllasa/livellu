@@ -135,6 +135,9 @@
     },
     "summary": {
       "type": "json"
+    },
+    "merchantName": {
+      "type": "string"
     }
   }
 }

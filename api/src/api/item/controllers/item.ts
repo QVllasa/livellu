@@ -43,6 +43,8 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       ...restParams
     } = body;
 
+    console.log('Filter:', filter);
+
     const filterConditions: string[] = [];
 
     if (filter) {
@@ -59,6 +61,8 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
     if (minRating !== undefined) {
       filterConditions.push(`variants.averageRating >= ${minRating}`);
     }
+
+
 
     const baseSearchParams = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
@@ -80,6 +84,8 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       attributesToCrop: restParams.attributesToCrop || undefined,
       attributesToHighlight: restParams.attributesToHighlight || undefined
     };
+
+    console.log('Base search params:', baseSearchParams);
 
     try {
       const index = client.index('item');

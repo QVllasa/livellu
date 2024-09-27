@@ -234,6 +234,7 @@ export interface Merchant {
     createdAt: Date;
     updatedAt: Date;
     publishedAt?: Date;
+    slug?: string;
     merchantId?: string;
     name?: string;
     feeds: { data: Entity<Feed>[] };
@@ -277,11 +278,15 @@ export interface Variant {
     updatedAt: string;
     createdBy: number;
     updatedBy: number;
+    summary: string;
+    discount: number;
+    materials: string[];
+    colors: string[];
+    shape: string[];
 }
 
 export interface Product {
     id: number;
-    _meilisearch_id: string;
     brandName: string;
     currency: string;
     promotion: string;

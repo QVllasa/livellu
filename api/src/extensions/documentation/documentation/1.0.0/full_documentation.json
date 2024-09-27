@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-09-20T22:17:50.592Z"
+    "x-generation-date": "2024-09-27T21:33:22.563Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -6350,6 +6350,9 @@
                         "images": {},
                         "materials": {},
                         "summary": {},
+                        "merchantName": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -6504,6 +6507,10 @@
                   }
                 ],
                 "example": "string or id"
+              },
+              "content": {},
+              "slug": {
+                "type": "string"
               }
             }
           }
@@ -7288,6 +7295,10 @@
                 }
               }
             }
+          },
+          "content": {},
+          "slug": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -11544,7 +11555,10 @@
               },
               "images": {},
               "materials": {},
-              "summary": {}
+              "summary": {},
+              "merchantName": {
+                "type": "string"
+              }
             }
           }
         }
@@ -11848,6 +11862,9 @@
                                     "images": {},
                                     "materials": {},
                                     "summary": {},
+                                    "merchantName": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -12217,6 +12234,9 @@
           "images": {},
           "materials": {},
           "summary": {},
+          "merchantName": {
+            "type": "string"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time"

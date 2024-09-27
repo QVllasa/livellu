@@ -25,11 +25,18 @@
       "target": "api::feed.feed"
     },
     "logo_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "content": {
+      "type": "blocks"
+    },
+    "slug": {
+      "type": "string"
     }
   }
 }
