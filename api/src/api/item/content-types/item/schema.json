@@ -22,15 +22,12 @@
       "type": "string"
     },
     "categoryIdentifier": {
-      "type": "string"
+      "type": "text"
     },
     "shortDescription": {
       "type": "text"
     },
     "brandId": {
-      "type": "string"
-    },
-    "dataFeedId": {
       "type": "string"
     },
     "language": {

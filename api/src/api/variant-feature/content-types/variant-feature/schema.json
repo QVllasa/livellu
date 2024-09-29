@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "variant_features",
+  "info": {
+    "singularName": "variant-feature",
+    "pluralName": "variant-features",
+    "displayName": "VariantFeature",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "json"
+    },
+    "colors": {
+      "type": "json"
+    },
+    "width": {
+      "type": "json"
+    },
+    "height": {
+      "type": "json"
+    },
+    "depth": {
+      "type": "json"
+    },
+    "length": {
+      "type": "json"
+    },
+    "style": {
+      "type": "json"
+    },
+    "shape": {
+      "type": "json"
+    },
+    "deliveryTimes": {
+      "type": "json"
+    },
+    "materials": {
+      "type": "json"
+    },
+    "keyFeatures": {
+      "type": "json"
+    },
+    "ean": {
+      "type": "string",
+      "unique": false
+    },
+    "description": {
+      "type": "json"
+    }
+  }
+}

@@ -1011,10 +1011,9 @@ export interface ApiItemItem extends Schema.CollectionType {
     brandName: Attribute.Text;
     currency: Attribute.String;
     promotion: Attribute.String;
-    categoryIdentifier: Attribute.String;
+    categoryIdentifier: Attribute.Text;
     shortDescription: Attribute.Text;
     brandId: Attribute.String;
-    dataFeedId: Attribute.String;
     language: Attribute.String;
     groupId: Attribute.String & Attribute.Required & Attribute.Unique;
     variants: Attribute.Relation<
@@ -1153,6 +1152,7 @@ export interface ApiPathPath extends Schema.CollectionType {
   attributes: {
     name: Attribute.Text;
     content: Attribute.Text;
+    dummyField: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::path.path', 'oneToOne', 'admin::user'> &
@@ -1251,7 +1251,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
   attributes: {
     merchantId: Attribute.Text;
     merchantProductId: Attribute.Text;
-    description: Attribute.Text;
+    originalDescription: Attribute.Text;
     tracking: Attribute.Text;
     merchantImage: Attribute.Text;
     thumbnail: Attribute.Text;
@@ -1282,17 +1282,8 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     >;
     groupId: Attribute.Text;
     variantId: Attribute.String;
-    colors: Attribute.JSON;
-    width: Attribute.JSON;
-    height: Attribute.JSON;
-    depth: Attribute.JSON;
-    style: Attribute.JSON;
-    deliveryTimes: Attribute.JSON;
-    shape: Attribute.JSON;
     discount: Attribute.Float;
     images: Attribute.JSON;
-    materials: Attribute.JSON;
-    summary: Attribute.JSON;
     merchantName: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1304,6 +1295,48 @@ export interface ApiVariantVariant extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::variant.variant',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiVariantFeatureVariantFeature extends Schema.CollectionType {
+  collectionName: 'variant_features';
+  info: {
+    singularName: 'variant-feature';
+    pluralName: 'variant-features';
+    displayName: 'VariantFeature';
+    description: '';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    title: Attribute.JSON;
+    colors: Attribute.JSON;
+    width: Attribute.JSON;
+    height: Attribute.JSON;
+    depth: Attribute.JSON;
+    length: Attribute.JSON;
+    style: Attribute.JSON;
+    shape: Attribute.JSON;
+    deliveryTimes: Attribute.JSON;
+    materials: Attribute.JSON;
+    keyFeatures: Attribute.JSON;
+    ean: Attribute.String;
+    description: Attribute.JSON;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::variant-feature.variant-feature',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::variant-feature.variant-feature',
       'oneToOne',
       'admin::user'
     > &
@@ -1342,6 +1375,7 @@ declare module '@strapi/types' {
       'api::post.post': ApiPostPost;
       'api::route.route': ApiRouteRoute;
       'api::variant.variant': ApiVariantVariant;
+      'api::variant-feature.variant-feature': ApiVariantFeatureVariantFeature;
     }
   }
 }

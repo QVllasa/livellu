@@ -32,6 +32,7 @@ import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-
 import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
 import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
+import {CategorySlider} from "@/components/categories/category-slider";
 
 
 function ResultsPageLayout(page) {
@@ -48,7 +49,7 @@ function ResultsPageLayout(page) {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({top: 0, behavior: 'smooth'});
     };
 
     useEffect(() => {
@@ -122,9 +123,9 @@ function ResultsPageLayout(page) {
     };
 
     return (
-        <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150 relative">
+        <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150 relative ">
             <div className={'relative bg-white h-full w-full z-30'}>
-                <Header />
+                <Header/>
             </div>
 
             <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[auto_1fr] relative ">
@@ -147,15 +148,11 @@ function ResultsPageLayout(page) {
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col ">
-                    <div className={'flex flex-col w-full relative '}>
-                        <div className={'p-4 lg:p-6'}>
-                            <SearchFilter/>
-                        </div>
-
-
+                <div className="grid grid-cols-1 relative ">
+                    <div className={'col-span-1 flex flex-col w-full relative p-4 lg:p-6'}>
+                        <SearchFilter/>
                     </div>
-                    <div className="flex flex-col h-auto items-center gap-4 bg-gray-100 px-4 lg:px-6  ">
+                    <div className="col-span-1 flex flex-col relative h-auto items-center gap-4 bg-gray-100 px-4 lg:px-6 ">
                         <div className="flex items-center justify-between w-full ">
                             <div>
                                 <h1 className="text-lg font-semibold md:text-2xl">{capitalize(title)}</h1>
@@ -166,10 +163,13 @@ function ResultsPageLayout(page) {
                         </div>
                     </div>
 
+                            <CategorySlider showAll={true}/>
+
+
                     {/*Mobile */}
                     <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
-                            <MobileColorFilter type={'single'} meta={meta}/>
+                        <MobileColorFilter type={'single'} meta={meta}/>
                             <MobileDeliveryTimeFilter type={'single'} meta={meta}/>
                             <MobileDepthFilter type={'single'} meta={meta}/>
                             <MobileHeightFilter type={'single'} meta={meta}/>

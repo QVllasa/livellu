@@ -10,6 +10,7 @@ import {ProductSlider} from "@/components/products/products-slider";
 import {fetchProducts} from "@/framework/product";
 import {GetServerSidePropsContext} from "next";
 import {Merchants} from "@/components/merchants/merchants";
+import {CategorySlider} from "@/components/categories/category-slider";
 
 
 const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta: MetaData }) => {
@@ -57,6 +58,7 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>
+                        <CategorySlider category={null} showAll={false}/>
                     </Suspense>
                     <Divider title={'Die beliebtesten Produkte'}/>
                     <ProductSlider products={products}/>

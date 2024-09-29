@@ -18,7 +18,7 @@
     "merchantProductId": {
       "type": "text"
     },
-    "description": {
+    "originalDescription": {
       "type": "text"
     },
     "tracking": {
@@ -103,37 +103,10 @@
     "variantId": {
       "type": "string"
     },
-    "colors": {
-      "type": "json"
-    },
-    "width": {
-      "type": "json"
-    },
-    "height": {
-      "type": "json"
-    },
-    "depth": {
-      "type": "json"
-    },
-    "style": {
-      "type": "json"
-    },
-    "deliveryTimes": {
-      "type": "json"
-    },
-    "shape": {
-      "type": "json"
-    },
     "discount": {
       "type": "float"
     },
     "images": {
-      "type": "json"
-    },
-    "materials": {
-      "type": "json"
-    },
-    "summary": {
       "type": "json"
     },
     "merchantName": {

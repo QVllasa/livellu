@@ -219,7 +219,6 @@ const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => 
                     <div className={'col-span-2'}>
                         <ProductSlider products={otherProducts??[]}/>
                     </div>
-
                 </div>
             </div>
         </>

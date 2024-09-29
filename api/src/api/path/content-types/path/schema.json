@@ -17,6 +17,9 @@
     },
     "content": {
       "type": "text"
+    },
+    "dummyField": {
+      "type": "string"
     }
   }
 }
