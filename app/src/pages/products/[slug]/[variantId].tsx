@@ -227,62 +227,89 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                 </div>
 
                 {/* Table for variants with the same EAN */}
-                <div className="px-4 py-8 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
-                    <h3 className="text-xl font-semibold mb-4">Weitere Angebote</h3>
-                    <div className="overflow-x-auto">
-                        <Table className="table-fixed w-full">
-                            <TableHeader className="hidden md:table-header-group"> {/* Hide the header on mobile */}
-                                <TableRow>
-                                    <TableHead className="w-1/12">Händler</TableHead>
-                                    <TableHead className="w-2/6">Produktname</TableHead>
-                                    <TableHead className="w-1/6">Versandkosten</TableHead>
-                                    <TableHead className="w-1/6">Preis</TableHead>
-                                    <TableHead className="w-1/6">Link</TableHead>
-                                </TableRow>
-                            </TableHeader>
-                            <TableBody>
-                                {sameEanVariants.map((v) => {
-                                    const merchant = merchants.find(m => m.merchantId === v.merchantId);
-                                    return (
-                                        <TableRow key={v.variantId} className="table-row mb-4 md:mb-0"> {/* Use block layout for mobile */}
-                                            <TableCell className="w-1/6 md:w-auto table-cell">
-                                                {merchant?.logo_image?.data?.attributes?.url && (
-                                                    <Image
-                                                        src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? "/"}${merchant.logo_image.data.attributes.url}`}
-                                                        alt={merchant?.name}
-                                                        width={50}
-                                                        height={25}
-                                                        className="object-contain"
-                                                    />
-                                                )}
-                                            </TableCell>
-
-                                            {/* Hide the product name and delivery cost on mobile */}
-                                            <TableCell className="table-cell">{v.productName}</TableCell>
-                                            <TableCell className="hidden md:table-cell">{v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}</TableCell>
-
-                                            <TableCell className="flex flex-col items-end justify-center md:table-cell">
-                                                <div className="block text-lg font-bold">{v.price.toFixed(2)} €</div>
-                                                <span className={'md:hidden flex items-center gap-2'}><Icon name={'Package'} className={'h-4 w-4'} ></Icon> {v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}</span>
-                                            </TableCell>
-
-                                            <TableCell className="flex justify-end items-center md:table-cell">
-                                                <Link href={v.merchantLink}>
-                                                    <Button className="bg-blue-500 text-white hover:text-white hover:bg-blue-600" size="sm" variant="outline">Zum Angebot</Button>
-                                                </Link>
-                                            </TableCell>
+                <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
+                    <CardContent className="p-4 py-8">
+                        <div className=" ">
+                            <h3 className="text-xl font-semibold mb-4">Weitere Angebote</h3>
+                            <div className="overflow-x-auto">
+                                <Table className="table-fixed w-full">
+                                    <TableHeader className="hidden md:table-header-group"> {/* Hide the header on mobile */}
+                                        <TableRow>
+                                            <TableHead className="w-1/12">Händler</TableHead>
+                                            <TableHead className="w-2/6">Produktname</TableHead>
+                                            <TableHead className="w-1/6">Versandkosten</TableHead>
+                                            <TableHead className="w-1/6">Preis</TableHead>
+                                            <TableHead className="w-1/6">Link</TableHead>
                                         </TableRow>
-                                    );
-                                })}
-                            </TableBody>
-                        </Table>
-                    </div>
+                                    </TableHeader>
+                                    <TableBody>
+                                        {sameEanVariants.map((v) => {
+                                            const merchant = merchants.find(m => m.merchantId === v.merchantId);
+                                            return (
+                                                <TableRow key={v.variantId} className="table-row mb-4 md:mb-0"> {/* Use block layout for mobile */}
+                                                    <TableCell className="w-1/6 md:w-auto table-cell">
+                                                        {merchant?.logo_image?.data?.attributes?.url && (
+                                                            <Image
+                                                                src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? "/"}${merchant.logo_image.data.attributes.url}`}
+                                                                alt={merchant?.name}
+                                                                width={50}
+                                                                height={25}
+                                                                className="object-contain"
+                                                            />
+                                                        )}
+                                                    </TableCell>
 
-                </div>
-                <div className={'px-4 max-w-screen-3xl mx-auto'}>
-                    <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
-                    <ProductSlider products={otherProducts ?? []}/>
-                </div>
+                                                    {/* Hide the product name and delivery cost on mobile */}
+                                                    <TableCell className="table-cell">{v.productName}</TableCell>
+                                                    <TableCell className="hidden md:table-cell">{v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}</TableCell>
+
+                                                    <TableCell className="flex flex-col items-end justify-center md:table-cell">
+                                                        <div className="block text-lg font-bold">{v.price.toFixed(2)} €</div>
+                                                        <span className={'md:hidden flex items-center gap-2'}><Icon name={'Package'} className={'h-4 w-4'}></Icon> {v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}</span>
+                                                    </TableCell>
+
+                                                    <TableCell className="flex justify-end items-center md:table-cell">
+                                                        <Link href={v.merchantLink}>
+                                                            <Button className="bg-blue-500 text-white hover:text-white hover:bg-blue-600" size="sm" variant="outline">Zum Angebot</Button>
+                                                        </Link>
+                                                    </TableCell>
+                                                </TableRow>
+                                            );
+                                        })}
+                                    </TableBody>
+                                </Table>
+                            </div>
+
+                        </div>
+                    </CardContent>
+                </Card>
+
+
+                    <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto bg-gray-100">
+                        <CardContent className="p-4 py-8">
+                            <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
+                            <ProductSlider products={otherProducts ?? []}/>
+                        </CardContent>
+                    </Card>
+
+                <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
+                    <CardContent className="p-4 py-8 relative">
+                        <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
+                        <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white ">
+                            <p>{variant.originalDescription}</p>
+                        </div>
+                        <div className={'flex w-full items-center justify-center'}>
+                            <Button variant={'outline'} size={'sm'}  className="w-auto mb-6 mt-12 ">
+                                <Link href={variant.merchantLink}>
+                                    Weitere Informationen zum Produkt
+                                </Link>
+                            </Button>
+                        </div>
+
+                    </CardContent>
+                </Card>
+
+
             </div>
         </>
     );
