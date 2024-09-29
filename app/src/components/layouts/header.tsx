@@ -11,10 +11,13 @@ import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category
 import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 import {Button} from "@/shadcn/components/ui/button";
 
-const Header = () => {
+const Header = ({shadowNone = false}) => {
     const [openDropdown, setOpenDropdown] = useState(false);
     const isHomePage = useIsHomePage();
     const [isSheetOpen, setIsSheetOpen] = useState(false);
+    const className = cn('flex flex-col top-0 z-50 w-full lg:h-auto max-w-screen-3xl  mx-auto ', {
+        '': isHomePage,
+    });
 
 
     const isMultilangEnable =
@@ -27,10 +30,7 @@ const Header = () => {
 
     return (
         <header
-            className={cn('flex flex-col top-0 z-50 w-full lg:h-auto max-w-screen-3xl  mx-auto ', {
-                '': isHomePage,
-                ' border-b border-border-200 shadow-sm': !isHomePage,
-            })}
+            className={className}
         >
             <div
                 className={cn(

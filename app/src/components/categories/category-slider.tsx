@@ -44,7 +44,7 @@ export const CategorySlider = ({showAll = false}: { category: Category | null, s
                             return category?.child_categories.map((childCategory) => {
                                     if (!childCategory?.hasImage && !showAll) return;
                                     return (
-                                        <Link href={`/${category.slug}/${childCategory.slug}`} key={childCategory.id} className={'scroll-ml-6 px-1 sm:px-2 md:px-3 snap-center  shrink-0 flex justify-center items-center'}>
+                                        <Link href={`/${category.slug}/${childCategory.slug}`} key={childCategory.id} className={'scroll-ml-6  snap-center  shrink-0 flex justify-center items-center'}>
 
                                             <div className={'relative flex flex-col justify-center items-center text-xs lg:text-base h-32 w-32 sm:h-40 sm:w-40'}>
                                                 <Image
