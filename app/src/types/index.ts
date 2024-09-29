@@ -245,6 +245,7 @@ export interface Variant {
     merchantId: string;
     merchantProductId: string;
     description: string;
+    originalDescription: string;
     tracking: string;
     merchantImage: string;
     thumbnail: string;
@@ -278,7 +279,7 @@ export interface Variant {
     updatedAt: string;
     createdBy: number;
     updatedBy: number;
-    summary: string;
+    keyFeatures: string;
     discount: number;
     materials: string[];
     colors: string[];

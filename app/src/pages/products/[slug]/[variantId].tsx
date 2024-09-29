@@ -19,11 +19,11 @@ import {ProductSlider} from "@/components/products/products-slider";
 
 interface ProductPageProps {
     product: Product; // Replace with your proper product type
-    merchant: Merchant;
+    merchants: Merchant[];
     otherProducts?: Product[];
 }
 
-const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => {
+const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) => {
     const [currentImage, setCurrentImage] = useState(0);
     const router = useRouter();
     const { slug, variantId } = router.query;
@@ -52,14 +52,18 @@ const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => 
     useEffect(() => {
         console.log('Product:', product);
         console.log('Other Products:', otherProducts);
+        console.log('Compare Products: ', product.variants.filter((variant, index, self) => self.findIndex(v => v.ean === variant.ean) !== index)[0]);
     }, [product, otherProducts]);
 
-    const formatSummaryAsBullets = (summary: string) => {
-        if (!summary) {
+    const sameEanVariants = product.variants.filter((v) => v.ean === variant.ean);
+    console.log("sameEanVariants", sameEanVariants);
+
+    const formatSummaryAsBullets = (keyFeatures: string) => {
+        if (!keyFeatures) {
             return [];
         }
 
-        const parts = summary.split('*').filter(Boolean);
+        const parts = keyFeatures.split('*').filter(Boolean);
         const bulletPoints = [];
 
         for (let i = 0; i < parts.length; i += 2) {
@@ -77,6 +81,8 @@ const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => 
 
         return bulletPoints;
     };
+
+
 
     return (
         <>
@@ -165,7 +171,7 @@ const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => 
                             <CardContent className="p-4">
                                 <h3 className="font-semibold mb-2">Besondere Merkmale:</h3>
                                 <ul className="list-disc list-inside space-y-1 text-sm">
-                                    {formatSummaryAsBullets(variant.summary)}
+                                    {formatSummaryAsBullets(variant.keyFeatures)}
                                 </ul>
                             </CardContent>
                         </Card>
@@ -200,7 +206,7 @@ const ProductPage = ({ product, merchant, otherProducts }: ProductPageProps) => 
                             <div className="mb-6">
                                 <h3 className="font-semibold mb-2">Verkäufer:</h3>
                                 <Image
-                                    src={((process.env.NEXT_PUBLIC_STRAPI_HOST ?? "/")+merchant?.logo_image?.data?.attributes?.url) ?? "/"}
+                                    src={((process.env.NEXT_PUBLIC_STRAPI_HOST ?? "/")+merchants.filter(el => variant.merchantId === el.merchantId)[0]?.logo_image?.data?.attributes?.url) ?? "/"}
                                     alt="Merchant"
                                     width={100}
                                     height={50}
@@ -254,12 +260,12 @@ export const getServerSideProps: GetServerSideProps<ProductPageProps> = async (
             populate: 'logo_image',
             filters: {
                 merchantId: {
-                    $eq: product.variants[0].merchantId,
+                    $in: product.variants.map(el =>  el.merchantId),
                 },
             },
         };
 
-        const merchant = await Client.merchants.all(filter)
+        const merchants = await Client.merchants.all(filter)
             .then(response => {
                 const data: Merchant[] = response.data.map((entity: Entity<Merchant>) => {
                     const id = entity.id;
@@ -269,7 +275,7 @@ export const getServerSideProps: GetServerSideProps<ProductPageProps> = async (
                     };
                     return modifiedItem;
                 });
-                return data[0];
+                return data;
             });
 
         const otherProductsFilters = {
@@ -286,7 +292,7 @@ export const getServerSideProps: GetServerSideProps<ProductPageProps> = async (
         return {
             props: {
                 product,
-                merchant,
+                merchants,
                 otherProducts
             },
         };

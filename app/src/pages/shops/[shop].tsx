@@ -29,11 +29,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     const {params, query} = context;
     const filters: any = {};
 
-    const pathSegments = params?.params as string[];
-
-
-    const brandParam = params?.shop
-
     const {shop} = query;
 
     const filter = {
@@ -65,13 +60,20 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     filters['page'] = page;
     filters['pageSize'] = pageSize;
-    filters['filter'] = `variants.merchantId = ${merchant.id}`;
+    filters['filter'] = `variants.merchantId = ${merchant.merchantId}`;
 
     const {data, meta} = await fetchProducts(filters);
 
+    const products = data.map(product => {
+        return {
+            ...product,
+            variants: product.variants.filter(variant => variant.merchantId === merchant.merchantId)
+        };
+    });
+
     return {
         props: {
-            initialProducts: data,
+            initialProducts: products,
             meta,
             filters,
             merchant
