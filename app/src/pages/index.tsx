@@ -58,7 +58,7 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
                         <CategorySection/>
-                        <div className={'my-12 -mx-6'}>
+                        <div className={'my-4 lg:my-12 -mx-6'}>
                             <CategorySlider category={null} showAll={false}/>
                         </div>
 

@@ -24,10 +24,10 @@ interface ProductPageProps {
     otherProducts?: Product[];
 }
 
-const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) => {
+const ProductPage = ({product, merchants, otherProducts}: ProductPageProps) => {
     const [currentImage, setCurrentImage] = useState(0);
     const router = useRouter();
-    const { slug, variantId } = router.query;
+    const {slug, variantId} = router.query;
 
     const variant = product.variants.find(
         (variant) => variant.slug === slug && variant.variantId === variantId
@@ -85,7 +85,7 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
 
     return (
         <>
-            <Seo title={variant.productName} url={variant.slug} images={images} />
+            <Seo title={variant.productName} url={variant.slug} images={images}/>
 
             <div className="text-gray-700 bg-gray-100 ">
                 <div className="grid md:grid-cols-2 gap-8 max-w-screen-3xl mx-auto px-4 py-8 ">
@@ -161,11 +161,17 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                                     <span className="ml-2 text-gray-400 line-through">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>
                                 </div>
                             ) : (
-                                `€ ${variant.price.toFixed(2)}`
+                                `${variant.price.toFixed(2)} €`
                             )}
                         </div>
+                        <Link href={variant.merchantLink} className={'mx-auto'}>
+                            <Button variant={'default'} className="w-auto mb-4 text-white bg-blue-500 hover:bg-blue-600 hover:text-white">
+                                <Icon name="ShoppingCart" className="mr-3 h-4 w-4"/>
+                                Zum Shop
+                            </Button>
+                        </Link>
 
-                        <Card className="mb-6">
+                        <Card className="my-6">
                             <CardContent className="p-4">
                                 <h3 className="font-semibold mb-2">Besondere Merkmale:</h3>
                                 <ul className="list-disc list-inside space-y-1 text-sm">
@@ -174,7 +180,8 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                             </CardContent>
                         </Card>
 
-                        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-6">
+
+                        <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-6 mt-12">
                             <Truck className="h-4 w-4"/>
                             <span>{variant.deliveryTime}</span>
                         </div>
@@ -213,15 +220,8 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                             </div>
                         )}
 
-                        <Link href={variant.merchantLink}>
-                            <Button variant={'default'} className="w-full mb-4 text-white bg-blue-500 hover:bg-blue-600 hover:text-white">
-                                <Icon name="ShoppingCart" className="mr-3 h-4 w-4"/>
-                                Zum Shop
-                            </Button>
-                        </Link>
+
                     </div>
-
-
 
 
                 </div>
@@ -246,7 +246,7 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                                         {sameEanVariants.map((v) => {
                                             const merchant = merchants.find(m => m.merchantId === v.merchantId);
                                             return (
-                                                <TableRow key={v.variantId} className="table-row mb-4 md:mb-0"> {/* Use block layout for mobile */}
+                                                <TableRow onClick={() => router.push(v.merchantLink)} key={v.variantId} className="table-row mb-4 md:mb-0 cursor-pointer"> {/* Use block layout for mobile */}
                                                     <TableCell className="w-1/6 md:w-auto table-cell">
                                                         {merchant?.logo_image?.data?.attributes?.url && (
                                                             <Image
@@ -285,12 +285,12 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                 </Card>
 
 
-                    <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto bg-gray-100">
-                        <CardContent className="p-4 py-8">
-                            <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
-                            <ProductSlider products={otherProducts ?? []}/>
-                        </CardContent>
-                    </Card>
+                <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto bg-gray-100">
+                    <CardContent className="p-4 py-8">
+                        <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
+                        <ProductSlider products={otherProducts ?? []}/>
+                    </CardContent>
+                </Card>
 
                 <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl 3xl:max-w-screen-3xl mx-auto">
                     <CardContent className="p-4 py-8 relative">
@@ -299,7 +299,7 @@ const ProductPage = ({ product, merchants, otherProducts }: ProductPageProps) =>
                             <p>{variant.originalDescription}</p>
                         </div>
                         <div className={'flex w-full items-center justify-center'}>
-                            <Button variant={'outline'} size={'sm'}  className="w-auto mb-6 mt-12 ">
+                            <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12 ">
                                 <Link href={variant.merchantLink}>
                                     Weitere Informationen zum Produkt
                                 </Link>
