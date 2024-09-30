@@ -10,6 +10,7 @@ import {Button} from "@/shadcn/components/ui/button";
 import {NotepadText} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {AspectRatio} from "@/shadcn/components/ui/aspect-ratio";
+import Icon from "@/components/ui/icon";
 
 const ProductCard = (props: { product: Product }) => {
     const {product} = props;
@@ -30,9 +31,9 @@ const ProductCard = (props: { product: Product }) => {
 
     // Find the variant that matches the selected color(s)
 
-    const matchingVariant = sortedVariants.find(
-        (variant) => selectedColors.some(color => variant?.colors?.includes(color.toUpperCase()))
-    );
+const matchingVariant = sortedVariants.find(
+    (variant) => selectedColors.some(color => variant?.colors?.includes(color.toUpperCase()))
+) || sortedVariants.reduce((prev, curr) => (prev.price < curr.price ? prev : curr));
 
 
     // Default to the first variant if no matching variant is found
@@ -124,8 +125,8 @@ const ProductCard = (props: { product: Product }) => {
                                             {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
                                         </span>
                                     )}
-                                    <span className="text-gray-400 font-semibold text-xs" suppressHydrationWarning>
-                                        Versand: {variant?.deliveryCost}€
+                                    <span className="text-gray-400  text-xs flex gap-2 mt-1 items-center" suppressHydrationWarning>
+                                       <Icon name={'Truck'} className={'h-3 w-3'}/> {`${variant?.deliveryCost != "0.00" ? variant?.deliveryCost+'€' : 'Kostenloser Versand'}`}
                                     </span>
                                 </div>
 

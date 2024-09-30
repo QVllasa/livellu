@@ -8,6 +8,7 @@ import {Category} from '@/types';
 import {capitalize} from 'lodash';
 import {allCategoriesAtom} from '@/store/filters';
 import {useAtom} from 'jotai';
+import Icon from "@/components/ui/icon";
 
 // Adjusted slide variants for a more subtle transition
 const slideVariants = {
@@ -110,10 +111,10 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                                             // If category has subcategories, handle click to show them
                                             <Button
                                                 variant={'link'}
-                                                className="text-lg font-normal w-full justify-between"
+                                                className="text-base font-normal w-full justify-between"
                                                 onClick={() => handleCategoryClick(category)}
                                             >
-                                                <span>{capitalize(category.name)}</span>
+                                                <span className={'flex items-center gap-2'}><Icon name={category.lucide_icon} className={'h-4 w-4'}/> {capitalize(category.name)}</span>
                                                 <ChevronRight className="w-4 h-4 ml-2" />
                                             </Button>
                                         ) : (
@@ -122,9 +123,9 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                                                 <Button
                                                     onClick={closeDrawer}
                                                     variant={'link'}
-                                                    className="text-lg font-normal w-full justify-between"
+                                                    className="text-base font-normal w-full justify-between"
                                                 >
-                                                    <span>{capitalize(category.name)}</span>
+                                                    <span className={'flex items-center gap-2'}><Icon name={category.lucide_icon} className={'h-4 w-4'}/>  {capitalize(category.name)}</span>
                                                 </Button>
                                             </Link>
                                         )}
