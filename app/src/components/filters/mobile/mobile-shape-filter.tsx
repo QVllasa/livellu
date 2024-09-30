@@ -74,7 +74,7 @@ export const MobileShapeFilter = ({meta, type}: ShapeFilterProps) => {
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false); // Close the drawer after selection
@@ -88,7 +88,7 @@ export const MobileShapeFilter = ({meta, type}: ShapeFilterProps) => {
         const newPathSegments = pathSegments.filter((segment) => !segment.startsWith('form:'));
 
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentShapes([]); // Clear the current shapes state

@@ -82,7 +82,7 @@ export const MobileMaterialFilter = ({meta, type}: MaterialFilterProps) => {
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setIsOpen(false); // Close the drawer after selecting a material
@@ -96,7 +96,7 @@ export const MobileMaterialFilter = ({meta, type}: MaterialFilterProps) => {
         const newPathSegments = pathSegments.filter((segment) => !segment.startsWith('material:'));
 
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
         setCurrentMaterials([]); // Clear the current materials state

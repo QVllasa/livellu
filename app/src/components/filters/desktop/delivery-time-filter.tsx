@@ -58,7 +58,7 @@ export const DeliveryTimeFilter = ({ meta }) => {
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+        const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
     };

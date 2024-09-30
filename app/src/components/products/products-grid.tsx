@@ -31,6 +31,10 @@ export const ProductsGrid = ({
     const [filters, setFilters] = useState<any>(initialFilters);
     const [isLoading, setIsLoading] = useState(false)
 
+    useEffect(() => {
+        const queryPage = parseInt(router.query.page as string) || 1;
+        setPage(queryPage);
+    }, [router.query.page]);
 
     const maxCount = 5;
 

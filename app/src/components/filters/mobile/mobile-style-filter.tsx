@@ -74,7 +74,7 @@ export const MobileStyleFilter = ({ meta, type }: StyleFilterProps) => {
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
         setIsOpen(false); // Close the drawer after selection
@@ -88,7 +88,7 @@ export const MobileStyleFilter = ({ meta, type }: StyleFilterProps) => {
         const newPathSegments = pathSegments.filter((segment) => !segment.startsWith('stil:'));
 
         const updatedPath = `/${newPathSegments.join('/')}`.replace(/\/+/g, '/');
-        const queryParams = queryString ? `?${queryString}` : '';
+  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
         router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
         setCurrentStyles([]); // Clear the current styles state
