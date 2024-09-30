@@ -1,7 +1,7 @@
 import Header from './header';
 import Footer from './footer';
 import Link from "next/link";
-import {ChevronRight, ChevronUp, Package2} from "lucide-react";
+import {ChevronRight, ChevronUp} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
 
@@ -30,6 +30,7 @@ import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
 import {SearchBreadcrumbs} from "@/components/breadcrumbs/search-breadcrumbs";
 import {CategorySearchSideMenu} from "@/components/layouts/menu/category-search-side-menu";
+import Icon from "@/components/ui/icon";
 
 
 function SearchResultsPageLayout(page) {
@@ -127,10 +128,10 @@ function SearchResultsPageLayout(page) {
 
             <div className="grid min-h-screen w-full lg:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr] relative ">
                 <div className="hidden border-r bg-muted/40 lg:block">
-                    <div className="flex h-auto flex-col gap-2 sticky top-0 ">
-                        <div className="flex flex-col h-auto justify-center items-start border-b ">
+                    <div className="flex h-auto flex-col gap-2 sticky top-0 p-6">
+                        <div className="flex flex-col h-auto justify-center items-start border-b pb-5">
                             <Link href="/" className="flex items-center gap-2 font-semibold p-0">
-                                <Package2 className="h-6 w-6"/>
+                                <Icon name={'Search'} className="h-5 w-5"/>
                                 <span className="">{'Deine Suche'}</span>
                             </Link>
                         </div>
