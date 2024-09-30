@@ -1,6 +1,6 @@
 import {MetaData, NextPageWithLayout, Product} from '@/types';
 import * as React from 'react';
-import {Suspense} from 'react';
+import {Suspense, useRef} from 'react';
 import HomeLayout from '@/components/layouts/_home';
 import Image from "next/image";
 import {SearchFilter} from "@/components/filters/search-filter";
@@ -11,9 +11,18 @@ import {fetchProducts} from "@/framework/product";
 import {GetServerSidePropsContext} from "next";
 import {Merchants} from "@/components/merchants/merchants";
 import {CategorySlider} from "@/components/categories/category-slider";
+import ErrorBoundary from "@/components/error-boundary";
 
 
 const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta: MetaData }) => {
+    const searchFilterRef = useRef(null); // Create a ref for SearchFilter
+
+    // Trigger search from the SearchFilter using the ref
+    const handleShopNow = () => {
+        if (searchFilterRef.current) {
+            searchFilterRef.current.triggerSearch(); // Call triggerSearch function inside SearchFilter
+        }
+    };
 
     return (
         <>
@@ -40,15 +49,20 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                                     <span className="text-gray-800">Entdecken Sie Premium-Möbel</span>
                                 </h1>
                                 <div className={'w-full max-w-3xl my-12 mx-auto'}>
-                                    <Suspense fallback={<div>Loading...</div>}> <SearchFilter/></Suspense>
-
+                                    {/* Pass the ref to SearchFilter */}
+                                    <Suspense fallback={<div>Loading...</div>}>
+                                        <SearchFilter ref={searchFilterRef}/>
+                                    </Suspense>
                                 </div>
-                                <div className="mx-auto mt-10 max-w-sm sm:flex sm:max-w-none sm:justify-center">
-                                    <div className="space-y-4 sm:mx-auto">
-                                        <Button variant={'outline'} size={'lg'} className={'bg-blue-500 text-white border-none'}>
-                                            Jetzt einkaufen
-                                        </Button>
-                                    </div>
+                                <div className="mx-auto mt-10 max-w-sm flex sm:max-w-none justify-center items-center">
+                                    <Button
+                                        onClick={handleShopNow}
+                                        variant={'default'}
+                                        size={'lg'}
+                                        className={'mx-auto bg-teal-600 hover:bg-teal-700 text-white border-none'}
+                                    >
+                                        Jetzt einkaufen
+                                    </Button>
                                 </div>
                             </div>
                         </div>
@@ -57,16 +71,22 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                 <div className="bg-gray-100 h-full mx-auto relative max-w-screen-3xl">
                     <Divider title={'Alle Kategorien auf einem Blick'}/>
                     <Suspense fallback={<div>Loading...</div>}>
-                        <CategorySection/>
-                        <div className={'my-4 lg:my-12 -mx-6'}>
-                            <CategorySlider category={null} showAll={false}/>
-                        </div>
-
+                        <ErrorBoundary>
+                            <CategorySection/>
+                        </ErrorBoundary>
                     </Suspense>
+                    <div className={'my-4 lg:my-12 -mx-6'}>
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <ErrorBoundary>
+                                <CategorySlider category={null} showAll={false}/>
+                            </ErrorBoundary>
+                        </Suspense>
+                    </div>
+
                     <Divider title={'Die beliebtesten Produkte'}/>
                     <ProductSlider products={products}/>
                     <Divider title={'Alle Partnershops'}/>
-                    <Merchants />
+                    <Merchants/>
                 </div>
             </div>
         </>

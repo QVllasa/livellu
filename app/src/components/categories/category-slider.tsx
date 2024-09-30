@@ -16,7 +16,7 @@ function shuffleCategories(categories: Category[]): Category[] {
     return categories;
 }
 
-export const CategorySlider = ({showAll = false}: { category: Category | null, showAll: boolean }) => {
+export const CategorySlider = ({showAll = false}: { showAll: boolean }) => {
     const [allCategories] = useAtom<Category[]>(allCategoriesAtom)
     const [shuffledCategories, setShuffledCategories] = useState<Category[]>([]);
     const router = useRouter();
@@ -26,7 +26,8 @@ export const CategorySlider = ({showAll = false}: { category: Category | null, s
     useEffect(() => {
         if (!params) {
             setShuffledCategories(shuffleCategories(allCategories))
-        } else if (params.length === 1) {
+        }
+        else if (params.length === 1) {
             console.log(params)
             setShuffledCategories(shuffleCategories(allCategories.filter((category) => category.slug === params[0])))
         } else {

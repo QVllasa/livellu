@@ -146,7 +146,7 @@ const ProductCard = (props: { product: Product }) => {
                                     </Button>
                                     <Button
                                         size="sm"
-                                        className={'hidden md:flex w-full lg:w-auto'}
+                                        className={'flex w-full lg:w-auto'}
                                         variant="outline"
                                         onClick={(e) => {
                                             e.preventDefault();

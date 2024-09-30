@@ -32,8 +32,9 @@ import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-
 import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
 import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
-import {CategorySlider} from "@/components/categories/category-slider";
 import Icon from "@/components/ui/icon";
+import {CategorySlider} from "@/components/categories/category-slider";
+import ErrorBoundary from "@/components/error-boundary";
 
 
 function ResultsPageLayout(page) {
@@ -77,6 +78,10 @@ function ResultsPageLayout(page) {
     const {params} = router.query;
 
     useEffect(() => {
+        console.log("params: ", params);
+    }, [params]);
+
+    useEffect(() => {
         if (params) {
             const level0 = initialCategory[0];
             const level1 = level0?.child_categories.find(el => el.slug === params[1]);
@@ -93,7 +98,7 @@ function ResultsPageLayout(page) {
         const cleanedPath = `/${cleanedPathSegments.join('/')}`;
 
         // Navigate to the cleaned path
-        router.push(cleanedPath);
+        // router.push(cleanedPath);
     };
 
     const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);
@@ -164,13 +169,17 @@ function ResultsPageLayout(page) {
                         </div>
                     </div>
 
+                    <Suspense fallback={<div>Loading...</div>}>
+                        <ErrorBoundary>
                             <CategorySlider showAll={true}/>
+                        </ErrorBoundary>
+                    </Suspense>
 
 
                     {/*Mobile */}
                     <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
-                        <MobileColorFilter type={'single'} meta={meta}/>
+                            <MobileColorFilter type={'single'} meta={meta}/>
                             <MobileDeliveryTimeFilter type={'single'} meta={meta}/>
                             <MobileDepthFilter type={'single'} meta={meta}/>
                             <MobileHeightFilter type={'single'} meta={meta}/>

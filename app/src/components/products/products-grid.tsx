@@ -53,7 +53,7 @@ export const ProductsGrid = ({
         const pathSegments = router.query.params ? Array.isArray(router.query.params) ? router.query.params : [router.query.params]
             : segments;
 
-        const cleanedBasePath = `${path.includes('suche') && "/suche"}/${pathSegments.join("/")}`;
+        const cleanedBasePath = `${path.includes('suche') ? "/suche" : ""}/${pathSegments.join("/")}`;
         const updatedQuery = { ...router.query, page: newPage };
         delete updatedQuery.params;
         const newUrl = `${cleanedBasePath}${

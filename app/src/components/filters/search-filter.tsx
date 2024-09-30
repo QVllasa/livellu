@@ -1,26 +1,24 @@
-import {Search, X} from "lucide-react"; // Import the 'X' icon for clear button
+import {forwardRef, useEffect, useImperativeHandle, useState} from "react";
+import {Search, X} from "lucide-react";
 import {Input} from "@/shadcn/components/ui/input";
 import {Button} from "@/shadcn/components/ui/button";
-import {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 
-export const SearchFilter = () => {
+// Using forwardRef to expose internal functions
+export const SearchFilter = forwardRef((props, ref) => {
     const [searchTerm, setSearchTerm] = useState<string>('');
     const router = useRouter();
 
+    // Function to handle the search
     const handleSearch = (term: string) => {
-        // If there's a search term, redirect to the new path with the search term as a query parameter
         if (term.trim()) {
             router.push({
                 pathname: '/suche',
                 query: { search: term.trim() },
             });
         } else {
-            // If the search term is cleared, just navigate to the base search path
             router.push('/suche');
         }
-
-
     };
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -38,11 +36,10 @@ export const SearchFilter = () => {
         if (router.pathname.includes('/suche')) {
             handleSearch('');
         }
-
     };
 
+    // Initialize searchTerm from URL query on first render
     useEffect(() => {
-        // Initialize searchTerm from URL query on first render
         if (router.query.search) {
             setSearchTerm(router.query.search as string);
         } else {
@@ -50,8 +47,15 @@ export const SearchFilter = () => {
         }
     }, [router.query.search]);
 
+    // Expose internal functions via ref using useImperativeHandle
+    useImperativeHandle(ref, () => ({
+        triggerSearch() {
+            handleSearch(searchTerm);
+        },
+    }));
+
     return (
-        <form onSubmit={handleSearchSubmit} className="flex w-full items-center  relative">
+        <form onSubmit={handleSearchSubmit} className="flex w-full items-center relative">
             <Search className="absolute left-4 top-3 h-4 w-4 text-muted-foreground" />
             <Input
                 type="text"
@@ -74,4 +78,4 @@ export const SearchFilter = () => {
             </Button>
         </form>
     );
-};
+});
