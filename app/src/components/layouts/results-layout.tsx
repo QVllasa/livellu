@@ -98,7 +98,7 @@ function ResultsPageLayout(page) {
         const cleanedPath = `/${cleanedPathSegments.join('/')}`;
 
         // Navigate to the cleaned path
-        // router.push(cleanedPath);
+        router.replace(cleanedPath);
     };
 
     const pathSegments = router.asPath.split(/[/?]/).filter(segment => segment);

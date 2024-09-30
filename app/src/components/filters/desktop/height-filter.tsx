@@ -19,7 +19,7 @@ interface HeightFilterProps {
     };
 }
 
-export const HeightFilter = ({ meta }: HeightFilterProps) => {
+export const HeightFilter = ({meta}: HeightFilterProps) => {
     const [currentHeights, setCurrentHeights] = useState<HeightItem[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
@@ -35,7 +35,7 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
         }
 
         const heightSlugs = heightSegment.replace('hoehe:', '').split('.');
-        const selectedHeights = heightSlugs.map(slug => ({ label: slug }));
+        const selectedHeights = heightSlugs.map(slug => ({label: slug}));
         setCurrentHeights(selectedHeights);
     }, [router.asPath]);
 
@@ -75,9 +75,9 @@ export const HeightFilter = ({ meta }: HeightFilterProps) => {
         }
 
         const updatedPath = `/${pathSegments.filter(Boolean).join('/')}`.replace(/\/+/g, '/');
-  const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
+        const queryParams = queryString ? `?${queryString.replace(/page=\d+/, 'page=1')}` : "";
 
-        router.replace(`${updatedPath}${queryParams}`, undefined, { scroll: true });
+        router.replace(`${updatedPath}${queryParams}`, undefined, {scroll: true});
     };
 
     if (heights.length === 0) {
