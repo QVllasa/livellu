@@ -31,6 +31,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const {shop} = query;
 
+
     const filter = {
         populate: 'logo_image',
         filters: {
@@ -52,7 +53,16 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
                 return modifiedItem;
             });
             return data[0];
+        }).catch(error => {
+            console.error("Error fetching merchant: ", error);
+            return null;
         })
+
+    if (!merchant) {
+        return {
+            notFound: true,
+        };
+    }
 
 
     const page = parseInt((query.page as string) ?? 0) || 1;
