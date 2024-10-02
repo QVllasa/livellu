@@ -1,7 +1,7 @@
 import Header from './header';
 import Footer from './footer';
 import Link from "next/link";
-import {ChevronRight, ChevronUp} from "lucide-react";
+import {ChevronUp} from "lucide-react";
 import {capitalize} from "lodash";
 import React, {Suspense, useEffect, useState} from "react";
 
@@ -189,7 +189,7 @@ function ResultsPageLayout(page) {
                             <MobilePriceRangeFilter type={'single'} meta={meta}/>
                         </div>
                         <div className="absolute flex items-center justify-center bottom-0 right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-100 pointer-events-none">
-                            <ChevronRight className={'h-6 w-6 text-gray-500'}/>
+
                         </div>
                     </div>
 

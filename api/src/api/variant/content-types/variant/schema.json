@@ -91,12 +91,6 @@
     "rating": {
       "type": "text"
     },
-    "item": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::item.item",
-      "inversedBy": "variants"
-    },
     "groupId": {
       "type": "text"
     },

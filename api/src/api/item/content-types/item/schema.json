@@ -37,12 +37,6 @@
       "type": "string",
       "unique": true,
       "required": true
-    },
-    "variants": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::variant.variant",
-      "mappedBy": "item"
     }
   }
 }

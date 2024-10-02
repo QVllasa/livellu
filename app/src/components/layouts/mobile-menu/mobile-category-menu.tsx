@@ -114,7 +114,9 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                                                 className="text-base font-normal w-full justify-between"
                                                 onClick={() => handleCategoryClick(category)}
                                             >
-                                                <span className={'flex items-center gap-2'}><Icon name={category.lucide_icon} className={'h-4 w-4'}/> {capitalize(category.name)}</span>
+                                                <span className={'flex items-center gap-2'}>
+                                                    {category.level == 0 && <Icon name={category.lucide_icon} className={'h-4 w-4'}/>}
+                                                    {capitalize(category.name)}</span>
                                                 <ChevronRight className="w-4 h-4 ml-2" />
                                             </Button>
                                         ) : (
@@ -125,7 +127,9 @@ const MobileCategoryMenu = ({ closeDrawer }: { closeDrawer: () => void }) => {
                                                     variant={'link'}
                                                     className="text-base font-normal w-full justify-between"
                                                 >
-                                                    <span className={'flex items-center gap-2'}><Icon name={category.lucide_icon} className={'h-4 w-4'}/>  {capitalize(category.name)}</span>
+                                                    <span className={'flex items-center gap-2'}>
+                                                        {category.level == 0 && <Icon name={category.lucide_icon} className={'h-4 w-4'}/>}
+                                                        {capitalize(category.name)}</span>
                                                 </Button>
                                             </Link>
                                         )}

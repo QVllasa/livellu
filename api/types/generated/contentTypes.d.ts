@@ -971,24 +971,16 @@ export interface ApiFeedFeed extends Schema.CollectionType {
     description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
-    advertiser_id: Attribute.String;
-    advertiser_name: Attribute.String;
-    primary_region: Attribute.String;
-    membership_status: Attribute.String;
+    merchant_id: Attribute.String;
     feed_id: Attribute.String & Attribute.Required & Attribute.Unique;
     feed_name: Attribute.String;
-    language: Attribute.String;
-    vertical: Attribute.String;
-    last_imported: Attribute.String;
-    last_checked: Attribute.String;
     no_of_products: Attribute.String;
     url: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::feed.feed', 'oneToOne', 'admin::user'> &
       Attribute.Private;
     updatedBy: Attribute.Relation<'api::feed.feed', 'oneToOne', 'admin::user'> &
@@ -1016,11 +1008,6 @@ export interface ApiItemItem extends Schema.CollectionType {
     brandId: Attribute.String;
     language: Attribute.String;
     groupId: Attribute.String & Attribute.Required & Attribute.Unique;
-    variants: Attribute.Relation<
-      'api::item.item',
-      'oneToMany',
-      'api::variant.variant'
-    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &
@@ -1275,11 +1262,6 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     largeImage: Attribute.Text;
     reviews: Attribute.Text;
     rating: Attribute.Text;
-    item: Attribute.Relation<
-      'api::variant.variant',
-      'manyToOne',
-      'api::item.item'
-    >;
     groupId: Attribute.Text;
     variantId: Attribute.String;
     discount: Attribute.Float;

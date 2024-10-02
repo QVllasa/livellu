@@ -29,8 +29,8 @@ export function CategoryMegaMenu() {
                                 {capitalize(category?.name)}
                             </Link>
                         </NavigationMenuTrigger>
-                        <NavigationMenuContent className="w-full ">
-                            <ul className="grid gap-3 p-4 md:w-[400px] lg:w-[75rem] lg:grid-cols-[.75fr_1fr] z-30 items-stretch">
+                        <NavigationMenuContent className="w-full">
+                            <ul className="grid gap-3 p-4 md:w-[800px] lg:w-[100rem] lg:grid-cols-3 z-30 items-stretch">
                                 {category?.child_categories?.map((childCategory) => (
                                     <li key={childCategory?.name} className={'w-full'}>
                                         <Link legacyBehavior passHref href={`/${category?.slug}/${childCategory?.slug ?? '/'}`}
@@ -39,8 +39,8 @@ export function CategoryMegaMenu() {
                                         </Link>
                                     </li>
                                 ))}
-
                             </ul>
+
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                 )}

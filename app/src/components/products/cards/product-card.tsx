@@ -60,7 +60,7 @@ const matchingVariant = sortedVariants.find(
         <TooltipProvider delayDuration={100}>
             <Tooltip>
             <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'}>
-                <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-48">
+                <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-36">
                     <CardContent className="flex items-center justify-center p-0 relative">
                         <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
                             <div className={'relative w-full h-0 pt-[75%]'}>
@@ -125,15 +125,15 @@ const matchingVariant = sortedVariants.find(
                                             {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
                                         </span>
                                     )}
-                                    <span className="text-gray-400  text-xs flex gap-2 mt-1 items-center" suppressHydrationWarning>
-                                       <Icon name={'Truck'} className={'h-3 w-3'}/> {`${variant?.deliveryCost != "0.00" ? variant?.deliveryCost+'€' : 'Kostenloser Versand'}`}
+                                    <span className="text-gray-400 text-[0.65rem] xs:text-xs flex gap-1 mt-1 items-center" suppressHydrationWarning>
+                                       <Icon name={'Package'} className={'h-3 w-3'}/> {`${variant?.deliveryCost != "0.00" ? variant?.deliveryCost+'€' : 'Kostenloser Versand'}`}
                                     </span>
                                 </div>
 
 
 
                                     <TooltipTrigger asChild>
-                                        <h4 className="scroll-m-20 text-xs sm:text-sm font-semibold tracking-tight truncate hidden md:flex">
+                                        <h4 className="scroll-m-20 text-[0.7rem] xs:text-xs sm:text-sm font-semibold tracking-tight truncate  md:flex">
                                             {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim() ?? variant.productName}
                                         </h4>
                                     </TooltipTrigger>
@@ -154,7 +154,7 @@ const matchingVariant = sortedVariants.find(
                                             router.push(`/products/${variant?.slug}/${variant.variantId}`);
                                         }}
                                     >
-                                        <NotepadText className="h-4 w-4"/>
+                                        <NotepadText className="h-4 w-4 text-gray-700"/>
                                     </Button>
                                 </div>
 

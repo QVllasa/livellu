@@ -8,22 +8,13 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
-    "advertiser_id": {
+    "merchant_id": {
       "type": "string",
       "unique": false
-    },
-    "advertiser_name": {
-      "type": "string"
-    },
-    "primary_region": {
-      "type": "string"
-    },
-    "membership_status": {
-      "type": "string"
     },
     "feed_id": {
       "type": "string",
@@ -31,18 +22,6 @@
       "required": true
     },
     "feed_name": {
-      "type": "string"
-    },
-    "language": {
-      "type": "string"
-    },
-    "vertical": {
-      "type": "string"
-    },
-    "last_imported": {
-      "type": "string"
-    },
-    "last_checked": {
       "type": "string"
     },
     "no_of_products": {

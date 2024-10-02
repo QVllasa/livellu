@@ -121,7 +121,7 @@ export const CategorySideMenu = ({initialCategory}) => {
                                                                     variant="outline"
                                                                     className={`flex justify-start w-full mr-4 ${categoryLevel1?.slug === child0.slug ? 'bg-blue-500 text-white' : ''}`}
                                                                 >
-                                                                    <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+
                                                                     {capitalize(child0.name)}
                                                                     {child0.child_categories?.length > 0 && child0 === categoryLevel1 ? (
                                                                         <ChevronDownIcon className="ml-auto h-4 w-4"/>
@@ -143,7 +143,7 @@ export const CategorySideMenu = ({initialCategory}) => {
                                                                                                     variant="outline"
                                                                                                     className={`flex justify-start w-full mr-4 ${categoryLevel2?.slug === child1.slug ? 'bg-blue-500 text-white' : ''}`}
                                                                                                 >
-                                                                                                    <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
+
                                                                                                     {capitalize(child1.name)}
                                                                                                     {(child1?.child_categories?.length > 0 && child1 === categoryLevel2) ? (
                                                                                                         <ChevronDownIcon className="ml-auto h-4 w-4"/>
@@ -164,7 +164,6 @@ export const CategorySideMenu = ({initialCategory}) => {
                                                                                                                                 variant="outline"
                                                                                                                                 className={`flex justify-start w-full mr-4 ${categoryLevel3?.slug === child2.slug ? 'bg-blue-500 text-white' : ''}`}
                                                                                                                             >
-                                                                                                                                <EnvelopeOpenIcon className="mr-2 h-4 w-4"/>
                                                                                                                                 {capitalize(child2.name)}
                                                                                                                             </Button>
                                                                                                                         </li>
