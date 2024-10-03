@@ -119,7 +119,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         maxPrice: 2000,
         minRating: 4.8,
         pageSize: 24,
-        randomize: true,
         searchTerms: '',  // Empty query to fetch all matching products
     };
 

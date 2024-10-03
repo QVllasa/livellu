@@ -11,8 +11,10 @@ import {NotepadText} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {AspectRatio} from "@/shadcn/components/ui/aspect-ratio";
 import Icon from "@/components/ui/icon";
+import {useProductSheet} from "@/lib/context/product-sheet-context";
 
 const ProductCard = (props: { product: Product }) => {
+    const {openSheet} = useProductSheet()
     const {product} = props;
     const router = useRouter();
     const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -54,6 +56,13 @@ const matchingVariant = sortedVariants.find(
     if (!variant) {
         return null;
     }
+
+
+    const handleOpenSheet = (e: any) => {
+        e.preventDefault();
+        openSheet(variant.variantId, 'click');
+    }
+
 
 
     return (
@@ -116,7 +125,7 @@ const matchingVariant = sortedVariants.find(
                                             <span className="text-red-600 font-semibold text-sm sm:text-base" suppressHydrationWarning>
                                                 {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
                                             </span>
-                                            <span className="ml-2 text-gray-400 font-semibold text-xs line-through" suppressHydrationWarning>
+                                            <span className="ml-2 text-gray-400 font-semibold text-[0.65rem] line-through" suppressHydrationWarning>
                                                 {variant?.priceOld?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
                                             </span>
                                         </div>
@@ -149,10 +158,7 @@ const matchingVariant = sortedVariants.find(
                                         size="sm"
                                         className={'flex w-full lg:w-auto'}
                                         variant="outline"
-                                        onClick={(e) => {
-                                            e.preventDefault();
-                                            router.push(`/products/${variant?.slug}/${variant.variantId}`);
-                                        }}
+                                        onClick={handleOpenSheet}
                                     >
                                         <NotepadText className="h-4 w-4 text-gray-700"/>
                                     </Button>

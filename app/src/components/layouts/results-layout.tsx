@@ -78,10 +78,6 @@ function ResultsPageLayout(page) {
     const {params} = router.query;
 
     useEffect(() => {
-        console.log("params: ", params);
-    }, [params]);
-
-    useEffect(() => {
         if (params) {
             const level0 = initialCategory[0];
             const level1 = level0?.child_categories.find(el => el.slug === params[1]);

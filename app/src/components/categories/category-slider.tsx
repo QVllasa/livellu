@@ -25,11 +25,11 @@ export const CategorySlider = ({showAll = false}: { showAll: boolean }) => {
 
     useEffect(() => {
         if (!params) {
-            setShuffledCategories(shuffleCategories(allCategories))
+            setShuffledCategories(allCategories)
         }
         else if (params.length === 1) {
             console.log(params)
-            setShuffledCategories(shuffleCategories(allCategories.filter((category) => category.slug === params[0])))
+            setShuffledCategories(allCategories.filter((category) => category.slug === params[0]))
         } else {
             setShuffledCategories([])
         }

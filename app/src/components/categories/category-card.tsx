@@ -20,7 +20,8 @@ export const CategoryCard = ({category}: { category: Category }) => {
                 height={imgObj?.height ?? 500}
                 alt=""
                 className="absolute inset-0 -z-10 h-full w-full object-cover"/>
-            <h3 className="absolute left-0 top-0 right-0 flex items-center text-xs sm:text-sm md:text-base  xl:text-xl font-semibold leading-6 text-gray-800 justify-start bg-gradient-to-b from-white to-80%  bg-opacity-80  w-auto p-2 md:p-3 lg:p-4 pb-20 sm:pb-28 md:pb-32  lg:pb-36 xl:pb-48 ">
+            <div className={'absolute top-0 bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-30%  w-full h-full'}></div>
+            <h3 className="absolute left-0 bottom-0 right-0 flex items-center text-xs sm:text-sm md:text-base xl:text-2xl font-semibold leading-6 text-white justify-start  w-auto p-2 md:p-3 lg:p-4  sm:pb-28 md:pb-32  ">
                 <Icon name={category?.lucide_icon} className="w-3 h-3 md:w-4 md:h-4 xl:w-5 xl:h-5 mr-2"/>
                 {
                     capitalize(category?.name)

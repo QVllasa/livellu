@@ -13,7 +13,7 @@ export const ProductSlider = ({products}: { products: Product[] }) => {
                 {products.map((product) => (
                     <div
                         key={product.id}
-                        className={'relative scroll-ml-12 px-1 sm:px-2 md:px-3 snap-center shrink-0 max-w-48 max-h-fit mx-1'}
+                        className={'relative scroll-ml-4 snap-center shrink-0 max-w-48 max-h-fit mx-1'}
                     >
                         <ProductCard product={product}/>
                     </div>
