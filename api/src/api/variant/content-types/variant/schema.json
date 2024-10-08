@@ -105,6 +105,9 @@
     },
     "merchantName": {
       "type": "string"
+    },
+    "brand_name": {
+      "type": "text"
     }
   }
 }

@@ -21,7 +21,7 @@ export const CategorySection = () => {
     // shuffle by index in array
 
     useEffect(() => {
-        setShuffledCategories(shuffleCategories(allCategories))
+        setShuffledCategories(allCategories)
     }, [allCategories]);
 
 

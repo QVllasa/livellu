@@ -1267,6 +1267,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     discount: Attribute.Float;
     images: Attribute.JSON;
     merchantName: Attribute.String;
+    brand_name: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
