@@ -89,7 +89,7 @@ const ProductSheet: React.FC = () => {
     }, [source]);
 
     if (loading || !product) {
-        return null;
+        return <div>Loading...</div>;
     }
 
     const variant = product.variants.find((v) => v.variantId === variantId);
@@ -155,7 +155,7 @@ const ProductSheet: React.FC = () => {
                     <Sheet open={isOpen} onOpenChange={(open) => open ? handleOpenSheet() : handleSheetClose()}>
                         <SheetContent
                             side="right"
-                            className={`bg-gray-100 h-full overflow-y-auto sm:max-w-[1200px]
+                            className={`bg-gray-100 h-full overflow-y-auto sm:max-w-[980px]
                 ${activateAnimation ? 'data-[state=open]:animate-in \n          data-[state=open]:duration-200\n           data-[state=open]:slide-in-from-right' : ''}
                 `}
                         >
@@ -543,12 +543,8 @@ const ProductSheet: React.FC = () => {
                         </DrawerContent>
                     </Drawer>
                 )}
-
         </>
-
-
-    )
-        ;
+    );
 };
 
 export default ProductSheet;

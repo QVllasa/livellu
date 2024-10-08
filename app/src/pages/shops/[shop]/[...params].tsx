@@ -33,11 +33,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const pathSegments = params?.params as string[];
 
+    const {shop} = query;
+
     const filter = {
         populate: 'logo_image',
         filters: {
-            name: {
-                $eq: 'OTTO DE',
+            slug: {
+                $eq: shop,
             },
         },
     }
@@ -56,10 +58,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
             return data[0];
         })
 
-
-    const brandParam = params?.shop
-
-    const {shop} = query;
 
 
     let searchTerms: string[] = [];
@@ -155,8 +153,13 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         overallFilter = overallFilter ? `${overallFilter} AND ${maxPriceFilter}` : maxPriceFilter;
     }
 
+    overallFilter = overallFilter ? `${overallFilter} AND variants.merchantId = ${merchant.merchantId}` : `variants.merchantId = ${merchant.merchantId}`;
+
+    console.log("overallFilter: ", overallFilter);
+
     // Concatenate search terms into a single string
     filters['searchTerms'] = searchTerms.join(' ');
+
 
     if (overallFilter) {
         filters['filter'] = overallFilter;
@@ -168,11 +171,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     filters['page'] = page;
     filters['pageSize'] = pageSize;
 
+
     const { data, meta } = await fetchProducts(filters);
+
+    const filteredData = data.filter(product => product.variants.every(variant => variant.merchantId === merchant.merchantId));
 
     return {
         props: {
-            initialProducts: data,
+            initialProducts: filteredData,
             meta,
             filters,
             merchant

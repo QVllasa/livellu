@@ -31,7 +31,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const {shop} = query;
 
-
     const filter = {
         populate: 'logo_image',
         filters: {
@@ -43,7 +42,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const merchant = await Client.merchants.all(filter)
         .then(response => {
-            console.log("response: ", response);
             const data: Merchant[] = response.data.map((entity: Entity<Merchant>) => {
                 const id = entity.id;
                 const modifiedItem: Merchant = {
