@@ -75,7 +75,7 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
                             <CategorySection/>
                         </ErrorBoundary>
                     </Suspense>
-                    <div className={'my-4 lg:my-12 -mx-6'}>
+                    <div className={'my-4 lg:my-12 '}>
                         <Suspense fallback={<div>Loading...</div>}>
                             <ErrorBoundary>
                                 <CategorySlider category={null} showAll={false}/>

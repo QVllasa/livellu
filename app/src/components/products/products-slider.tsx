@@ -9,16 +9,19 @@ export const ProductSlider = ({products}: { products: Product[] }) => {
 
     return (
         <>
-            <XScrollable>
-                {products.map((product) => (
-                    <div
-                        key={product.id}
-                        className={'relative scroll-ml-4 snap-center shrink-0 max-w-48 max-h-fit mx-1'}
-                    >
-                        <ProductCard product={product}/>
-                    </div>
-                ))}
-            </XScrollable>
+            <div className={'px-4'}>
+                <XScrollable>
+                    {products.map((product) => (
+                        <div
+                            key={product.id}
+                            className={'relative scroll-ml-4 snap-center shrink-0 max-w-48 max-h-fit mx-1'}
+                        >
+                            <ProductCard product={product}/>
+                        </div>
+                    ))}
+                </XScrollable>
+            </div>
+
         </>
     );
 };
