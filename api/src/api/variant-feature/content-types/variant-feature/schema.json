@@ -51,6 +51,18 @@
     },
     "description": {
       "type": "json"
+    },
+    "totalHeight": {
+      "type": "float"
+    },
+    "totalWidth": {
+      "type": "float"
+    },
+    "totalDepth": {
+      "type": "float"
+    },
+    "totalLength": {
+      "type": "float"
     }
   }
 }

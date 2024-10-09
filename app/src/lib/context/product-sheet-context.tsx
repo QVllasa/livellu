@@ -41,22 +41,25 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({childre
         setVariantId(variantId);
         setSource(source);
 
-        // Update the URL with variantId without reloading the page
-        const currentPath = router.pathname;
+        const [path, query] = router.asPath.split('?');
         const pathSegments = router.query.params ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params]) : [];
+
+
+        console.log("pathSegments: ", pathSegments);
 
         // Build the base path with current segments
         const basePath = `/${pathSegments.join('/')}`;
 
         // Update the variantId in query params
+        const searchPath = `${path.includes('suche') ? "/suche" : ""}`;
         const updatedQuery = {...router.query, variantId};
         delete updatedQuery.params; // Remove 'params' key if present
 
         // Construct the new URL path with query
-        const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+        const newUrl = `${searchPath}${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
 
         // Navigate to the updated URL
-        router.replace(newUrl, undefined, {shallow: true});
+        router.replace(newUrl, undefined, {  scroll: false });
     };
 
     // Function to close the sheet and remove variantId from the URL
@@ -65,7 +68,7 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({childre
         setVariantId(null);
 
         // Update the URL with variantId without reloading the page
-        const currentPath = router.pathname;
+        const [path, query] = router.asPath.split('?');
         const pathSegments = router.query.params ? (Array.isArray(router.query.params) ? router.query.params : [router.query.params]) : [];
 
         // Build the base path with current segments
@@ -74,14 +77,15 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({childre
         delete router.query.variantId;
 
         // Update the variantId in query params
+        const searchPath = `${path.includes('suche') ? "/suche" : ""}`;
         const updatedQuery = {...router.query};
         delete updatedQuery.params; // Remove 'params' key if present
 
         // Construct the new URL path with query
-        const newUrl = `${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+        const newUrl = `${searchPath}${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
 
         // Navigate to the updated URL
-        router.replace(newUrl, undefined, {shallow: true});
+        router.replace(newUrl, undefined, {  scroll: false });
     };
 
 
