@@ -49,6 +49,7 @@ export const ProductsGrid = ({
     }, [filters]);
 
 
+    // TODO fix page query parameter on scroll
     const updatePageQueryParameter = (newPage: number) => {
         const [path, queryString] = router.asPath.split('?');
         const segments = path.split('/').filter(seg => seg !== '');
