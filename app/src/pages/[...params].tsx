@@ -3,9 +3,10 @@ import {fetchProducts} from "@/framework/product";
 import {Category, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
 import {getResultsLayout} from "@/components/layouts/results-layout";
-import {ProductsGrid} from "@/components/products/products-grid";
+
 import {fetchAllBrands} from "@/framework/brand.ssr";
 import {fetchCategories} from "@/framework/category.ssr";
+import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
 
 interface MoebelPageProps {
     initialProducts: Product[];
@@ -28,7 +29,7 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageP
 
     return (
         <>
-            <ProductsGrid initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
         </>
     );
 }

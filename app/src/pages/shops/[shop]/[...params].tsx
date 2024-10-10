@@ -2,9 +2,9 @@ import {JSXElementConstructor, ReactElement, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 import {Category, Entity, Merchant, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
-import {ProductsGrid} from "@/components/products/products-grid";
 import {getShopResultsLayout} from "@/components/layouts/shops-results-layout";
 import Client from "@/framework/client";
+import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -22,7 +22,7 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageP
 
     return (
         <>
-            <ProductsGrid initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
         </>
     );
 }

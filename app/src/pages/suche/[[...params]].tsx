@@ -2,9 +2,12 @@ import {JSXElementConstructor, ReactElement, useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 import {Category, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
-import {ProductsGrid} from "@/components/products/products-grid";
+
 import {fetchAllBrands} from "@/framework/brand.ssr";
 import {getSearchResultsLayout} from "@/components/layouts/search-results-layout";
+import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
+import {useMediaQuery} from "usehooks-ts";
+import {ProductsGridMobile} from "@/components/products/products-grid-mobile";
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -18,6 +21,7 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageP
     const {initialProducts, page, meta, initialCategory, filters} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
 
     useEffect(() => {
@@ -27,7 +31,12 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageP
 
     return (
         <>
-            <ProductsGrid initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            {isMobile ?
+                <ProductsGridMobile initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+                :
+                <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            }
+
         </>
     );
 }
