@@ -11,6 +11,7 @@ import {AspectRatio} from '@/shadcn/components/ui/aspect-ratio';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/shadcn/components/ui/table';
 import Seo from '@/components/seo/seo';
 import {ProductSlider} from '@/components/products/products-slider';
+import {Drawer, DrawerClose, DrawerContent} from '@/shadcn/components/ui/drawer';
 import {useMediaQuery} from 'usehooks-ts';
 import {Sheet, SheetContent} from '@/shadcn/components/ui/sheet';
 import {useProductSheet} from '@/lib/context/product-sheet-context';
@@ -253,7 +254,91 @@ const ProductSheet: React.FC = () => {
                     </SheetContent>
                 </Sheet>
             ) : (
-                <div></div> // Placeholder for mobile (you can add mobile Drawer here)
+                <Drawer open={isOpen} onOpenChange={(open) => (open ? handleSheetClose() : handleSheetClose())}>
+                    <DrawerContent className="bg-white h-[85vh] pb-54">
+                        <Seo title={variant.productName} url={variant.variantId.toString()} images={images} />
+                        <DrawerClose asChild>
+                            <Button variant="outline">Cancel</Button>
+                        </DrawerClose>
+                        <div className="text-gray-700 mt-4 h-full px-4 py-8 overflow-scroll">
+                            <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
+                                <div className="relative w-full h-auto">
+                                    <h2 className="text-xs md:text-1xl font-bold mb-2">{activeProduct.brandName}</h2>
+                                    <h1 className="text-md md:text-3xl font-bold mb-2">
+                                        {variant.productName.replace(new RegExp(activeProduct.brandName, 'i'), '').trim()}
+                                    </h1>
+
+                                    <div className="flex items-center mb-4">
+                                        <Badge variant="secondary">{variant.originalColor}</Badge>
+                                    </div>
+                                    <AspectRatio ratio={4 / 3} className="rounded-lg">
+                                        {images.length > 0 && (
+                                            <Image
+                                                src={images[currentImage]}
+                                                alt={`${variant.productName} - Image ${currentImage + 1}`}
+                                                fill={true}
+                                                className="object-contain w-full h-full"
+                                            />
+                                        )}
+                                    </AspectRatio>
+
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="absolute left-2 top-1/2 transform -translate-y-1/2"
+                                        onClick={prevImage}
+                                    >
+                                        <ChevronLeft className="h-4 w-4" />
+                                    </Button>
+
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                                        onClick={nextImage}
+                                    >
+                                        <ChevronRight className="h-4 w-4" />
+                                    </Button>
+
+                                    <div className="flex mt-4 space-x-2">
+                                        {images.map((img: string, index: number) => (
+                                            <button
+                                                key={index}
+                                                className={`w-16 h-16 rounded-md ${index === currentImage ? 'ring-2 ring-primary' : ''}`}
+                                                onClick={() => setCurrentImage(index)}
+                                            >
+                                                <AspectRatio ratio={1 / 1} className="bg-muted">
+                                                    <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full" />
+                                                </AspectRatio>
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {isOnSale && discountPercentage && (
+                                        <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
+                                            {`-${discountPercentage}%`}
+                                        </Badge>
+                                    )}
+                                </div>
+
+                                <div className="text-2xl font-bold mb-4">
+                                    {isOnSale ? (
+                                        <div className="flex items-center">
+                                            <span className="text-red-600">{`${variant.price.toFixed(2)} €`}</span>
+                                            <span className="ml-2 text-gray-400 line-through">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>
+                                        </div>
+                                    ) : (
+                                        `${variant.price.toFixed(2)} €`
+                                    )}
+                                </div>
+
+                                <Link href={variant.merchantLink}>
+                                    <Button className="w-auto mb-4 text-white bg-blue-500 hover:bg-blue-600">Zum Shop</Button>
+                                </Link>
+                            </div>
+                        </div>
+                    </DrawerContent>
+                </Drawer>
             )}
         </>
     );
