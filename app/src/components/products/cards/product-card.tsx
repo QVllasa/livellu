@@ -60,7 +60,7 @@ const matchingVariant = sortedVariants.find(
 
     const handleOpenSheet = (e: any) => {
         e.preventDefault();
-        openSheet(variant.variantId, 'click');
+        openSheet(product, variant.variantId);
     }
 
 

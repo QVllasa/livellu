@@ -1310,6 +1310,10 @@ export interface ApiVariantFeatureVariantFeature extends Schema.CollectionType {
     keyFeatures: Attribute.JSON;
     ean: Attribute.String;
     description: Attribute.JSON;
+    totalHeight: Attribute.Float;
+    totalWidth: Attribute.Float;
+    totalDepth: Attribute.Float;
+    totalLength: Attribute.Float;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
