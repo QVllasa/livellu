@@ -144,7 +144,7 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
         const newUrl = `${searchPath}${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
 
         // Navigate to the updated URL
-        router.replace(newUrl, undefined, { scroll: false });
+        router.replace(newUrl, undefined, { shallow: true,scroll: false });
     };
 
     return (

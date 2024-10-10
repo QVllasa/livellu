@@ -32,8 +32,8 @@ export const ProductsGrid = ({
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
-        const queryPage = parseInt(router.query.page as string) || 1;
-        setPage(queryPage);
+        // const queryPage = parseInt(router.query.page as string) || 1;
+        // setPage(queryPage);
     }, [router.query.page]);
 
     const maxCount = 5;
@@ -65,6 +65,8 @@ export const ProductsGrid = ({
                 ? `?${new URLSearchParams(updatedQuery).toString()}`
                 : ""
         }`;
+
+
         router.push(newUrl, undefined, { shallow: true }); // Use shallow routing to update the URL without refreshing
     };
 
@@ -103,7 +105,7 @@ export const ProductsGrid = ({
             const { data } = await fetchProducts(updatedFilters);
             setProducts((prevProducts) => [...prevProducts, ...data]);
             setPage(nextPage);
-            updatePageQueryParameter(nextPage);
+            // updatePageQueryParameter(nextPage);
 
             if (autoLoadCount >= maxCount) {
                 // Update the URL with the new page parameter
@@ -113,7 +115,7 @@ export const ProductsGrid = ({
             }
 
             // Update the URL with the new page parameter
-            updatePageQueryParameter(nextPage);
+            // updatePageQueryParameter(nextPage);
         } catch (error) {
             console.error("Error loading more products:", error);
         } finally {

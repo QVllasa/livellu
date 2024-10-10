@@ -13,7 +13,7 @@ import {getDirection} from '@/lib/constants';
 import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
 import {TooltipProvider} from "@/shadcn/components/ui/tooltip";
-import ProductSheet from "@/components/products/product-sheet";
+import ProductPage from "@/components/products/product-page";
 import {ProductSheetProvider} from "@/lib/context/product-sheet-context";
 import {Suspense} from "react";
 import ErrorBoundary from "@/components/error-boundary";
@@ -61,7 +61,7 @@ function CustomApp({
 
                     <Suspense fallback={<div>Loading...</div>}>
                         <ErrorBoundary>
-                            <ProductSheet/>
+                            <ProductPage/>
                         </ErrorBoundary>
                     </Suspense>
 
