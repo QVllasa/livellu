@@ -368,6 +368,37 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const images = variant.images ? variant.images.slice(2) : [];
     const contentRef = useRef<HTMLDivElement>(null);
     const drawerRef = useRef<HTMLDivElement>(null);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+
+    const switchFocusToDrawer = () => {
+        if (drawerRef.current) {
+            drawerRef.current.focus(); // Switches focus to the drawer, allowing drag interaction
+        }
+    };
+
+    const handleScroll = () => {
+        if (contentRef.current) {
+            const scrollTop = contentRef.current.scrollTop;
+            if (scrollTop === 0 && lastScrollTop > scrollTop) {
+                handleSheetClose(); // Switch focus when scrolled to the top
+            }
+            setLastScrollTop(scrollTop);
+        }
+    };
+
+    useEffect(() => {
+        console.log('lastScrollTop: ', lastScrollTop);
+        if (contentRef.current) {
+            contentRef.current.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            contentRef.current?.removeEventListener('scroll', handleScroll);
+        };
+
+    }, [lastScrollTop]);
+
+
 
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
