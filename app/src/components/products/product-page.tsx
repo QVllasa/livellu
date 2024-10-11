@@ -379,10 +379,14 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const handleScroll = () => {
         if (contentRef.current) {
             const scrollTop = contentRef.current.scrollTop;
-            if (scrollTop === 0 && lastScrollTop > scrollTop) {
-                handleSheetClose(); // Switch focus when scrolled to the top
+            if (scrollTop === 0) {
+
+                drawerRef.current.focus(); // Switch focus when scrolled to the top
+            }else{
+                contentRef.current.focus();
             }
             setLastScrollTop(scrollTop);
+
         }
     };
 
@@ -391,11 +395,6 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         if (contentRef.current) {
             contentRef.current.addEventListener('scroll', handleScroll);
         }
-
-        return () => {
-            contentRef.current?.removeEventListener('scroll', handleScroll);
-        };
-
     }, [lastScrollTop]);
 
 
@@ -475,8 +474,8 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
 
     return <>
-        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} ref={drawerRef}>
-            <DrawerContent className="bg-white max-h-[87vh] pb-54 ">
+        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
+            <DrawerContent className="bg-white max-h-[87vh] pb-54 " ref={drawerRef}>
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
