@@ -68,19 +68,61 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
     activateAnimation: boolean
 }) => {
     const [currentImage, setCurrentImage] = useState(0);
+    const [api, setApi] = useState<CarouselApi | null>(null);
+    const [count, setCount] = useState(0);
     const router = useRouter();
-
+    const [validImages, setValidImages] = useState<string[]>([]);
     const images = variant.images ? variant.images.slice(2) : [];
+
+    const checkImageExists = async (url: string): Promise<boolean> => {
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            return response.ok; // returns true if status is 200-299
+        } catch (error) {
+            return false; // return false if there's an error (e.g., network issues)
+        }
+    };
+
+    // Function to filter and keep only valid images
+    const filterValidImages = async () => {
+        const valid = await Promise.all(
+            images.map(async (img) => {
+                const exists = await checkImageExists(img);
+                return exists ? img : null;
+            })
+        );
+        setValidImages(valid.filter(Boolean) as string[]);  // Filter out null values
+    };
+
+    useEffect(() => {
+        filterValidImages();  // Validate images on component mount
+    }, []);
+
+
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
-
 
     const sameEanVariants = product.variants
         .filter((v) => v.ean === variant.ean)
         .sort((a, b) => a.price - b.price); // Sort by price, lowest first
 
-    const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
-    const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    // Handlers for next and previous image
+    const nextImage = () => api?.scrollNext();
+    const prevImage = () => api?.scrollPrev();
+
+    // Initialize the carousel API when the component mounts
+    useEffect(() => {
+        if (!api) return;
+
+        // Set the total count of images and the current selected image index
+        setCount(api.scrollSnapList().length);
+        setCurrentImage(api.selectedScrollSnap() + 1);
+
+        // Update the selected image on carousel selection change
+        api.on("select", () => {
+            setCurrentImage(api.selectedScrollSnap() + 1);
+        });
+    }, [api]);
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -128,44 +170,53 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
                     </div>
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto px-4 py-8">
                         <div className="relative w-full h-auto">
-                            <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                {images.length > 0 && (
-                                    <Image
-                                        src={images[currentImage]}
-                                        alt={`${variant.productName} - Image ${currentImage + 1}`}
-                                        fill={true}
-                                        className="object-contain w-full h-full"
-                                    />
-                                )}
-                            </AspectRatio>
-
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="absolute left-2 top-1/2 transform -translate-y-1/2"
-                                onClick={prevImage}
-                            >
-                                <ChevronLeft className="h-4 w-4"/>
-                            </Button>
-
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2"
-                                onClick={nextImage}
-                            >
-                                <ChevronRight className="h-4 w-4"/>
-                            </Button>
+                            {validImages.length > 0 && (
+                                <Carousel setApi={setApi}>
+                                    <CarouselContent>
+                                        {validImages.map((img, index) => (
+                                            <CarouselItem key={index}>
+                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
+                                                    <ProductImage
+                                                        src={validImages[index]}
+                                                        alt={`${variant.productName} - Image ${currentImage + 1}`}
+                                                        width={800}
+                                                        height={600}
+                                                        className={'object-contain w-full h-full'}
+                                                    />
+                                                </AspectRatio>
+                                            </CarouselItem>
+                                        ))}
+                                    </CarouselContent>
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="absolute left-0 top-1/2 transform -translate-y-1/2"
+                                        onClick={prevImage}
+                                    >
+                                        <ChevronLeft className="h-4 w-4"/>
+                                    </Button>
+                                    <Button
+                                        variant="outline"
+                                        size="icon"
+                                        className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                                        onClick={nextImage}
+                                    >
+                                        <ChevronRight className="h-4 w-4"/>
+                                    </Button>
+                                </Carousel>
+                            )}
 
                             <div className="flex mt-4 space-x-2">
-                                {images.map((img: string, index: number) => (
+                                {validImages.map((img: string, index: number) => (
                                     <button
                                         key={index}
-                                        className={`w-16 h-16 rounded-md ${index === currentImage ? 'ring-2 ring-primary' : ''}`}
-                                        onClick={() => setCurrentImage(index)}
+                                        className={`w-16 h-16 rounded-md`}
+                                        onClick={() => api?.scrollTo(index)}
                                     >
                                         <AspectRatio ratio={1 / 1} className="bg-muted">
-                                            <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
+                                            <ProductImage
+                                                src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"
+                                            />
                                         </AspectRatio>
                                     </button>
                                 ))}
@@ -570,3 +621,29 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         </Drawer>
     </>
 }
+
+
+export const ProductImage = ({ src, alt, width, height, className, srcSet, onLoad, placeholder, blurDataURL }: { src: string, alt?: string, width?: number, height?: number, className?: string, srcSet?: string, onLoad?: () => void, placeholder?: string, blurDataURL?: string }) => {
+ const [isVisible, setIsVisible] = useState(true);
+
+    const handleImageError = () => {
+        setIsVisible(false);  // Hide the image when an error occurs
+    };
+
+    if (!isVisible) return null;  // Do not render the image element if it's hidden
+
+    return (
+        <Image
+            src={src}
+            alt={alt}
+            srcSet={srcSet}
+            onLoad={onLoad}
+            placeholder={placeholder}
+            blurDataURL={blurDataURL}
+            width={width}
+            height={height}
+            onError={handleImageError}
+            className={className} //"object-contain w-full h-full"
+        />
+    );
+};

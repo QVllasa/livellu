@@ -1,7 +1,6 @@
 import {Card, CardContent} from "@/shadcn/components/ui/card";
 import {Product, Variant} from "@/types";
 import {LandingRating} from "../../../../components/landing/rating/LandingRating";
-import Image from "next/image";
 import {useRouter} from "next/router";
 import {useState} from "react";
 import Link from "next/link";
@@ -12,6 +11,7 @@ import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn
 import {AspectRatio} from "@/shadcn/components/ui/aspect-ratio";
 import Icon from "@/components/ui/icon";
 import {useProductSheet} from "@/lib/context/product-sheet-context";
+import {ProductImage} from "@/components/products/product-page";
 
 const ProductCard = (props: { product: Product }) => {
     const {openSheet} = useProductSheet()
@@ -41,10 +41,6 @@ const matchingVariant = sortedVariants.find(
     // Default to the first variant if no matching variant is found
     const variant: Variant = matchingVariant || sortedVariants[0];
 
-    // Handle image error by setting a fallback image
-    const handleImageError = () => {
-        setImageSrc('/img/fallbackimage.webp'); // Using the fallback image from the public folder
-    };
 
 
     // Calculate discount percentage if the product is on sale
@@ -77,7 +73,7 @@ const matchingVariant = sortedVariants.find(
                             <div className={'relative w-full h-0 pt-[75%]'}>
                                 <div className={'absolute top-0 left-0 h-full w-full overflow-hidden'}>
                                     <AspectRatio ratio={4 / 3} className="bg-muted pt-1">
-                                        <Image
+                                        <ProductImage
                                             src={imageSrc || variant?.altImageUrl}
                                             srcSet={variant?.images}
                                             alt={variant?.productName}
@@ -87,7 +83,6 @@ const matchingVariant = sortedVariants.find(
                                             className={`pointer-events-none w-full  h-full  mx-auto object-contain  ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
                                             placeholder={'blur'}
                                             blurDataURL={variant?.thumbnail}
-                                            onError={handleImageError} // Set the fallback image if there's an error
                                         />
                                     </AspectRatio>
 
