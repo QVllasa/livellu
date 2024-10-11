@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -440,10 +440,33 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         });
     }, [api]);
 
-    return <>
-        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
+    const drawerRef = useRef<HTMLDivElement>(null);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
 
-            <DrawerContent className="bg-white max-h-[87vh] pb-54">
+    useEffect(() => {
+        filterValidImages();  // Validate images on component mount
+        if (drawerRef.current) {
+            drawerRef.current.focus();
+        }
+
+        const handleScroll = () => {
+            const scrollTop = drawerRef.current?.scrollTop || 0;
+            if (scrollTop < lastScrollTop) {
+                handleSheetClose();
+            }
+            setLastScrollTop(scrollTop);
+        };
+
+        drawerRef.current?.addEventListener('scroll', handleScroll);
+
+        return () => {
+            drawerRef.current?.removeEventListener('scroll', handleScroll);
+        };
+    }, [lastScrollTop]);
+
+    return <>
+        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} ref={drawerRef}>
+            <DrawerContent className="bg-white max-h-[87vh] pb-54" tabIndex={-1}>
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
