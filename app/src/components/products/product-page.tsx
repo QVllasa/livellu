@@ -370,32 +370,16 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const drawerRef = useRef<HTMLDivElement>(null);
     const [lastScrollTop, setLastScrollTop] = useState(0);
 
-    const switchFocusToDrawer = () => {
-        if (drawerRef.current) {
-            drawerRef.current.focus(); // Switches focus to the drawer, allowing drag interaction
-        }
-    };
-
-    // Detect when scrolling reaches the top of the scrollable div
+    // Switch focus to drawer when scroll reaches the top
     const handleScroll = () => {
-        if (contentRef.current) {
-            const scrollTop = contentRef.current.scrollTop;
-            if (scrollTop === 0 && lastScrollTop > scrollTop) {
-                switchFocusToDrawer(); // Switch focus when scrolled to the top
-            }
-            setLastScrollTop(scrollTop);
+        if (contentRef.current && contentRef.current.scrollTop === 0) {
+            drawerRef.current?.focus(); // Switch focus to the drawer
         }
     };
 
     useEffect(() => {
-        if (contentRef.current) {
-            contentRef.current.addEventListener('scroll', handleScroll);
-        }
-
-        return () => {
-            contentRef.current?.removeEventListener('scroll', handleScroll);
-        };
-    }, [lastScrollTop]);
+        contentRef.current?.addEventListener('scroll', handleScroll);
+    }, []);
 
 
 
