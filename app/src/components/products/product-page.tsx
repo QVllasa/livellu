@@ -366,25 +366,38 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const [count, setCount] = useState(0);
     const [validImages, setValidImages] = useState<string[]>([]);
     const images = variant.images ? variant.images.slice(2) : [];
-    const scrollableRef = useRef<HTMLDivElement>(null); // Ref for the scrollable container
+    const contentRef = useRef<HTMLDivElement>(null);
+    const drawerRef = useRef<HTMLDivElement>(null);
+    const [lastScrollTop, setLastScrollTop] = useState(0);
+
+    const switchFocusToDrawer = () => {
+        if (drawerRef.current) {
+            drawerRef.current.focus(); // Switches focus to the drawer, allowing drag interaction
+        }
+    };
 
     // Detect when scrolling reaches the top of the scrollable div
     const handleScroll = () => {
-        if (scrollableRef.current) {
-            if (scrollableRef.current.scrollTop === 0) {
-                handleSheetClose(); // Close or snap down the drawer
+        if (contentRef.current) {
+            const scrollTop = contentRef.current.scrollTop;
+            if (scrollTop === 0 && lastScrollTop > scrollTop) {
+                switchFocusToDrawer(); // Switch focus when scrolled to the top
             }
+            setLastScrollTop(scrollTop);
         }
     };
 
     useEffect(() => {
-        const scrollableElement = scrollableRef.current;
-        scrollableElement?.addEventListener("scroll", handleScroll);
+        if (contentRef.current) {
+            contentRef.current.addEventListener('scroll', handleScroll);
+        }
 
         return () => {
-            scrollableElement?.removeEventListener("scroll", handleScroll);
+            contentRef.current?.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    }, [lastScrollTop]);
+
+
 
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
@@ -461,7 +474,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
 
     return <>
-        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
+        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} ref={drawerRef}>
             <DrawerContent className="bg-white max-h-[87vh] pb-54 ">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
@@ -480,7 +493,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div ref={scrollableRef} className="text-gray-700 mt-4 h-full px-4 py-2 overflow-auto">
+                <div ref={contentRef} className="text-gray-700 mt-4 h-full px-4 py-2 overflow-auto">
 
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
