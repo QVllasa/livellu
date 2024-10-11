@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,6 +17,7 @@ import {Sheet, SheetContent} from '@/shadcn/components/ui/sheet';
 import {useProductSheet} from '@/lib/context/product-sheet-context';
 import {Merchant, Product, Variant} from "@/types";
 import Icon from "@/components/ui/icon";
+import {Carousel, CarouselApi, CarouselContent, CarouselItem} from "@/shadcn/components/ui/carousel";
 
 const ProductPage: React.FC = () => {
     const isMobile = useMediaQuery('(max-width: 1024px)');
@@ -310,6 +311,8 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 }) => {
     const [currentImage, setCurrentImage] = useState(0);
     const router = useRouter();
+    const [api, setApi] = useState<CarouselApi | null>(null);
+    const [count, setCount] = useState(0);
 
     const images = variant.images ? variant.images.slice(2) : [];
     const isOnSale = variant?.discount > 0;
@@ -320,8 +323,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         .filter((v) => v.ean === variant.ean)
         .sort((a, b) => a.price - b.price); // Sort by price, lowest first
 
-    const nextImage = () => setCurrentImage((prev) => (prev + 1) % images.length);
-    const prevImage = () => setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+    // Handlers for next and previous image
+    const nextImage = () => api?.scrollNext();
+    const prevImage = () => api?.scrollPrev();
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -344,6 +348,20 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
         return bulletPoints;
     };
+
+    // Initialize the carousel API when the component mounts
+    useEffect(() => {
+        if (!api) return;
+
+        // Set the total count of images and the current selected image index
+        setCount(api.scrollSnapList().length);
+        setCurrentImage(api.selectedScrollSnap() + 1);
+
+        // Update the selected image on carousel selection change
+        api.on("select", () => {
+            setCurrentImage(api.selectedScrollSnap() + 1);
+        });
+    }, [api]);
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
@@ -372,24 +390,53 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2">{product.brandName}</h2>
-                            <h1 className="text-md md:text-3xl font-bold mb-2">
+                            <h1 className="text-md md:text-3xl font-bold mb-6">
                                 {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim()}
                             </h1>
 
-                            <div className="flex items-center mb-4">
-                                <Badge variant="secondary">{variant.originalColor}</Badge>
-                            </div>
-                            <div className={'relative'}>
-                                <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                    {images.length > 0 && (
-                                        <Image
-                                            src={images[currentImage]}
-                                            alt={`${variant.productName} - Image ${currentImage + 1}`}
-                                            fill={true}
-                                            className="object-contain w-full h-full"
-                                        />
-                                    )}
-                                </AspectRatio>
+                            {/*<div className="flex items-center mb-4">*/}
+                            {/*    <Badge variant="secondary">{variant.originalColor}</Badge>*/}
+                            {/*</div>*/}
+                            <div className="relative">
+                                {images.length > 0 && (
+                                    <Carousel setApi={setApi}>
+
+                                        {/* Updated Carousel Component from ShadCN */}
+                                        <CarouselContent>
+                                        {images.map((img, index) => (
+                                            <CarouselItem key={index}>
+                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
+                                                    <Image
+                                                        src={img}
+                                                        alt={`${variant.productName} - Image ${index + 1}`}
+                                                        fill
+                                                        className="object-contain w-full h-full"
+                                                    />
+                                                </AspectRatio>
+                                            </CarouselItem>
+                                        ))}
+
+                                            </CarouselContent>
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="absolute left-0 top-1/2 transform -translate-y-1/2"
+                                            onClick={prevImage}
+                                        >
+                                            <ChevronLeft className="h-4 w-4"/>
+                                        </Button>
+
+                                        <Button
+                                            variant="outline"
+                                            size="icon"
+                                            className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                                            onClick={nextImage}
+                                        >
+                                            <ChevronRight className="h-4 w-4"/>
+                                        </Button>
+
+                                    </Carousel>
+                                )}
                                 {isOnSale && discountPercentage && (
                                     <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
                                         {`-${discountPercentage}%`}
@@ -398,30 +445,12 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             </div>
 
 
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="absolute left-2 top-1/2 transform -translate-y-1/2"
-                                onClick={prevImage}
-                            >
-                                <ChevronLeft className="h-4 w-4"/>
-                            </Button>
-
-                            <Button
-                                variant="outline"
-                                size="icon"
-                                className="absolute right-2 top-1/2 transform -translate-y-1/2"
-                                onClick={nextImage}
-                            >
-                                <ChevronRight className="h-4 w-4"/>
-                            </Button>
-
                             <div className="flex mt-4 space-x-2">
                                 {images.map((img: string, index: number) => (
                                     <button
                                         key={index}
-                                        className={`w-16 h-16 rounded-md ${index === currentImage ? 'ring-2 ring-primary' : ''}`}
-                                        onClick={() => setCurrentImage(index)}
+                                        className={`w-16 h-16 rounded-md`}
+                                        onClick={() => api?.scrollTo(index)}
                                     >
                                         <AspectRatio ratio={1 / 1} className="bg-muted">
                                             <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
