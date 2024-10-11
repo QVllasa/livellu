@@ -34,7 +34,6 @@ import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter
 import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
 import Icon from "@/components/ui/icon";
 import {CategorySlider} from "@/components/categories/category-slider";
-import ErrorBoundary from "@/components/error-boundary";
 
 
 function ResultsPageLayout(page) {
@@ -49,6 +48,11 @@ function ResultsPageLayout(page) {
     const router = useRouter();
     const [title, setTitle] = useState('TITLE');
     const [showScrollToTop, setShowScrollToTop] = useState(false);
+    const [isDeepLevel, setIsDeepLevel] = useState(false);
+
+    useEffect(() => {
+        console.log("is deep level:", isDeepLevel)
+    }, [isDeepLevel]);
 
     const scrollToTop = () => {
         window.scrollTo({top: 0, behavior: 'smooth'});
@@ -81,6 +85,13 @@ function ResultsPageLayout(page) {
         if (params) {
             const level0 = initialCategory[0];
             const level1 = level0?.child_categories.find(el => el.slug === params[1]);
+            if (level1) {
+                // hide category slider if we are on a deep level like /deko/spiegel
+                // show category slider if we are on a top level like /deko
+                setIsDeepLevel(true);
+            }else{
+                setIsDeepLevel(false);
+            }
             const level2 = level1?.child_categories.find(el => el.slug === params[2]);
             const level3 = level2?.child_categories.find(el => el.slug === params[3]);
             const path = [level0, level1, level2, level3].filter(Boolean);
@@ -142,9 +153,7 @@ function ResultsPageLayout(page) {
                         <div className="flex-1 max-h-full overflow-scroll min-w-max w-64">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <div className={'min-w-max'}>
-                                    <Suspense fallback={<div>Loading...</div>}>
                                         <CategorySideMenu initialCategory={initialCategory[0]}/>
-                                    </Suspense>
                                 </div>
                             </Suspense>
                         </div>
@@ -165,11 +174,10 @@ function ResultsPageLayout(page) {
                         </div>
                     </div>
 
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <ErrorBoundary>
-                            <CategorySlider showAll={true}/>
-                        </ErrorBoundary>
-                    </Suspense>
+                    {isDeepLevel ? null:
+                        <CategorySlider showAll={true}/>
+                    }
+
 
 
                     {/*Mobile */}

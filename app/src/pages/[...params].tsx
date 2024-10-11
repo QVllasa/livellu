@@ -7,6 +7,8 @@ import {getResultsLayout} from "@/components/layouts/results-layout";
 import {fetchAllBrands} from "@/framework/brand.ssr";
 import {fetchCategories} from "@/framework/category.ssr";
 import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
+import {ProductsGridMobile} from "@/components/products/products-grid-mobile";
+import {useMediaQuery} from "usehooks-ts";
 
 interface MoebelPageProps {
     initialProducts: Product[];
@@ -20,6 +22,7 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageP
     const {initialProducts, page, meta, initialCategory, filters} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
+    const isMobile = useMediaQuery('(max-width: 768px)');
 
 
     useEffect(() => {
@@ -29,7 +32,12 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: MoebelPageP
 
     return (
         <>
-            <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            {isMobile ?
+                <ProductsGridMobile initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading} meta={meta}/>
+                :
+                <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading} meta={meta}/>
+            }
+
         </>
     );
 }

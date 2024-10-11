@@ -24,14 +24,15 @@ export const CategorySlider = ({showAll = false}: { showAll: boolean }) => {
     const {params} = router.query;
 
     useEffect(() => {
+        console.log("categoryslider: ", params)
         if (!params) {
             setShuffledCategories(allCategories)
         }
-        else if (params.length === 1) {
+        else if (params.length === 0) {
+            setShuffledCategories([])
+        } else {
             console.log(params)
             setShuffledCategories(allCategories.filter((category) => category.slug === params[0]))
-        } else {
-            setShuffledCategories([])
         }
     }, [allCategories, router.query, params]);
 
