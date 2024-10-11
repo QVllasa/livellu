@@ -18,6 +18,8 @@ import {useProductSheet} from '@/lib/context/product-sheet-context';
 import {Merchant, Product, Variant} from "@/types";
 import Icon from "@/components/ui/icon";
 import {Carousel, CarouselApi, CarouselContent, CarouselItem} from "@/shadcn/components/ui/carousel";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const ProductPage: React.FC = () => {
     const isMobile = useMediaQuery('(max-width: 1024px)');
@@ -365,7 +367,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const [api, setApi] = useState<CarouselApi | null>(null);
     const [count, setCount] = useState(0);
     const [validImages, setValidImages] = useState<string[]>([]);
+    const [loadingImages, setLoadingImages] = useState<boolean>(true);
     const images = variant.images ? variant.images.slice(2) : [];
+
 
 
     const checkImageExists = async (url: string): Promise<boolean> => {
@@ -379,6 +383,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     // Function to filter and keep only valid images
     const filterValidImages = async () => {
+        setLoadingImages(true);
         const valid = await Promise.all(
             images.map(async (img) => {
                 const exists = await checkImageExists(img);
@@ -386,6 +391,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
             })
         );
         setValidImages(valid.filter(Boolean) as string[]);  // Filter out null values
+        setLoadingImages(false);
     };
 
     useEffect(() => {
@@ -470,70 +476,96 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                 {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim()}
                             </h1>
 
+
                             {/*<div className="flex items-center mb-4">*/}
                             {/*    <Badge variant="secondary">{variant.originalColor}</Badge>*/}
                             {/*</div>*/}
                             <div className="relative">
-                                {validImages.length > 0 && (
-                                    <Carousel setApi={setApi}>
+                                {
+                                    loadingImages ? ( <Skeleton className={'h-64 w-full'}/>)
+                                        :
+                                        <>
+                                            {validImages.length > 0 && (
+                                                <Carousel setApi={setApi}>
 
-                                        {/* Updated Carousel Component from ShadCN */}
-                                        <CarouselContent>
-                                        {validImages.map((img, index) => (
-                                            <CarouselItem key={index}>
-                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                                    <Image
-                                                        src={img}
-                                                        alt={`${variant.productName} - Image ${index + 1}`}
-                                                        fill
-                                                        className="object-contain w-full h-full"
-                                                    />
-                                                </AspectRatio>
-                                            </CarouselItem>
-                                        ))}
+                                                    {/* Updated Carousel Component from ShadCN */}
+                                                    <CarouselContent>
+                                                        {validImages.map((img, index) => (
+                                                            <CarouselItem key={index}>
+                                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
+                                                                    <Image
+                                                                        src={img}
+                                                                        alt={`${variant.productName} - Image ${index + 1}`}
+                                                                        fill
+                                                                        className="object-contain w-full h-full"
+                                                                    />
+                                                                </AspectRatio>
+                                                            </CarouselItem>
+                                                        ))}
 
-                                            </CarouselContent>
-                                        <Button
-                                            variant="outline"
-                                            size="icon"
-                                            className="absolute left-0 top-1/2 transform -translate-y-1/2"
-                                            onClick={prevImage}
-                                        >
-                                            <ChevronLeft className="h-4 w-4"/>
-                                        </Button>
+                                                    </CarouselContent>
+                                                    <Button
+                                                        variant="outline"
+                                                        size="icon"
+                                                        className="absolute left-0 top-1/2 transform -translate-y-1/2"
+                                                        onClick={prevImage}
+                                                    >
+                                                        <ChevronLeft className="h-4 w-4"/>
+                                                    </Button>
 
-                                        <Button
-                                            variant="outline"
-                                            size="icon"
-                                            className="absolute right-0 top-1/2 transform -translate-y-1/2"
-                                            onClick={nextImage}
-                                        >
-                                            <ChevronRight className="h-4 w-4"/>
-                                        </Button>
+                                                    <Button
+                                                        variant="outline"
+                                                        size="icon"
+                                                        className="absolute right-0 top-1/2 transform -translate-y-1/2"
+                                                        onClick={nextImage}
+                                                    >
+                                                        <ChevronRight className="h-4 w-4"/>
+                                                    </Button>
 
-                                    </Carousel>
-                                )}
-                                {isOnSale && discountPercentage && (
-                                    <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
-                                        {`-${discountPercentage}%`}
-                                    </Badge>
-                                )}
+                                                </Carousel>
+                                            )}
+                                            {isOnSale && discountPercentage && (
+                                                <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
+                                                    {`-${discountPercentage}%`}
+                                                </Badge>
+                                            )}
+                                        </>
+
+                                }
+
+
                             </div>
 
 
-                            <div className="flex mt-4 space-x-2">
-                                {validImages.map((img: string, index: number) => (
-                                    <button
-                                        key={index}
-                                        className={`w-16 h-16 rounded-md`}
-                                        onClick={() => api?.scrollTo(index)}
-                                    >
-                                        <AspectRatio ratio={1 / 1} className="bg-muted">
-                                            <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
-                                        </AspectRatio>
-                                    </button>
-                                ))}
-                            </div>
+
+                                {loadingImages ?
+                                        <>
+                                            <div className={'grid grid-cols-5 gap-3'}>
+                                                <Skeleton className={'h-16 w-16'}/>
+                                                <Skeleton className={'h-16 w-16'}/>
+                                                <Skeleton className={'h-16 w-16'}/>
+                                            </div>
+
+                                        </>
+                                            :
+                                        <>
+                                        <div className="flex mt-4 ">
+                                            {validImages.map((img: string, index: number) => (
+                                                <button
+                                                    key={index}
+                                                    className={`w-16 h-16 rounded-md`}
+                                                    onClick={() => api?.scrollTo(index)}
+                                                >
+                                                    <AspectRatio ratio={1 / 1} className="bg-muted">
+                                                        <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
+                                                    </AspectRatio>
+                                                </button>
+                                            ))}
+                                        </div>
+                                        </>
+                                }
+
+
                         </div>
 
                         <div className="text-2xl font-bold mb-4">
