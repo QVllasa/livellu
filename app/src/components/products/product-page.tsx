@@ -471,7 +471,19 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         });
     }, [api]);
 
+    useEffect(() => {
+        const logActiveElement = () => {
+            console.log('Current focus is on:', document.activeElement);
+        };
 
+        // Listen for focus changes
+        window.addEventListener('focus', logActiveElement, true);
+
+        // Clean up event listener
+        return () => {
+            window.removeEventListener('focus', logActiveElement, true);
+        };
+    }, []);
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
