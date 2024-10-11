@@ -6,6 +6,7 @@ import {ReloadIcon} from "@radix-ui/react-icons";
 import {useCallback, useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 import {useProductSheet} from "@/lib/context/product-sheet-context";
+import Link from "next/link";
 
 interface ProductsGridProps {
     initialProducts: Product[];
