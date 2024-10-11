@@ -143,6 +143,7 @@ export const ProductsGridMobile = ({
                         {/* Infinite Scroll Component */}
                         <InfiniteScroll
                             dataLength={products.length}
+                            scrollThreshold={0.5}
                             next={loadMoreProductsOnScroll} // Trigger load more on scroll
                             hasMore={products.length < total && products.length % productLimit !== 0}
                             loader={
