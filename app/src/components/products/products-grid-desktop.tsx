@@ -49,25 +49,20 @@ export const ProductsGridDesktop = ({
     const loadMoreProducts = (selectedPage: number) => {
         setPage(selectedPage);
 
-        const [path, queryString] = router.asPath.split('?');
-        const segments = path.split('/').filter(seg => seg !== '');
+        const currentUrl = router.asPath;
 
-        const basePath = router.pathname;
-        const pathSegments = router.query.params
-            ? Array.isArray(router.query.params)
-                ? router.query.params
-                : [router.query.params]
-            : segments;
+        // Use regex to remove any existing page=... parameter
+        const urlWithoutPage = currentUrl.replace(/(\?|&)page=\d+(&|$)/, (match, p1, p2) => (p2 === "&" ? p1 : ""));
 
-        const cleanedBasePath = `${path.includes('suche') ? "/suche" : ''}/${pathSegments.join("/")}`.replace(/\/suche\/suche/, "/suche");
+        // Check if there's already a query string in the URL
+        const separator = urlWithoutPage.includes("?") ? "&" : "?";
 
-        const updatedQuery = { ...router.query, page: selectedPage };
-        delete updatedQuery.params;
-        const newUrl = `${cleanedBasePath}${
-            Object.keys(updatedQuery).length
-                ? `?${new URLSearchParams(updatedQuery).toString()}`
-                : ""
-        }`;
+        // Append the new page parameter
+        const newUrl = `${urlWithoutPage}${separator}page=${selectedPage}`;
+
+        console.log("Updated URL with new page:", newUrl);
+
+        // Push the updated URL to the router
         router.push(newUrl);
     };
 
