@@ -444,7 +444,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
-            <DrawerContent className="bg-white min-h-auto max-h-[87vh] pb-54" >
+            <DrawerContent className="bg-white min-h-auto max-h-[87vh] " >
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
