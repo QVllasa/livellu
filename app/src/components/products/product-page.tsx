@@ -366,7 +366,28 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const [count, setCount] = useState(0);
     const [validImages, setValidImages] = useState<string[]>([]);
     const images = variant.images ? variant.images.slice(2) : [];
+    const drawerRef = useRef<HTMLDivElement>(null);
+    // Function to handle the scroll event
+    const handleScroll = () => {
+        const scrollTop = drawerRef.current?.scrollTop || 0;
+        if (scrollTop === 0) {
+            // If scrolled to the top, close the drawer
+            handleSheetClose();
+        }
+    };
 
+    // Add event listener on mount and clean up on unmount
+    useEffect(() => {
+        const drawerElement = drawerRef.current;
+        if (drawerElement) {
+            drawerElement.addEventListener('scroll', handleScroll);
+        }
+        return () => {
+            if (drawerElement) {
+                drawerElement.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
 
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
@@ -440,7 +461,6 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         });
     }, [api]);
 
-    const drawerRef = useRef<HTMLDivElement>(null);
     const [lastScrollTop, setLastScrollTop] = useState(0);
 
     useEffect(() => {
@@ -466,7 +486,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} ref={drawerRef}>
-            <DrawerContent className="bg-white max-h-[87vh] pb-54" tabIndex={-1}>
+            <DrawerContent className="bg-white max-h-[87vh] pb-54">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
@@ -489,7 +509,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
-                            <h2 className="text-xs md:text-1xl font-bold mb-2">{product.brandName}</h2>
+                            <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
                             <h1 className="text-md md:text-3xl font-bold mb-6">
                                 {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim()}
                             </h1>
