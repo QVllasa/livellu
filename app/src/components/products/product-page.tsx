@@ -320,11 +320,8 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? handleSheetClose() : handleSheetClose())}>
-            <DrawerContent className="bg-white h-[85vh] pb-54">
+            <DrawerContent className="bg-white max-h-[85vh] pb-54">
         <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-        {/*<DrawerClose >*/}
-        {/*    <Button variant="outline">Cancel</Button>*/}
-        {/*</DrawerClose>*/}
                 <div className="text-gray-700 mt-4 h-full px-4 py-8 overflow-scroll">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">

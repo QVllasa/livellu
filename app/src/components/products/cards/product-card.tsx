@@ -156,7 +156,7 @@ const matchingVariant = sortedVariants.find(
                                     </Button>
                                     <Button
                                         size="sm"
-                                        className={'flex w-full lg:w-auto'}
+                                        className={'flex w-full lg:w-auto pointer-events-auto'}
                                         variant="outline"
                                         onClick={handleOpenSheet}
                                     >

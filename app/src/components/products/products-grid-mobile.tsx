@@ -3,16 +3,14 @@ import ProductCard from "@/components/products/cards/product-card";
 import {Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ReloadIcon} from "@radix-ui/react-icons";
-import Link from "next/link";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
-import InfiniteScroll from "react-infinite-scroll-component";
+import {useProductSheet} from "@/lib/context/product-sheet-context";
 
 interface ProductsGridProps {
     initialProducts: Product[];
     initialPage: number;
     pageCount: number;
-    initialLoading: boolean;
     initialFilters: any;
 }
 
@@ -20,39 +18,29 @@ export const ProductsGridMobile = ({
                                        initialProducts,
                                        initialPage,
                                        pageCount,
-                                       initialLoading,
                                        initialFilters,
                                    }: ProductsGridProps) => {
     const router = useRouter();
-    const [products, setProducts] = useState<Product[]>([]);
+    const [products, setProducts] = useState<Product[]>(initialProducts);
     const [page, setPage] = useState<number>(initialPage);
-    const [hasMore, setHasMore] = useState<boolean>(true); // For infinite scroll
-    const [filters, setFilters] = useState<any>(initialFilters);
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
-    const [autoLoadCount, setAutoLoadCount] = useState<number>(0);
-    const [isLoading, setIsLoading] = useState(false);
-
-    useEffect(() => {
-        const queryPage = parseInt(router.query.page as string) || 1;
-        setPage(queryPage);
-    }, [router.query.page]);
-
-    const maxCount = 5;
+    const [filters, setFilters] = useState<any>(initialFilters);
+    const [showLoadMore, setShowLoadMore] = useState<boolean>(false); // Toggle for "Load More" button
+    const { isOpen } = useProductSheet();
 
     useEffect(() => {
         setProducts(initialProducts);
     }, [initialProducts]);
 
+
     useEffect(() => {
         setFilters(initialFilters);
-    }, [filters]);
+    }, [initialFilters]);
 
-    // Update the page query parameter in the URL without reloading the page
+    // Update page query parameter in the URL
     const updatePageQueryParameter = (newPage: number) => {
-        const [path, queryString] = router.asPath.split('?');
+        const [path] = router.asPath.split('?');
         const segments = path.split('/').filter(seg => seg !== '');
-
-        const basePath = router.pathname;
         const pathSegments = router.query.params
             ? Array.isArray(router.query.params)
                 ? router.query.params
@@ -60,7 +48,6 @@ export const ProductsGridMobile = ({
             : segments;
 
         const cleanedBasePath = `${path.includes('suche') ? "/suche" : ""}/${pathSegments.join("/")}`.replace(/\/suche\/suche/, "/suche");
-
         const updatedQuery = { ...router.query, page: newPage };
         delete updatedQuery.params;
 
@@ -70,11 +57,12 @@ export const ProductsGridMobile = ({
                 : ""
         }`;
 
-        router.push(newUrl, undefined, { shallow: true }); // Use shallow routing to update the URL without refreshing
+        router.replace(newUrl, undefined, { shallow: true, scroll: false });
     };
 
-    const loadMoreProductsMobile = async () => {
-        if (loadingMore || page >= pageCount) return;
+    // Fetch products based on page and filters
+    const fetchMoreProducts = async () => {
+        if (loadingMore || page >= pageCount || isOpen) return;
 
         setLoadingMore(true);
 
@@ -82,18 +70,14 @@ export const ProductsGridMobile = ({
             const nextPage = page + 1;
             const updatedFilters = { ...filters, page: nextPage };
             const { data } = await fetchProducts(updatedFilters);
+
             setProducts((prevProducts) => [...prevProducts, ...data]);
             setPage(nextPage);
             updatePageQueryParameter(nextPage);
 
-            if (nextPage >= pageCount) {
-                setHasMore(false); // Stop infinite scroll when all pages are loaded
-            }
-
-            if (autoLoadCount >= maxCount) {
-                setAutoLoadCount(0);
-            } else {
-                setAutoLoadCount((count) => count + 1);
+            // If the next page is a multiple of 5, show the "Load More" button
+            if (nextPage % 5 === 0) {
+                setShowLoadMore(true);
             }
         } catch (error) {
             console.error("Error loading more products:", error);
@@ -102,38 +86,30 @@ export const ProductsGridMobile = ({
         }
     };
 
+    // Handle "Load More" button click
+    const handleLoadMoreClick = () => {
+        setShowLoadMore(false); // Hide button after clicking
+        fetchMoreProducts(); // Load next page
+    };
+
+    // Call the function to fetch more products when the user scrolls near the bottom
+    const handleScroll = useCallback(() => {
+        const scrollTop = window.scrollY || window.pageYOffset;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.body.scrollHeight;
+        const triggerPoint = documentHeight * 0.75;
+
+        if (scrollTop + windowHeight >= triggerPoint && !showLoadMore && !isOpen) {
+            fetchMoreProducts();
+        }
+    }, [page, filters, showLoadMore, isOpen]);
 
     useEffect(() => {
-        const queryPage = parseInt(router.query.page as string) || 1;
-
-        if (queryPage > 1) {
-
-            setLoadingMore(true);
-
-            const loadInitialProducts = async () => {
-                setIsLoading(true);
-                try {
-                    const totalProducts = queryPage * filters.pageSize;
-                    const updatedFilters = {
-                        ...filters,
-                        page: 1,
-                        pageSize: totalProducts,
-                    };
-                    const { data } = await fetchProducts(updatedFilters);
-                    setProducts(data);
-                    setPage(queryPage);
-                    setAutoLoadCount(queryPage - 1);
-                } catch (error) {
-                    console.error("Error loading initial products:", error);
-                } finally {
-                    setLoadingMore(false);
-                    setIsLoading(false);
-                }
-            };
-
-            loadInitialProducts();
-        }
-    }, []);
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [handleScroll]);
 
     return (
         <>
@@ -142,50 +118,37 @@ export const ProductsGridMobile = ({
             ) : (
                 <div className="w-full flex flex-col items-center">
                     <div className="w-full mx-auto p-0">
-                        {/* Infinite Scroll Component */}
-                        <InfiniteScroll
-                            dataLength={products.length}
-                            next={loadMoreProductsMobile}
-                            hasMore={hasMore}
-                            loader={
-                                <div className="text-center">
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-                                    Laden...
-                                </div>
-                            }
-                            endMessage={
-                                <p style={{ textAlign: "center" }}>
-                                    <b>Keine weiteren Produkte</b>
-                                </p>
-                            }
-                        >
-                            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
-                                {products.map((product, index) => (
-                                    <ProductCard key={index} product={product} />
-                                ))}
-                            </div>
-                        </InfiniteScroll>
+                        <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 3xl:grid-cols-6 gap-1 sm:gap-4 py-4">
+                            {products.map((product, index) => (
+                                <ProductCard key={index} product={product} />
+                            ))}
+                        </div>
                     </div>
 
-                    {/* Mobile "Load More" Button */}
-                    {autoLoadCount >= maxCount && hasMore && (
-                        <div className="block sm:hidden mt-4">
+                    {/* Show "Load More" button after 5 pages */}
+                    {showLoadMore && (
+                        <div className="mt-4">
                             <Button
                                 className={'text-white bg-blue-500'}
-                                onClick={loadMoreProductsMobile}
-                                disabled={page >= pageCount || loadingMore}
+                                onClick={handleLoadMoreClick}
+                                disabled={loadingMore}
                             >
                                 {loadingMore ? (
                                     <>
                                         <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
                                         Laden...
                                     </>
-                                ) : page < pageCount ? (
-                                    "Mehr laden"
                                 ) : (
-                                    "Keine weiteren Produkte"
+                                    "Mehr laden"
                                 )}
                             </Button>
+                        </div>
+                    )}
+
+                    {loadingMore && (
+                        <div className="text-center">
+                            <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                            Laden...
                         </div>
                     )}
                 </div>
