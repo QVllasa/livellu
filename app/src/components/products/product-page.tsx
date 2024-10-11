@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useRef, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -366,14 +366,6 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const [count, setCount] = useState(0);
     const [validImages, setValidImages] = useState<string[]>([]);
     const images = variant.images ? variant.images.slice(2) : [];
-    const contentRef = useRef<HTMLDivElement>(null);
-    const drawerRef = useRef<HTMLDivElement>(null);
-    const [lastScrollTop, setLastScrollTop] = useState(0);
-
-
-
-
-
 
 
     const checkImageExists = async (url: string): Promise<boolean> => {
@@ -452,7 +444,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
-            <DrawerContent className="bg-white max-h-[87vh] pb-54 " ref={drawerRef}>
+            <DrawerContent className="bg-white min-h-auto max-h-[87vh] pb-54" >
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
@@ -470,9 +462,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div ref={contentRef} className="text-gray-700 mt-4 h-full px-4 py-2">
-
-
+                <div className="text-gray-700 mt-4 h-full px-4 py-2 overflow-y-auto">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
@@ -561,19 +551,16 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             <Button className="w-auto mb-4 text-white bg-blue-500 hover:bg-blue-600">Zum Shop</Button>
                         </Link>
                     </div>
-
                     <Card className="my-6">
                         <CardContent className="p-4">
                             <h3 className="font-semibold mb-2">Besondere Merkmale:</h3>
                             <ul className="list-disc list-inside space-y-1 text-sm">{formatSummaryAsBullets(variant.keyFeatures)}</ul>
                         </CardContent>
                     </Card>
-
                     <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-6 mt-12">
                         <Truck className="h-4 w-4"/>
                         <span>{variant.deliveryTime}</span>
                     </div>
-
                     {/* Other Products Table */}
                     <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
                         <CardContent className="p-4 py-8">
@@ -628,7 +615,6 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             </div>
                         </CardContent>
                     </Card>
-
                     {/* Similar Products Slider */}
                     <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto bg-gray-100">
                         <CardContent className="p-4 py-8">
@@ -636,7 +622,6 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             <ProductSlider products={otherProducts ?? []}/>
                         </CardContent>
                     </Card>
-
                     {/* Product Description */}
                     <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
                         <CardContent className="p-4 py-8 relative">
