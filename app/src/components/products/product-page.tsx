@@ -11,7 +11,7 @@ import {AspectRatio} from '@/shadcn/components/ui/aspect-ratio';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/shadcn/components/ui/table';
 import Seo from '@/components/seo/seo';
 import {ProductSlider} from '@/components/products/products-slider';
-import {Drawer, DrawerContent} from '@/shadcn/components/ui/drawer';
+import {Drawer, DrawerContent, DrawerHeader} from '@/shadcn/components/ui/drawer';
 import {useMediaQuery} from 'usehooks-ts';
 import {Sheet, SheetContent} from '@/shadcn/components/ui/sheet';
 import {useProductSheet} from '@/lib/context/product-sheet-context';
@@ -347,19 +347,27 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
-            <DrawerContent className="bg-white max-h-[85vh] pb-54">
-                <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div className="text-gray-700 mt-4 h-full px-4 py-2 overflow-scroll">
-                    <div className={'relative h-12 w-full flex justify-end'}>
+
+            <DrawerContent className="bg-white max-h-[95vh] pb-54">
+                <DrawerHeader>
+                    <div className={'grid grid-cols-3 items-center'}>
+                        <div></div>
+                        <div className="mx-auto  h-2 w-[100px] rounded-full bg-gray-300 dark:bg-slate-800"/>
                         <Button
                             variant="outline"
                             size="icon"
+                            className={'ml-auto'}
                             onClick={handleSheetClose}
                         >
                             <span className="sr-only">Close</span>
                             <Icon name={'X'} className="h-4 w-4"/>
                         </Button>
                     </div>
+
+                </DrawerHeader>
+                <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
+                <div className="text-gray-700 mt-4 h-full px-4 py-2 overflow-scroll">
+
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
