@@ -370,32 +370,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const drawerRef = useRef<HTMLDivElement>(null);
     const [lastScrollTop, setLastScrollTop] = useState(0);
 
-    const switchFocusToDrawer = () => {
-        if (drawerRef.current) {
-            drawerRef.current.focus(); // Switches focus to the drawer, allowing drag interaction
-        }
-    };
 
-    const handleScroll = () => {
-        if (contentRef.current) {
-            const scrollTop = contentRef.current.scrollTop;
-            if (scrollTop === 0) {
 
-                drawerRef.current.focus(); // Switch focus when scrolled to the top
-            }else{
-                contentRef.current.focus();
-            }
-            setLastScrollTop(scrollTop);
 
-        }
-    };
-
-    useEffect(() => {
-        console.log('lastScrollTop: ', lastScrollTop);
-        if (contentRef.current) {
-            contentRef.current.addEventListener('scroll', handleScroll);
-        }
-    }, [lastScrollTop]);
 
 
 
@@ -471,19 +448,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         });
     }, [api]);
 
-    useEffect(() => {
-        const logActiveElement = () => {
-            console.log('Current focus is on:', document.activeElement);
-        };
 
-        // Listen for focus changes
-        window.addEventListener('focus', logActiveElement, true);
-
-        // Clean up event listener
-        return () => {
-            window.removeEventListener('focus', logActiveElement, true);
-        };
-    }, []);
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
@@ -505,7 +470,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div ref={contentRef} className="text-gray-700 mt-4 h-full px-4 py-2 overflow-auto">
+                <div ref={contentRef} className="text-gray-700 mt-4 h-full px-4 py-2">
 
 
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
