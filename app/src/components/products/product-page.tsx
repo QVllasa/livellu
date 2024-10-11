@@ -462,7 +462,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div className="text-gray-700 mt-4 h-full px-4 py-2 overflow-y-scroll">
+                <div className="text-gray-700 mt-4 max-h-[80vh] px-4 py-2 overflow-scroll">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
