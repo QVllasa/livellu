@@ -1,7 +1,7 @@
 import {useRouter} from "next/router";
 import ProductCard from "@/components/products/cards/product-card";
 import {Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious} from "@/shadcn/components/ui/pagination";
-import {Product} from "@/types";
+import {Merchant, Product} from "@/types";
 import Link from "next/link";
 import {useEffect, useState} from "react";
 
@@ -11,11 +11,13 @@ interface ProductsGridProps {
     pageCount: number;
     initialLoading: boolean;
     initialFilters: any;
+    merchant: Merchant;
 }
 
 export const ProductsGridDesktop = ({
                                  initialProducts,
                                  initialPage,
+    merchant,
                                  pageCount,
                                  initialLoading,
                                  initialFilters,

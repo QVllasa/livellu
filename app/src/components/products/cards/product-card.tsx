@@ -63,6 +63,8 @@ const matchingVariant = sortedVariants.find(
         openSheet(product, variant.variantId);
     }
 
+    console.log("variant: ", variant);
+
 
 
     return (

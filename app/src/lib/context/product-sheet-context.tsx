@@ -40,7 +40,9 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
     useEffect(() => {
         const { variantId: urlVariantId } = router.query;
 
-        if (!activeProduct && urlVariantId && typeof urlVariantId === 'string') {
+        if (!activeProduct && (!urlVariantId || typeof urlVariantId !== 'string')) {
+            closeSheet();
+        } else if (!activeProduct && urlVariantId && typeof urlVariantId === 'string') {
             fetchProductByVariantId(urlVariantId);
             setActivateAnimation(false); // Disable animation on URL load
         }
@@ -95,27 +97,23 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
         setVariantId(variantId);
         setActivateAnimation(true); // Enable animation on button click
 
-        const [path, query] = router.asPath.split('?');
-        const pathSegments = router.query.params
-            ? Array.isArray(router.query.params)
-                ? router.query.params
-                : [router.query.params]
-            : [];
+        const currentUrl = router.asPath;
 
-        // Build the base path with current segments
-        const basePath = `/${pathSegments.join('/')}`;
+        // Use regex to remove any existing variantId before adding the new one
+        const urlWithoutVariantId = currentUrl.replace(/(\?|&)variantId=[^&]+(&|$)/, (match, p1, p2) => (p2 === "&" ? p1 : ""));
 
-        // Update the variantId in query params
-        const searchPath = `${path.includes('suche') ? '/suche' : ''}`;
-        const updatedQuery = { ...router.query, variantId };
-        delete updatedQuery.params; // Remove 'params' key if present
+        // Check if there's already a query string in the URL
+        const separator = urlWithoutVariantId.includes("?") ? "&" : "?";
 
-        // Construct the new URL path with query
-        const newUrl = `${searchPath}${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+        // Append the new variantId
+        const newUrl = `${urlWithoutVariantId}${separator}variantId=${variantId}`;
+
+        console.log("Updated URL with variantId:", newUrl);
 
         // Navigate to the updated URL
-        router.replace(newUrl, undefined, { scroll: false });
+        router.push(newUrl, undefined, { scroll: false });
     };
+
 
     // Function to close the sheet and remove variantId from the URL
     const closeSheet = () => {
@@ -123,29 +121,17 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
         setActiveProduct(null);
         setVariantId(null);
 
-        const [path, query] = router.asPath.split('?');
-        const pathSegments = router.query.params
-            ? Array.isArray(router.query.params)
-                ? router.query.params
-                : [router.query.params]
-            : [];
+        const currentUrl = router.asPath;
 
-        // Build the base path with current segments
-        const basePath = `/${pathSegments.join('/')}`;
+        // Use regex to find and remove the variantId from the query string
+        const newUrl = currentUrl.replace(/(\?|&)variantId=[^&]+(&|$)/, (match, p1, p2) => (p2 === "&" ? p1 : ""));
 
-        delete router.query.variantId;
-
-        // Update the variantId in query params
-        const searchPath = `${path.includes('suche') ? '/suche' : ''}`;
-        const updatedQuery = { ...router.query };
-        delete updatedQuery.params; // Remove 'params' key if present
-
-        // Construct the new URL path with query
-        const newUrl = `${searchPath}${basePath}${Object.keys(updatedQuery).length ? `?${new URLSearchParams(updatedQuery).toString()}` : ''}`;
+        console.log("Updated URL without variantId:", newUrl);
 
         // Navigate to the updated URL
-        router.replace(newUrl, undefined, { shallow: true,scroll: false });
+        router.push(newUrl, undefined, { shallow: true, scroll: false });
     };
+
 
     return (
         <ProductSheetContext.Provider

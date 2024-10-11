@@ -89,7 +89,7 @@ function ResultsPageLayout(page) {
                 // hide category slider if we are on a deep level like /deko/spiegel
                 // show category slider if we are on a top level like /deko
                 setIsDeepLevel(true);
-            }else{
+            } else {
                 setIsDeepLevel(false);
             }
             const level2 = level1?.child_categories.find(el => el.slug === params[2]);
@@ -153,7 +153,7 @@ function ResultsPageLayout(page) {
                         <div className="flex-1 max-h-full overflow-scroll min-w-max w-64">
                             <Suspense fallback={<div>Loading...</div>}>
                                 <div className={'min-w-max'}>
-                                        <CategorySideMenu initialCategory={initialCategory[0]}/>
+                                    <CategorySideMenu initialCategory={initialCategory[0]}/>
                                 </div>
                             </Suspense>
                         </div>
@@ -174,10 +174,11 @@ function ResultsPageLayout(page) {
                         </div>
                     </div>
 
-                    {isDeepLevel ? null:
-                        <CategorySlider showAll={true}/>
+                    {!isDeepLevel &&
+                        <Suspense fallback={<div>Loading...</div>}>
+                            <CategorySlider showAll={true}/>
+                        </Suspense>
                     }
-
 
 
                     {/*Mobile */}

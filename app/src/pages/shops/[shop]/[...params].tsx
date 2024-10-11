@@ -1,10 +1,12 @@
-import {JSXElementConstructor, ReactElement, useState} from "react";
+import {JSXElementConstructor, ReactElement, useEffect, useState} from "react";
 import {fetchProducts} from "@/framework/product";
 import {Category, Entity, Merchant, MetaData, NextPageWithLayout, Product} from "@/types";
 import {GetServerSidePropsContext} from "next";
 import {getShopResultsLayout} from "@/components/layouts/shops-results-layout";
 import Client from "@/framework/client";
 import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
+import {ProductsGridMobile} from "@/components/products/products-grid-mobile";
+import {useMediaQuery} from "usehooks-ts";
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -12,17 +14,27 @@ interface SearchPageProps {
     meta: MetaData;
     initialCategory: Category | null;
     filters: any;
+    merchant: Merchant;
 }
 
 const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageProps) => {
-    const {initialProducts, page, meta, initialCategory, filters} = props;
+    const {initialProducts, page, meta, initialCategory, filters, merchant} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
+    const isMobile = useMediaQuery('(max-width: 768px)');
+
+    useEffect(() => {
+        setProducts(initialProducts);
+    }, [initialProducts]);
 
 
     return (
         <>
-            <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading}/>
+            {isMobile ?
+                <ProductsGridMobile merchant={merchant} initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0} initialLoading={loading} meta={meta}/>
+                :
+                <ProductsGridDesktop merchant={merchant} initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0} initialLoading={loading} meta={meta}/>
+            }
         </>
     );
 }

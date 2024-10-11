@@ -1,6 +1,6 @@
 import {useRouter} from "next/router";
 import ProductCard from "@/components/products/cards/product-card";
-import {MetaData, Product} from "@/types";
+import {Merchant, MetaData, Product} from "@/types";
 import {Button} from "@/shadcn/components/ui/button";
 import {ReloadIcon} from "@radix-ui/react-icons";
 import Link from "next/link";
@@ -14,11 +14,13 @@ interface ProductsGridProps {
     initialPage: number;
     pageCount: number;
     initialFilters: any;
+    merchant: Merchant;
     meta: MetaData;
 }
 
 export const ProductsGridMobile = ({
                                        initialProducts,
+                                        merchant,
                                        initialPage,
                                        pageCount,
                                        initialFilters,
@@ -30,10 +32,12 @@ export const ProductsGridMobile = ({
     const [filters, setFilters] = useState<any>(initialFilters);
     const [loadingMore, setLoadingMore] = useState<boolean>(false);
     const [autoLoadCount, setAutoLoadCount] = useState<number>(0);
-    const { isOpen } = useProductSheet();
+    const {isOpen} = useProductSheet();
+
+
 
     // total products count in the database
-    const { total } = meta;
+    const {total} = meta;
 
     const maxCount = 4;
     const productLimit = 192; // Threshold to show the "Load More" button after each 192 products
@@ -45,28 +49,20 @@ export const ProductsGridMobile = ({
 
     // Update the page query parameter in the URL without reloading the page
     const updatePageQueryParameter = (newPage: number) => {
-        const [path] = router.asPath.split('?');
-        const segments = path.split('/').filter(seg => seg !== '');
+        const currentUrl = router.asPath;
 
-        const pathSegments = router.query.params
-            ? Array.isArray(router.query.params)
-                ? router.query.params
-                : [router.query.params]
-            : segments;
+        // Use a regex to find and replace the page parameter in the query string
+        const newUrl = currentUrl.includes("page=")
+            ? currentUrl.replace(/page=\d+/, `page=${newPage}`)  // Replace existing page parameter
+            : currentUrl.includes("?")  // If there are already query parameters
+                ? `${currentUrl}&page=${newPage}`  // Add page parameter if there are existing params
+                : `${currentUrl}?page=${newPage}`; // Add page if there are no existing params
 
-        const cleanedBasePath = `${path.includes('suche') ? "/suche" : ""}/${pathSegments.join("/")}`.replace(/\/suche\/suche/, "/suche");
-
-        const updatedQuery = { ...router.query, page: newPage };
-        delete updatedQuery.params;
-
-        const newUrl = `${cleanedBasePath}${
-            Object.keys(updatedQuery).length
-                ? `?${new URLSearchParams(updatedQuery).toString()}`
-                : ""
-        }`;
+        console.log("Updated URL with regex:", newUrl);
 
         router.push(newUrl, undefined, { shallow: true });
     };
+
 
     // Function for initial load (triggered on mount)
     const initialLoadProducts = async () => {
@@ -74,14 +70,26 @@ export const ProductsGridMobile = ({
 
         setLoadingMore(true);
         try {
-            console.log("Initial load with page size: ",page*filters.pageSize);
-            const updatedFilters = { ...filters,page:1, pageSize: page*filters.pageSize }; // Do not change page count here
-
-            const { data } = await fetchProducts(updatedFilters);
+            console.log("Initial load with page size: ", page * filters.pageSize);
+            const updatedFilters = {...filters, page: 1, pageSize: page * filters.pageSize}; // Do not change page count here
+            console.log("Updated filters: ", updatedFilters);
+            const {data} = await fetchProducts(updatedFilters);
             console.log("Initial fetched data length: ", data.length);
+            let filteredData = []
+            console.log("Active merchant: ", merchant)
+            if (merchant) {
+                filteredData = data.map(product => {
+                    return {
+                        ...product,
+                        variants: product.variants.filter(variant => variant.merchantId === merchant.merchantId)
+                    };
+                });
+            }else{
+                filteredData = data
+            }
 
             // Replace products in the list (don't increment page)
-            setProducts(data);
+            setProducts(filteredData);
         } catch (error) {
             console.error("Error loading initial products:", error);
         } finally {
@@ -97,13 +105,26 @@ export const ProductsGridMobile = ({
         try {
             const nextPage = page + 1;
             console.log("Next page length: ", nextPage);
-            const updatedFilters = { ...filters, pageSize: nextPage * filters.pageSize }; // Load next batch
+            const updatedFilters = {...filters, pageSize: nextPage * filters.pageSize}; // Load next batch
 
-            const { data } = await fetchProducts(updatedFilters);
+            console.log("Updated filters: ", updatedFilters);
+
+            const {data} = await fetchProducts(updatedFilters);
             console.log("Fetched data length: ", data.length);
+            let filteredData = []
+            if (merchant) {
+                filteredData = data.map(product => {
+                    return {
+                        ...product,
+                        variants: product.variants.filter(variant => variant.merchantId === merchant.merchantId)
+                    };
+                });
+            }else{
+                filteredData = data
+            }
 
-            // Replace products in the list
-            setProducts(data);
+            // Replace products in the list (don't increment page)
+            setProducts(filteredData);
             setPage(nextPage);
 
             // Update page in URL
@@ -136,7 +157,7 @@ export const ProductsGridMobile = ({
     return (
         <>
             {products.length === 0 ? (
-                <NoProductsFound />
+                <NoProductsFound/>
             ) : (
                 <div className="w-full flex flex-col items-center">
                     <div className="w-full mx-auto p-0">
@@ -148,7 +169,7 @@ export const ProductsGridMobile = ({
                             hasMore={products.length < total && products.length % productLimit !== 0}
                             loader={
                                 <div className="text-center">
-                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                                    <ReloadIcon className="mr-2 h-4 w-4 animate-spin"/>
                                     Laden...
                                 </div>
                             }

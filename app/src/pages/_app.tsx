@@ -43,8 +43,8 @@ function CustomApp({
     return (
         <>
             <div dir={dir}>
-                <ProductSheetProvider>
 
+                <ProductSheetProvider>
                     <TooltipProvider>
                         <QueryProvider pageProps={pageProps}>
                             <SearchProvider>
@@ -58,14 +58,11 @@ function CustomApp({
                             </SearchProvider>
                         </QueryProvider>
                     </TooltipProvider>
-
                     <Suspense fallback={<div>Loading...</div>}>
                         <ErrorBoundary>
                             <ProductPage/>
                         </ErrorBoundary>
                     </Suspense>
-
-
                 </ProductSheetProvider>
             </div>
         </>
