@@ -176,7 +176,7 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
                                         {validImages.map((img, index) => (
                                             <CarouselItem key={index}>
                                                 <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                                    <ProductImage
+                                                    <Image
                                                         src={validImages[index]}
                                                         alt={`${variant.productName} - Image ${currentImage + 1}`}
                                                         width={800}
@@ -214,7 +214,7 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
                                         onClick={() => api?.scrollTo(index)}
                                     >
                                         <AspectRatio ratio={1 / 1} className="bg-muted">
-                                            <ProductImage
+                                            <Image
                                                 src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"
                                             />
                                         </AspectRatio>
@@ -364,8 +364,34 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const router = useRouter();
     const [api, setApi] = useState<CarouselApi | null>(null);
     const [count, setCount] = useState(0);
-
+    const [validImages, setValidImages] = useState<string[]>([]);
     const images = variant.images ? variant.images.slice(2) : [];
+
+
+    const checkImageExists = async (url: string): Promise<boolean> => {
+        try {
+            const response = await fetch(url, { method: 'HEAD' });
+            return response.ok; // returns true if status is 200-299
+        } catch (error) {
+            return false; // return false if there's an error (e.g., network issues)
+        }
+    };
+
+    // Function to filter and keep only valid images
+    const filterValidImages = async () => {
+        const valid = await Promise.all(
+            images.map(async (img) => {
+                const exists = await checkImageExists(img);
+                return exists ? img : null;
+            })
+        );
+        setValidImages(valid.filter(Boolean) as string[]);  // Filter out null values
+    };
+
+    useEffect(() => {
+        filterValidImages();  // Validate images on component mount
+    }, []);
+
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
@@ -417,7 +443,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
 
-            <DrawerContent className="bg-white max-h-[90vh] pb-54">
+            <DrawerContent className="bg-white max-h-[87vh] pb-54">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
@@ -449,12 +475,12 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             {/*    <Badge variant="secondary">{variant.originalColor}</Badge>*/}
                             {/*</div>*/}
                             <div className="relative">
-                                {images.length > 0 && (
+                                {validImages.length > 0 && (
                                     <Carousel setApi={setApi}>
 
                                         {/* Updated Carousel Component from ShadCN */}
                                         <CarouselContent>
-                                        {images.map((img, index) => (
+                                        {validImages.map((img, index) => (
                                             <CarouselItem key={index}>
                                                 <AspectRatio ratio={4 / 3} className="rounded-lg">
                                                     <Image
@@ -497,7 +523,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
 
                             <div className="flex mt-4 space-x-2">
-                                {images.map((img: string, index: number) => (
+                                {validImages.map((img: string, index: number) => (
                                     <button
                                         key={index}
                                         className={`w-16 h-16 rounded-md`}

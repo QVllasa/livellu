@@ -108,7 +108,6 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
         // Append the new variantId
         const newUrl = `${urlWithoutVariantId}${separator}variantId=${variantId}`;
 
-        console.log("Updated URL with variantId:", newUrl);
 
         // Navigate to the updated URL
         router.push(newUrl, undefined, { scroll: false });
