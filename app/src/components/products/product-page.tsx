@@ -20,6 +20,7 @@ import Icon from "@/components/ui/icon";
 import {Carousel, CarouselApi, CarouselContent, CarouselItem} from "@/shadcn/components/ui/carousel";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 
 const ProductPage: React.FC = () => {
     const isMobile = useMediaQuery('(max-width: 1024px)');
@@ -468,7 +469,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <div className="text-gray-700 mt-4 max-h-[80vh] px-4 py-2 overflow-scroll">
+                <ScrollArea className="text-gray-700 mt-4 h-[80vh] px-4 py-2">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
@@ -668,7 +669,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             </div>
                         </CardContent>
                     </Card>
-                </div>
+                </ScrollArea>
             </DrawerContent>
         </Drawer>
     </>
