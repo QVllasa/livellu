@@ -7,6 +7,7 @@ import Link from "next/link";
 import {Category} from "@/types";
 import {XScrollable} from "@/components/ui/x-scrollable";
 import {useRouter} from "next/router";
+import Skeleton from "react-loading-skeleton";
 
 function shuffleCategories(categories: Category[]): Category[] {
     for (let i = categories.length - 1; i > 0; i--) {
@@ -27,8 +28,7 @@ export const CategorySlider = ({showAll = false}: { showAll: boolean }) => {
         console.log("categoryslider: ", params)
         if (!params) {
             setShuffledCategories(allCategories)
-        }
-        else if (params.length === 0) {
+        } else if (params.length === 0) {
             setShuffledCategories([])
         } else {
             console.log(params)
@@ -36,7 +36,23 @@ export const CategorySlider = ({showAll = false}: { showAll: boolean }) => {
         }
     }, [allCategories, router.query, params]);
 
-    if (shuffledCategories.length === 0) return null;
+    if (!allCategories || allCategories.length === 0 || shuffledCategories.length === 0) {
+        return <>
+            <div className={'relative w-full h-36 sm:h-44 md:h-56 '}>
+                <div className={'absolute left-0 right-0 flex   items-start w-auto px-4 lg:px6  mx-auto'}>
+                    <XScrollable>
+                        {[...Array(15).keys()].map((i) => (
+                            <div key={i} className={'scroll-ml-6  snap-center  shrink-0 flex justify-center items-center'}>
+                                <div className={'relative flex flex-col justify-center items-center text-xs lg:text-base min-h-32 min-w-32 sm:min-h-40 sm:min-w-40'}>
+                                    <Skeleton className="min-h-28 min-w-28 sm:min-h-36 sm:min-w-36 "/>
+                                </div>
+                            </div>
+                        ))}
+                    </XScrollable>
+                </div>
+            </div>
+        </>
+    }
 
     return <>
         <div className={'relative w-full h-36 sm:h-44 md:h-56 '}>
