@@ -29,7 +29,6 @@ const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod =>
 const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), {ssr: false});
 const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), {ssr: false});
 
-const ScrollArea = dynamic(() => import('@/shadcn/components/ui/scroll-area').then(mod => mod.ScrollArea), {ssr: false});
 
 
 
