@@ -14,14 +14,14 @@ interface ProductsGridProps {
     merchant: Merchant;
 }
 
-export const ProductsGridDesktop = ({
+export default function  ProductsGridDesktop  ({
                                  initialProducts,
                                  initialPage,
     merchant,
                                  pageCount,
                                  initialLoading,
                                  initialFilters,
-                             }: ProductsGridProps) => {
+                             }: ProductsGridProps)  {
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>([]);
     const [page, setPage] = useState<number>(initialPage);

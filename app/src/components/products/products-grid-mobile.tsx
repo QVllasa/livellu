@@ -18,14 +18,14 @@ interface ProductsGridProps {
     meta: MetaData;
 }
 
-export const ProductsGridMobile = ({
+export default function ProductsGridMobile ({
                                        initialProducts,
                                         merchant,
                                        initialPage,
                                        pageCount,
                                        initialFilters,
                                        meta,
-                                   }: ProductsGridProps) => {
+                                   }: ProductsGridProps)  {
     const router = useRouter();
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const [page, setPage] = useState<number>(initialPage);

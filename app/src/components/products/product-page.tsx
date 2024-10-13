@@ -23,9 +23,20 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 
 const ProductPage: React.FC = () => {
+    const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
     const isMobile = useMediaQuery('(max-width: 1024px)');
-    const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants, activateAnimation} = useProductSheet();
+    const { isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants, activateAnimation } = useProductSheet();
 
+
+    useEffect(() => {
+        // Set isMounted to true once the component mounts
+        setIsMounted(true);
+    }, []);
+
+    if (!isMounted) {
+        // Avoid rendering any component based on media query until it's mounted on the client
+        return null; // You can replace this with a loading spinner if you'd like
+    }
 
     if (loading) {
         return <div>Loading...</div>;
@@ -48,11 +59,14 @@ const ProductPage: React.FC = () => {
         <>
             {!isMobile ? (
 
-                <ProductSheet isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+
+                    <ProductSheet isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+
 
             ) : (
 
-                <ProductDrawer isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+                    <ProductDrawer isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+
 
             )}
         </>
@@ -79,7 +93,7 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
 
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
-            const response = await fetch(url, { method: 'HEAD' });
+            const response = await fetch(url, {method: 'HEAD'});
             return response.ok; // returns true if status is 200-299
         } catch (error) {
             return false; // return false if there's an error (e.g., network issues)
@@ -372,10 +386,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const images = variant.images ? variant.images.slice(2) : [];
 
 
-
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
-            const response = await fetch(url, { method: 'HEAD' });
+            const response = await fetch(url, {method: 'HEAD'});
             return response.ok; // returns true if status is 200-299
         } catch (error) {
             return false; // return false if there's an error (e.g., network issues)
@@ -448,10 +461,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     }, [api]);
 
 
-
     return <>
-        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())} >
-            <DrawerContent className="bg-white min-h-auto max-h-[87vh] " >
+        <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
+            <DrawerContent className="bg-white min-h-auto max-h-[87vh] ">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
@@ -483,7 +495,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             {/*</div>*/}
                             <div className="relative">
                                 {
-                                    loadingImages ? ( <Skeleton className={'h-64 w-full'}/>)
+                                    loadingImages ? (<Skeleton className={'h-64 w-full'}/>)
                                         :
                                         <>
                                             {validImages.length > 0 && (
@@ -538,33 +550,32 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             </div>
 
 
+                            {loadingImages ?
+                                <>
+                                    <div className={'grid grid-cols-5 gap-3'}>
+                                        <Skeleton className={'h-16 w-16'}/>
+                                        <Skeleton className={'h-16 w-16'}/>
+                                        <Skeleton className={'h-16 w-16'}/>
+                                    </div>
 
-                                {loadingImages ?
-                                        <>
-                                            <div className={'grid grid-cols-5 gap-3'}>
-                                                <Skeleton className={'h-16 w-16'}/>
-                                                <Skeleton className={'h-16 w-16'}/>
-                                                <Skeleton className={'h-16 w-16'}/>
-                                            </div>
-
-                                        </>
-                                            :
-                                        <>
-                                        <div className="flex mt-4 ">
-                                            {validImages.map((img: string, index: number) => (
-                                                <button
-                                                    key={index}
-                                                    className={`w-16 h-16 rounded-md`}
-                                                    onClick={() => api?.scrollTo(index)}
-                                                >
-                                                    <AspectRatio ratio={1 / 1} className="bg-muted">
-                                                        <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
-                                                    </AspectRatio>
-                                                </button>
-                                            ))}
-                                        </div>
-                                        </>
-                                }
+                                </>
+                                :
+                                <>
+                                    <div className="flex mt-4 gap-2">
+                                        {validImages.map((img: string, index: number) => (
+                                            <button
+                                                key={index}
+                                                className={`w-16 h-16 rounded-md`}
+                                                onClick={() => api?.scrollTo(index)}
+                                            >
+                                                <AspectRatio ratio={1 / 1} className="bg-muted">
+                                                    <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
+                                                </AspectRatio>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </>
+                            }
 
 
                         </div>
@@ -676,8 +687,18 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
 }
 
 
-export const ProductImage = ({ src, alt, width, height, className, srcSet, onLoad, placeholder, blurDataURL }: { src: string, alt?: string, width?: number, height?: number, className?: string, srcSet?: string, onLoad?: () => void, placeholder?: string, blurDataURL?: string }) => {
- const [isVisible, setIsVisible] = useState(true);
+export const ProductImage = ({src, alt, width, height, className, srcSet, onLoad, placeholder, blurDataURL}: {
+    src: string,
+    alt?: string,
+    width?: number,
+    height?: number,
+    className?: string,
+    srcSet?: string,
+    onLoad?: () => void,
+    placeholder?: string,
+    blurDataURL?: string
+}) => {
+    const [isVisible, setIsVisible] = useState(true);
 
     const handleImageError = () => {
         setIsVisible(false);  // Hide the image when an error occurs

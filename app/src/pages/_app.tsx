@@ -13,7 +13,6 @@ import {getDirection} from '@/lib/constants';
 import {useRouter} from 'next/router';
 import dynamic from 'next/dynamic';
 import {TooltipProvider} from "@/shadcn/components/ui/tooltip";
-import ProductPage from "@/components/products/product-page";
 import {ProductSheetProvider} from "@/lib/context/product-sheet-context";
 import {Suspense} from "react";
 import ErrorBoundary from "@/components/error-boundary";
@@ -22,6 +21,8 @@ const ToastContainer = dynamic(
     () => import('react-toastify').then((module) => module.ToastContainer),
     {ssr: false}
 );
+
+const ProductPage = dynamic(() => import('@/components/products/product-page'), { ssr: false });
 
 type AppPropsWithLayout = AppProps & {
     Component: NextPageWithLayout;
@@ -58,11 +59,11 @@ function CustomApp({
                             </SearchProvider>
                         </QueryProvider>
                     </TooltipProvider>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        <ErrorBoundary>
+                    <ErrorBoundary>
+                        <Suspense>
                             <ProductPage/>
-                        </ErrorBoundary>
-                    </Suspense>
+                        </Suspense>
+                    </ErrorBoundary>
                 </ProductSheetProvider>
             </div>
         </>
