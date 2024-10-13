@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {Suspense, useEffect, useState} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +7,6 @@ import {Button} from '@/shadcn/components/ui/button';
 import {Badge} from '@/shadcn/components/ui/badge';
 import {Card, CardContent} from '@/shadcn/components/ui/card';
 import {ChevronLeft, ChevronRight, Truck} from 'lucide-react';
-import {AspectRatio} from '@/shadcn/components/ui/aspect-ratio';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/shadcn/components/ui/table';
 import Seo from '@/components/seo/seo';
 import {ProductSlider} from '@/components/products/products-slider';
@@ -26,12 +25,19 @@ import {CarouselApi} from "@/shadcn/components/ui/carousel";
 const Carousel = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.Carousel), { ssr: false });
 const CarouselContent = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselContent), { ssr: false });
 const CarouselItem = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselItem), { ssr: false });
+const AspectRatio = dynamic(() => import('@/shadcn/components/ui/aspect-ratio').then(mod => mod.AspectRatio), { ssr: false });
+
+
+
+const ProductDrawer = dynamic(() => Promise.resolve(ProductDrawerComponent), { ssr: false });
+const ProductSheet = dynamic(() => Promise.resolve(ProductSheetComponent), { ssr: false });
+
 
 
 const ProductPage: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
     const isMobile = useMediaQuery('(max-width: 1024px)');
-    const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants, activateAnimation} = useProductSheet();
+    const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants} = useProductSheet();
 
 
     useEffect(() => {
@@ -63,18 +69,21 @@ const ProductPage: React.FC = () => {
 
     return (
         <>
-            {!isMobile ? (
-                <ProductSheet isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
-            ) : (
-                <ProductDrawer isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
-            )}
+            <Suspense>
+                {!isMobile ? (
+                    <ProductSheet isOpen={isOpen}  variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+                ) : (
+                    <ProductDrawer isOpen={isOpen}  variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+                )}
+            </Suspense>
+
         </>
     );
 };
 
 export default ProductPage;
 
-const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, merchants, handleSheetClose, activateAnimation}: {
+const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProducts, merchants, handleSheetClose}: {
     isOpen: boolean,
     variant: Variant,
     product: Product,
@@ -166,11 +175,7 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
         <Sheet open={isOpen} onOpenChange={(open) => (open ? handleSheetClose() : handleSheetClose())}>
             <SheetContent
                 side="right"
-                className={`bg-gray-100 h-full overflow-y-auto sm:max-w-[980px] ${
-                    activateAnimation
-                        ? 'data-[state=open]:animate-in data-[state=open]:duration-200 data-[state=open]:slide-in-from-right'
-                        : ''
-                }`}
+                className={`bg-gray-100 h-full overflow-y-auto sm:max-w-[980px]`}
             >
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
                 <div className="text-gray-700 bg-gray-100 h-full ">
@@ -367,7 +372,7 @@ const ProductSheet: React.FC = ({isOpen, variant, product, otherProducts, mercha
     </>
 }
 
-const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merchants, handleSheetClose, activateAnimation}: {
+const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProducts, merchants, handleSheetClose}: {
     isOpen: boolean,
     variant: Variant,
     product: Product,
@@ -383,6 +388,16 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const [validImages, setValidImages] = useState<string[]>([]);
     const [loadingImages, setLoadingImages] = useState<boolean>(true);
     const images = variant.images ? variant.images.slice(2) : [];
+    const [carouselMounted, setCarouselMounted] = useState(false);
+
+    useEffect(() => {
+        // Delay the loading of the carousel component to make sure everything is ready
+        const timer = setTimeout(() => {
+            setCarouselMounted(true);
+        }, 500); // Delay by 500ms or adjust the timing based on your needs
+
+        return () => clearTimeout(timer); // Clean up the timer
+    }, []);
 
 
 
@@ -406,17 +421,19 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
             })
         );
         setValidImages(valid.filter(Boolean) as string[]);  // Filter out null values
-        setLoadingImages(false);
     };
 
-   useEffect(() => {
-    (async () => {
-        await filterValidImages();  // Validate images on component mount
-    })();
-}, [variant]);
+    useEffect(() => {
+        const loadImages = async () => {
+            await filterValidImages(); // Load valid images first
+            setLoadingImages(false);   // Then, allow the carousel to render
+        };
+        loadImages();
+    }, [variant]);
 
-   
-   
+    useEffect(() => {
+        console.log("Valid images:", validImages);
+    }, [validImages])
 
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
@@ -453,19 +470,15 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     };
 
     // Initialize the carousel API when the component mounts
-    useEffect(() => {
-        if (!api) return;
 
-        // Set the total count of images and the current selected image index
-        setCount(api.scrollSnapList().length);
-        setCurrentImage(api.selectedScrollSnap() + 1);
-
-        // Update the selected image on carousel selection change
-        api.on("select", () => {
-            setCurrentImage(api.selectedScrollSnap() + 1);
-        });
-    }, [api]);
-
+    // Function to handle scrolling to next/prev image
+    const scrollToImage = (direction: 'next' | 'prev') => {
+        const container = document.getElementById('image-scroll-container');
+        if (container) {
+            const scrollAmount = direction === 'next' ? container.clientWidth : -container.clientWidth;
+            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
@@ -499,50 +512,27 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                             {/*<div className="flex items-center mb-4">*/}
                             {/*    <Badge variant="secondary">{variant.originalColor}</Badge>*/}
                             {/*</div>*/}
-                            <div className="relative">
+                            <div className="relative w-auto h-auto">
                                 {
                                     loadingImages ? (<Skeleton className={'h-64 w-full'}/>)
                                         :
                                         <>
                                             {validImages.length > 0 && (
-                                                <Carousel setApi={setApi}>
-                                            
-                                                    {/* Updated Carousel Component from ShadCN */}
-                                                    <CarouselContent>
+                                                <div className="relative">
+                                                    <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth" id="image-scroll-container">
                                                         {validImages.map((img, index) => (
-                                                            <CarouselItem key={index}>
-                                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                                                    <Image
-                                                                        src={img}
-                                                                        alt={`${variant.productName} - Image ${index + 1}`}
-                                                                        fill
-                                                                        className="object-contain  w-full h-full"
-                                                                    />
-                                                                </AspectRatio>
-                                                            </CarouselItem>
+                                                            <div key={index} className="snap-center flex-shrink-0 w-full">
+                                                                <Image src={img} alt={`${variant.productName} - Image ${index + 1}`} width={300} height={200} className="object-contain w-full h-auto"/>
+                                                            </div>
                                                         ))}
-
-                                                    </CarouselContent>
-                                                    <Button
-                                                        variant="outline"
-                                                        size="icon"
-                                                        className="absolute left-0 top-1/2 transform -translate-y-1/2"
-                                                        onClick={prevImage}
-                                                    >
+                                                    </div>
+                                                    <Button variant="outline" size="icon" className="absolute left-0 top-1/2 transform -translate-y-1/2" onClick={() => scrollToImage('prev')}>
                                                         <ChevronLeft className="h-4 w-4"/>
                                                     </Button>
-                                            
-                                                    <Button
-                                                        variant="outline"
-                                                        size="icon"
-                                                        className="absolute right-0 top-1/2 transform -translate-y-1/2"
-                                                        onClick={nextImage}
-                                                    >
+                                                    <Button variant="outline" size="icon" className="absolute right-0 top-1/2 transform -translate-y-1/2" onClick={() => scrollToImage('next')}>
                                                         <ChevronRight className="h-4 w-4"/>
                                                     </Button>
-                                            
-                                                </Carousel>
-                                            )}
+                                                </div>)}
                                             {isOnSale && discountPercentage && (
                                                 <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
                                                     {`-${discountPercentage}%`}
