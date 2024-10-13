@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Suspense, useEffect, useState} from 'react';
+import {Suspense, useEffect, useRef, useState} from 'react';
 import {useRouter} from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -389,16 +389,9 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const [validImages, setValidImages] = useState<string[]>([]);
     const [loadingImages, setLoadingImages] = useState<boolean>(true);
     const images = variant.images ? variant.images.slice(2) : [];
-    const [carouselMounted, setCarouselMounted] = useState(false);
+    const scrollContainerRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
 
-    useEffect(() => {
-        // Delay the loading of the carousel component to make sure everything is ready
-        const timer = setTimeout(() => {
-            setCarouselMounted(true);
-        }, 500); // Delay by 500ms or adjust the timing based on your needs
 
-        return () => clearTimeout(timer); // Clean up the timer
-    }, []);
 
 
     const checkImageExists = async (url: string): Promise<boolean> => {
@@ -479,6 +472,16 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         }
     };
 
+    // Function to handle clicking on the thumbnail
+    const handleThumbnailClick = (index: number) => {
+        const container = scrollContainerRef.current;
+        if (container) {
+            const imageWidth = container.clientWidth;
+            const scrollPosition = imageWidth * index;
+            container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+        }
+    };
+
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
             <DrawerContent className="bg-white min-h-auto max-h-[87vh] ">
@@ -518,7 +521,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                         <>
                                             {validImages.length > 0 && (
                                                 <div className="relative">
-                                                    <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth" id="image-scroll-container">
+                                                    <div ref={scrollContainerRef} className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth" id="image-scroll-container">
                                                         {validImages.map((img, index) => (
                                                             <div key={index} className="snap-center flex-shrink-0 w-full">
                                                                 <AspectRatio ratio={4 / 3} className="rounded-lg">
@@ -566,14 +569,8 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                 <>
                                     <div className="flex mt-4 gap-2">
                                         {validImages.map((img: string, index: number) => (
-                                            <button
-                                                key={index}
-                                                className={`w-16 h-16 rounded-md`}
-                                                onClick={() => api?.scrollTo(index)}
-                                            >
-
+                                            <button key={index} className="w-16 h-16 rounded-md" onClick={() => handleThumbnailClick(index)}>
                                                 <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
-
                                             </button>
                                         ))}
                                     </div>
