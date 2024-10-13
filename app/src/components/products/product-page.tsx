@@ -10,7 +10,6 @@ import {ChevronLeft, ChevronRight, Truck} from 'lucide-react';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/shadcn/components/ui/table';
 import Seo from '@/components/seo/seo';
 import {ProductSlider} from '@/components/products/products-slider';
-import {Drawer, DrawerContent, DrawerHeader} from '@/shadcn/components/ui/drawer';
 import {useMediaQuery} from 'usehooks-ts';
 import {Sheet, SheetContent} from '@/shadcn/components/ui/sheet';
 import {useProductSheet} from '@/lib/context/product-sheet-context';
@@ -22,16 +21,18 @@ import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import dynamic from "next/dynamic";
 import {CarouselApi} from "@/shadcn/components/ui/carousel";
 
-const Carousel = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.Carousel), { ssr: false });
-const CarouselContent = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselContent), { ssr: false });
-const CarouselItem = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselItem), { ssr: false });
-const AspectRatio = dynamic(() => import('@/shadcn/components/ui/aspect-ratio').then(mod => mod.AspectRatio), { ssr: false });
+const Carousel = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.Carousel), {ssr: false});
+const CarouselContent = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselContent), {ssr: false});
+const CarouselItem = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselItem), {ssr: false});
+const AspectRatio = dynamic(() => import('@/shadcn/components/ui/aspect-ratio').then(mod => mod.AspectRatio), {ssr: false});
+
+const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), {ssr: false});
+const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), {ssr: false});
+const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), {ssr: false});
 
 
-
-const ProductDrawer = dynamic(() => Promise.resolve(ProductDrawerComponent), { ssr: false });
-const ProductSheet = dynamic(() => Promise.resolve(ProductSheetComponent), { ssr: false });
-
+const ProductDrawer = dynamic(() => Promise.resolve(ProductDrawerComponent), {ssr: false});
+const ProductSheet = dynamic(() => Promise.resolve(ProductSheetComponent), {ssr: false});
 
 
 const ProductPage: React.FC = () => {
@@ -71,9 +72,9 @@ const ProductPage: React.FC = () => {
         <>
             <Suspense>
                 {!isMobile ? (
-                    <ProductSheet isOpen={isOpen}  variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+                    <ProductSheet isOpen={isOpen} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
                 ) : (
-                    <ProductDrawer isOpen={isOpen}  variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
+                    <ProductDrawer isOpen={isOpen} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
                 )}
             </Suspense>
 
@@ -400,8 +401,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     }, []);
 
 
-
-
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
             const response = await fetch(url, {method: 'HEAD'});
@@ -476,7 +475,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         const container = document.getElementById('image-scroll-container');
         if (container) {
             const scrollAmount = direction === 'next' ? container.clientWidth : -container.clientWidth;
-            container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            container.scrollBy({left: scrollAmount, behavior: 'smooth'});
         }
     };
 
@@ -522,7 +521,15 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                                     <div className="flex overflow-x-auto snap-x snap-mandatory scroll-smooth" id="image-scroll-container">
                                                         {validImages.map((img, index) => (
                                                             <div key={index} className="snap-center flex-shrink-0 w-full">
-                                                                <Image src={img} alt={`${variant.productName} - Image ${index + 1}`} width={300} height={200} className="object-contain w-full h-auto"/>
+                                                                <AspectRatio ratio={4 / 3} className="rounded-lg">
+                                                                    <Image
+                                                                        src={validImages[index]}
+                                                                        alt={`${variant.productName} - Image ${index + 1}`}
+                                                                        width={800}
+                                                                        height={600}
+                                                                        className={'object-contain w-full h-full'}
+                                                                    />
+                                                                </AspectRatio>
                                                             </div>
                                                         ))}
                                                     </div>
@@ -565,7 +572,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                                 onClick={() => api?.scrollTo(index)}
                                             >
 
-                                                    <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
+                                                <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
 
                                             </button>
                                         ))}
