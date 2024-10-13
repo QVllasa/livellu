@@ -9,7 +9,7 @@ import Icon from "@/components/ui/icon";
 import {cn} from "@/shadcn/lib/utils";
 
 
-export function CategoryMegaMenu() {
+export default function CategoryMegaMenu() {
     const [allCategories] = useAtom(allCategoriesAtom);
     const [categories, setCategories] = useState<Category[]>([]);
 

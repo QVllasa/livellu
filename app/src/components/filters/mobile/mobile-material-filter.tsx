@@ -2,9 +2,18 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import {Button} from "@/shadcn/components/ui/button";
-import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
 import {capitalize} from "lodash";
 import {ChevronRight} from "lucide-react";
+
+import dynamic from 'next/dynamic';
+
+const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), { ssr: false });
+const DrawerClose = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerClose), { ssr: false });
+const DrawerTrigger = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTrigger), { ssr: false });
+const DrawerTitle = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTitle), { ssr: false });
+const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), { ssr: false });
+const DrawerFooter = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerFooter), { ssr: false });
+const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), { ssr: false });
 
 // Define the structure of the filter items
 interface MaterialItem {
@@ -29,7 +38,7 @@ interface MaterialFilterProps {
     type: 'single' | 'multi';
 }
 
-export const MobileMaterialFilter = ({meta, type}: MaterialFilterProps) => {
+export default function MobileMaterialFilter  ({meta, type}: MaterialFilterProps)  {
     const [currentMaterials, setCurrentMaterials] = useState<MaterialItem[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();

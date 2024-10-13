@@ -1,9 +1,19 @@
 import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import {Slider} from "./mobile-price-slider-component";
-import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger} from "@/shadcn/components/ui/drawer";
 import {Button} from "@/shadcn/components/ui/button";
 import {ChevronRight} from "lucide-react";
+
+import dynamic from 'next/dynamic';
+
+const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), { ssr: false });
+const DrawerClose = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerClose), { ssr: false });
+const DrawerTrigger = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTrigger), { ssr: false });
+const DrawerTitle = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTitle), { ssr: false });
+const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), { ssr: false });
+const DrawerFooter = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerFooter), { ssr: false });
+const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), { ssr: false });
+
 
 interface PriceRangeFilterProps {
     meta: {
@@ -17,7 +27,7 @@ interface PriceRangeFilterProps {
     type: 'single' | 'multi';
 }
 
-export const MobilePriceRangeFilter = ({meta, type}: PriceRangeFilterProps) => {
+export default function MobilePriceRangeFilter  ({meta, type}: PriceRangeFilterProps) {
     const router = useRouter();
     const {minPrice, maxPrice} = router.query;
 

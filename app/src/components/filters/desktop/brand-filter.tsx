@@ -11,7 +11,7 @@ import {Brand} from "@/types";
 import {fetchProducts} from "@/framework/product";
 import {Popover, PopoverContent, PopoverTrigger} from "@/shadcn/components/ui/popover";
 
-export const BrandFilter = ({ filters }) => {
+export default function BrandFilter  ({ filters }) {
     const [filteredBrands, setFilteredBrands] = useState<Brand[]>([]);
     const [allBrands] = useAtom(allBrandsAtom);
     const [searchTerm, setSearchTerm] = useState('');

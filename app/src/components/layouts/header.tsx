@@ -4,12 +4,24 @@ import {useIsHomePage} from '@/lib/use-is-homepage';
 import React, {Suspense, useState} from 'react';
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
 import {Armchair, FolderHeart, Menu, Newspaper, SquareUserRound} from "lucide-react";
-import {SearchFilter} from "@/components/filters/search-filter"; // Assuming you are using lucide-react icons
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
-import {CategoryMegaMenu} from "@/components/layouts/menu/category-mega-menu";
-import MobileCategoryMenu from "@/components/layouts/mobile-menu/mobile-category-menu";
-import MobileNavigation from "@/components/layouts/mobile-menu/mobile-navigation";
 import {Button} from "@/shadcn/components/ui/button";
+import dynamic from "next/dynamic";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
+
+const MobileNavigation = dynamic(() => import('@/components/layouts/mobile-menu/mobile-navigation'), {
+    ssr: false,
+});
+
+const CategoryMegaMenu = dynamic(() => import('@/components/layouts/menu/category-mega-menu'), {
+    ssr: false,
+});
+
+const MobileCategoryMenu = dynamic(() => import('@/components/layouts/mobile-menu/mobile-category-menu'), {
+    ssr: false,
+});
+
 
 const Header = ({shadowNone = false}) => {
     const [openDropdown, setOpenDropdown] = useState(false);
@@ -56,7 +68,7 @@ const Header = ({shadowNone = false}) => {
                                     <Logo className={'pt-2 pb-3'}/>
                                 </div>
                                 <div className={'my-3'}>
-                                    <SearchFilter/>
+                                    {/*<SearchFilter/>*/}
                                 </div>
 
 
@@ -73,14 +85,23 @@ const Header = ({shadowNone = false}) => {
                                         </TabsTrigger>
                                     </TabsList>
                                     <TabsContent value="allcategories">
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <MobileCategoryMenu closeDrawer={() => setIsSheetOpen(false)}/>
+
+                                        <Suspense fallback={<div className={'relative flex flex-col w-full gap-2'}>
+                                            {[...Array(8).keys()].map(num => (
+                                                <Skeleton key={num} className={'min-h-8 min-w-full'}/>
+                                            ))}
+                                        </div>}>
+                                            {/*<MobileCategoryMenu closeDrawer={() => setIsSheetOpen(false)}/>*/}
                                         </Suspense>
 
                                     </TabsContent>
                                     <TabsContent value="navigation">
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <MobileNavigation/>
+                                        <Suspense fallback={<div className={'relative flex flex-col w-full gap-2'}>
+                                            {[...Array(8).keys()].map(num => (
+                                                <Skeleton key={num} className={'min-h-8 min-w-full'}/>
+                                            ))}
+                                        </div>}>
+                                            {/*<MobileNavigation/>*/}
                                         </Suspense>
                                     </TabsContent>
                                 </Tabs>
@@ -97,7 +118,13 @@ const Header = ({shadowNone = false}) => {
                         />
                     </div>
                     <div className={'hidden lg:flex lg:flex-col w-full justify-center items-center   col-start-1 col-span-full row-start-2 row-end-2 2xl:row-start-1 2xl:row-end-1 2xl:col-start-2 2xl:col-end-3  '}>
-                        <Suspense fallback={<div>Loading...</div>}>
+                        <Suspense fallback={
+                            <div className={'relative flex flex-col w-full lg:flex-row lg:w-[72rem] gap-4 z-40'}>
+                                {[...Array(8).keys()].map(num => (
+                                    <Skeleton key={num} className={'min-h-12 min-w-36'}/>
+                                ))}
+                            </div>
+                        }>
                             <CategoryMegaMenu/>
                         </Suspense>
                     </div>
