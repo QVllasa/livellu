@@ -17,15 +17,21 @@ import {Sheet, SheetContent} from '@/shadcn/components/ui/sheet';
 import {useProductSheet} from '@/lib/context/product-sheet-context';
 import {Merchant, Product, Variant} from "@/types";
 import Icon from "@/components/ui/icon";
-import {Carousel, CarouselApi, CarouselContent, CarouselItem} from "@/shadcn/components/ui/carousel";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
+import dynamic from "next/dynamic";
+import {CarouselApi} from "@/shadcn/components/ui/carousel";
+
+const Carousel = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.Carousel), { ssr: false });
+const CarouselContent = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselContent), { ssr: false });
+const CarouselItem = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselItem), { ssr: false });
+
 
 const ProductPage: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
     const isMobile = useMediaQuery('(max-width: 1024px)');
-    const { isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants, activateAnimation } = useProductSheet();
+    const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants, activateAnimation} = useProductSheet();
 
 
     useEffect(() => {
@@ -58,16 +64,9 @@ const ProductPage: React.FC = () => {
     return (
         <>
             {!isMobile ? (
-
-
-                    <ProductSheet isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
-
-
+                <ProductSheet isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
             ) : (
-
-                    <ProductDrawer isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
-
-
+                <ProductDrawer isOpen={isOpen} activateAnimation={activateAnimation} variant={variant} product={activeProduct} otherProducts={otherProducts} merchants={merchants} handleSheetClose={handleSheetClose}/>
             )}
         </>
     );
@@ -386,6 +385,8 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
     const images = variant.images ? variant.images.slice(2) : [];
 
 
+
+
     const checkImageExists = async (url: string): Promise<boolean> => {
         try {
             const response = await fetch(url, {method: 'HEAD'});
@@ -408,9 +409,14 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
         setLoadingImages(false);
     };
 
-    useEffect(() => {
-        filterValidImages();  // Validate images on component mount
-    }, []);
+   useEffect(() => {
+    (async () => {
+        await filterValidImages();  // Validate images on component mount
+    })();
+}, [variant]);
+
+   
+   
 
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
@@ -500,7 +506,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                         <>
                                             {validImages.length > 0 && (
                                                 <Carousel setApi={setApi}>
-
+                                            
                                                     {/* Updated Carousel Component from ShadCN */}
                                                     <CarouselContent>
                                                         {validImages.map((img, index) => (
@@ -510,7 +516,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                                                         src={img}
                                                                         alt={`${variant.productName} - Image ${index + 1}`}
                                                                         fill
-                                                                        className="object-contain w-full h-full"
+                                                                        className="object-contain  w-full h-full"
                                                                     />
                                                                 </AspectRatio>
                                                             </CarouselItem>
@@ -525,7 +531,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                                     >
                                                         <ChevronLeft className="h-4 w-4"/>
                                                     </Button>
-
+                                            
                                                     <Button
                                                         variant="outline"
                                                         size="icon"
@@ -534,7 +540,7 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                                     >
                                                         <ChevronRight className="h-4 w-4"/>
                                                     </Button>
-
+                                            
                                                 </Carousel>
                                             )}
                                             {isOnSale && discountPercentage && (
@@ -568,9 +574,9 @@ const ProductDrawer: React.FC = ({isOpen, variant, product, otherProducts, merch
                                                 className={`w-16 h-16 rounded-md`}
                                                 onClick={() => api?.scrollTo(index)}
                                             >
-                                                <AspectRatio ratio={1 / 1} className="bg-muted">
+
                                                     <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
-                                                </AspectRatio>
+
                                             </button>
                                         ))}
                                     </div>
