@@ -9,6 +9,7 @@ import {Button} from "@/shadcn/components/ui/button";
 import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import {SearchFilter} from "@/components/filters/search-filter";
 
 const MobileNavigation = dynamic(() => import('@/components/layouts/mobile-menu/mobile-navigation'), {
     ssr: false,
@@ -68,7 +69,7 @@ const Header = ({shadowNone = false}) => {
                                     <Logo className={'pt-2 pb-3'}/>
                                 </div>
                                 <div className={'my-3'}>
-                                    {/*<SearchFilter/>*/}
+                                    <SearchFilter/>
                                 </div>
 
 
@@ -91,7 +92,7 @@ const Header = ({shadowNone = false}) => {
                                                 <Skeleton key={num} className={'min-h-8 min-w-full'}/>
                                             ))}
                                         </div>}>
-                                            {/*<MobileCategoryMenu closeDrawer={() => setIsSheetOpen(false)}/>*/}
+                                            <MobileCategoryMenu closeDrawer={() => setIsSheetOpen(false)}/>
                                         </Suspense>
 
                                     </TabsContent>
@@ -101,7 +102,7 @@ const Header = ({shadowNone = false}) => {
                                                 <Skeleton key={num} className={'min-h-8 min-w-full'}/>
                                             ))}
                                         </div>}>
-                                            {/*<MobileNavigation/>*/}
+                                            <MobileNavigation/>
                                         </Suspense>
                                     </TabsContent>
                                 </Tabs>
