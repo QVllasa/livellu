@@ -17,7 +17,6 @@ import {Merchant, Product, Variant} from "@/types";
 import Icon from "@/components/ui/icon";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-import {ScrollArea} from "@/shadcn/components/ui/scroll-area";
 import dynamic from "next/dynamic";
 import {CarouselApi} from "@/shadcn/components/ui/carousel";
 
@@ -29,6 +28,10 @@ const AspectRatio = dynamic(() => import('@/shadcn/components/ui/aspect-ratio').
 const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), {ssr: false});
 const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), {ssr: false});
 const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), {ssr: false});
+
+const ScrollArea = dynamic(() => import('@/shadcn/components/ui/scroll-area').then(mod => mod.ScrollArea), {ssr: false});
+
+
 
 
 const ProductDrawer = dynamic(() => Promise.resolve(ProductDrawerComponent), {ssr: false});
@@ -382,16 +385,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     handleSheetClose: () => {},
     activateAnimation: boolean
 }) => {
-    const [currentImage, setCurrentImage] = useState(0);
     const router = useRouter();
-    const [api, setApi] = useState<CarouselApi | null>(null);
-    const [count, setCount] = useState(0);
     const [validImages, setValidImages] = useState<string[]>([]);
     const [loadingImages, setLoadingImages] = useState<boolean>(true);
     const images = variant.images ? variant.images.slice(2) : [];
     const scrollContainerRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
-
-
 
 
     const checkImageExists = async (url: string): Promise<boolean> => {
@@ -435,9 +433,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         .filter((v) => v.ean === variant.ean)
         .sort((a, b) => a.price - b.price); // Sort by price, lowest first
 
-    // Handlers for next and previous image
-    const nextImage = () => api?.scrollNext();
-    const prevImage = () => api?.scrollPrev();
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -461,8 +456,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         return bulletPoints;
     };
 
-    // Initialize the carousel API when the component mounts
-
     // Function to handle scrolling to next/prev image
     const scrollToImage = (direction: 'next' | 'prev') => {
         const container = document.getElementById('image-scroll-container');
@@ -484,7 +477,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
-            <DrawerContent className="bg-white min-h-auto max-h-[87vh] ">
+            <DrawerContent className="bg-white min-h-auto max-h-[87vh]">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div></div>
@@ -502,7 +495,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
                 </DrawerHeader>
                 <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
-                <ScrollArea className="text-gray-700 mt-4 h-[80vh] px-4 py-2">
+                <div className="text-gray-700 mt-4 h-[80vh] px-4 py-2 overflow-y-scroll">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
@@ -528,8 +521,8 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                                                     <Image
                                                                         src={validImages[index]}
                                                                         alt={`${variant.productName} - Image ${index + 1}`}
-                                                                        width={800}
-                                                                        height={600}
+                                                                        width={200}
+                                                                        height={100}
                                                                         className={'object-contain w-full h-full'}
                                                                     />
                                                                 </AspectRatio>
@@ -680,7 +673,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </div>
                         </CardContent>
                     </Card>
-                </ScrollArea>
+                </div>
             </DrawerContent>
         </Drawer>
     </>

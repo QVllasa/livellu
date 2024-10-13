@@ -36,17 +36,22 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
     const [activateAnimation, setActivateAnimation] = useState(true);
     const router = useRouter();
 
-    // Fetch the product data if not in the context and variantId exists
-    useEffect(() => {
+// Fetch the product data if not in the context and variantId exists
+useEffect(() => {
+    const fetchData = async () => {
         const { variantId: urlVariantId } = router.query;
 
         if (!activeProduct && (!urlVariantId || typeof urlVariantId !== 'string')) {
             closeSheet();
         } else if (!activeProduct && urlVariantId && typeof urlVariantId === 'string') {
-            fetchProductByVariantId(urlVariantId);
+            await fetchProductByVariantId(urlVariantId);
+            console.log("Fetched product data for variantId:", urlVariantId);
             setActivateAnimation(false); // Disable animation on URL load
         }
-    }, [router.query.variantId]);
+    };
+
+    fetchData();
+}, [router.query.variantId]);
 
     const fetchProductByVariantId = async (selectedVariantId: string) => {
         setLoading(true);
