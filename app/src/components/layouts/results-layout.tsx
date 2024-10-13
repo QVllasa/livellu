@@ -7,7 +7,6 @@ import React, {Suspense, useEffect, useState} from "react";
 
 import PageSizeSelector from "@/components/filters/desktop/page-size-selector";
 import PageSortSelector from "@/components/filters/desktop/page-sort-selector";
-import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger,} from "@/shadcn/components/ui/drawer";
 import {Button} from "@/shadcn/components/ui/button";
 import {PriceRangeFilter} from "@/components/filters/desktop/price-range-filter";
 import {ColorFilter} from "@/components/filters/desktop/color-filter";
@@ -23,17 +22,33 @@ import {WidthFilter} from "@/components/filters/desktop/width-filter";
 import {Breadcrumbs} from "@/components/breadcrumbs/breadcrumbs";
 import {useRouter} from "next/router";
 import {SearchFilter} from "@/components/filters/search-filter";
-import {MobileColorFilter} from "@/components/filters/mobile/mobile-color-filter";
 import {CategorySideMenu} from "@/components/layouts/menu/category-side-menu";
-import {MobileDeliveryTimeFilter} from "@/components/filters/mobile/mobile-delivery-time-filter";
-import {MobileDepthFilter} from "@/components/filters/mobile/mobile-depth-filter";
-import {MobileHeightFilter} from "@/components/filters/mobile/mobile-height-filter";
-import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-filter";
-import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
-import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
-import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
+
 import Icon from "@/components/ui/icon";
 import {CategorySlider} from "@/components/categories/category-slider";
+
+
+import dynamic from "next/dynamic";
+
+const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), { ssr: false });
+const DrawerClose = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerClose), { ssr: false });
+const DrawerTrigger = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTrigger), { ssr: false });
+const DrawerTitle = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTitle), { ssr: false });
+const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), { ssr: false });
+const DrawerFooter = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerFooter), { ssr: false });
+const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), { ssr: false });
+
+const MobileColorFilter = dynamic(() => import('@/components/filters/mobile/mobile-color-filter'));
+const MobileDeliveryTimeFilter = dynamic(() => import('@/components/filters/mobile/mobile-delivery-time-filter'));
+const MobileDepthFilter = dynamic(() => import('@/components/filters/mobile/mobile-depth-filter'));
+const MobileHeightFilter = dynamic(() => import('@/components/filters/mobile/mobile-height-filter'));
+const MobileMaterialFilter = dynamic(() => import('@/components/filters/mobile/mobile-material-filter'));
+const MobileShapeFilter = dynamic(() => import('@/components/filters/mobile/mobile-shape-filter'));
+const MobileStyleFilter = dynamic(() => import('@/components/filters/mobile/mobile-style-filter'));
+const MobilePriceRangeFilter = dynamic(() => import('@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter'));
+const BrandFilter = dynamic(() => import('@/components/filters/desktop/brand-filter'));
+// Dynamically load the FilterDrawer component even though it is defined in the same file
+const FilterDrawer = dynamic(() => Promise.resolve(FilterDrawerComponent), { ssr: false });
 
 
 function ResultsPageLayout(page) {
@@ -275,7 +290,7 @@ function ResultsPageLayout(page) {
 
 export const getResultsLayout = (page: React.ReactElement, layoutProps: any) => <ResultsPageLayout {...layoutProps}>{page}</ResultsPageLayout>;
 
-const FilterDrawer = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any }) => {
+const FilterDrawerComponent = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any }) => {
     return (
         <Drawer>
             <DrawerTrigger asChild>
