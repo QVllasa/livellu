@@ -1,11 +1,10 @@
 import Header from './header';
 import Footer from './footer';
 import {ChevronRight, ChevronUp} from "lucide-react";
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 
 import PageSizeSelector from "@/components/filters/desktop/page-size-selector";
 import PageSortSelector from "@/components/filters/desktop/page-sort-selector";
-import {Drawer, DrawerClose, DrawerContent, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger,} from "@/shadcn/components/ui/drawer";
 import {Button} from "@/shadcn/components/ui/button";
 import {PriceRangeFilter} from "@/components/filters/desktop/price-range-filter";
 import {ColorFilter} from "@/components/filters/desktop/color-filter";
@@ -18,16 +17,30 @@ import {DepthFilter} from "@/components/filters/desktop/depth-filter";
 import {WidthFilter} from "@/components/filters/desktop/width-filter";
 import {useRouter} from "next/router";
 import {SearchFilter} from "@/components/filters/search-filter";
-import {MobileColorFilter} from "@/components/filters/mobile/mobile-color-filter";
-import {MobileDeliveryTimeFilter} from "@/components/filters/mobile/mobile-delivery-time-filter";
-import {MobileDepthFilter} from "@/components/filters/mobile/mobile-depth-filter";
-import {MobileHeightFilter} from "@/components/filters/mobile/mobile-height-filter";
-import {MobileMaterialFilter} from "@/components/filters/mobile/mobile-material-filter";
-import {MobileShapeFilter} from "@/components/filters/mobile/mobile-shape-filter";
-import {MobileStyleFilter} from "@/components/filters/mobile/mobile-style-filter";
-import {MobilePriceRangeFilter} from "@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter";
 import {SearchBreadcrumbs} from "@/components/breadcrumbs/search-breadcrumbs";
 import Image from "next/image";
+
+import dynamic from "next/dynamic";
+
+const Drawer = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.Drawer), { ssr: false });
+const DrawerClose = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerClose), { ssr: false });
+const DrawerTrigger = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTrigger), { ssr: false });
+const DrawerTitle = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerTitle), { ssr: false });
+const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerHeader), { ssr: false });
+const DrawerFooter = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerFooter), { ssr: false });
+const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), { ssr: false });
+
+const MobileColorFilter = dynamic(() => import('@/components/filters/mobile/mobile-color-filter'));
+const MobileDeliveryTimeFilter = dynamic(() => import('@/components/filters/mobile/mobile-delivery-time-filter'));
+const MobileDepthFilter = dynamic(() => import('@/components/filters/mobile/mobile-depth-filter'));
+const MobileHeightFilter = dynamic(() => import('@/components/filters/mobile/mobile-height-filter'));
+const MobileMaterialFilter = dynamic(() => import('@/components/filters/mobile/mobile-material-filter'));
+const MobileShapeFilter = dynamic(() => import('@/components/filters/mobile/mobile-shape-filter'));
+const MobileStyleFilter = dynamic(() => import('@/components/filters/mobile/mobile-style-filter'));
+const MobilePriceRangeFilter = dynamic(() => import('@/components/filters/mobile/mobile-price-range-filter/mobile-price-range-filter'));
+const BrandFilter = dynamic(() => import('@/components/filters/desktop/brand-filter'));
+// Dynamically load the FilterDrawer component even though it is defined in the same file
+const FilterDrawer = dynamic(() => Promise.resolve(FilterDrawerComponent), { ssr: false });
 
 
 function ShopResultsPageLayout(page) {
@@ -181,14 +194,17 @@ function ShopResultsPageLayout(page) {
                     {/*Mobile */}
                     <div className={'flex lg:hidden p-4 lg:p-6 w-screen sticky top-0 bg-gray-100 z-40 '}>
                         <div className={'flex overflow-scroll gap-2 '}>
-                            <MobileColorFilter type={'single'} meta={meta}/>
-                            <MobileDeliveryTimeFilter type={'single'} meta={meta}/>
-                            <MobileDepthFilter type={'single'} meta={meta}/>
-                            <MobileHeightFilter type={'single'} meta={meta}/>
-                            <MobileMaterialFilter type={'single'} meta={meta}/>
-                            <MobileShapeFilter type={'single'} meta={meta}/>
-                            <MobileStyleFilter type={'single'} meta={meta}/>
-                            <MobilePriceRangeFilter type={'single'} meta={meta}/>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                <MobileColorFilter type={'single'} meta={meta}/>
+                                <MobileDeliveryTimeFilter type={'single'} meta={meta}/>
+                                <MobileDepthFilter type={'single'} meta={meta}/>
+                                <MobileHeightFilter type={'single'} meta={meta}/>
+                                <MobileMaterialFilter type={'single'} meta={meta}/>
+                                <MobileShapeFilter type={'single'} meta={meta}/>
+                                <MobileStyleFilter type={'single'} meta={meta}/>
+                                <MobilePriceRangeFilter type={'single'} meta={meta}/>
+                            </Suspense>
+
                         </div>
                         <div className="absolute flex items-center justify-center bottom-0 right-0 top-0 h-full w-12 bg-gradient-to-r from-transparent to-gray-100 pointer-events-none">
                             <ChevronRight className={'h-6 w-6 text-gray-500'}/>
@@ -250,7 +266,10 @@ function ShopResultsPageLayout(page) {
                 </div>
                 <div className={`rounded-t-lg bg-white fixed bottom-0 h-24 z-50 w-full sm:hidden ${showStickyFilterButton ? 'block' : 'hidden'}`}>
                     <div className={'relative flex justify-center items-center h-full px-4'}>
-                        <FilterDrawer meta={meta} setIsDrawerOpen={setIsDrawerOpen}/>
+                        <Suspense>
+                            <FilterDrawer meta={meta} setIsDrawerOpen={setIsDrawerOpen}/>
+                        </Suspense>
+
                     </div>
                 </div>
             </div>
@@ -273,7 +292,7 @@ function ShopResultsPageLayout(page) {
 
 export const getShopResultsLayout = (page: React.ReactElement, layoutProps: any) => <ShopResultsPageLayout {...layoutProps}>{page}</ShopResultsPageLayout>;
 
-const FilterDrawer = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any }) => {
+const FilterDrawerComponent = ({setIsDrawerOpen, meta}: { setIsDrawerOpen: any, meta: any }) => {
     return (
         <Drawer>
             <DrawerTrigger asChild>

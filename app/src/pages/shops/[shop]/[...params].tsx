@@ -4,9 +4,11 @@ import {Category, Entity, Merchant, MetaData, NextPageWithLayout, Product} from 
 import {GetServerSidePropsContext} from "next";
 import {getShopResultsLayout} from "@/components/layouts/shops-results-layout";
 import Client from "@/framework/client";
-import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
-import {ProductsGridMobile} from "@/components/products/products-grid-mobile";
 import {useMediaQuery} from "usehooks-ts";
+import dynamic from "next/dynamic";
+
+const ProductsGridDesktop = dynamic(() => import('@/components/products/products-grid-desktop'));
+const ProductsGridMobile = dynamic(() => import('@/components/products/products-grid-mobile'));
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -22,18 +24,29 @@ const Index: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPageP
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
+
+
+    // Track if component has mounted
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         setProducts(initialProducts);
     }, [initialProducts]);
 
+    if (!isMounted) {
+        // Avoid rendering anything that depends on media queries until the component has mounted on the client
+        return null; // You can render a loading skeleton here if you want
+    }
 
     return (
         <>
             {isMobile ?
-                <ProductsGridMobile merchant={merchant} initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0} initialLoading={loading} meta={meta}/>
+                <ProductsGridMobile initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading} meta={meta}/>
                 :
-                <ProductsGridDesktop merchant={merchant} initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0} initialLoading={loading} meta={meta}/>
+                <ProductsGridDesktop initialFilters={filters} initialProducts={products} initialPage={meta?.page} pageCount={meta?.totalPages ?? 0}  initialLoading={loading} meta={meta}/>
             }
         </>
     );

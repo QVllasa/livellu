@@ -5,9 +5,10 @@ import {GetServerSidePropsContext} from "next";
 import {getShopResultsLayout} from "@/components/layouts/shops-results-layout";
 import Client from "@/framework/client";
 import {useMediaQuery} from "usehooks-ts";
-import {ProductsGridMobile} from "@/components/products/products-grid-mobile";
-import {ProductsGridDesktop} from "@/components/products/products-grid-desktop";
+import dynamic from "next/dynamic";
 
+const ProductsGridDesktop = dynamic(() => import('@/components/products/products-grid-desktop'));
+const ProductsGridMobile = dynamic(() => import('@/components/products/products-grid-mobile'));
 
 interface SearchPageProps {
     initialProducts: Product[];
@@ -22,11 +23,24 @@ const ShopPage: NextPageWithLayout<typeof getServerSideProps> = (props: SearchPa
     const {initialProducts, page, meta, initialCategory, filters, merchant} = props;
     const [loading, setLoading] = useState(false);
     const [products, setProducts] = useState<Product[]>(initialProducts);
+    // Use media query hook to check screen size
     const isMobile = useMediaQuery('(max-width: 768px)');
+    const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
+
+
+    // Track if component has mounted
+    useEffect(() => {
+        setIsMounted(true);
+    }, []);
 
     useEffect(() => {
         setProducts(initialProducts);
     }, [initialProducts]);
+
+    if (!isMounted) {
+        // Avoid rendering anything that depends on media queries until the component has mounted on the client
+        return null; // You can render a loading skeleton here if you want
+    }
 
 
     return (
