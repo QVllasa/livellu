@@ -6,7 +6,7 @@ import Link from 'next/link';
 import {Button} from '@/shadcn/components/ui/button';
 import {Badge} from '@/shadcn/components/ui/badge';
 import {Card, CardContent} from '@/shadcn/components/ui/card';
-import {ChevronLeft, ChevronRight, Truck} from 'lucide-react';
+import {ChevronLeft, ChevronRight, Package, Truck} from 'lucide-react';
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from '@/shadcn/components/ui/table';
 import Seo from '@/components/seo/seo';
 import {ProductSlider} from '@/components/products/products-slider';
@@ -30,9 +30,6 @@ const DrawerHeader = dynamic(() => import('@/shadcn/components/ui/drawer').then(
 const DrawerContent = dynamic(() => import('@/shadcn/components/ui/drawer').then(mod => mod.DrawerContent), {ssr: false});
 
 
-
-
-
 const ProductDrawer = dynamic(() => Promise.resolve(ProductDrawerComponent), {ssr: false});
 const ProductSheet = dynamic(() => Promise.resolve(ProductSheetComponent), {ssr: false});
 
@@ -41,6 +38,10 @@ const ProductPage: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
     const isMobile = useMediaQuery('(max-width: 1024px)');
     const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants} = useProductSheet();
+
+
+
+    console.log("merchants", merchants);
 
 
     useEffect(() => {
@@ -428,9 +429,9 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
 
-    const sameEanVariants = product.variants
-        .filter((v) => v.ean === variant.ean)
-        .sort((a, b) => a.price - b.price); // Sort by price, lowest first
+const sameEanVariants = product.variants
+    .filter((v) => v.ean === variant.ean)
+    .sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first
 
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
@@ -470,7 +471,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         if (container) {
             const imageWidth = container.clientWidth;
             const scrollPosition = imageWidth * index;
-            container.scrollTo({ left: scrollPosition, behavior: 'smooth' });
+            container.scrollTo({left: scrollPosition, behavior: 'smooth'});
         }
     };
 
@@ -572,16 +573,25 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
                         </div>
 
-                        <div className="text-2xl font-bold mb-4">
+                        <div className="text-2xl font-bold ">
                             {isOnSale ? (
                                 <div className="flex items-center">
                                     <span className="text-red-600">{`${variant.price.toFixed(2)} €`}</span>
                                     <span className="ml-2 text-gray-400 line-through">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>
                                 </div>
                             ) : (
-                                `${variant.price.toFixed(2)} €`
+                                `${variant.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}`
                             )}
+                            <div className="flex items-center space-x-2 text-sm text-muted-foreground font-light">
+                                <Package className="h-4 w-4"/>
+                                <span>{parseFloat(variant.deliveryCost).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}) + ' Versand'}</span>
+                            </div>
+                            <div className="flex items-center space-x-2 text-sm text-muted-foreground font-light">
+                                <Truck className="h-4 w-4"/>
+                                <span>{variant.deliveryTime}</span>
+                            </div>
                         </div>
+
 
                         <Link href={variant.merchantLink}>
                             <Button className="w-auto mb-4 text-white bg-blue-500 hover:bg-blue-600">Zum Shop</Button>
@@ -593,69 +603,73 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             <ul className="list-disc list-inside space-y-1 text-sm">{formatSummaryAsBullets(variant.keyFeatures)}</ul>
                         </CardContent>
                     </Card>
-                    <div className="flex items-center space-x-2 text-sm text-muted-foreground mb-6 mt-12">
-                        <Truck className="h-4 w-4"/>
-                        <span>{variant.deliveryTime}</span>
+
+
+                    <div className={'grid grid-cols-auto mx-auto gap-2'}>
+                        {sameEanVariants.map((v, index) => {
+                            const merchant = merchants.find((m) => m.attributes.merchantId === v.merchantId);
+                            console.log("Merchant", merchant);
+                            return (
+                      <Card key={v.variantId} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
+                          {index === 0 && <Badge className="absolute top-1 right-1 bg-teal-500 text-white hover:bg-teal-600">Bester Gesamtpreis</Badge>}
+                                    <CardContent className={'p-4'}>
+
+                                        <div className="grid grid-cols-2 justify-between items-center relative">
+
+                                            <div className={'flex flex-col min-h-24 max-h-48 justify-between'}>
+                                                <div className={'flex flex-col'}>
+                                                    {v.discount > 0 ? (
+                                                        <div className="flex items-center text-base">
+                                                            <span className="text-red-600 font-semibold">{`${v.price.toFixed(2)} €`}</span>
+                                                            <span className="ml-2 text-gray-400 line-through text-xs">{`${parseFloat(v.priceOld)?.toFixed(2)} €`}</span>
+                                                        </div>
+                                                    ) : (
+                                                        `${v.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}`
+                                                    )}
+                                                    <div className="flex items-center space-x-2 text-xs text-muted-foreground font-light">
+                                                        <Package className="h-3 w-3"/>
+                                                        <span>{parseFloat(variant.deliveryCost).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}) + ' Versand'}</span>
+                                                    </div>
+                                                    <div className="flex items-center space-x-2 text-xs text-muted-foreground font-light">
+                                                        <Truck className="h-3 w-3"/>
+                                                        <span>{variant.deliveryTime}</span>
+                                                    </div>
+                                                </div>
+                                                <div className={'text-sm flex items-center'}>
+                                                    von
+                                                    {merchant?.attributes?.logo_image?.data?.attributes?.url && (
+                                                        <Image
+                                                            src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${merchant?.attributes?.logo_image.data.attributes.url}`}
+                                                            width={50}
+                                                            height={25}
+                                                            alt={merchant?.name ?? 'merchant-logo'}
+                                                            className="ml-2 object-contain"
+                                                        />
+                                                    )}
+                                                </div>
+
+                                            </div>
+
+                                            <div className={'flex h-full w-full justify-end items-end'}>
+                                                <Link href={v.merchantLink}>
+                                                    <Button className="bg-blue-500 text-white hover:bg-blue-600" size="sm" variant="outline">
+                                                        Zum Angebot
+                                                    </Button>
+                                                </Link>
+                                            </div>
+
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            );
+                        })}
                     </div>
-                    {/* Other Products Table */}
-                    <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto">
-                        <CardContent className="p-4 py-8">
-                            <h3 className="text-xl font-semibold mb-4">Weitere Angebote</h3>
-                            <div className="overflow-x-auto">
-                                <Table className="table-fixed w-full">
-                                    <TableHeader className="hidden md:table-header-group">
-                                        <TableRow>
-                                            <TableHead className="w-1/12">Händler</TableHead>
-                                            <TableHead className="w-2/6">Produktname</TableHead>
-                                            <TableHead className="w-1/6">Versandkosten</TableHead>
-                                            <TableHead className="w-1/6">Preis</TableHead>
-                                            <TableHead className="w-1/6">Link</TableHead>
-                                        </TableRow>
-                                    </TableHeader>
-                                    <TableBody>
-                                        {sameEanVariants.map((v) => {
-                                            const merchant = merchants.find((m) => m.merchantId === v.merchantId);
-                                            return (
-                                                <TableRow key={v.variantId} className="cursor-pointer" onClick={() => router.push(v.merchantLink)}>
-                                                    <TableCell className="w-1/6 md:w-auto table-cell">
-                                                        {merchant?.logo_image?.data?.attributes?.url && (
-                                                            <Image
-                                                                src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${merchant.logo_image.data.attributes.url}`}
-                                                                width={50}
-                                                                height={25}
-                                                                alt={merchant?.name ?? 'merchant-logo'}
-                                                                className="object-contain"
-                                                            />
-                                                        )}
-                                                    </TableCell>
-                                                    <TableCell className="table-cell">{v.productName}</TableCell>
-                                                    <TableCell className="hidden md:table-cell">{v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}</TableCell>
-                                                    <TableCell className="flex flex-col items-end justify-center md:table-cell">
-                                                        <div className="block text-lg font-bold">{v.price.toFixed(2)} €</div>
-                                                        <span className="md:hidden flex items-center gap-2">
-                                                            <Truck className="h-4 w-4"/> {v.deliveryCost ? `${v.deliveryCost} €` : 'Kostenlos'}
-                                                        </span>
-                                                    </TableCell>
-                                                    <TableCell className="flex justify-end items-center md:table-cell">
-                                                        <Link href={v.merchantLink}>
-                                                            <Button className="bg-blue-500 text-white hover:bg-blue-600" size="sm" variant="outline">
-                                                                Zum Angebot
-                                                            </Button>
-                                                        </Link>
-                                                    </TableCell>
-                                                </TableRow>
-                                            );
-                                        })}
-                                    </TableBody>
-                                </Table>
-                            </div>
-                        </CardContent>
-                    </Card>
+
                     {/* Similar Products Slider */}
-                    <Card className="mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto bg-gray-100">
+                    <Card className="mt-12 mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto bg-gray-100">
                         <CardContent className="p-4 py-8">
                             <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
-                            <ProductSlider products={otherProducts ?? []}/>
+                            product grid
                         </CardContent>
                     </Card>
                     {/* Product Description */}

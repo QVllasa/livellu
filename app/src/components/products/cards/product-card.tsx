@@ -42,6 +42,10 @@ const matchingVariant = sortedVariants.find(
     const variant: Variant = matchingVariant || sortedVariants[0];
 
 
+// Count duplicate EANs for the selected variant
+const ean = variant?.ean?.toString();
+const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ean).length;
+
 
     // Calculate discount percentage if the product is on sale
     const isOnSale = variant?.discount > 0;
@@ -123,8 +127,8 @@ const matchingVariant = sortedVariants.find(
                                             </span>
                                         </div>
                                     ) : (
-                                        <span className="text-gray-900 font-semibold text-sm sm:text-base" suppressHydrationWarning>
-                                            {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                        <span className="text-gray-900 font-bold text-sm sm:text-base" suppressHydrationWarning>
+                                            <span className={'font-normal'}>ab</span>  {variant?.price?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
                                         </span>
                                     )}
                                     <span className="text-gray-400 text-[0.65rem] xs:text-xs flex gap-1 mt-1 items-center" suppressHydrationWarning>
@@ -153,6 +157,8 @@ const matchingVariant = sortedVariants.find(
                                         variant="outline"
                                         onClick={handleOpenSheet}
                                     >
+                                        <span className={'text-xs text-gray-700'}>{duplicateEanCount}</span>
+
                                         <NotepadText className="h-4 w-4 text-gray-700"/>
                                     </Button>
                                 </div>
