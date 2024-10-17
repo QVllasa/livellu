@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Suspense, useEffect, useRef, useState} from 'react';
 import {useRouter} from 'next/router';
-import Image from 'next/image';
+import NextImage from 'next/image';
 import Link from 'next/link';
 import {Button} from '@/shadcn/components/ui/button';
 import {Badge} from '@/shadcn/components/ui/badge';
@@ -38,10 +38,6 @@ const ProductPage: React.FC = () => {
     const [isMounted, setIsMounted] = useState(false); // To track if the component has mounted
     const isMobile = useMediaQuery('(max-width: 1024px)');
     const {isOpen, closeSheet, activeProduct, variantId, loading, otherProducts, merchants} = useProductSheet();
-
-
-
-    console.log("merchants", merchants);
 
 
     useEffect(() => {
@@ -201,7 +197,7 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
                                         {validImages.map((img, index) => (
                                             <CarouselItem key={index}>
                                                 <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                                    <Image
+                                                    <NextImage
                                                         src={validImages[index]}
                                                         alt={`${variant.productName} - Image ${currentImage + 1}`}
                                                         width={800}
@@ -239,7 +235,7 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
                                         onClick={() => api?.scrollTo(index)}
                                     >
                                         <AspectRatio ratio={1 / 1} className="bg-muted">
-                                            <Image
+                                            <NextImage
                                                 src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"
                                             />
                                         </AspectRatio>
@@ -315,7 +311,7 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
                                                 <TableRow key={v.variantId} className="cursor-pointer" onClick={() => router.push(v.merchantLink)}>
                                                     <TableCell className="w-1/6 md:w-auto table-cell">
                                                         {merchant?.logo_image?.data?.attributes?.url && (
-                                                            <Image
+                                                            <NextImage
                                                                 src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${merchant.logo_image.data.attributes.url}`}
                                                                 width={50}
                                                                 height={25}
@@ -392,13 +388,14 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const scrollContainerRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
 
 
+
     const checkImageExists = async (url: string): Promise<boolean> => {
-        try {
-            const response = await fetch(url, {method: 'HEAD'});
-            return response.ok; // returns true if status is 200-299
-        } catch (error) {
-            return false; // return false if there's an error (e.g., network issues)
-        }
+        return new Promise((resolve) => {
+            const img = new Image(); // You do not need to import 'Image', it’s built-in.
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = url;
+        });
     };
 
     // Function to filter and keep only valid images
@@ -407,6 +404,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         const valid = await Promise.all(
             images.map(async (img) => {
                 const exists = await checkImageExists(img);
+                console.log("Image exists:", exists);
                 return exists ? img : null;
             })
         );
@@ -419,7 +417,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
             setLoadingImages(false);   // Then, allow the carousel to render
         };
         loadImages();
-    }, [variant]);
+    }, [variant.images]);
 
     useEffect(() => {
         console.log("Valid images:", validImages);
@@ -429,10 +427,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
 
-const sameEanVariants = product.variants
-    .filter((v) => v.ean === variant.ean)
-    .sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first
+    const sameEanVariants = Array.from(
+        new Map(product.variants.filter((v) => v.ean === variant.ean).map((v) => [v.variantId, v])).values()
+    ).sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first
 
+    console.log("sameEanVariants:", sameEanVariants);
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -494,19 +493,15 @@ const sameEanVariants = product.variants
                     </div>
 
                 </DrawerHeader>
-                <Seo title={variant.productName} url={variant.variantId.toString()} images={images}/>
+                <Seo title={variant.title} url={variant.variantId.toString()} images={images}/>
                 <div className="text-gray-700 mt-4 h-[80vh] px-4 py-2 overflow-y-scroll">
                     <div className="grid md:grid-cols-2 gap-8 max-w-full mx-auto">
                         <div className="relative w-full h-auto">
                             <h2 className="text-xs md:text-1xl font-bold mb-2 text-gray-500">{product.brandName}</h2>
                             <h1 className="text-md md:text-3xl font-bold mb-6">
-                                {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim()}
+                                {variant.title ?? 'title missing'}
                             </h1>
 
-
-                            {/*<div className="flex items-center mb-4">*/}
-                            {/*    <Badge variant="secondary">{variant.originalColor}</Badge>*/}
-                            {/*</div>*/}
                             <div className="relative w-auto h-auto">
                                 {
                                     loadingImages ? (<Skeleton className={'h-64 w-full'}/>)
@@ -518,7 +513,7 @@ const sameEanVariants = product.variants
                                                         {validImages.map((img, index) => (
                                                             <div key={index} className="snap-center flex-shrink-0 w-full">
                                                                 <AspectRatio ratio={4 / 3} className="rounded-lg">
-                                                                    <Image
+                                                                    <NextImage
                                                                         src={validImages[index]}
                                                                         alt={`${variant.productName} - Image ${index + 1}`}
                                                                         width={200}
@@ -563,7 +558,7 @@ const sameEanVariants = product.variants
                                     <div className="flex mt-4 gap-2">
                                         {validImages.map((img: string, index: number) => (
                                             <button key={index} className="w-16 h-16 rounded-md" onClick={() => handleThumbnailClick(index)}>
-                                                <Image src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
+                                                <NextImage src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
                                             </button>
                                         ))}
                                     </div>
@@ -638,7 +633,7 @@ const sameEanVariants = product.variants
                                                 <div className={'text-sm flex items-center'}>
                                                     von
                                                     {merchant?.attributes?.logo_image?.data?.attributes?.url && (
-                                                        <Image
+                                                        <NextImage
                                                             src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${merchant?.attributes?.logo_image.data.attributes.url}`}
                                                             width={50}
                                                             height={25}
@@ -713,7 +708,7 @@ export const ProductImage = ({src, alt, width, height, className, srcSet, onLoad
     if (!isVisible) return null;  // Do not render the image element if it's hidden
 
     return (
-        <Image
+        <NextImage
             src={src}
             alt={alt}
             srcSet={srcSet}

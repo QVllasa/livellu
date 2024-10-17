@@ -108,6 +108,9 @@
     },
     "brand_name": {
       "type": "text"
+    },
+    "category_identifier": {
+      "type": "text"
     }
   }
 }

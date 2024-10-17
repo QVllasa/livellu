@@ -1268,6 +1268,7 @@ export interface ApiVariantVariant extends Schema.CollectionType {
     images: Attribute.JSON;
     merchantName: Attribute.String;
     brand_name: Attribute.Text;
+    category_identifier: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1314,6 +1315,7 @@ export interface ApiVariantFeatureVariantFeature extends Schema.CollectionType {
     totalWidth: Attribute.Float;
     totalDepth: Attribute.Float;
     totalLength: Attribute.Float;
+    categories: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<

@@ -244,7 +244,6 @@ export interface Merchant {
 export interface Variant {
     merchantId: string;
     merchantProductId: string;
-    description: string;
     originalDescription: string;
     tracking: string;
     merchantImage: string;
@@ -270,9 +269,6 @@ export interface Variant {
     largeImage: string;
     reviews: string;
     rating: string;
-    item: {
-        data: Entity<Product>;
-    };
     groupId: string;
     variantId: string;
     createdAt: string;
@@ -284,6 +280,9 @@ export interface Variant {
     materials: string[];
     colors: string[];
     shape: string[];
+    title: string;
+    categories: string[];
+    description: string;
 }
 
 export interface Product {

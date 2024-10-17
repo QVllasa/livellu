@@ -20,6 +20,8 @@ const ProductCard = (props: { product: Product }) => {
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [isLoaded, setLoaded] = useState(true);
 
+
+
     const sortedVariants = [...product.variants].sort(
         (a, b) => (b.averageRating ?? 0) - (a.averageRating ?? 0)
     );
@@ -66,7 +68,7 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
     return (
         <TooltipProvider delayDuration={100}>
             <Tooltip>
-            <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'}>
+            <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'} className={`${duplicateEanCount > 1 ? 'border-4 border-blue-500':''}`}>
                 <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-36">
                     <CardContent className="flex items-center justify-center p-0 relative">
                         <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
@@ -74,7 +76,7 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
                                 <div className={'absolute top-0 left-0 h-full w-full overflow-hidden'}>
                                     <AspectRatio ratio={4 / 3} className="bg-muted pt-1">
                                         <ProductImage
-                                            src={imageSrc || variant?.altImageUrl}
+                                            src={variant?.merchantImage}
                                             srcSet={variant?.images}
                                             alt={variant?.productName}
                                             width={300}
@@ -118,17 +120,17 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
                                 )}
                                 <div className="flex flex-col justify-center items-start mt-4 sm:mt-4 mb-2">
                                     {isOnSale ? (
-                                        <div className={'flex justify-start items-center'}>
-                                            <span className="text-red-600 font-semibold text-sm sm:text-base" suppressHydrationWarning>
-                                                {variant?.price?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                        <div className={'flex justify-start items-center relative'}>
+                                            <span className="text-red-600 font-semibold text-sm sm:text-base flex flex-nowrap " suppressHydrationWarning>
+                                                <span className={'font-light text-gray-700 mr-1'}>ab</span> {variant?.price?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
                                             </span>
-                                            <span className="ml-2 text-gray-400 font-semibold text-[0.65rem] line-through" suppressHydrationWarning>
-                                                {variant?.priceOld?.toLocaleString() + (product?.currency === 'EUR' ? '€' : product?.currency)}
+                                            <span className="ml-2 text-gray-400 font-semibold text-[0.65rem] line-through absolute top-0.5 -right-14" suppressHydrationWarning>
+                                                {parseFloat(variant?.priceOld)?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
                                             </span>
                                         </div>
                                     ) : (
                                         <span className="text-gray-900 font-bold text-sm sm:text-base" suppressHydrationWarning>
-                                            <span className={'font-normal'}>ab</span>  {variant?.price?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
+                                            <span className={'font-light'}>ab</span>  {variant?.price?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
                                         </span>
                                     )}
                                     <span className="text-gray-400 text-[0.65rem] xs:text-xs flex gap-1 mt-1 items-center" suppressHydrationWarning>
@@ -140,7 +142,7 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
 
                                     <TooltipTrigger asChild>
                                         <h4 className="scroll-m-20 text-[0.7rem] xs:text-xs sm:text-sm font-semibold tracking-tight truncate  md:flex">
-                                            {variant.productName.replace(new RegExp(product.brandName, 'i'), '').trim() ?? variant.productName}
+                                            {variant.title}
                                         </h4>
                                     </TooltipTrigger>
                                 <div className={'flex justify-between items-center mt-2 gap-2'}>

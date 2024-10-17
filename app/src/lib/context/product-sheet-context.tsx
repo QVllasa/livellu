@@ -36,6 +36,10 @@ export const ProductSheetProvider: React.FC<{ children: ReactNode }> = ({ childr
     const [activateAnimation, setActivateAnimation] = useState(true);
     const router = useRouter();
 
+    useEffect(() => {
+        console.log("activeProduct:", activeProduct);
+    }, [activeProduct]);
+
 // Fetch the product data if not in the context and variantId exists
 useEffect(() => {
     const fetchData = async () => {
