@@ -62,31 +62,6 @@ export default ({env}) => ({
             faceting: {
               maxValuesPerFacet: 5000
             }
-            // embedders: {
-            //   default: {
-            //     source: "ollama",
-            //     url: "http://192.168.188.118:8001/api/embeddings",
-            //     apiKey: "OLLAMA_API_KEY",
-            //     model: "gemma2:27b",
-            //     documentTemplate: "Brand: {{ doc.brandName }}\n\
-            //     Category: {{ doc.categoryIdentifier }}\n\
-            //     Variants Information:\n\
-            //     {% for variant in doc.variants %}\n\
-            //                   Variant ID: {{ variant.variantId }}\n\
-            //                   Variant Description: {{ variant.description }}\n\
-            //                   Variant Price: {{ variant.price }} {{ doc.currency }}\n\
-            //                   Variant Material: {{ variant.originalMaterial }}\n\
-            //                   Variant Original Color: {{ variant.originalColor }}\n\
-            //                   Variant Dimensions: {{ variant.dimension }}\n\
-            //                   Variant Delivery Time: {{ variant.deliveryTime }}\n\
-            //                   Variant Delivery Cost: {{ variant.deliveryCost }} EUR\n\
-            //                   Variant EAN: {{ variant.ean }}\n\
-            //                   Variant Merchant Product ID: {{ variant.merchantProductId }}\n\
-            //                   Variant Tracking Link: {{ variant.tracking }}\n\
-            //     {% endfor %}"
-            //   }
-            // }
-
           }
         },
         category: {
@@ -101,27 +76,50 @@ export default ({env}) => ({
                       {
                         populate:
                           {
-                            child_categories: {populate: {child_categories: '*', parent_categories: '*',  image: '*'}},
+                            child_categories: {populate: {child_categories: '*', parent_categories: '*', image: '*'}},
                             parent_categories: '*',
                             image: '*'
                           }
                       },
                     parent_categories: '*',
                     image: '*'
+
                   }
                 },
                 parent_categories: '*',
                 image: '*'
+
+
               }
             });
 
+            const removeEmbeddingRecursively = (category: any) => {
+              const { embedding, ...rest } = category;
+              if (rest.child_categories) {
+                rest.child_categories = rest.child_categories.map(removeEmbeddingRecursively);
+              }
+              if (rest.parent_categories) {
+                rest.parent_categories = rest.parent_categories.map(removeEmbeddingRecursively);
+              }
+              return rest;
+            };
+
+            const cleanedEntry = removeEmbeddingRecursively(child);
 
             return {
-              ...entry,
-              ...child,
-            }
+              ...cleanedEntry,
+              _vectors: entry.embedding ? entry.embedding : { vector: [] },
+
+            };
           },
           settings: {
+            embedders: {
+              //vector is the name of the embedding
+              vector: {
+                source: "userProvided",
+                dimensions: 4608
+              }
+            },
             filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'name'],
             pagination: {
               maxTotalHits: 1000

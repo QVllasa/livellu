@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2024-10-17T04:58:10.173Z"
+    "x-generation-date": "2024-10-18T23:22:00.228Z"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -1759,6 +1759,7 @@
                                             "hasImage": {
                                               "type": "boolean"
                                             },
+                                            "embedding": {},
                                             "createdAt": {
                                               "type": "string",
                                               "format": "date-time"
@@ -3661,6 +3662,7 @@
                                             "hasImage": {
                                               "type": "boolean"
                                             },
+                                            "embedding": {},
                                             "createdAt": {
                                               "type": "string",
                                               "format": "date-time"
@@ -5029,6 +5031,7 @@
                         "hasImage": {
                           "type": "boolean"
                         },
+                        "embedding": {},
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -5259,6 +5262,7 @@
           "hasImage": {
             "type": "boolean"
           },
+          "embedding": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -5776,7 +5780,8 @@
               },
               "groupId": {
                 "type": "string"
-              }
+              },
+              "embedding": {}
             }
           }
         }
@@ -5811,6 +5816,7 @@
           "groupId": {
             "type": "string"
           },
+          "embedding": {},
           "createdAt": {
             "type": "string",
             "format": "date-time"
@@ -9813,6 +9819,7 @@
                                                           "hasImage": {
                                                             "type": "boolean"
                                                           },
+                                                          "embedding": {},
                                                           "createdAt": {
                                                             "type": "string",
                                                             "format": "date-time"

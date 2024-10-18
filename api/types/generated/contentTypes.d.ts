@@ -945,6 +945,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
     excluded_filters: Attribute.JSON;
     lucide_icon: Attribute.String;
     hasImage: Attribute.Boolean & Attribute.DefaultTo<false>;
+    embedding: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -1008,6 +1009,7 @@ export interface ApiItemItem extends Schema.CollectionType {
     brandId: Attribute.String;
     language: Attribute.String;
     groupId: Attribute.String & Attribute.Required & Attribute.Unique;
+    embedding: Attribute.JSON;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::item.item', 'oneToOne', 'admin::user'> &

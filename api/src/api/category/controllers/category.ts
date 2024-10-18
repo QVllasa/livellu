@@ -46,7 +46,6 @@ export default factories.createCoreController('api::category.category', ({strapi
     delete filters.search; // Remove 'search' from filters to avoid interfering with filter conditions
     delete filters.limit;
 
-
     // Construct the filter conditions
     const filterConditions: string[] = [];
     for (const key in filters) {
@@ -62,10 +61,9 @@ export default factories.createCoreController('api::category.category', ({strapi
 
     const searchParams: any = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
-      limit:  limit // Adjust as needed
+      limit:  limit, // Adjust as needed
       // rankingScoreThreshold: 0.5
-      // Optionally, specify attributes to retrieve or other search parameters
-      // attributesToRetrieve: ['id', 'name', 'description'], // Example
+      // Optionally, specify attributes to retrieve or other search parameters,
     };
 
     try {
@@ -74,6 +72,11 @@ export default factories.createCoreController('api::category.category', ({strapi
 
       // Perform the search using Meilisearch
       const searchResults: SearchResponse<Category> = await index.search<Category>(searchString, searchParams);
+
+      // Construct the response object
+      console.log('Search results:', searchResults);
+
+
 
       const response: CategorySearchResponse = {
         data: searchResults.hits,

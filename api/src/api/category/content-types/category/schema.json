@@ -63,6 +63,9 @@
     "hasImage": {
       "type": "boolean",
       "default": false
+    },
+    "embedding": {
+      "type": "json"
     }
   }
 }
