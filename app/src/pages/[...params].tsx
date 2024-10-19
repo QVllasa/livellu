@@ -200,7 +200,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
         filters['filter'] = overallFilter;
     }
 
-    console.log('Filters:', filters);
 
     const page = parseInt((query.page as string) ?? 0) || 1;
     const pageSize = parseInt((query.pageSize as string) ?? 0) || 48;

@@ -58,7 +58,6 @@ export default function ProductsGridMobile ({
                 ? `${currentUrl}&page=${newPage}`  // Add page parameter if there are existing params
                 : `${currentUrl}?page=${newPage}`; // Add page if there are no existing params
 
-        console.log("Updated URL with regex:", newUrl);
 
         router.push(newUrl, undefined, { shallow: true });
     };
@@ -70,14 +69,10 @@ export default function ProductsGridMobile ({
 
         setLoadingMore(true);
         try {
-            console.log("Initial load with page size: ", page * filters.pageSize);
-            const updatedFilters = {...filters, page: 1, pageSize: page * filters.pageSize}; // Do not change page count here
-            console.log("Updated filters: ", updatedFilters);
+             const updatedFilters = {...filters, page: 1, pageSize: page * filters.pageSize}; // Do not change page count here
             const {data} = await fetchProducts(updatedFilters);
-            console.log("Initial fetched data length: ", data.length);
-            let filteredData = []
-            console.log("Active merchant: ", merchant)
-            if (merchant) {
+             let filteredData = []
+             if (merchant) {
                 filteredData = data.map(product => {
                     return {
                         ...product,
@@ -104,13 +99,10 @@ export default function ProductsGridMobile ({
         setLoadingMore(true);
         try {
             const nextPage = page + 1;
-            console.log("Next page length: ", nextPage);
             const updatedFilters = {...filters, pageSize: nextPage * filters.pageSize}; // Load next batch
 
-            console.log("Updated filters: ", updatedFilters);
 
             const {data} = await fetchProducts(updatedFilters);
-            console.log("Fetched data length: ", data.length);
             let filteredData = []
             if (merchant) {
                 filteredData = data.map(product => {

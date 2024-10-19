@@ -63,7 +63,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const pathSegments = params?.params as string[];
 
-    console.log("params: ", params);
 
 
     let searchTerms: string[] = [];

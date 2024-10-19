@@ -65,9 +65,7 @@ function ResultsPageLayout(page) {
     const [showScrollToTop, setShowScrollToTop] = useState(false);
     const [isDeepLevel, setIsDeepLevel] = useState(false);
 
-    useEffect(() => {
-        console.log("is deep level:", isDeepLevel)
-    }, [isDeepLevel]);
+
 
     const scrollToTop = () => {
         window.scrollTo({top: 0, behavior: 'smooth'});

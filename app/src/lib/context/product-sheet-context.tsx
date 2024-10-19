@@ -49,7 +49,6 @@ useEffect(() => {
             closeSheet();
         } else if (!activeProduct && urlVariantId && typeof urlVariantId === 'string') {
             await fetchProductByVariantId(urlVariantId);
-            console.log("Fetched product data for variantId:", urlVariantId);
             setActivateAnimation(false); // Disable animation on URL load
         }
     };
@@ -134,7 +133,6 @@ useEffect(() => {
         // Use regex to find and remove the variantId from the query string
         const newUrl = currentUrl.replace(/(\?|&)variantId=[^&]+(&|$)/, (match, p1, p2) => (p2 === "&" ? p1 : ""));
 
-        console.log("Updated URL without variantId:", newUrl);
 
         // Navigate to the updated URL
         router.push(newUrl, undefined, { shallow: true, scroll: false });

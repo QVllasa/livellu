@@ -71,8 +71,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     const merchant = await Client.merchants.all(filter)
         .then(response => {
-            console.log("response: ", response);
-            const data: Merchant[] = response.data.map((entity: Entity<Merchant>) => {
+             const data: Merchant[] = response.data.map((entity: Entity<Merchant>) => {
                 const id = entity.id;
                 const modifiedItem: Merchant = {
                     ...entity.attributes,
@@ -180,7 +179,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     overallFilter = overallFilter ? `${overallFilter} AND variants.merchantId = ${merchant.merchantId}` : `variants.merchantId = ${merchant.merchantId}`;
 
-    console.log("overallFilter: ", overallFilter);
 
     // Concatenate search terms into a single string
     filters['searchTerms'] = searchTerms.join(' ');

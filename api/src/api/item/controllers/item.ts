@@ -98,7 +98,6 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
           fields: ['embedding', 'name'],
         });
 
-        console.log('Category:', category);
 
         if (!categories || !categories[0].embedding) {
           return ctx.badRequest("No embedding found for this category.");
@@ -141,7 +140,6 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
             return obj;
           }, {});
 
-        console.log('Search query:', searchResults);
 
         const response = {
           data: searchResults.hits,

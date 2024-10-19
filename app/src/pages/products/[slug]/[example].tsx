@@ -3,7 +3,7 @@ import Seo from '@/components/seo/seo';
 import HomeLayout from '@/components/layouts/_home';
 import {Button} from '@/shadcn/components/ui/button';
 import * as React from 'react';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import {fetchProducts} from "@/framework/product";
 import {GetServerSideProps, GetServerSidePropsContext} from "next";
 import {Badge} from "@/shadcn/components/ui/badge";
@@ -50,10 +50,7 @@ const ProductPage = ({product, merchants, otherProducts}: ProductPageProps) => {
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
-    useEffect(() => {
-        console.log('Product:', product);
-        console.log('Other Products:', otherProducts);
-    }, [product, otherProducts]);
+
 
     const sameEanVariants = product.variants
         .filter((v) => v.ean === variant.ean)

@@ -402,7 +402,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         const valid = await Promise.all(
             images.map(async (img) => {
                 const exists = await checkImageExists(img);
-                console.log("Image exists:", exists);
                 return exists ? img : null;
             })
         );
@@ -445,7 +444,9 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         return bulletPoints;
     };
 
-    function convertBoldText(text) {
+    function convertBoldText(text: string) {
+        if (!text) return 'description missing';
+
         // Replace **text** with <strong>text</strong>
         return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
     }
@@ -474,7 +475,26 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
             <DrawerContent className="bg-white min-h-auto max-h-[87vh]">
                 <DrawerHeader>
                     <div className={'grid grid-cols-3 items-center'}>
-                        <div></div>
+                        <div>
+                            <div className="text-lg font-bold  whitespace-nowrap flex flex-col gap-0.5">
+                                {isOnSale ? (
+                                    <div className="flex items-center flex-nowrap leading-tight text-xl">
+                                        <span className="text-red-600">{`${variant.price.toFixed(2)} €`}</span>
+                                        {/*<span className="ml-2 text-gray-400 line-through text-[0.65rem]">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>*/}
+                                    </div>
+                                ) : (
+                                    `${variant.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}`
+                                )}
+                                <div className="flex items-center space-x-1 text-[0.65rem] text-muted-foreground font-light leading-tight">
+                                    <Package className="h-2 w-2"/>
+                                    <span>{parseFloat(variant.deliveryCost).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}) + ' Versand'}</span>
+                                </div>
+                                <div className="flex items-center space-x-1 text-[0.65rem] text-muted-foreground font-light leading-tight">
+                                    <Truck className="h-2 w-2"/>
+                                    <span>{variant.deliveryTime}</span>
+                                </div>
+                            </div>
+                        </div>
                         <div className="mx-auto  h-2 w-[100px] rounded-full bg-gray-300 dark:bg-slate-800"/>
                         <Button
                             variant="outline"
@@ -498,7 +518,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </h1>
 
                             <div className="relative w-auto h-auto">
-                                {
+                            {
                                     loadingImages ? (<Skeleton className={'h-64 w-full'}/>)
                                         :
                                         <>
@@ -539,66 +559,16 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </div>
 
 
-                            {loadingImages ?
-                                <>
-                                    <div className={'grid grid-cols-5 gap-3'}>
-                                        <Skeleton className={'h-16 w-16'}/>
-                                        <Skeleton className={'h-16 w-16'}/>
-                                        <Skeleton className={'h-16 w-16'}/>
-                                    </div>
-
-                                </>
-                                :
-                                <>
-                                    <div className="flex mt-4 gap-2">
-                                        {validImages.map((img: string, index: number) => (
-                                            <button key={index} className="w-16 h-16 rounded-md" onClick={() => handleThumbnailClick(index)}>
-                                                <NextImage src={img} alt={`Thumbnail ${index + 1}`} width={64} height={64} className="object-contain w-full h-full"/>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </>
-                            }
-
-
-                        </div>
-
-                        <div className="text-2xl font-bold ">
-                            {isOnSale ? (
-                                <div className="flex items-center">
-                                    <span className="text-red-600">{`${variant.price.toFixed(2)} €`}</span>
-                                    <span className="ml-2 text-gray-400 line-through">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>
-                                </div>
-                            ) : (
-                                `${variant.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}`
-                            )}
-                            <div className="flex items-center space-x-2 text-sm text-muted-foreground font-light">
-                                <Package className="h-4 w-4"/>
-                                <span>{parseFloat(variant.deliveryCost).toLocaleString('de-DE', {style: 'currency', currency: 'EUR'}) + ' Versand'}</span>
-                            </div>
-                            <div className="flex items-center space-x-2 text-sm text-muted-foreground font-light">
-                                <Truck className="h-4 w-4"/>
-                                <span>{variant.deliveryTime}</span>
-                            </div>
                         </div>
 
 
-                        <Link href={variant.merchantLink}>
-                            <Button className="w-auto mb-4 text-white bg-blue-500 hover:bg-blue-600">Zum Shop</Button>
-                        </Link>
                     </div>
-                    <Card className="my-6">
-                        <CardContent className="p-4">
-                            <h3 className="font-semibold mb-2">Besondere Merkmale:</h3>
-                            <ul className="list-disc list-inside space-y-1 text-sm">{formatSummaryAsBullets(variant.keyFeatures)}</ul>
-                        </CardContent>
-                    </Card>
 
 
-                    <div className={'grid grid-cols-auto mx-auto gap-2'}>
+
+                    <div className={'grid grid-cols-auto mx-auto gap-2 mt-4'}>
                         {sortedVariants.map((v, index) => {
                             const merchant = merchants.find((m) => m.attributes.merchantId === v.merchantId);
-                            console.log("Merchant", merchant);
                             return (
                       <Card key={v.variantId} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
                           {index === 0 && <Badge className="absolute top-1 right-1 bg-teal-500 text-white hover:bg-teal-600">Bester Gesamtpreis</Badge>}
@@ -656,10 +626,17 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                     </div>
 
                     {/* Similar Products Slider */}
-                    <Card className="mt-12 mb-6 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto bg-gray-100">
+                    <Card className="mt-4 mb-4 sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-lg xl:max-w-screen-xl mx-auto bg-gray-100">
                         <CardContent className="p-4 py-8">
                             <h3 className="text-xl font-semibold mb-4">Ähnliche Produkte</h3>
                             product grid
+                        </CardContent>
+                    </Card>
+
+                    <Card className="my-6">
+                        <CardContent className="p-4">
+                            <h3 className="font-semibold mb-2">Besondere Merkmale:</h3>
+                            <ul className="list-disc list-inside space-y-1 text-sm">{formatSummaryAsBullets(variant.keyFeatures)}</ul>
                         </CardContent>
                     </Card>
                     {/* Product Description */}
@@ -675,6 +652,14 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                 </Button>
                             </div>
                         </CardContent>
+
+                        <Link href={variant.merchantLink} className={'relative '}>
+                            <Button className="bg-blue-500 text-white hover:bg-blue-600 fixed bottom-2 left-2 right-2 "  variant="outline">
+                                <Icon name={'ShoppingCart'} className="h-4 w-4 mr-2"/>
+                                Zum günstigsten Angebot
+                            </Button>
+                        </Link>
+
                     </Card>
                 </div>
             </DrawerContent>

@@ -24,7 +24,6 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
         }
     };
 
-    console.log('Products:', products);
 
     return (
         <>

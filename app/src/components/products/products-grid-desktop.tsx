@@ -60,7 +60,6 @@ export default function  ProductsGridDesktop  ({
         // Append the new page parameter
         const newUrl = `${urlWithoutPage}${separator}page=${selectedPage}`;
 
-        console.log("Updated URL with new page:", newUrl);
 
         // Push the updated URL to the router
         router.push(newUrl);

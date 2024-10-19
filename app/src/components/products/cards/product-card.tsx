@@ -20,7 +20,6 @@ const ProductCard = (props: { product: Product }) => {
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [isLoaded, setLoaded] = useState(true);
 
-    console.log("product: ", product);
 
 
     const sortedVariants = [...product.variants].sort(
