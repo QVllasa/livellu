@@ -24,6 +24,8 @@ const Home: NextPageWithLayout = ({products, meta}: { products: Product[], meta:
         }
     };
 
+    console.log('Products:', products);
+
     return (
         <>
             <div className={'bg-gray-100 sm:px-6 lg:px-8'}>

@@ -6,7 +6,7 @@ import {useState} from "react";
 import Link from "next/link";
 import {Badge} from "@/shadcn/components/ui/badge";
 import {Button} from "@/shadcn/components/ui/button";
-import {NotepadText} from "lucide-react";
+import {NotepadText, Truck} from "lucide-react";
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from "@/shadcn/components/ui/tooltip";
 import {AspectRatio} from "@/shadcn/components/ui/aspect-ratio";
 import Icon from "@/components/ui/icon";
@@ -19,6 +19,9 @@ const ProductCard = (props: { product: Product }) => {
     const router = useRouter();
     const [imageSrc, setImageSrc] = useState<string | null>(null);
     const [isLoaded, setLoaded] = useState(true);
+
+    console.log("product: ", product);
+
 
 
 
@@ -45,12 +48,16 @@ const matchingVariant = sortedVariants.find(
 
 
 // Count duplicate EANs for the selected variant
-const ean = variant?.ean?.toString();
-const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ean).length;
+
+    const variants = product.variants.filter((v) => v.ean === variant.ean)
 
 
     // Calculate discount percentage if the product is on sale
     const isOnSale = variant?.discount > 0;
+ const isFreeShipping = parseFloat(variant?.deliveryCost) == 0;
+
+
+    console.log("deliverycost: ", variant?.deliveryCost, parseFloat(variant?.deliveryCost) == 0)
     const discountPercentage = isOnSale
         ? Math.round(variant.discount)
         : null;
@@ -68,7 +75,7 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
     return (
         <TooltipProvider delayDuration={100}>
             <Tooltip>
-            <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'} className={`${duplicateEanCount > 1 ? 'border-4 border-blue-500':''}`}>
+            <Link href={variant.merchantLink ?? ''} target={'_blank'} rel={'noopener norefererrer'} >
                 <Card className="transition-transform transform md:hover:scale-105 max-w-full overflow-hidden min-h-52 min-w-36">
                     <CardContent className="flex items-center justify-center p-0 relative">
                         <div className="w-full h-full mx-auto bg-white rounded-lg overflow-hidden duration-300 relative">
@@ -76,25 +83,35 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
                                 <div className={'absolute top-0 left-0 h-full w-full overflow-hidden'}>
                                     <AspectRatio ratio={4 / 3} className="bg-muted pt-1">
                                         <ProductImage
-                                            src={variant?.merchantImage}
-                                            srcSet={variant?.images}
+                                            src={variant?.images[2]}
                                             alt={variant?.productName}
                                             width={300}
                                             height={400}
-                                            onLoad={() => setLoaded(true)}
-                                            className={`pointer-events-none w-full  h-full  mx-auto object-contain  ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
-                                            placeholder={'blur'}
-                                            blurDataURL={variant?.thumbnail}
+                                            // onLoad={() => setLoaded(true)}
+                                            className={`pointer-events-none w-full  h-full  mx-auto object-contain ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                            // placeholder={'blur'}
+                                            // blurDataURL={variant?.thumbnail}
                                         />
                                     </AspectRatio>
 
                                 </div>
                                 <div className={'absolute inset-0  w-full h-full'}>
-                                    {isOnSale && discountPercentage && (
-                                        <Badge className="absolute bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
-                                            {`-${discountPercentage}% `}
-                                        </Badge>
-                                    )}
+                                    <div className={'absolute h-full flex flex-col gap-1 top-1 right-1 items-end justify-between'}>
+                                        {(isOnSale && discountPercentage) ? (
+                                            <Badge className=" bg-rose-600 text-white top-1 right-1 hover:bg-rose-600">
+                                                {`-${discountPercentage}% `}
+                                            </Badge>
+                                        ): <>
+                                        <div></div>
+                                        </>}
+                                        {isFreeShipping && (
+                                            <Badge className="flex gap-1 bg-emerald-100 text-emerald-900 text-[0.6rem]  hover:bg-rose-600">
+                                                <Truck className="h-3 w-3 "/>
+                                                {`Lieferung Kostenlos `}
+                                            </Badge>
+                                        )}
+                                    </div>
+
 
                                     {!isLoaded && (
                                         <div className="  rounded-md p-4 max-w-sm w-full mx-auto mt-4">
@@ -133,8 +150,10 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
                                             <span className={'font-light'}>ab</span>  {variant?.price?.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' })}
                                         </span>
                                     )}
-                                    <span className="text-gray-400 text-[0.65rem] xs:text-xs flex gap-1 mt-1 items-center" suppressHydrationWarning>
-                                       <Icon name={'Package'} className={'h-3 w-3'}/> {`${variant?.deliveryCost != "0.00" ? variant?.deliveryCost+'€' : 'Kostenloser Versand'}`}
+
+                                    <span className="text-gray-400 text-[0.65rem] xs:text-xs flex gap-1 mt-1 items-center h-3" suppressHydrationWarning>
+                                        {isFreeShipping ? null: <><Icon name={'Package'} className={'h-3 w-3'}/> {`${variant?.deliveryCost+'€'}`}</>}
+
                                     </span>
                                 </div>
 
@@ -159,7 +178,7 @@ const duplicateEanCount = product.variants.filter(v => v?.ean?.toString() === ea
                                         variant="outline"
                                         onClick={handleOpenSheet}
                                     >
-                                        <span className={'text-xs text-gray-700'}>{duplicateEanCount}</span>
+                                        <span className={'text-xs text-gray-700'}>{variants.length}</span>
 
                                         <NotepadText className="h-4 w-4 text-gray-700"/>
                                     </Button>

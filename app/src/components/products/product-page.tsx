@@ -357,7 +357,7 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
                         <CardContent className="p-4 py-8 relative">
                             <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
                             <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white">
-                                <p>{variant.originalDescription}</p>
+                                <p>{variant.description ?? 'missing'}</p>
                             </div>
                             <div className={'flex w-full items-center justify-center'}>
                                 <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12">
@@ -427,11 +427,13 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
 
-    const sameEanVariants = Array.from(
-        new Map(product.variants.filter((v) => v.ean === variant.ean).map((v) => [v.variantId, v])).values()
-    ).sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first
+    const variants = product.variants.filter((v) => v.ean === variant.ean)
+    const sortedVariants = variants.sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first // Sort by price + delivery cost, highest first
 
-    console.log("sameEanVariants:", sameEanVariants);
+
+
+    console.log("sameEanVariants:", product.variants
+        .filter((v) => v.ean === variant.ean && v.merchantId !== variant.merchantId));
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -601,7 +603,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
 
                     <div className={'grid grid-cols-auto mx-auto gap-2'}>
-                        {sameEanVariants.map((v, index) => {
+                        {sortedVariants.map((v, index) => {
                             const merchant = merchants.find((m) => m.attributes.merchantId === v.merchantId);
                             console.log("Merchant", merchant);
                             return (
@@ -672,7 +674,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                         <CardContent className="p-4 py-8 relative">
                             <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
                             <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white">
-                                <p>{variant.originalDescription}</p>
+                                <p>{variant.description ?? 'missing'}</p>
                             </div>
                             <div className={'flex w-full items-center justify-center'}>
                                 <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12">

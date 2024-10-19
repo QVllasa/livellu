@@ -75,14 +75,21 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     let searchTerms: string[] = [];
     let searchTermFromPath = '';
 
+    let categories = categorySegments.filter(el=>!el.includes(':') && !el.includes('='))
+    let category = categories[categories.length - 1]; // select last element
+
+    filters['categorySlug'] = category;
+
+    // console.log("category: ", category);
 
 
-    for (let i = categorySegments.length - 1; i >= 0; i--) {
-        if (!categorySegments[i].includes(':')) {
-            searchTermFromPath = categorySegments[i];
-            break;
-        }
-    }
+
+    // for (let i = categorySegments.length - 1; i >= 0; i--) {
+    //     if (!categorySegments[i].includes(':')) {
+    //         searchTermFromPath = categorySegments[i];
+    //         break;
+    //     }
+    // }
 
     if (searchTermFromPath) {
         searchTerms.push(searchTermFromPath);
@@ -110,12 +117,19 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
 
     let overallFilter = '';
 
+
+
     if (brandParam) {
         const brandNames = brandParam.replace('marke:', '').split('.');
         const allBrands = await fetchAllBrands();
         const brandFilter = brandNames.map(brand => `brandName = "${allBrands.find(el => el.slug === brand)?.label}"`).join(' OR ');
         overallFilter = brandFilter;
     }
+
+    // if (category) {
+    //     const categoryFilter = `variants.categories  = "${category}"`;
+    //     overallFilter = overallFilter ? `${overallFilter} AND ${categoryFilter}` : categoryFilter;
+    // }
 
     if (shapeParam) {
         const shapes = shapeParam.replace('form:', '').split('.');
@@ -185,6 +199,8 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
     if (overallFilter) {
         filters['filter'] = overallFilter;
     }
+
+    console.log('Filters:', filters);
 
     const page = parseInt((query.page as string) ?? 0) || 1;
     const pageSize = parseInt((query.pageSize as string) ?? 0) || 48;

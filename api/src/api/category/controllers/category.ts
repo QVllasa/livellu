@@ -73,11 +73,6 @@ export default factories.createCoreController('api::category.category', ({strapi
       // Perform the search using Meilisearch
       const searchResults: SearchResponse<Category> = await index.search<Category>(searchString, searchParams);
 
-      // Construct the response object
-      console.log('Search results:', searchResults);
-
-
-
       const response: CategorySearchResponse = {
         data: searchResults.hits,
         meta: {

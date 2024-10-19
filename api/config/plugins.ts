@@ -117,7 +117,7 @@ export default ({env}) => ({
               //vector is the name of the embedding
               vector: {
                 source: "userProvided",
-                dimensions: 4608
+                dimensions: 1024
               }
             },
             filterableAttributes: ['slug', 'level', 'child_categories.slug', 'parent_categories.slug', 'name'],

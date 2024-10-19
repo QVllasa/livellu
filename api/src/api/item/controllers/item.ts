@@ -22,13 +22,16 @@ interface SearchRequestBody {
   maxPrice?: number;
   minRating?: number;
   randomize?: boolean;
+  categorySlug?: string;
+
+
   [key: string]: any;
 }
 
-export default factories.createCoreController('api::item.item', ({ strapi }) => ({
+export default factories.createCoreController('api::item.item', ({strapi}) => ({
 
   async post(ctx) {
-    const { body } = ctx.request as { body: SearchRequestBody };
+    const {body} = ctx.request as { body: SearchRequestBody };
 
     const {
       page = 1,
@@ -40,10 +43,9 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       productId,
       minRating,
       randomize,
+      categorySlug,
       ...restParams
     } = body;
-
-    console.log('Filter:', filter);
 
     const filterConditions: string[] = [];
 
@@ -63,8 +65,7 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
     }
 
 
-
-    const baseSearchParams = {
+    const baseSearchParams: any = {
       filter: filterConditions.length > 0 ? filterConditions.join(' AND ') : undefined,
       facets: [
         'brandName',
@@ -85,10 +86,25 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
       attributesToHighlight: restParams.attributesToHighlight || undefined
     };
 
-    console.log('Base search params:', baseSearchParams);
-
     try {
       const index = client.index('item');
+
+      // Step 1: Fetch the category embedding if categorySlug is provided
+      let category = null;
+
+      if (categorySlug) {
+        const categories = await strapi.entityService.findMany('api::category.category', {
+          filters: {slug: categorySlug},
+          fields: ['embedding', 'name'],
+        });
+
+        console.log('Category:', category);
+
+        if (!categories || !categories[0].embedding) {
+          return ctx.badRequest("No embedding found for this category.");
+        }
+        category = categories[0];
+      }
 
       let finalSearchParams = {
         ...baseSearchParams,
@@ -96,72 +112,56 @@ export default factories.createCoreController('api::item.item', ({ strapi }) => 
         offset: (page - 1) * pageSize,
       };
 
-      // If randomize is true, calculate a random offset
-      if (randomize) {
-        // Perform an initial search to get the total number of hits
-        const initialSearchParams = {
-          ...baseSearchParams,
-          limit: 0, // We don't need any hits, just the total count
-        };
 
-        const initialSearchResults = await index.search(searchTerms as string, initialSearchParams);
-        const totalHits = initialSearchResults.estimatedTotalHits;
 
-        if (totalHits === 0) {
-          // No results found
-          return ctx.send({
-            data: [],
-            meta: {
-              page,
-              pageSize,
-              total: 0,
-              totalPages: 0,
-              processingTimeMs: initialSearchResults.processingTimeMs,
-              query: initialSearchResults.query,
-              facetDistribution: {},
-              facetStats: initialSearchResults.facetStats,
-            },
-          });
-        }
-
-        // Calculate a random offset
-        const maxOffset = Math.max(0, totalHits - pageSize);
-        const randomOffset = Math.floor(Math.random() * (maxOffset + 1));
-
-        // Update the search parameters with the random offset
+      // Step 2: Add the vector search if we have the category embedding
+      if (category && category.embedding) {
         finalSearchParams = {
           ...finalSearchParams,
-          offset: randomOffset,
+          hybrid: {
+            "semanticRatio": 1,
+            "embedder": "category"
+          },
+          vector: category.embedding["vector"],
         };
       }
 
-      // Perform the search using Meilisearch with the final search parameters
-      const searchResults = await index.search(searchTerms as string, finalSearchParams);
 
-      // Exclude unwanted facets from the facetDistribution
-      const unwantedFacets = ['variants.price', 'variants.slug', 'variants.averageRating']; // Example unwanted facets
-      const filteredFacetDistribution = Object.keys(searchResults.facetDistribution || {})
-        .filter(key => !unwantedFacets.includes(key))
-        .reduce((obj, key) => {
-          obj[key] = searchResults.facetDistribution[key];
-          return obj;
-        }, {});
+      try {
+        // Perform the search using Meilisearch with the final search parameters
+        const searchResults = await index.search('', finalSearchParams);
 
-      const response = {
-        data: searchResults.hits,
-        meta: {
-          page: randomize ? Math.floor(finalSearchParams.offset / pageSize) + 1 : page,
-          pageSize,
-          total: searchResults.estimatedTotalHits,
-          totalPages: Math.ceil(searchResults.estimatedTotalHits / pageSize),
-          processingTimeMs: searchResults.processingTimeMs,
-          query: searchResults.query,
-          facetDistribution: filteredFacetDistribution,
-          facetStats: searchResults.facetStats,
-        },
-      };
 
-      return ctx.send(response);
+        // Exclude unwanted facets from the facetDistribution
+        const unwantedFacets = ['variants.price', 'variants.slug', 'variants.averageRating']; // Example unwanted facets
+        const filteredFacetDistribution = Object.keys(searchResults.facetDistribution || {})
+          .filter(key => !unwantedFacets.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = searchResults.facetDistribution[key];
+            return obj;
+          }, {});
+
+        console.log('Search query:', searchResults);
+
+        const response = {
+          data: searchResults.hits,
+          meta: {
+            page: randomize ? Math.floor(finalSearchParams.offset / pageSize) + 1 : page,
+            pageSize,
+            total: searchResults.estimatedTotalHits,
+            totalPages: Math.ceil(searchResults.estimatedTotalHits / pageSize),
+            processingTimeMs: searchResults.processingTimeMs,
+            query: searchResults.query,
+            facetDistribution: filteredFacetDistribution,
+            facetStats: searchResults.facetStats,
+          },
+        };
+
+        return ctx.send(response);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+
     } catch (error) {
       return ctx.throw(500, error.message);
     }
