@@ -445,6 +445,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         return bulletPoints;
     };
 
+    function convertBoldText(text) {
+        // Replace **text** with <strong>text</strong>
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    }
+
     // Function to handle scrolling to next/prev image
     const scrollToImage = (direction: 'next' | 'prev') => {
         const container = document.getElementById('image-scroll-container');
@@ -662,7 +667,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                         <CardContent className="p-4 py-8 relative">
                             <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
                             <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white">
-                                <p>{variant.description ?? 'missing'}</p>
+                                <p dangerouslySetInnerHTML={{ __html: convertBoldText(variant.description) }}></p>
                             </div>
                             <div className={'flex w-full items-center justify-center'}>
                                 <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12">
