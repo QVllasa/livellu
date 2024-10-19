@@ -19,6 +19,7 @@ import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import dynamic from "next/dynamic";
 import {CarouselApi} from "@/shadcn/components/ui/carousel";
+import {DialogTitle} from "@radix-ui/react-dialog";
 
 const Carousel = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.Carousel), {ssr: false});
 const CarouselContent = dynamic(() => import('@/shadcn/components/ui/carousel').then(mod => mod.CarouselContent), {ssr: false});
@@ -419,8 +420,14 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
-    const variants = product.variants.filter((v) => v.ean === variant.ean)
+    const variants = product.variants.filter((v) => v.ean === variant.ean).map((v) => ({
+        ...v,
+        merchant: merchants.find((m) => m.attributes.merchantId === v.merchantId)
+    }));
     const sortedVariants = variants.sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first // Sort by price + delivery cost, highest first
+
+
+
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
@@ -472,6 +479,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
+            <DialogTitle></DialogTitle>
             <DrawerContent className="bg-white min-h-auto max-h-[87vh]">
                 <DrawerHeader className={'px-4 py-1'}>
                     <div className={'grid grid-cols-3 items-center'}>
@@ -568,9 +576,8 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
 
                     <div className={'grid grid-cols-auto mx-auto gap-2 mt-4'}>
                         {sortedVariants.map((v, index) => {
-                            const merchant = merchants.find((m) => m.attributes.merchantId === v.merchantId);
                             return (
-                      <Card key={v.variantId} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
+                      <Card key={v.variantId+index} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
                           {index === 0 && <Badge className="absolute top-1 right-1 bg-teal-500 text-white hover:bg-teal-600">Bester Gesamtpreis</Badge>}
                                     <CardContent className={'p-4'}>
 
@@ -597,12 +604,12 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                                 </div>
                                                 <div className={'text-sm flex items-center'}>
                                                     von
-                                                    {merchant?.attributes?.logo_image?.data?.attributes?.url && (
+                                                    {v.merchant?.attributes?.logo_image?.data?.attributes?.url && (
                                                         <NextImage
-                                                            src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${merchant?.attributes?.logo_image.data.attributes.url}`}
+                                                            src={`${process.env.NEXT_PUBLIC_STRAPI_HOST ?? '/'}${v.merchant?.attributes?.logo_image.data.attributes.url}`}
                                                             width={50}
                                                             height={25}
-                                                            alt={merchant?.name ?? 'merchant-logo'}
+                                                            alt={v.merchant?.name ?? 'merchant-logo'}
                                                             className="ml-2 object-contain"
                                                         />
                                                     )}
