@@ -473,7 +473,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     return <>
         <Drawer open={isOpen} onOpenChange={(open) => (open ? null : handleSheetClose())}>
             <DrawerContent className="bg-white min-h-auto max-h-[87vh]">
-                <DrawerHeader>
+                <DrawerHeader className={'px-4 py-1'}>
                     <div className={'grid grid-cols-3 items-center'}>
                         <div>
                             <div className="text-lg font-bold  whitespace-nowrap flex flex-col gap-0.5">
@@ -653,8 +653,8 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </div>
                         </CardContent>
 
-                        <Link href={variant.merchantLink} className={'relative '}>
-                            <Button className="bg-blue-500 text-white hover:bg-blue-600 fixed bottom-2 left-2 right-2 "  variant="outline">
+                        <Link href={variant.merchantLink} className={'fixed bottom-0 left-0 right-0 bg-white h-auto pb-4 pt-2 w-full flex items-center px-2'}>
+                            <Button className="bg-blue-500 text-white hover:bg-blue-600 w-full"  variant="outline">
                                 <Icon name={'ShoppingCart'} className="h-4 w-4 mr-2"/>
                                 Zum günstigsten Angebot
                             </Button>
