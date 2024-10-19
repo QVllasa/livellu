@@ -387,8 +387,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const images = variant.images ? variant.images.slice(2) : [];
     const scrollContainerRef = useRef<HTMLDivElement | null>(null); // Ref for the scrollable container
 
-
-
     const checkImageExists = async (url: string): Promise<boolean> => {
         return new Promise((resolve) => {
             const img = new Image(); // You do not need to import 'Image', it’s built-in.
@@ -419,21 +417,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
         loadImages();
     }, [variant.images]);
 
-    useEffect(() => {
-        console.log("Valid images:", validImages);
-    }, [validImages])
-
     const isOnSale = variant?.discount > 0;
     const discountPercentage = isOnSale ? Math.round(variant.discount) : null;
 
-
     const variants = product.variants.filter((v) => v.ean === variant.ean)
     const sortedVariants = variants.sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first // Sort by price + delivery cost, highest first
-
-
-
-    console.log("sameEanVariants:", product.variants
-        .filter((v) => v.ean === variant.ean && v.merchantId !== variant.merchantId));
 
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
