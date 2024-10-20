@@ -1,4 +1,22 @@
 export default ({env}) => ({
+    email: {
+      config: {
+        provider: 'nodemailer',
+        providerOptions: {
+          host: env('SMTP_HOST'),
+          port: env('SMTP_PORT'),
+          auth: {
+            user: env('SMTP_USERNAME'),
+            pass: env('SMTP_PASSWORD'),
+          },
+          // ... any custom nodemailer options
+        },
+        settings: {
+          defaultFrom: 'hello@example.com',
+          defaultReplyTo: 'hello@example.com',
+        },
+      },
+    },
     'prev-next-button': true,
     // upload: {
     //   config: {

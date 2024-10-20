@@ -81,6 +81,9 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
         'variants.price'  // Ensure 'variants.price' is included in facets
       ],
       sort: restParams.sort || undefined,
+      retrieveVectors: true,
+      showRankingScore: true,
+      rankingScoreThreshold: 0.9,
       attributesToRetrieve: restParams.attributesToRetrieve || undefined,
       attributesToCrop: restParams.attributesToCrop || undefined,
       attributesToHighlight: restParams.attributesToHighlight || undefined
@@ -97,6 +100,8 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
           filters: {slug: categorySlug},
           fields: ['embedding', 'name'],
         });
+
+        console.log("categories found:", categories);
 
 
         if (!categories || !categories[0].embedding) {
@@ -118,7 +123,7 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
         finalSearchParams = {
           ...finalSearchParams,
           hybrid: {
-            "semanticRatio": 1,
+            "semanticRatio": 0.9,
             "embedder": "category"
           },
           vector: category.embedding["vector"],
@@ -126,9 +131,13 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
       }
 
 
+
+
       try {
         // Perform the search using Meilisearch with the final search parameters
-        const searchResults = await index.search('', finalSearchParams);
+        const searchResults = await index.search((category && category?.name) ?? '', finalSearchParams);
+
+
 
 
         // Exclude unwanted facets from the facetDistribution
@@ -139,6 +148,10 @@ export default factories.createCoreController('api::item.item', ({strapi}) => ({
             obj[key] = searchResults.facetDistribution[key];
             return obj;
           }, {});
+
+
+
+        console.log("searchResults:", {...searchResults,facetDistribution: null});
 
 
         const response = {
