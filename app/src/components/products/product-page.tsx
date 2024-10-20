@@ -150,6 +150,13 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
         });
     }, [api]);
 
+    function convertBoldText(text: string) {
+        if (!text) return 'description missing';
+
+        // Replace **text** with <strong>text</strong>
+        return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    }
+
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
 
@@ -358,7 +365,11 @@ const ProductSheetComponent: React.FC = ({isOpen, variant, product, otherProduct
                         <CardContent className="p-4 py-8 relative">
                             <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
                             <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white">
-                                <p>{variant.description ?? 'missing'}</p>
+                                {variant.description ?
+                                    <p dangerouslySetInnerHTML={{__html: convertBoldText(variant.description)}}></p>
+                                    :
+                                    <p dangerouslySetInnerHTML={{__html: convertBoldText(variant.originalDescription)}}></p>
+                                }
                             </div>
                             <div className={'flex w-full items-center justify-center'}>
                                 <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12">
@@ -427,8 +438,6 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
     const sortedVariants = variants.sort((a, b) => (a.price + parseFloat(a.deliveryCost)) - (b.price + parseFloat(b.deliveryCost))); // Sort by price + delivery cost, lowest first // Sort by price + delivery cost, highest first
 
 
-
-
     const formatSummaryAsBullets = (keyFeatures: string) => {
         if (!keyFeatures) return [];
 
@@ -488,10 +497,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                                 {isOnSale ? (
                                     <div className="flex items-center flex-nowrap leading-tight text-xl">
                                         <span className="text-red-600">{`${variant.price.toFixed(2)} €`}</span>
-                                        {/*<span className="ml-2 text-gray-400 line-through text-[0.65rem]">{`${parseFloat(variant.priceOld)?.toFixed(2)} €`}</span>*/}
                                     </div>
                                 ) : (
-                                    `${variant.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}`
+                                    <div className="flex items-center flex-nowrap leading-tight text-xl">
+                                        <span className="text-gray-700">${variant.price.toLocaleString('de-DE', {style: 'currency', currency: 'EUR'})}</span>
+                                    </div>
                                 )}
                                 <div className="flex items-center space-x-1 text-[0.65rem] text-muted-foreground font-light leading-tight">
                                     <Package className="h-2 w-2"/>
@@ -526,7 +536,7 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </h1>
 
                             <div className="relative w-auto h-auto">
-                            {
+                                {
                                     loadingImages ? (<Skeleton className={'h-64 w-full'}/>)
                                         :
                                         <>
@@ -573,12 +583,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                     </div>
 
 
-
                     <div className={'grid grid-cols-auto mx-auto gap-2 mt-4'}>
                         {sortedVariants.map((v, index) => {
                             return (
-                      <Card key={v.variantId+index} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
-                          {index === 0 && <Badge className="absolute top-1 right-1 bg-teal-500 text-white hover:bg-teal-600">Bester Gesamtpreis</Badge>}
+                                <Card key={v.variantId + index} className={index === 0 ? 'relative border-4 border-teal-500' : ''}>
+                                    {index === 0 && <Badge className="absolute top-1 right-1 bg-teal-500 text-white hover:bg-teal-600">Bester Gesamtpreis</Badge>}
                                     <CardContent className={'p-4'}>
 
                                         <div className="grid grid-cols-2 justify-between items-center relative">
@@ -651,7 +660,11 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                         <CardContent className="p-4 py-8 relative">
                             <h3 className="text-xl font-semibold mb-4">Produktbeschreibung</h3>
                             <div className="prose-sm md:prose-base lg:prose-lg max-w-none bg-white">
-                                <p dangerouslySetInnerHTML={{ __html: convertBoldText(variant.description) }}></p>
+                                {variant.description ?
+                                    <p dangerouslySetInnerHTML={{__html: convertBoldText(variant.description)}}></p>
+                                    :
+                                    <p dangerouslySetInnerHTML={{__html: variant.originalDescription}}></p>
+                                }
                             </div>
                             <div className={'flex w-full items-center justify-center'}>
                                 <Button variant={'outline'} size={'sm'} className="w-auto mb-6 mt-12">
@@ -660,8 +673,8 @@ const ProductDrawerComponent: React.FC = ({isOpen, variant, product, otherProduc
                             </div>
                         </CardContent>
 
-                        <Link href={variant.merchantLink} className={'fixed bottom-0 left-0 right-0 bg-white h-auto pb-4 pt-2 w-full flex items-center px-2'}>
-                            <Button className="bg-blue-500 text-white hover:bg-blue-600 w-full"  variant="outline">
+                        <Link href={variant.merchantLink} className={'fixed bottom-0 left-0 right-0 bg-white h-auto pb-4 pt-2 w-full flex items-center px-4'}>
+                            <Button className="bg-blue-500 text-white hover:bg-blue-600 w-full" variant="outline">
                                 <Icon name={'ShoppingCart'} className="h-4 w-4 mr-2"/>
                                 Zum günstigsten Angebot
                             </Button>

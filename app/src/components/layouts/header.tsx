@@ -3,13 +3,15 @@ import cn from 'classnames';
 import {useIsHomePage} from '@/lib/use-is-homepage';
 import React, {Suspense, useState} from 'react';
 import {Sheet, SheetContent, SheetTrigger} from "@/shadcn/components/ui/sheet";
-import {Armchair, FolderHeart, Menu, Newspaper, SquareUserRound} from "lucide-react";
+import {Armchair, FolderHeart, Menu, Newspaper} from "lucide-react";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from '@/shadcn/components/ui/tabs';
 import {Button} from "@/shadcn/components/ui/button";
 import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {SearchFilter} from "@/components/filters/search-filter";
+import AuthenticationSheet from "@/pages/api/auth/authentication-sheet";
+
 
 const MobileNavigation = dynamic(() => import('@/components/layouts/mobile-menu/mobile-navigation'), {
     ssr: false,
@@ -131,10 +133,7 @@ const Header = ({shadowNone = false}) => {
                     </div>
                     <div className={'flex justify-end items-center gap-2 col-start-3 col-end-4 2xl:col-start-3 xl:col-end-4'}>
                         {/*<Navigation/>*/}
-                        <Button size={'sm'} variant={'ghost'}>
-                            <SquareUserRound className={'h-5 w-5 3xl:mr-2'}/>
-                            <span className={'hidden 3xl:flex'}>Anmelden</span>
-                        </Button>
+                        <AuthenticationSheet/>
                         <Button size={'sm'} variant={'ghost'}>
                             <FolderHeart className={'h-5 w-5 3xl:mr-2'}/>
                             <span className={'hidden 3xl:flex'}>Wunschliste</span>
