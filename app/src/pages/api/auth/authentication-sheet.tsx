@@ -80,7 +80,7 @@ export default function AuthenticationSheet() {
                 <Button
                     size="sm"
                     variant="ghost"
-                    onClick={() => signOut()} // Log the user out
+                    onClick={signOut} // Log the user out
                 >
                     Log out
                 </Button>

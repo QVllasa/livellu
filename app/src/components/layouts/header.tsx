@@ -10,7 +10,6 @@ import dynamic from "next/dynamic";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {SearchFilter} from "@/components/filters/search-filter";
-import AuthenticationSheet from "@/pages/api/auth/authentication-sheet";
 
 
 const MobileNavigation = dynamic(() => import('@/components/layouts/mobile-menu/mobile-navigation'), {
@@ -24,6 +23,8 @@ const CategoryMegaMenu = dynamic(() => import('@/components/layouts/menu/categor
 const MobileCategoryMenu = dynamic(() => import('@/components/layouts/mobile-menu/mobile-category-menu'), {
     ssr: false,
 });
+
+const AuthenticationSheet = dynamic(() => import("@/pages/api/auth/authentication-sheet"));
 
 
 const Header = ({shadowNone = false}) => {

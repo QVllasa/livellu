@@ -113,6 +113,7 @@ export default function ConfirmationSheet() {
                 } else {
                     console.log("Login successful!");
                     setOpen(false); // Close sheet after successful login
+                    router.push("/"); // Redirect to the home page
                 }
             } catch (error) {
                 setError("An error occurred while logging in.");
