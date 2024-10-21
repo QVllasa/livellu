@@ -12,8 +12,8 @@ export default ({env}) => ({
           // ... any custom nodemailer options
         },
         settings: {
-          defaultFrom: 'hello@example.com',
-          defaultReplyTo: 'hello@example.com',
+          defaultFrom: 'admin@webqube.de',
+          defaultReplyTo: 'admin@webqube.de',
         },
       },
     },
