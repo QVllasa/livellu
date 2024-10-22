@@ -57,6 +57,7 @@ export default function AuthenticationSheet() {
             setCurrentFeatureIndex((prevIndex) => (prevIndex + 1) % features.length);
         }, 5000); // Change every 3 seconds
 
+
         return () => clearInterval(interval);
     }, []);
 
