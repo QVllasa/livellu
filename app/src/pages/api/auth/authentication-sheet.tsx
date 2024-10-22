@@ -56,8 +56,6 @@ export default function AuthenticationSheet() {
         const interval = setInterval(() => {
             setCurrentFeatureIndex((prevIndex) => (prevIndex + 1) % features.length);
         }, 5000); // Change every 3 seconds
-
-
         return () => clearInterval(interval);
     }, []);
 
