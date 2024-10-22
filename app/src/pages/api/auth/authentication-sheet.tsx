@@ -20,17 +20,22 @@ import {ChevronRight} from "@/components/icons/chevron-right";
 const features = [
     {
         name: 'Verwalte Wunschlisten',
-        description: 'This is a dummy description for the feature.',
+        description: 'Erstelle und verwalte Wunschlisten, füge deine Lieblingsprodukte hinzu und teile sie mit Freunden und Familie.',
         icon: CloudArrowUpIcon,
     },
     {
-        name: 'Verwalte Wunschlisten 2',
-        description: 'This is a dummy description for the feature.',
+        name: 'Erstelle Preiswecker',
+        description: 'Erstelle Preiswecker für alle Produkte und erhalte eine Benachrichtigung per E-Mail, wenn du dich hier registrierst.',
         icon: CloudArrowUpIcon,
     },
     {
-        name: 'Verwalte Wunschlisten 3',
-        description: 'This is a dummy description for the feature.',
+        name: 'Erhalte exklusive Angebote',
+        description: 'Registriere dich jetzt und erhalte exklusive Angebote, die nur für unsere Mitglieder verfügbar sind.',
+        icon: CloudArrowUpIcon,
+    },
+    {
+        name: 'Personalisierte Empfehlungen',
+        description: 'Erhalte personalisierte Produktvorschläge basierend auf deinen Vorlieben und Interessen.',
         icon: CloudArrowUpIcon,
     }
 ];
@@ -173,13 +178,9 @@ export default function AuthenticationSheet() {
 
                     <div className="flex flex-col space-y-2 text-center">
                         <h1 className="text-2xl font-semibold tracking-tight">
-                            {isLogin ? "Log in" : "Deine Premium Möbel für zuhause"}
+                            {isLogin ? "Anmelden" : "Deine Premium Möbel für zuhause"}
                         </h1>
-                        <p className="text-sm text-muted-foreground">
-                            {isLogin
-                                ? "Enter your email and password to log in to your account"
-                                : "Enter your email to create an account. We'll send you a confirmation email."}
-                        </p>
+
                     </div>
                     <form onSubmit={handleSubmit}>
                         <div className="flex flex-col space-y-4">
@@ -217,7 +218,7 @@ export default function AuthenticationSheet() {
                                         </Label>
                                         <Input
                                             id="email"
-                                            placeholder="name@example.com"
+                                            placeholder="name@beispiel.de"
                                             type="email"
                                             value={email} // Bind the value to the email state
                                             onChange={(e) => setEmail(e.target.value)} // Update the email state on change
@@ -258,7 +259,7 @@ export default function AuthenticationSheet() {
                         {isLogin ? (
                             <>
                                 <div>
-                                    Du hast bereits einen Account?
+                                    Du hast noch kein Konto?
                                     <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(false)} className="">
                                         Registrieren
                                     </Button>
@@ -268,7 +269,7 @@ export default function AuthenticationSheet() {
                         ) : (
                             <>
                                 <div>
-                                    Du hast bereits einen Account?
+                                    Du hast bereits ein Konto?
                                     <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(true)} className="">
                                         Login
                                     </Button>
@@ -280,7 +281,7 @@ export default function AuthenticationSheet() {
 
                 </div>
                 {/* Feature Slider Section */}
-                <div className="w-full max-w-md mx-auto mt-12">
+                <div className="w-full max-w-md mx-auto mt-12 hidden md:flex">
                     <motion.div
                         key={features[currentFeatureIndex].name} // Key for each feature to handle animations
                         initial={{opacity: 0, y: 100}}
