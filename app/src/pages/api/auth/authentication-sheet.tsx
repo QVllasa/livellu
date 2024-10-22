@@ -13,6 +13,8 @@ import {CloudArrowUpIcon} from "@heroicons/react/16/solid";
 import {motion} from "framer-motion";
 
 import {GoogleIcon} from "@/components/icons/google";
+import {ChevronLeft} from "@/components/icons/chevron-left";
+import {ChevronRight} from "@/components/icons/chevron-right";
 
 
 const features = [
@@ -37,7 +39,7 @@ export default function AuthenticationSheet() {
     const {data: session, status} = useSession(); // Access session and status
     const [email, setEmail] = useState(""); // Email state for registration and login
     const [password, setPassword] = useState(""); // Password for login (not used in registration)
-    const [isLogin, setIsLogin] = useState(true); // Toggle between login and register
+    const [isLogin, setIsLogin] = useState(false); // Toggle between login and register
     const [error, setError] = useState<string | null>(null); // General error state
     const [formError, setFormError] = useState<string | null>(null); // API error state
     const [open, setOpen] = useState<boolean>(false); // Control sheet visibility
@@ -140,14 +142,32 @@ export default function AuthenticationSheet() {
     }
 
     return (
-        <Sheet open={open} onOpenChange={setOpen}>
+        <Sheet open={open} >
             <SheetTrigger asChild>
                 <Button size={"sm"} variant={"ghost"} onClick={() => setOpen(true)}>
                     <SquareUserRound className={"h-5 w-5 3xl:mr-2"}/>
                     <span className={"hidden 3xl:flex"}>Anmelden</span>
                 </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="bg-gray-100 h-full overflow-y-auto sm:max-w-xl">
+            <SheetContent side="right" className="bg-gray-100 h-full overflow-y-auto w-full sm:max-w-xl">
+                <div className={'flex justify-between'}>
+                    <Button size={'sm'} variant={'link'} onClick={() => setOpen(false)} className="">
+                        <ChevronLeft className={'h-4 w-4 mr-2'}/>
+                        Zurück
+                    </Button>
+                    {!isLogin ? <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(true)} className="">
+                        Login
+                        <ChevronRight className={'h-4 w-4 ml-2'}/>
+                    </Button> :
+                        <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(false)} className="">
+                            Registrieren
+                            <ChevronRight className={'h-4 w-4 ml-2'}/>
+                        </Button>
+                    }
+
+                </div>
+
+
                 {/* Features Section */}
                 <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px] mt-8">
 
@@ -249,7 +269,7 @@ export default function AuthenticationSheet() {
                             <>
                                 <div>
                                     Du hast bereits einen Account?
-                                    <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(false)} className="">
+                                    <Button size={'sm'} variant={'link'} onClick={() => setIsLogin(true)} className="">
                                         Login
                                     </Button>
                                 </div>
