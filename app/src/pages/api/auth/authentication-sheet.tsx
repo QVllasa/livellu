@@ -59,7 +59,6 @@ export default function AuthenticationSheet() {
         return () => clearInterval(interval);
     }, []);
 
-
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setFormError(null);
